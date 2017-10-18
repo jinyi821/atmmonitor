@@ -1,0 +1,55 @@
+package com.inspection.basedata.dao;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.inspection.basedata.model.Resouce;
+import com.inspection.basedata.model.Task;
+import com.inspection.dailytask.services.CombineQuery;
+/**
+ * 
+ * Created on 2017年5月2日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [描述该类概要功能介绍]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+ * <p>Company:     北京神州泰岳</p>
+ * @author         <a href=jinyi@ultrapower.com.cn>jinyi</a>
+ * @version        1.0
+ */
+public interface TaskMapper {
+	
+    int deleteByPrimaryKey(BigDecimal id);
+
+    int insert(Task record);
+
+    int insertSelective(Task record);
+
+    Task selectByPrimaryKey(BigDecimal id);
+
+    int updateByPrimaryKeySelective(Task record);
+
+    int updateByPrimaryKeyWithBLOBs(Task record);
+
+    int updateByPrimaryKey(Task record);
+    
+    /**
+     * 查询任务列表
+     * @param record
+     * @return
+     */
+    List<Task> getTaskList(Task record);
+    
+    /**
+     * 根据条件查询出网元名称
+     * @param combineQuery
+     * @return
+     */
+    List<Resouce> getResourceNameList(CombineQuery combineQuery);
+    /**
+     * 查询任务列表
+     * @param record
+     * @return
+     */
+    List<Task>  getTaskListByTaskName(Task record);
+    
+}

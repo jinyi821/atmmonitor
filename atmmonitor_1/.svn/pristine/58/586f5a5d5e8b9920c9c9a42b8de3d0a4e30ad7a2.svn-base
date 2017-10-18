@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspection.basedata.dao.TaskMapper" >
+  <resultMap id="BaseResultMap" type="com.inspection.basedata.model.Task" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="TASK_NAME" property="taskName" jdbcType="VARCHAR" />
+    <result column="NE_VENDOR" property="neVendor" jdbcType="VARCHAR" />
+    <result column="NE_TYPE" property="neType" jdbcType="VARCHAR" />
+    <result column="PROGRAM_ID" property="programId" jdbcType="VARCHAR" />
+    <result column="RESOURCES_ID" property="resourcesId" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="ResouceResultMap" type="com.inspection.basedata.model.Resouce" >
+  
+    <result column="RESOURCE_ID" property="resourceId" jdbcType="VARCHAR" />
+    <result column="resource_rname" property="resourceRname" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.inspection.basedata.model.Task" extends="BaseResultMap" >
+    <result column="RULE" property="rule" jdbcType="CLOB" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, TASK_NAME, NE_VENDOR, NE_TYPE, PROGRAM_ID, RESOURCES_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    RULE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ZNXJ_TASK
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from ZNXJ_TASK
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.inspection.basedata.model.Task" >
+    insert into ZNXJ_TASK (ID, TASK_NAME, NE_VENDOR, 
+      NE_TYPE, PROGRAM_ID, RESOURCES_ID, 
+      RULE)
+    values (#{id,jdbcType=DECIMAL}, #{taskName,jdbcType=VARCHAR}, #{neVendor,jdbcType=VARCHAR}, 
+      #{neType,jdbcType=VARCHAR}, #{programId,jdbcType=VARCHAR}, #{resourcesId,jdbcType=VARCHAR}, 
+      #{rule,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.basedata.model.Task" >
+    insert into ZNXJ_TASK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="taskName != null" >
+        TASK_NAME,
+      </if>
+      <if test="neVendor != null" >
+        NE_VENDOR,
+      </if>
+      <if test="neType != null" >
+        NE_TYPE,
+      </if>
+      <if test="programId != null" >
+        PROGRAM_ID,
+      </if>
+      <if test="resourcesId != null" >
+        RESOURCES_ID,
+      </if>
+      <if test="rule != null" >
+        RULE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="neVendor != null" >
+        #{neVendor,jdbcType=VARCHAR},
+      </if>
+      <if test="neType != null" >
+        #{neType,jdbcType=VARCHAR},
+      </if>
+      <if test="programId != null" >
+        #{programId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesId != null" >
+        #{resourcesId,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null" >
+        #{rule,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspection.basedata.model.Task" >
+    update ZNXJ_TASK
+    <set >
+      <if test="taskName != null" >
+        TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="neVendor != null" >
+        NE_VENDOR = #{neVendor,jdbcType=VARCHAR},
+      </if>
+      <if test="neType != null" >
+        NE_TYPE = #{neType,jdbcType=VARCHAR},
+      </if>
+      <if test="programId != null" >
+        PROGRAM_ID = #{programId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesId != null" >
+        RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR},
+      </if>
+      <if test="rule != null" >
+        RULE = #{rule,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.inspection.basedata.model.Task" >
+    update ZNXJ_TASK
+    set TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      NE_VENDOR = #{neVendor,jdbcType=VARCHAR},
+      NE_TYPE = #{neType,jdbcType=VARCHAR},
+      PROGRAM_ID = #{programId,jdbcType=VARCHAR},
+      RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR},
+      RULE = #{rule,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspection.basedata.model.Task" >
+    update ZNXJ_TASK
+    set TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      NE_VENDOR = #{neVendor,jdbcType=VARCHAR},
+      NE_TYPE = #{neType,jdbcType=VARCHAR},
+      PROGRAM_ID = #{programId,jdbcType=VARCHAR},
+      RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <!-- 查询任务列表 -->
+  <select id="getTaskList" resultMap="BaseResultMap" parameterType="com.inspection.basedata.model.Task">
+          select 
+    <include refid="Base_Column_List" /> 
+    from ZNXJ_TASK
+         where  ne_vendor=#{neVendor,jdbcType=VARCHAR} and ne_type=#{neType,jdbcType=VARCHAR}  
+  </select>
+  <!-- 查询网元列表 -->
+   <select id="getResourceNameList" resultMap="ResouceResultMap" parameterType="com.inspection.dailytask.services.CombineQuery">
+  select  RT.RESOURCE_ID,rt.resource_rname  from resource_table rt ,resource_class_table rct , business_table bt
+where rt.resource_class_id = rct.resource_class_id
+and rt.geog_dim_id = bt.business_id 
+and rct.resource_class_name = #{vendorAndType,jdbcType=VARCHAR} 
+and bt.business_name=#{region,jdbcType=VARCHAR}
+and instr(rt.resource_rname,'YJ')=0
+
+ </select>
+  <!-- 查询任务列表 -->
+  <select id="getTaskListByTaskName" resultMap="ResultMapWithBLOBs" parameterType="com.inspection.basedata.model.Task">
+          select 
+     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" /> 
+    from ZNXJ_TASK
+         where  task_name=#{taskName,jdbcType=VARCHAR} 
+  </select>
+</mapper>

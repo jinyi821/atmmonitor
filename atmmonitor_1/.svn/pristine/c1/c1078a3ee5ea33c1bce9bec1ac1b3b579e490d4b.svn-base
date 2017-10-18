@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>数据共享平台首页</title>
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	    <meta http-equiv="description" content="this is my page">
+	    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">--%>
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	    <meta name="renderer" content="webkit">
+	    <link rel="stylesheet" href="style/css/base/MyReset.css" />
+	    <link rel="stylesheet" href="style/css/common/common.css" />
+	    <link rel="stylesheet" href="style/css/common/idangerous.swiper.css" />
+	    <link rel="stylesheet" href="style/css/common/main.css" />
+	    <link rel="stylesheet" href="style/css/page/mycss.css" />
+	    <script type="text/javascript" src="style/js/base/jquery-1.9.1.min.js" ></script>
+	    <script type="text/javascript" src="style/js/common/idangerous.swiper.min.js" ></script>
+	    <script type="text/javascript" src="style/js/common/changeTab.js" ></script>
+	    <script type="text/javascript" src="style/js/page/myjs.js" ></script>
+	</head>
+	<body>
+		<div class="divsection">
+	    	<form>
+	    		<div class="header0">
+	    			<div class="Ct sContent">
+	    				<table class="base_table">
+	    					<tr>
+	    						<td>
+	    							<div class="logo"></div>
+	    						</td>
+	    						<td>
+	    							<input type="button" value="首页" class="h_btn h_btnClick" onclick="showInfo1(event,'h_btnClick','')"/>
+	    							<input type="button" value="看数" class="h_btn" onclick="showInfo1(event,'h_btnClick','')"/>
+	    							<input type="button" value="开发" class="h_btn" onclick="showInfo1(event,'h_btnClick','')"/>
+	    							<input type="button" value="IT聚友会" class="h_btn" onclick="showInfo1(event,'h_btnClick','')"/>
+	    							<input type="button" value="统计" class="h_btn" onclick="showInfo1(event,'h_btnClick','')"/>
+	    							<input type="button" value="维护" class="h_btn" onclick="showInfo1(event,'h_btnClick','')"/>
+	    						</td>
+	    						<td>
+	    							<div class="user"></div>
+	    							<label class="font color">Admin</label>
+	    							<div class="wx"></div>
+	    						</td>
+	    					</tr>
+	    				</table>
+	    			</div>
+	    		</div>
+	    		<!--
+                	时间：2016-03-17
+                	描述：banner轮播区域
+                -->
+	    		<div class="bannerDiv bgColor Reposition">
+	    			<div class="Ct sContent">
+	    				<div class="swiper-container">
+						  <div class="swiper-wrapper">
+						    <div class="swiper-slide">
+						    	<div class="bannerIcon1"></div>
+						    </div>
+						    <div class="swiper-slide">
+						    	<div class="bannerIcon2 img_cursor"></div>
+						    </div>
+						    <div class="swiper-slide">
+						    	<div class="bannerIcon1"></div>
+						    </div>
+						  </div>
+						  <!--<div class="swiper-pagination"></div>-->
+						  <div class="pagination"></div>
+						</div>
+	    			</div>
+	    			<div class="TgContent"></div>
+	    			<div class="TgContent1">
+	    				<div class="Ct sContent tgMask">
+	    					<table class="base_table font1 color1">
+	    						<tr>
+	    							<td width="17%">
+	    								<div class="tgIcon"></div>
+	    							</td>
+	    							<td width="24%">
+	    								<a class="tgA">·[3-10] 辽宁移动数据共享平台上线！</a>
+	    							</td>
+	    							<td width="24%">
+	    								<a class="tgA">·[3-11] 辽宁移动数据共享平台上线！</a>
+	    							</td>
+	    							<td width="24%">
+	    								<a class="tgA">·[3-11] 辽宁移动数据共享平台上线！</a>
+	    							</td>
+	    							<td width="11%">
+	    								<input type="button" value="更多>>" class="more"/>
+	    							</td>
+	    						</tr>
+	    					</table>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<!--
+                	时间：2016-03-17
+                	描述：正文主体部分
+                -->
+                <div class="content_part1">
+                	<div class="Ct sContent contentIcon">
+                		<!--<div class="contentIcon"></div>-->
+                		<div class="Reposition">
+                			<div class="content_part1_Content base_align_center color2">
+                				<p class="pHeight1">
+                					<label class="fontSize">掘金者俱乐部</label>
+                				</p>
+                				<p class="pHeight marginTop">
+                					<label class="fontSize1">闪闪发光的大数据金矿，等待着每一位掘金者去挖掘。</label>
+                				</p>
+                				<p class="pHeight">
+                					<label class="fontSize1">在这里，土豪们，请尽情的炫富吧~</label>
+                				</p>
+                				<p class="marginTop">
+                					<input type="button" value="查看更多" class="showmoreBtn"/>
+                				</p>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+                <div class="content_part2">
+                	<div class="Ct sContent">
+                		<div class="block1">
+                			<div class="blockClick">
+                				<div class="chart1"></div>
+	                			<div class="blockContent">
+	                				<p>
+	                					<label class="color2 fontSize2">数据统计分析</label>
+	                				</p>
+	                				<p class="marginTop">
+	                					<label class="font1 color3">概要说明：通过数据统计分析，发现各种业务问题。通过数据统计分析，发现业务问题。通过数据统计分析，发现业务问题...</label>
+	                				</p>
+	                			</div>
+                			</div>
+                			<div class="blockFoot">
+                				<table class="base_table">
+                					<tr>
+                						<td class="userWidth">
+                							<div class="user"></div>
+	    									<label class="font color">Admin</label>
+                						</td>
+                						<td>
+                							<div class="time"></div>
+	    									<label class="font color">2016-1-23</label>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="block2">
+                			<div class="blockClick">
+	                			<div class="chart2"></div>
+	                			<div class="blockContent">
+	                				<p>
+	                					<label class="color2 fontSize2">指标分布统计分析</label>
+	                				</p>
+	                				<p class="marginTop">
+	                					<label class="font1 color3">概要说明：通过指标分布统计分析，发现业务问题。指标分布统计分析发现业务问题。指标标分布统计分析，发现业务问题...</label>
+	                				</p>
+	                			</div>
+	                		</div>
+                			<div class="blockFoot">
+                				<table class="base_table">
+                					<tr>
+                						<td class="userWidth">
+                							<div class="user"></div>
+	    									<label class="font color">Admin</label>
+                						</td>
+                						<td>
+                							<div class="time"></div>
+	    									<label class="font color">2016-1-23</label>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="block2">
+                			<div class="blockClick">
+	                			<div class="chart3"></div>
+	                			<div class="blockContent">
+	                				<p>
+	                					<label class="color2 fontSize2">数据集成分析</label>
+	                				</p>
+	                				<p class="marginTop">
+	                					<label class="font1 color3">概要说明：通过数据集成分析，发现各种业务问题。通过数据集成分析，发现业务问题。通过数据集成分析发现业务问题...</label>
+	                				</p>
+	                			</div>
+	                		</div>
+                			<div class="blockFoot">
+                				<table class="base_table">
+                					<tr>
+                						<td class="userWidth">
+                							<div class="user"></div>
+	    									<label class="font color">Admin</label>
+                						</td>
+                						<td>
+                							<div class="time"></div>
+	    									<label class="font color">2016-1-23</label>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="block2">
+                			<div class="block_head">
+                				<div class="dataIcon"></div>
+                				<label class="fontSize2 color3">数据分析排行</label>
+                			</div>
+                			<div>
+                				<table class="base_table blockTable">
+                					<tr>
+                						<td>
+                							<input type="button" value="1" class="numBtn"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color4">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="2" class="numBtn"/>
+	                						<label class="font1 color2">指标分布统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color4">232</label>
+	                							<div class="middleIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="3" class="numBtn"/>
+	                						<label class="font1 color2">数据集成分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color4">232</label>
+	                							<div class="downIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="4" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="5" class="numBtn1"/>
+	                						<label class="font1 color2">指标分布统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="6" class="numBtn1"/>
+	                						<label class="font1 color2">数据集成分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="7" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="8" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="downIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="9" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="middleIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="10" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="downIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="ClearFloat"></div>
+                	</div>
+                </div>
+                <div class="content_part3">
+                	<div class="Ct sContent contentIcon1">
+                		<!--<div class="contentIcon"></div>-->
+                		<div class="Reposition">
+                			<div class="content_part3_Content base_align_center color2">
+                				<p class="pHeight1">
+                					<label class="fontSize">开发者大舞台</label>
+                				</p>
+                				<p class="pHeight marginTop">
+                					<label class="fontSize1">光荣的IT民工们，这里是捞取成就感的舞台……</label>
+                				</p>
+                				<p class="pHeight">
+                					<label class="fontSize1">聚光灯已经准备好，就等你闪亮登场！</label>
+                				</p>
+                				<p class="marginTop">
+                					<input type="button" value="查看更多" class="showmoreBtn"/>
+                				</p>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+                <div class="content_part4">
+                	<div class="Ct sContent">
+                		<div class="block1">
+                			<div class="blockClick">
+	                			<div class="chart4"></div>
+	                			<div class="blockContent">
+	                				<p>
+	                					<label class="color2 fontSize2">可视化监控</label>
+	                				</p>
+	                				<p class="marginTop">
+	                					<label class="font1 color3">概要说明：基于动态热力图的关键指标可视化监控。基于动态热力图的关键指标可视化基于动态热力图的关键指标可视化监控...</label>
+	                				</p>
+	                			</div>
+	                		</div>
+                			<div class="blockFoot">
+                				<table class="base_table">
+                					<tr>
+                						<td class="userWidth">
+                							<div class="user"></div>
+	    									<label class="font color">Admin</label>
+                						</td>
+                						<td>
+                							<div class="time"></div>
+	    									<label class="font color">2016-1-23</label>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="block2">
+                			<div class="blockClick">
+	                			<div class="chart5"></div>
+	                			<div class="blockContent">
+	                				<p>
+	                					<label class="color2 fontSize2">Bootstrap</label>
+	                				</p>
+	                				<p class="marginTop">
+	                					<label class="font1 color3">Bootstrap 是最受欢迎的 HTML、CSS 和 JS框架，用于开发响应式布局、移动设备优先的WEB 项目。</label>
+	                				</p>
+	                			</div>
+	                		</div>
+                			<div class="blockFoot">
+                				<table class="base_table">
+                					<tr>
+                						<td class="userWidth">
+                							<div class="user"></div>
+	    									<label class="font color">Admin</label>
+                						</td>
+                						<td>
+                							<div class="time"></div>
+	    									<label class="font color">2016-1-23</label>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="block2">
+                			<div class="blockClick">
+	                			<div class="chart6"></div>
+	                			<div class="blockContent">
+	                				<p>
+	                					<label class="color2 fontSize2">Font Awesome</label>
+	                				</p>
+	                				<p class="marginTop">
+	                					<label class="font1 color3">Font Awesome 完全免费的，无论个人还是商业使用。Font Awesome 助你完整表达web页面上每个动作的含义。</label>
+	                				</p>
+	                			</div>
+	                		</div>
+                			<div class="blockFoot">
+                				<table class="base_table">
+                					<tr>
+                						<td class="userWidth">
+                							<div class="user"></div>
+	    									<label class="font color">Admin</label>
+                						</td>
+                						<td>
+                							<div class="time"></div>
+	    									<label class="font color">2016-1-23</label>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="block2">
+                			<div class="block_head">
+                				<div class="dataIcon1"></div>
+                				<label class="fontSize2 color3">应用排行</label>
+                			</div>
+                			<div>
+                				<table class="base_table blockTable">
+                					<tr>
+                						<td>
+                							<input type="button" value="1" class="numBtn"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color4">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="2" class="numBtn"/>
+	                						<label class="font1 color2">指标分布统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color4">232</label>
+	                							<div class="middleIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="3" class="numBtn"/>
+	                						<label class="font1 color2">数据集成分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color4">232</label>
+	                							<div class="downIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="4" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="5" class="numBtn1"/>
+	                						<label class="font1 color2">指标分布统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="6" class="numBtn1"/>
+	                						<label class="font1 color2">数据集成分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="7" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="top"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="8" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="downIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="9" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="middleIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                					<tr>
+                						<td>
+                							<input type="button" value="10" class="numBtn1"/>
+	                						<label class="font1 color2">数据统计分析</label>
+	                						<div class="floatRight">
+	                							<label class="font color">232</label>
+	                							<div class="downIcon"></div>
+	                						</div>
+	                						<div class="ClearFloat"></div>
+                						</td>
+                					</tr>
+                				</table>
+                			</div>
+                		</div>
+                		<div class="ClearFloat"></div>
+                	</div>
+                </div>
+                <div class="bodyFoot">
+                	<label class="font1 color3">Copyright2016 辽宁移动</label>
+                </div>
+	    	</form>
+	    </div>
+	</body>
+</html>

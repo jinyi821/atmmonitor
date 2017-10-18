@@ -1,0 +1,142 @@
+package com.inspection.workorder.services.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.inspection.basedata.dao.BelongMapper;
+import com.inspection.basedata.dao.RegionMapper;
+import com.inspection.basedata.dao.TaskMapper;
+import com.inspection.basedata.dao.TypeMapper;
+import com.inspection.basedata.dao.VendorMapper;
+import com.inspection.basedata.model.Belong;
+import com.inspection.basedata.model.Region;
+import com.inspection.basedata.model.Resouce;
+import com.inspection.basedata.model.Structured;
+import com.inspection.basedata.model.Task;
+import com.inspection.basedata.model.Type;
+import com.inspection.basedata.model.Vendor;
+import com.inspection.dailytask.services.CombineQuery;
+import com.inspection.workorder.services.WorkOrderService;
+
+/**
+ * 
+ * Created on 2017年4月20日
+ * <p>
+ * Title: [项目名称_一级模块名称_模块名称]
+ * </p>
+ * <p>
+ * Description: [日常作业各种调用]
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2016
+ * </p>
+ * <p>
+ * Company: 北京神州泰岳
+ * </p>
+ * 
+ * @author <a href=huming@ultrapower.com.cn>huming</a>
+ * @version 1.0
+ */
+@Service("WorkOrderServiceImpl")
+@Transactional(value = "transactionManager")
+public class WorkOrderServiceImpl implements WorkOrderService {
+
+	@Autowired
+	private BelongMapper belongMapper;
+
+	@Autowired
+	private VendorMapper vendorMapper;
+
+	@Autowired
+	private TypeMapper typeMapper;
+	
+	@Autowired
+	private RegionMapper regionMapper;
+	
+	@Autowired
+	private TaskMapper taskMapper;
+
+	/**
+	 * 网元专业
+	 */
+	@Override
+	public List<Belong> getAllBelong() {
+		return belongMapper.getAllBelong();
+	}
+
+	/**
+	 * 取网元厂家
+	 */
+	@Override
+	public List<Vendor> getVendorByBelog(Integer belong) {
+
+		return vendorMapper.getVendorByBelong(belong);
+	}
+
+	@Override
+	public List<Type> getTypeListByVendor(Structured structured) {
+
+		return typeMapper.getTypeListByVendor(structured);
+	}
+
+	@Override
+	public List<Region> getAllRegion() {
+		
+		return regionMapper.getAllRegion();
+	}
+
+	@Override
+	public List<Task> getTaskList(Task record) {
+		
+		return taskMapper.getTaskList(record);
+	}
+
+	@Override
+	public Vendor getVendorById(String id) {
+		return vendorMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Belong getBelongById(String id) {
+		
+		return belongMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Type getTypeById(String id) {
+
+		return typeMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Region getRegionById(String id) {
+		
+		return regionMapper.selectByPrimaryKey(id);
+	}
+	
+	 /**
+     * 根据条件查询出网元名称
+     * @param combineQuery
+     * @return
+     */
+    public List<Resouce> getResourceNameList(CombineQuery combineQuery){
+    	
+    	return taskMapper.getResourceNameList(combineQuery);
+    }
+
+	@Override
+	public String showRule(Long id) {
+		return null;
+	}
+
+	@Override
+	public List<Task> getTaskListByTaskName(Task record) {
+		return taskMapper.getTaskListByTaskName(record);
+	}
+
+    
+
+}

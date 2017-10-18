@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+  <display-name>metadata</display-name>
+  <!--默认错误处理  -->
+  <error-page>  
+    <error-code>404</error-code>  
+    <location>/portal/error.jsp</location>  
+   </error-page>
+  <!-- web.xml 的加载顺序是：ServletContext-> context-param ->listener -> filter -> servlet，
+             而同个类型之间的实际程序调用的时候的顺序是根据对应的 mapping 的顺序进行调用的 -->
+  <!--在启动Web 容器时，加载上下文的配置信息。  -->
+    <listener>
+		 <listener-class>
+		 		com.common.startup.TestListener
+		 </listener-class>
+   </listener>
+    <listener>
+		 <listener-class>
+		 		org.springframework.web.context.ContextLoaderListener
+		 </listener-class>
+   </listener>
+    <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:spring/*.xml,</param-value>
+   </context-param>   
+  <!-- web应用初始化加载默认配置信息、加载数据源 -->  
+  <listener>
+		 <listener-class>
+		 		com.common.startup.WebApplicationListener
+		 </listener-class>
+   </listener> 
+   <!--加载sqlxml文件sqlconfig --> 
+   <listener>
+    <listener-class>
+			com.common.core.component.rquery.startup.Services
+		</listener-class>
+  </listener>
+  <!--监控登录会话监听器  -->
+  <listener>
+   <listener-class>
+			com.common.startup.OnlineUserListener
+	</listener-class>
+  </listener>
+   <session-config>
+ 	<session-timeout>60</session-timeout>
+ </session-config>
+  <!-- 访问web日志、web访问权限过滤器 -->
+  <filter>
+    <filter-name>setWebActionContext</filter-name>
+    <filter-class>com.common.core.web.WebActionContextFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>setWebActionContext</filter-name>
+    <url-pattern>*.action</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>setWebActionContext</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+   <!--编码过滤器  -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>  
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>  
+  <!-- 跨网站漏洞、拦截防止sql注入过滤器-->
+	<filter>
+     <filter-name>XssSqlFilter</filter-name>
+     <filter-class>com.common.core.web.XssFilter</filter-class>
+  </filter>
+  	<filter-mapping>
+     <filter-name>XssSqlFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+     <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>    
+ <!--SpringMVC加载 -->
+  <!-- register a RequestContextListener listener,便于spring中service层获取相关的session和request   -->   
+  <!-- <listener>
+   <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+   </listener> -->
+     <servlet>
+	 <servlet-name>dispatcher</servlet-name>
+	 <servlet-class>
+		 org.springframework.web.servlet.DispatcherServlet
+	 </servlet-class>
+	 <init-param>
+		 <param-name>contextConfigLocation</param-name>
+		 <param-value>classpath*:control/**/*-servlet.xml</param-value>	 
+	 </init-param>
+	 <load-on-startup>1</load-on-startup>
+ </servlet> 
+  <servlet-mapping>
+	 <servlet-name>dispatcher</servlet-name>
+	 <url-pattern>/</url-pattern><!--/*不会匹配.jsp,默认servlet，没有其他匹配的配置时的默认配置,/*拦截所有-->
+  </servlet-mapping>
+   <!-- 静态资源 -->
+  <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.mp4</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.ico</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.rmvb</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.avi</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.pdf</url-pattern>
+  </servlet-mapping>  
+    <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.doc</url-pattern>
+  </servlet-mapping>  
+      <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.docx</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.txt</url-pattern>
+  </servlet-mapping>  
+  <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>/upload/*</url-pattern>
+  </servlet-mapping> 
+ <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+ <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+ <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+ <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+ <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.properties</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>*.map</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+          <servlet-name>default</servlet-name>
+		 <url-pattern>/common/plugin/ueditor/third-party/*</url-pattern>
+  </servlet-mapping>  
+  	<!--Axis2 config start-->
+	<servlet>
+		<servlet-name>AxisServlet</servlet-name>
+		<servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>  
+ 		<servlet-name>AxisServlet</servlet-name>  
+ 		<url-pattern>/services/*</url-pattern>  
+	</servlet-mapping> 
+	<!--Axis2  end-->
+
+  <!--监控 proxool 连接池信息  -->
+  <servlet>
+    <servlet-name>dbAdmin</servlet-name>
+    <servlet-class>
+			org.logicalcobwebs.proxool.admin.servlet.AdminServlet
+		</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dbAdmin</servlet-name>
+    <url-pattern>/dbAdmin</url-pattern>
+  </servlet-mapping>   
+  <welcome-file-list id="WelcomeFileList">
+		<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

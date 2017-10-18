@@ -1,0 +1,19 @@
+CREATE TABLE znxj_Info_lose (
+id int NOT NULL  ,
+processpath varchar(600)  ,
+engname varchar(600)  ,
+chname varchar(600)  ,
+vendor varchar(600) ,
+type varchar(600)  ,
+belong varchar(600)  ,
+Switch int NULL ,
+ip varchar(50)  ,
+SwichOn int NOT NULL ,
+count int NULL ,
+num int NULL ,
+failnums int NULL ,
+nenames clob  ,
+failnenames clob  ,
+starttime date NULL ,
+circle varchar(100)  
+)

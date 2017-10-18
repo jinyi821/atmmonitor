@@ -1,0 +1,9 @@
+CREATE TABLE znxj_info_class (
+classid int  ,
+classname varchar(100)  ,
+classDescrip varchar(4000)  ,
+parentid int  ,
+sortId int  ,
+depth int  ,
+childNum int  
+)

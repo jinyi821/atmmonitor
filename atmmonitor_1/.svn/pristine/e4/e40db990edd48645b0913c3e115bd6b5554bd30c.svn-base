@@ -1,0 +1,184 @@
+package com.inspection.workorder.controller;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.inspection.basedata.model.Belong;
+import com.inspection.basedata.model.Region;
+import com.inspection.basedata.model.Resouce;
+import com.inspection.basedata.model.Structured;
+import com.inspection.basedata.model.Task;
+import com.inspection.basedata.model.Vendor;
+import com.inspection.dailytask.services.CombineQuery;
+import com.inspection.workorder.services.WorkOrderService;
+
+/**
+ * 
+ * Created on 2017年4月19日
+ * <p>
+ * Title: [辽宁移动智能巡检-派单管理]
+ * </p>
+ * <p>
+ * Description: [描述该类概要功能介绍]
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2016
+ * </p>
+ * <p>
+ * Company: 北京神州泰岳
+ * </p>
+ * 
+ * @author <a href=huming@ultrapower.com.cn>huming</a>
+ * @version 1.0
+ */
+@Controller
+@RequestMapping(value = "/inspection/workorder")
+public class WorkOrderController {
+
+	@Resource(name = "WorkOrderServiceImpl")
+	private WorkOrderService workOrderService;
+	private static Log logger = LogFactory.getLog(WorkOrderController.class);
+
+	/**
+	 * 进入派单管理
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/workorder.action")
+	public String workorder(HttpServletRequest req, Map<String, Object> map) {
+
+		logger.info("workorder begin");
+		List<Belong> allBelong = workOrderService.getAllBelong();
+		map.put("allBelong", allBelong);
+
+		List<Region> allRegion = workOrderService.getAllRegion();
+		map.put("allRegion", allRegion);
+
+		logger.info("workorder end");
+
+		return "/inspection/workorder.jsp";
+	}
+
+	/**
+	 * 取相关厂家信息
+	 * 
+	 * @param cube_id
+	 * @return
+	 */
+	@RequestMapping(value = "getVendorByBelong.action")
+	@ResponseBody
+	public Map<String, Object> getVendorByBelong(String belongId) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+			List<Vendor> vendorByBelogList = workOrderService.getVendorByBelog(new Integer(belongId));
+			map.put("vendorByBelongList", vendorByBelogList);
+
+		} catch (Exception e) {
+
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+
+	/**
+	 * 取厂家类型
+	 * 
+	 * @param belongId
+	 * @return
+	 */
+	@RequestMapping(value = "changeVendor.action")
+	@ResponseBody
+	public Map<String, Object> getTypeListByVendor(String belongId, String vendorId) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Structured structured = new Structured();
+		structured.setTaskBelong(new BigDecimal(belongId));
+		structured.setTaskVendor(new BigDecimal(vendorId));
+
+		try {
+			List<com.inspection.basedata.model.Type> typeList = workOrderService.getTypeListByVendor(structured);
+			map.put("typeListByVendor", typeList);
+
+		} catch (Exception e) {
+
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+
+	/**
+	 * 网元城市改变调用
+	 * 
+	 * @param belongId
+	 * @return
+	 */
+	@RequestMapping(value = "changeRegion.action")
+	@ResponseBody
+	public Map<String, Object> getRegion(String belongId, String vendorId, String type, String regionId) {
+		logger.info("getRegion begin");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Task record = new Task();
+		Vendor vendorById = workOrderService.getVendorById(vendorId);
+		record.setNeVendor(vendorById.getEngname());
+		record.setNeType(workOrderService.getTypeById(type).getEngname());
+
+		String vendorAndType = "";
+		if (vendorById != null) {
+
+			if (StringUtils.isNotBlank(record.getNeVendor())) {
+				vendorAndType = vendorById.getChsname();
+			}
+			if (StringUtils.isNotBlank(record.getNeType())) {
+				vendorAndType = vendorAndType + "" + record.getNeType();
+			}
+		}
+
+		try {
+			// 查询任务列表
+			List<Task> taskList = workOrderService.getTaskList(record);
+			logger.info("根据厂家和类型=" + record + "查找任务列表List<Task> taskList=" + taskList.size());
+			map.put("taskList", taskList);
+
+			CombineQuery combineQuery = new CombineQuery();
+			combineQuery.setVendorAndType(vendorAndType);
+
+			Region regionById = workOrderService.getRegionById(regionId);
+			if (regionById != null) {
+				combineQuery.setRegion(regionById.getChsname());
+			}
+
+			List<Resouce> resourceNameList = workOrderService.getResourceNameList(combineQuery);
+			logger.info("根据厂家类型，地市" + combineQuery + "查找网元列表List<Resouce> resourceNameList =" + resourceNameList.size());
+
+			// 查询网元列表
+			map.put("resourceNameList", resourceNameList);
+			logger.info("getRegion end");
+
+		} catch (Exception e) {
+
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+
+
+
+
+}

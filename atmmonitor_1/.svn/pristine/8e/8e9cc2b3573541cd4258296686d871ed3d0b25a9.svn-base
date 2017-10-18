@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspection.basedata.dao.TypeMapper" >
+  <resultMap id="BaseResultMap" type="com.inspection.basedata.model.Type" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ENGNAME" property="engname" jdbcType="VARCHAR" />
+    <result column="CHSNAME" property="chsname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ENGNAME, CHSNAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ZNXJ_TYPE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ZNXJ_TYPE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.inspection.basedata.model.Type" >
+    insert into ZNXJ_TYPE (ID, ENGNAME, CHSNAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{engname,jdbcType=VARCHAR}, #{chsname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.basedata.model.Type" >
+    insert into ZNXJ_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="engname != null" >
+        ENGNAME,
+      </if>
+      <if test="chsname != null" >
+        CHSNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="chsname != null" >
+        #{chsname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspection.basedata.model.Type" >
+    update ZNXJ_TYPE
+    <set >
+      <if test="engname != null" >
+        ENGNAME = #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="chsname != null" >
+        CHSNAME = #{chsname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspection.basedata.model.Type" >
+    update ZNXJ_TYPE
+    set ENGNAME = #{engname,jdbcType=VARCHAR},
+      CHSNAME = #{chsname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <!-- 查询网元厂家类型-->
+  <select id="getTypeListByVendor" resultType="com.inspection.basedata.model.Type" parameterType="com.inspection.basedata.model.Structured" >
+         select * from  ZNXJ_TYPE where id in (select task_type from ZNXJ_STRUCTURED where task_belong=#{taskBelong,jdbcType=INTEGER} and TASK_VENDOR= #{taskVendor,jdbcType=INTEGER})
+  </select>
+</mapper>

@@ -1,0 +1,284 @@
+@CHARSET "UTF-8";
+
+.bannerDiv{
+	height: 330px;
+}
+
+.bannerIcon1,.bannerIcon2{
+	width: 1200px;
+	height: 330px;
+}
+.bannerIcon1{
+	background: url(../../images/banner1.png) no-repeat;
+}
+
+.bannerIcon2{
+	background: url(../../images/banner2.png) no-repeat;
+}
+
+.TgContent{
+	/*background: rgba(15,34,57,0.4);*/
+	background: #0b1326;
+	filter:alpha(opacity=40);       /* IE */
+	opacity:0.4; 
+	height: 40px;
+	line-height: 40px;
+	position: absolute;
+	bottom: 0;
+	z-index: 100;
+	width: 100%;
+}
+
+.TgContent1{
+	position: absolute;
+	bottom: 0;
+	z-index: 150;
+	width: 100%;
+}
+
+.tgMask{
+	/*background: rgba(15,34,57,0.4);*/
+}
+
+.contentIcon{
+	width: 1200px;
+	height: 350px;
+	background: url(../../images/contentIcon.png) no-repeat;
+}
+
+.content_part1,.content_part2{
+	background: #f6f6f6;
+	width: 100%;
+}
+
+.content_part1{
+	height: 350px;
+}
+
+.content_part2{
+	height: 380px;
+}
+
+.content_part1_Content{
+	position: absolute;
+	top: 110px;
+	left: 100px;
+	z-index: 30;
+}
+
+.content_part3_Content{
+	position: absolute;
+	top: 110px;
+	right: 170px;
+	z-index: 30;
+}
+
+.showmoreBtn{
+	height: 32px;
+	width: 122px;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	background: #5da5ff;
+	color: #ffffff;
+	font-size: 14px;
+	font-family: "微软雅黑";	
+}
+
+.showmoreBtn:hover{
+	background: #388cf3;
+}
+
+.block1,.block2{
+	border: 1px solid #dddddd;
+	height: 310px;
+	width: 288px;
+	display: inline-block;
+	float: left;
+	background: #ffffff;
+	padding-top: 20px;
+	padding-bottom: 0px;
+	position: relative;
+}
+
+.block2{
+	margin-left: 13px;
+}
+
+.chart1,.chart2,.chart3,.chart4,.chart5,.chart6{
+	width:250px;
+	height:160px;
+	margin: 0 auto;
+}
+
+.chart1{	
+	background: url(../../images/chart1.png) no-repeat;	
+}
+
+.chart2{
+	background: url(../../images/chart2.png) no-repeat;
+}
+
+.chart3{
+	background: url(../../images/chart3.png) no-repeat;
+}
+
+.chart4{
+	background: url(../../images/chart4.png) no-repeat;
+}
+
+.chart5{
+	background: url(../../images/chart5.png) no-repeat;
+}
+
+.chart6{
+	background: url(../../images/chart6.png) no-repeat;
+}
+
+.blockContent{
+	margin-top: 10px;
+	padding-left: 20px;
+    padding-right: 16px;
+}
+
+.blockFoot{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+	background: #fdfdfd;
+	border-top:1px solid #dddddd;
+}
+
+.time{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	background: url(../../images/time.png) no-repeat;
+	vertical-align: sub;
+}
+
+.block_head{
+	height: 38px;
+	line-height: 38px;
+	width: 100%;
+	margin-top: -20px;
+	background: #fdfdfd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.dataIcon{
+	width: 15px;
+	height: 16px;
+	display: inline-block;
+	margin-left: 15px;
+	margin-right: 5px;
+	vertical-align: text-top;
+	background: url(../../images/dataIcon.png) no-repeat;
+}
+
+.numBtn,.numBtn1{
+	height: 16px;
+	line-height: 16px;
+	color: #ffffff;
+	font-family: "微软雅黑";
+	width: 16px;
+	border: none;
+	text-align: center;
+	outline:none;
+	margin-right: 10px;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	vertical-align: middle;
+}
+
+.numBtn{
+	background: #edad00;
+}
+
+.numBtn1{
+	background: #bdbdbd;
+}
+
+.blockTable{
+	margin-top: 10px;
+}
+
+.blockTable tr{
+	height: 26px;
+	line-height: 26px;
+}
+
+.blockTable td{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.contentIcon1{
+	width: 1200px;
+	height: 350px;
+	background: url(../../images/contentIcon1.png) no-repeat;
+}
+
+.content_part3,.content_part4{
+	background: #fbfbfb;
+	width: 100%;
+}
+
+.content_part3{
+	height: 350px;
+}
+
+.content_part4{
+	height: 380px;
+}
+
+.dataIcon1{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-left: 15px;
+	margin-right: 5px;
+	vertical-align: text-top;
+	background: url(../../images/dataIcon1.png) no-repeat;
+}
+
+.userWidth{
+	width: 68.5%;
+	padding-left: 20px;
+}
+
+.pHeight1{
+	height: 40px;
+	line-height: 40px;
+}
+
+.tgA{
+	width: 220px;
+	display:block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #ffffff;
+	position: relative;
+	z-index: 100;
+}
+
+.blockClick{
+	position: relative;
+	z-index: 30;
+	cursor: pointer;
+}
+
+/**
+ * 2016-03-31 am**/
+.spBgColor{
+	background: #fbfbfb;
+}
+
+.spMarginBottom{
+	margin-bottom: 1%;
+}

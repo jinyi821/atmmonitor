@@ -1,0 +1,37 @@
+package com.inspection.dailytask.services;
+
+/**
+ * 
+ * Created on 2017年5月2日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [查询条件类]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+ * <p>Company:     北京神州泰岳</p>
+ * @author         <a href=jinyi@ultrapower.com.cn>jinyi</a>
+ * @version        1.0
+ */
+public class CombineQuery {
+	
+	String vendorAndType;
+	String region;
+	
+	
+	public String getVendorAndType() {
+		return vendorAndType;
+	}
+	public void setVendorAndType(String vendorAndType) {
+		this.vendorAndType = vendorAndType;
+	}
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	@Override
+	public String toString() {
+		return "CombineQuery [vendorAndType=" + vendorAndType + ", region=" + region + "]";
+	}
+	
+	
+}

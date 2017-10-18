@@ -1,0 +1,74 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<%@ include file="/common/taglibs.jsp"%> 
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>辽宁自动运维化平台</title>
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">--%>
+    <meta name="renderer" content="webkit">
+    <script type="text/javascript" src="${ctx}/common/js/listview_new.js"></script>
+    <script type="text/javascript" src="${ctx}/common/js/timeutil.js"></script>
+	<script type="text/javascript" src="${ctx}/common/js/datepicker/wdatepicker.js"></script>
+	 <script type="text/javascript" src="${ctx}/common/style/newstyle/js/common/layer/layer.js" ></script>
+
+ </head>
+<body>
+<%@ include file="/common/header.jsp" %>
+<div class="all-wrap">
+  <div class="search-block mar-t10">
+    <div class="form-list">
+      <label>操作人：</label>
+      <input name="username" id="username" type="text" class="input-1" />
+      <label>执行时间：</label>
+       <input type='text' id='begin_time' value="${begin}" name="begin_time" class="date-input"   onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true,minDate:'%y%M%d'})"   />
+	        &nbsp;至&nbsp;
+	        <input type='text' id='end_time' value="${end}" name="end_time" class="date-input"   onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true,minDate:'%y%M%d'})"   />
+      <input name="" type="button" class="btn-cx" value="查询"  onclick="query();"/>
+    </div>
+  </div>
+  <div class="table-block mar-t10 mar-b20" >
+	    <table id="listtable" width="100%" border="0" cellspacing="0" cellpadding="0" class="table-bg base_table base_align_center changeTrColor">
+	      <thead class="table_head fontSize3">
+	        <td>ID</td>
+	        <td width="15%">操作人</td>
+	        <td width="31%">执行时间</td>
+	        <td width="54%">操作详情</td>
+	      </thead>
+	      <tbody class="table_body">
+		      <tr>
+				 <td>@@{id}</td>
+			     <td>@@{username}</td>
+			     <td>@@{starttime}</td>
+			     <td>@@{details}</td>
+		      </tr>
+	      </tbody>
+	    </table>
+	    
+	 
+	  </div>
+</div>
+	 <script type="text/javascript">
+	 
+	 function preFunc(paraStr) {
+		 paraStr.username=$("#username").val();
+		 paraStr.begin_time=$("#begin_time").val();
+	     paraStr.end_time=$("#end_time").val();
+	 }
+	 
+	 function dataFunc(dataRow) {
+		 if(dataRow.starttime&&dataRow.starttime.length>20){
+				dataRow.starttime=dataRow.starttime.substring(0,19);
+			}
+		}
+		   
+	function query() {
+		table.submit();
+	}
+	
+	 var table = new ListTable("listtable", "${ctx}/commonQuery/query.action",
+				10, [ [ "sqlname", "SQL_OperateLog.list" ] ], preFunc, dataFunc,tableBoot);
+	 
+	 </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+package com.common.core.plugin.tableau;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.UUID;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+
+import com.mysql.jdbc.StringUtils;
+
+
+public class TableauEditTag extends TagSupport {
+	private static final long serialVersionUID = 1L;
+
+	private String site;
+	private String workbook;
+	private String sheet;
+	private String host;
+	private String user;
+	private String height = null;
+	private String width = null;
+
+	public void setSite(String site) {
+		this.site = site;
+	}
+
+	public void setWorkbook(String workbook) {
+		this.workbook = workbook;
+	}
+
+	public void setSheet(String sheet) {
+		this.sheet = sheet;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	/**
+	 * @param height
+	 *            可以是任何有效的CSS大小说明符
+	 */
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	/**
+	 * @param width
+	 *            可以是任何有效的CSS大小说明符
+	 */
+	public void setWidth(String width) {
+		this.width = width;
+	}
+
+	@Override
+	public int doStartTag() throws JspException {
+		ServletRequest request = super.pageContext.getRequest();
+		JspWriter writer = super.pageContext.getOut();
+
+		try {
+			String ticket = getTrustedTicket(host, site, user, request.getRemoteAddr());
+			if (ticket.equals("-1")) {
+				throw new Exception("invalid ticket " + ticket);
+			}
+
+			String id = generateId();
+			super.setId(id);
+
+			StringBuffer url = new StringBuffer();
+			url.append("http://" + host + "/trusted/" + ticket);
+			if (!StringUtils.isNullOrEmpty(site)) {
+				url.append("/t/" + site);
+			}
+			url.append("/authoring/" + workbook + "/" + sheet);
+
+			writer.write("<div id=\"" + super.getId() + "\"></div>");
+			writer.write("<script src=\"http://" + host + "/javascripts/api/tableau-2.js\"></script>");
+			writer.write("<script type=\"text/javascript\">");
+			writer.write("(function(){");
+			writer.write("var container=document.getElementById(\"" + super.getId() + "\");");
+			writer.write("var url='" + url.toString() + "';");
+			writer.write("var options={");
+			if (height != null) {
+				writer.write("height:\"" + height + "\",");
+			}
+			if (width != null) {
+				writer.write("width:\"" + width + "\",");
+			}
+			writer.write("onFirstInteractive:function(){},"); // 在对象首次成为交互式对象时调用的回调函数。
+			writer.write("onFirstVizSizeKnown:function(){}"); // 在对象的大小已知时调用的回调函数。
+			writer.write("};");
+			writer.write("window." + super.getId() + "=new tableau.Viz(container,url,options);");
+			writer.write("})();");
+			writer.write("</script>");
+
+			return super.doStartTag();
+
+		} catch (Exception e) {
+			try {
+				writer.write(e.toString());
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+			return super.doStartTag();
+		}
+	}
+
+	@Override
+	public int doEndTag() throws JspException {
+		return super.doEndTag();
+	}
+
+	@Override
+	public void release() {
+		super.release();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	private String generateId() {
+		return "c" + UUID.randomUUID().toString().replace('-', 'c').toLowerCase();
+	}
+
+	/**
+	 * the client_ip parameter isn't necessary to send in the POST unless you
+	 * have wgserver.extended_trusted_ip_checking enabled (it's disabled by
+	 * default)
+	 * 
+	 * @param wgserver
+	 * @param site
+	 * @param username
+	 * @param remoteAddr
+	 * @return
+	 * @throws ServletException
+	 */
+	private String getTrustedTicket(String wgserver, String site, String user, String remoteAddr)
+			throws ServletException {
+		OutputStreamWriter out = null;
+		BufferedReader in = null;
+		try {
+			// Encode the parameters
+			StringBuffer data = new StringBuffer();
+			data.append(URLEncoder.encode("username", "UTF-8"));
+			data.append("=");
+			data.append(URLEncoder.encode(user, "UTF-8"));
+			data.append("&");
+			data.append(URLEncoder.encode("client_ip", "UTF-8"));
+			data.append("=");
+			data.append(URLEncoder.encode(remoteAddr, "UTF-8"));
+
+			if (!StringUtils.isNullOrEmpty(site)) {
+				data.append("&");
+				data.append(URLEncoder.encode("target_site", "UTF-8"));
+				data.append("=");
+				data.append(URLEncoder.encode(site, "UTF-8"));
+			}
+
+			// Send the request
+			URL url = new URL("http://" + wgserver + "/trusted");
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+			out = new OutputStreamWriter(conn.getOutputStream());
+			out.write(data.toString());
+			out.flush();
+
+			// Read the response
+			StringBuffer rsp = new StringBuffer();
+			in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			while ((line = in.readLine()) != null) {
+				rsp.append(line);
+			}
+
+			return rsp.toString();
+
+		} catch (Exception e) {
+			throw new ServletException(e);
+		} finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+	}
+}

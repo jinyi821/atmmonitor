@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>	
+		<sqlquery name="SQL_BsUserinfo.bsUserinfoList">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/ loginname,fullname,pwd,sex,email,mobile,depid,depname,isdepleader,status,isanalyzer,isdeveloper,createtime /*COUNT*/
+	 			  from bs_userinfo  
+	 			  where 1=1 $where1$
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+		     <field prepend="and" operator="like"  datatype="" colname="loginname"  value="#par_condition#" />
+			<field prepend="or" operator="like"  datatype="" colname="fullname"  value="#par_condition#" />
+		</customwhere>
+	</sqlquery>
+		<sqlquery name="SQL_BsUserinfo.bsUserinfoUseList">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/ loginname,fullname,pwd,sex,email,mobile,depid,depname,isdepleader,status,isanalyzer,isdeveloper,createtime /*COUNT*/
+	 			  from bs_userinfo  
+	 			  where status=1 and 1=1 $where1$
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+		     <field prepend="and" operator="like"  datatype="" colname="loginname"  value="#par_condition#" />
+			<field prepend="or" operator="like"  datatype="" colname="fullname"  value="#par_condition#" />
+		</customwhere>
+	</sqlquery>
+		<sqlquery name="SQL_BsUserinfo.bsUserinfoDepLeader">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/  loginname,fullname,depid,depname,isdepleader /*COUNT*/
+	 			  from bs_userinfo 
+	 			  where status=1 and isdepleader=1 $where$
+			  ]]> 
+		</select>
+			<customwhere name="where" prepend="and">			
+			<field prepend="and" operator="like"  datatype="" colname="depid"  value="#depid#" />
+		</customwhere>	
+	</sqlquery>
+	   <!-- 	 select
+	 			  /*COUNT*/  u.loginname,u.fullname,u.depid,u.depname,u.isdepleader /*COUNT*/
+	 			  from bs_userinfo u
+	 			  left join (select DISTINCT udout.loginname from bs_userdep  udout
+	 			   where EXISTS (select udin.depid from bs_userdep udin where udin.loginname='admin' and udin.DEPID=udout.DEPID)) ud
+	 			  on u.loginname=ud.loginname
+	 			  where u.status=1 and u.isdepleader=1     //查询速度太慢-->
+</sql-group>

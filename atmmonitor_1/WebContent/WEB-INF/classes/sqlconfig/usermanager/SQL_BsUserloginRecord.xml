@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	<sqlquery name="SQL_BsUserloginRecord.bsUserloginRecordList">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/ pid,logingname,logindate,hour,year,month,week,issuccess,createtime /*COUNT*/
+	 			  from bs_userlongin_record  
+	 			  where 1=1 $where1$
+	 			  order by createtime desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+		  <field prepend="and" operator="like"  datatype="" colname="logingname"  value="#par_condition#" />		
+		  <switch prepend="and" exp="'#bg_date#'&lt;>''">
+				<case value="true">
+					<field prepend="and" operator=">="  datatype="" colname="logindate"  value="#bg_date#" />
+				</case>
+			</switch>
+			<switch prepend="and" exp="'#ed_date#'&lt;>''">
+				<case value="true">
+					<field prepend="and" operator="&lt;="  datatype="" colname="logindate"  value="#ed_date#" />
+				</case>
+			</switch>
+        </customwhere>
+	</sqlquery>	
+</sql-group>

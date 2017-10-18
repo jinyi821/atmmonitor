@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+
+.contentTab{
+	margin-bottom: 15px;
+	height: 38px;
+	line-height: 38px;
+	border: 1px solid #eeeeee;
+	background: #f8f8f8;
+}
+
+.spbtn{
+	border-right: 1px solid #eeeeee;
+	border-left: 1px solid #eeeeee;
+	margin-left: -4px;
+}
+
+/***开发环境样式***/
+/*.wzkf_rightDiv{
+	width: 950px;
+	height: auto;
+	margin-left: 15px;
+	float: left;
+}*/
+
+.kf_tree{
+	width: 164px;
+	height: 562px;
+	background: url(../../images/kf_tree.png) no-repeat;
+	margin-top: 7px;
+}
+
+.AccessUl{
+	position: absolute;
+	top: 0px;
+	width: 380px;
+}
+
+.AccessUl li{
+	height: 38px;
+	line-height: 38px;
+	padding-left: 13px;
+	padding-right: 13px;
+}
+
+.AccessUl_li_head{
+	font-family: "微软雅黑";
+	color: #666666;
+	font-size: 14px;
+	border: 1px solid #DDDDDD;
+	background: #fbfbfb;
+}
+
+.AccessUl_li{
+	border: 1px solid #DDDDDD;
+	border-top: none;
+	font-family: "宋体";
+	color: #999999;
+}
+
+.deleteIcon{
+	float: right;
+	width: 7px;
+	height: 38px;
+	cursor: pointer;
+	background: url(../../images/deleteIcon.png) no-repeat center;
+}
+
+.deleteNewIcon{
+	float: right;
+	width: 35px;
+	cursor: pointer;
+	background: url(../../images/deleteIcon.png) no-repeat center left; //竖直 水平
+}
+.checkDisabled{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	vertical-align: sub;
+	background: url(../../images/checkDisabled.png) no-repeat;
+}
+
+.sp_margin{
+	margin-top: -7px;
+}
+
+/**2016-5-16 am
+ * ***/
+.apiTestIcon{
+	width: 76px;
+	height: 20px;
+	display: inline-block;
+	background: url(../../images/apiTest.png) no-repeat;
+	cursor: pointer;
+	vertical-align: middle;
+	margin-left: 20px;
+}
+
+.linkA2{
+	color: #00c6ff;
+	text-decoration: underline;
+}
+
+.apiTextArea{
+	width: 99%;
+	height: 500px;
+	color: #999999;
+}
+
+.kf_content{
+	min-height: 300px;
+	height: auto;
+	border: 1px solid #dddddd;
+	border-top: none;
+	background: #fdfdfd;
+}
+
+.kf_content_left{
+	width: 309px;
+	float: left;
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 40px;
+}
+
+.kf_content_right{
+	width: 738px;
+	float: left;
+	border-left:1px solid #DDDDDD;
+	padding-top: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.disabledInput{
+	width: 78px;
+}
+
+.abledInput{
+	width: 108px;
+}
+
+.getApiBtn{
+	width: 140px;
+}
+
+.apiTest_TextArea{
+	width: 100%;
+	height: 278px;
+	color: #999999;
+}
+
+/***
+ * 2016-5-19 pm***/
+.sq_success{
+	text-align: center;
+	margin-top: 140px;
+}
+
+.sq_successIcon{
+	width: 128px;
+	height: 88px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	background: url(../../images/sqSuccess.png) no-repeat;
+	
+}

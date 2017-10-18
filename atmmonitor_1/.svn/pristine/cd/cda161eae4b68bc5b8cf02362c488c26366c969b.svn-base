@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+  <head> 
+        <%@ include file="/common/taglibs.jsp"%> 	  
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	    <meta http-equiv="description" content="this is my page">
+	    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">--%>
+	    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	    <meta name="renderer" content="webkit">
+
+        <style type="text/css">
+	   .consoleLogContent{        
+	    padding-left:5px;
+	    line-height:1.5;
+	    font-family:Lucida Console;
+	    font-size:12px;
+	    /*white-space:nowrap; 不换行*/	
+	    width:1950px;   
+        word-break:break-all;     
+	    }	
+	    body{
+			background:white;
+	
+		}
+	    </style>
+  </head>
+  <body>
+	    						 	                				
+	                			 <div id="mxContent" class="mxContent consoleLogContent" style="overflow:scroll;color:white;background-color:black;border:1px solid #000;margin:0 auto;height: 375px;width: 790px;">	
+		                        
+		                         </div>
+		                           <br/>
+		                         <div class="text-cen mar-b10">
+								      
+									  <input name="" type="button" class="btn-dc mar-l40" value="导出" onclick="exportRuleTxt();"/>
+	    						 </div>	
+		                        
+
+ 	</body>
+  <script type="text/javascript">
+     var rule='${rule}';
+     var taskName='${taskName}';
+     var flag=0;
+    
+	 $("#mxContent").html(rule.replace(/[\n]/g,"<br/>"));//替换换行符为html换行符
+	 function exportRuleTxt()
+	{
+		
+		flag++;
+		var url=$ctx+"/inspection/exportRuleTxt.action";
+		
+
+		
+		var form=$('<form/>',{id:"excelform"+flag ,action:url,method:"post",style:"display:none"}).appendTo("body");
+        $("#excelform"+flag).append("<input type='input' name='taskName' value='"+taskName+"' />");
+
+		form.submit();
+		body.remove(form);
+	
+	}
+	 
+	</script>	
+</html>

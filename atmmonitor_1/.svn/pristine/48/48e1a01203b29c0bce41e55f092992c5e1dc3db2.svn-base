@@ -1,0 +1,76 @@
+package com.equipment.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.equipment.dao.EquipmentChangeMapper;
+import com.equipment.dao.EquipmentMapper;
+import com.equipment.model.Equipment;
+import com.equipment.model.EquipmentChange;
+import com.equipment.service.EquipmentChangeService;
+
+/**
+ * 
+ * Created on 2017年6月3日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [描述该类概要功能介绍]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+
+ * @author         <a href=jinyi@ultrapower.com.cn>jinyi</a>
+ * @version        1.0
+ */
+@Service("EquipmentChangeServiceImpl")
+@Transactional(value = "transactionManager")
+public class EquipmentChangeServiceImpl implements EquipmentChangeService {
+
+	@Autowired
+	private EquipmentChangeMapper equipmentChangeMapper;
+	
+	@Autowired
+	private EquipmentMapper equipmentMapper;
+	
+	@Override
+	public EquipmentChange selectByPrimaryKey(Integer id) {
+		
+		return equipmentChangeMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int deleteByPrimaryKey(Integer id) {
+		
+		return equipmentChangeMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int insert(EquipmentChange record) {
+		
+		return equipmentChangeMapper.insert(record);
+	}
+
+	@Override
+	public int insertSelective(EquipmentChange record) {
+		
+		return equipmentChangeMapper.insertSelective(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(EquipmentChange record) {
+		
+		Equipment selectByPrimaryKey = equipmentMapper.selectByPrimaryKey(record.getEquipmentid());
+		if (record.getStatus()==0 || record.getStatus()==4){
+			selectByPrimaryKey.setStatus(1);
+		} else {
+			selectByPrimaryKey.setStatus(2);
+		}
+		equipmentMapper.updateByPrimaryKey(selectByPrimaryKey);
+		return equipmentChangeMapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public int updateByPrimaryKey(EquipmentChange record) {
+		// TODO Auto-generated method stub
+		return equipmentChangeMapper.updateByPrimaryKey(record);
+	}
+
+}

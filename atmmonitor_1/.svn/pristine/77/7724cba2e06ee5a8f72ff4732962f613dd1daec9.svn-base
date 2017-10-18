@@ -1,0 +1,208 @@
+package com.common.core.util;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+import javax.xml.namespace.QName;
+
+import org.apache.axis2.AxisFault;
+import org.apache.axis2.addressing.EndpointReference;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.rpc.client.RPCServiceClient;
+
+import com.common.constants.PropertiesUtils;
+import com.inspection.dailytask.services.DailyTaskWebService;
+
+
+public class AxisWebServiceUtil {
+
+	/**
+	 * 
+	 * Created on 2016年5月12日
+	 * <p>
+	 * Discription:[得到Service客户端连接]
+	 * </p>
+	 * 
+	 * @param serviceUrl
+	 * @return
+	 * @author:<a href=21990173@qq.com>jinyi</a>
+	 * @update:[日期YYYY-MM-DD] [更改人姓名]
+	 */
+	private static RPCServiceClient getServiceClient(String serviceUrl) {
+
+		RPCServiceClient serviceClient;
+		try {
+			serviceClient = new RPCServiceClient();
+
+			Options options = serviceClient.getOptions();
+			EndpointReference targetEPR = new EndpointReference(serviceUrl);
+			options.setTo(targetEPR);
+			return serviceClient;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	/**
+	 * 
+	 * Created on 2016年5月12日
+	 * <p>
+	 * Discription:[执行带返回结果操作]
+	 * </p>
+	 * 
+	 * @param serviceUrl
+	 * @param targetNamespace
+	 * @param methodName
+	 * @param paramValues
+	 * @param paramTypes
+	 * @return
+	 * @author:<a href=21990173@qq.com>jinyi</a>
+	 * @update:[日期YYYY-MM-DD] [更改人姓名]
+	 */
+	@SuppressWarnings("rawtypes")
+	public static Object executeWithResult(String serviceUrl, String targetNamespace, String methodName, Object[] paramValues, Class[] paramTypes) {
+
+		RPCServiceClient serviceClient = getServiceClient(serviceUrl);
+		serviceClient.getOptions().setTimeOutInMilliSeconds(2000000L); // Unable
+																		// to
+																		// sendViaPost
+																		// to
+																		// url
+																		// java.net.SocketTimeoutException:
+																		// Read
+																		// timed
+																		// out
+		QName opAddEntry = new QName(targetNamespace, methodName);
+		Object object;
+		try {
+			object = serviceClient.invokeBlocking(opAddEntry, paramValues, paramTypes)[0];
+			serviceClient.cleanupTransport();
+			return object;
+		} catch (AxisFault e) {
+
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	/**
+	 * 
+	 * Created on 2016年5月12日
+	 * <p>
+	 * Discription:[执行不带返回结果操作]
+	 * </p>
+	 * 
+	 * @param serviceUrl
+	 * @param targetNamespace
+	 * @param methodName
+	 * @param paramValues
+	 * @param paramTypes
+	 * @return
+	 * @author:<a href=21990173@qq.com>jinyi</a>
+	 * @update:[日期YYYY-MM-DD] [更改人姓名]
+	 */
+	public static void executeWithNoResult(String serviceUrl, String targetNamespace, String methodName, Object[] paramValues) {
+
+		RPCServiceClient serviceClient = getServiceClient(serviceUrl);
+		QName opAddEntry = new QName(targetNamespace, methodName);
+
+		try {
+			serviceClient.invokeRobust(opAddEntry, paramValues);
+			serviceClient.cleanupTransport();
+		} catch (AxisFault e) {
+
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	/**
+	 * 
+	 * Created on 2016年5月13日
+	 * <p>
+	 * Discription:[通过接口生成Axis客户端代理类实现]
+	 * </p>
+	 * 
+	 * @param c
+	 *            接口.class
+	 * @param serviceUrl
+	 *            Axis 服务地址
+	 * @param targetNamespace
+	 *            接口对应的命名空间
+	 * @return
+	 * @author:<a href=21990173@qq.com>jinyi</a>
+	 * @update:[日期YYYY-MM-DD] [更改人姓名]
+	 */
+	@SuppressWarnings("rawtypes")
+	public static Object getAxisProxyBean(final Class c, final String serviceUrl, final String targetNamespace) {
+
+		return Proxy.newProxyInstance(c.getClassLoader(), new Class[] { c },
+
+		new InvocationHandler() {
+
+			public Object invoke(Object proxy, Method method, Object[] paramValues) throws Throwable {
+
+				Object reObj = null;
+				String name = method.getReturnType().getName();
+
+				if (name.equals("void")) {
+
+					executeWithNoResult(serviceUrl, targetNamespace, method.getName(), paramValues);
+				} else {
+					reObj = executeWithResult(serviceUrl, targetNamespace, method.getName(), paramValues, method.getParameterTypes());
+				}
+
+				return reObj;
+			}
+		});
+	}
+
+	public static void main(String[] args) {
+		
+
+        //System.exit(0);
+		String serviceUrl_local = PropertiesUtils.getProperty("serviceUrl_local");
+		String targetNamespace_local = PropertiesUtils.getProperty("targetNamespace_local");
+
+		com.example.services.DemoWebService service = (com.example.services.DemoWebService) getAxisProxyBean(com.example.services.DemoWebService.class, serviceUrl_local, targetNamespace_local);
+		try {
+			System.out.println(service.sayHello("122"));
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		Object[] opAddEntryArgs = new Object[] { "测试" };
+
+		String returnMess = (String) AxisWebServiceUtil.executeWithResult(serviceUrl_local, targetNamespace_local, "sayHello", opAddEntryArgs, new Class[] { String.class });
+		System.out.println(returnMess);
+		
+		String serviceUrl = PropertiesUtils.getProperty("serviceUrl");
+		String targetNamespace = PropertiesUtils.getProperty("targetNamespace");
+
+		com.inspection.dailytask.services.DailyTaskWebService dailyTaskWebService = (com.inspection.dailytask.services.DailyTaskWebService) getAxisProxyBean(com.inspection.dailytask.services.DailyTaskWebService.class, serviceUrl, targetNamespace);
+		Long ll=System.currentTimeMillis();
+		try {
+			String requestXML="<request><opscenarios><opscenario><resourceid>5100337</resourceid><opscenarioid>5b3a60a6fc1ef8fd42b77967bf9ea602</opscenarioid><parms><parm><key>dw_resource_id</key><value>5100337</value></parm>"
+					+ "<parm><key>units</key><value>ALL</value></parm>"
+					+ "</parms></opscenario></opscenarios></request>";
+			String aa1="<request><opscenarios><opscenario><resourceid>5100337</resourceid><opscenarioid>5b3a60a6fc1ef8fd42b77967bf9ea602</opscenarioid><parms><parm><key>dw_resource_id</key><value>5100337</value></parm><parm><key>units</key><value>ALL</value></parm></parms></opscenario></opscenarios></request>";
+			
+			System.out.println(dailyTaskWebService.executeOpscenario(aa1));
+			Long aa=(System.currentTimeMillis()-ll)/1000;
+			System.out.println(aa);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
+}

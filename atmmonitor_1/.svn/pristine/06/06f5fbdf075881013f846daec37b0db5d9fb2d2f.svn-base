@@ -1,0 +1,684 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css" href="skin/noasui/datepicker.css">
+<style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #quarterbody td {
+        line-height: 25px;
+    }
+
+    #yearbody td {
+        line-height: 20px;
+        padding: 0 3px;
+    }
+
+    #yearoperate td {
+        line-height: 20px;
+        padding: 0 5px;
+    }
+</style>
+<script type="text/javascript">
+//浏览器类型
+var Sys = {};
+var ua = navigator.userAgent.toLowerCase();
+var s;
+(s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+        (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+                (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+                        (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+                                (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+
+
+var activeDom;
+var init = function () {
+    activeDom = window.parent.focusElement;
+    initYear();
+    initQuickSelect();
+};
+//初始化年
+var initYear = function () {
+    var curyear = activeDom.value;
+    var year;
+    if (curyear && curyear.length > 0) {
+        year = curyear.substr(0, 4);
+    } else {
+        var date = new Date();
+        year = date.getFullYear();
+    }
+    document.getElementById("year").value = year;
+};
+//初始化季度选择
+var initQuickSelect = function () {
+    var year = document.getElementById("year").value;
+    year = parseInt(year);
+    var quick = document.getElementById("quickselect");
+    if (year) {
+        var childs = quick.getElementsByTagName("tr");
+        for (var i = childs.length - 1; i > 0; i--) {
+            quick.removeChild(childs[i]);
+        };
+        var arr = makeQuarter(year);
+        for (var i = 0; i < arr.length; i++) {
+            var tr = createQuartTr(arr[i], true);
+            quick.appendChild(tr);
+        };
+        quick.appendChild(createTempTr());
+        quick.appendChild(createTempTr());
+        quick.appendChild(createTempTr());
+    }
+};
+//显示选择年份
+var showYear = function () {
+    hideQuarter();
+    var y = document.getElementById("year");
+    y.className = "yminputfocus";
+    var year = parseInt(y.value);
+    createYearBody(year);
+    createYearOperate(year);
+    document.getElementById("yeardiv").style.display = "block";
+};
+//重置年份选择内容
+var resetYearBody = function (year) {
+    createYearBody(year);
+    createYearOperate(year);
+}
+//隐藏年份选择
+var hideYear = function () {
+    var y = document.getElementById("year");
+    y.className = "yminput";
+    document.getElementById("yeardiv").style.display = "none";
+};
+//创建年份选择内容
+var createYearBody = function (year) {
+    var yearbody = document.getElementById("yearbody");
+
+    var date = new Date();
+    var curYear = date.getFullYear();
+    if (Sys.ie == '7.0' || Sys.ie == '8.0') {
+
+        childs = yearbody.childNodes;
+        for (var i = childs.length - 1; i >= 0; i--) {
+            yearbody.removeChild(childs[i]);
+        }
+
+        for (var i = 0; i < 5; i++) {
+            var tr = document.createElement("tr");
+            var str = "";
+            var str1 = "";
+            var preYear = parseInt(year) + i - 5;
+            var nextYear = parseInt(year) + i;
+            if (preYear <= curYear) {
+                str = '<td class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" nowrap="" onmousedown="year_Click(' + preYear + ')"></td>';
+            } else {
+                str = '<td class="menu invalidMenu"></td>';
+            }
+            var td = document.createElement(str);
+            td.innerHTML = preYear;
+            tr.appendChild(td);
+            if (nextYear <= curYear) {
+                str1 = '<td class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" nowrap="" onmousedown="year_Click(' + nextYear + ')"></td>';
+            } else {
+                str1 = '<td class="menu invalidMenu"></td>';
+            }
+            var td1 = document.createElement(str1);
+            td1.innerHTML = nextYear;
+            tr.appendChild(td1);
+            yearbody.appendChild(tr);
+        }
+    } else {
+        yearbody.innerHTML = "";
+
+        for (var i = 0; i < 5; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            var td1 = document.createElement("td");
+            var preYear = parseInt(year) + i - 5;
+            var nextYear = parseInt(year) + i;
+            if (preYear <= curYear) {
+                td.className = "menu";
+                td.setAttribute("onmouseover", "this.className='menuOn'");
+                td.setAttribute("onmouseout", "this.className='menu'");
+                td.setAttribute("noWrap", "");
+                td.setAttribute("onmousedown", "year_Click(" + preYear + ")");
+            } else {
+                td.className = "menu invalidMenu";
+            }
+
+            td.innerHTML = preYear;
+            tr.appendChild(td);
+            if (nextYear <= curYear) {
+                td1.className = "menu";
+                td1.setAttribute("onmouseover", "this.className='menuOn'");
+                td1.setAttribute("onmouseout", "this.className='menu'");
+                td1.setAttribute("noWrap", "");
+                td1.setAttribute("onmousedown", "year_Click(" + nextYear + ")");
+            } else {
+                td1.className = "menu invalidMenu";
+            }
+            td1.innerHTML = nextYear;
+            tr.appendChild(td1);
+            yearbody.appendChild(tr);
+        }
+    }
+};
+//创建年份选择操作区域内容
+var createYearOperate = function (year) {
+    var yearoperate = document.getElementById("yearoperate");
+    var tr = document.createElement("tr");
+    if (Sys.ie == '7.0' || Sys.ie == '8.0') {
+
+        childs = yearoperate.childNodes;
+        for (var i = childs.length - 1; i >= 0; i--) {
+            yearoperate.removeChild(childs[i]);
+        }
+
+        for (var i = 0; i < 3; i++) {
+            var str = "";
+            if (i == 0) {
+                str = '<td class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" onmousedown="resetYearBody(' + (year - 10) + ')"></td>'
+                var td = document.createElement(str);
+                td.innerHTML = '←';
+                tr.appendChild(td);
+            }
+            if (i == 1) {
+                str = '<td class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" onmousedown="hideYear()"></td>'
+                var td = document.createElement(str);
+                td.innerHTML = '×';
+                tr.appendChild(td);
+            }
+            if (i == 2) {
+                str = '<td class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" onmousedown="resetYearBody(' + (year + 10) + ')"></td>'
+                var td = document.createElement(str);
+                td.innerHTML = '→';
+                tr.appendChild(td);
+            }
+        }
+    } else {
+        yearoperate.innerHTML = "";
+        for (var i = 0; i < 3; i++) {
+            var td = document.createElement("td");
+            td.className = "menu";
+            td.setAttribute("onmouseover", "this.className='menuOn'");
+            td.setAttribute("onmouseout", "this.className='menu'");
+            if (i == 0) {
+                td.setAttribute("onmousedown", "resetYearBody(" + (year - 10) + ")");
+                td.innerHTML = "←";
+            }
+            if (i == 1) {
+                td.setAttribute("onmousedown", "hideYear()");
+                td.innerHTML = "×";
+            }
+            if (i == 2) {
+                td.setAttribute("onmousedown", "resetYearBody(" + (year + 10) + ")");
+                td.innerHTML = "→";
+            }
+            tr.appendChild(td);
+        }
+    }
+    yearoperate.appendChild(tr);
+
+};
+//显示季度下拉内容
+var showQuarter = function () {
+    hideYear();
+    var quarter = document.getElementById("quarter");
+    quarter.className = "yminputfocus";
+    var y = document.getElementById("year");
+    var year = y.value;
+    year = parseInt(year);
+    var quarterbody = document.getElementById("quarterbody");
+    if (Sys.ie == "7.0" || Sys.ie == "8.0") {
+        childs = quarterbody.childNodes;
+        for (var i = childs.length - 1; i >= 0; i--) {
+            quarterbody.removeChild(childs[i]);
+        }
+    } else {
+        quarterbody.innerHTML = "";
+    }
+
+    if (year) {
+        var arr = makeQuarter(year);
+        for (var i = 0; i < arr.length; i++) {
+            var tr = createQuartTr(arr[i], false);
+            quarterbody.appendChild(tr);
+        }
+        quarterbody.appendChild(createTempTr());
+        quarterbody.appendChild(createTempTr());
+        quarterbody.appendChild(createTempTr());
+        document.getElementById("quarterdiv").style.display = "block";
+    }
+};
+//设置季度内容数据
+var makeQuarter = function (year) {
+    var arr = [];
+    arr.push({ year: year, month: 1, flag: checkqurterDate(toQurterDate(year, 1, 1)), desc: "第一季度", longdesc: year + "年第一季度" });
+    arr.push({ year: year, month: 4, flag: checkqurterDate(toQurterDate(year, 4, 1)), desc: "第二季度", longdesc: year + "年第二季度" });
+    arr.push({ year: year, month: 7, flag: checkqurterDate(toQurterDate(year, 7, 1)), desc: "第三季度", longdesc: year + "年第三季度" });
+    arr.push({ year: year, month: 10, flag: checkqurterDate(toQurterDate(year, 10, 1)), desc: "第四季度", longdesc: year + "年第四季度" });
+    return arr;
+};
+var checkqurterDate = function (qurterdate) {
+    var isShow = false;
+    var today = new Date();
+    if (qurterdate < today) {
+        if (qurterdate.getYear() < today.getYear()) {
+            isShow = true;
+        }
+        else if (qurterdate.getYear() == today.getYear()) {
+            if (today.getMonth() - qurterdate.getMonth() >= 3) {
+                isShow = true;
+            }
+        }
+    }
+    return isShow;
+}
+var toQurterDate = function (year, month, day) {
+    var date = new Date();
+    date.setFullYear(year, --month, day);
+    return date;
+}
+
+//设置季度tr
+var createQuartTr = function (opts, longdesc) {
+    var year = opts.year;
+    var month = opts.month;
+    var disabled = opts.flag;
+    var desc = opts.desc;
+    var tr = document.createElement("tr");
+    if (Sys.ie == '7.0' || Sys.ie == '8.0') {
+        var str = '';
+        if (disabled) {
+            if (longdesc) {
+                str = '<td style="text-align: left;" class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" onmousedown="quarter_Click_Close(' + year + ',' + month + ',1,0,0,0)"></td>';
+            } else {
+                str = '<td style="text-align: left;" class="menu" onmouseover="this.className=\'menuOn\'" onmouseout="this.className=\'menu\'" onmousedown="quarter_Click(' + year + ',' + month + ',1,0,0,0)"></td>';
+            }
+        } else {
+            str = '<td style="text-align: left;" class="menu invalidMenu"></td>';
+        }
+        var td = document.createElement(str);
+        if (longdesc) {
+            td.innerHTML = "&nbsp;" + opts.longdesc + "&nbsp;";
+        } else {
+            td.innerHTML = "&nbsp;" + desc + "&nbsp;";
+        }
+        tr.appendChild(td);
+    } else {
+        var td = document.createElement("td");
+        td.style.textAlign = "left";
+        td.nowrap = "nowrap";
+        if (disabled) {
+            td.className = "menu";
+            td.setAttribute("onmouseover", "this.className='menuOn'");
+            td.setAttribute("onmouseout", "this.className='menu'");
+            if (longdesc) {
+                td.setAttribute("onmousedown", "quarter_Click_Close(" + year + "," + month + ",1,0,0,0)");
+            } else {
+                td.setAttribute("onmousedown", "quarter_Click(" + year + "," + month + ",1,0,0,0)");
+            }
+
+        } else {
+            td.className = "menu invalidMenu";
+        }
+        if (longdesc) {
+            td.innerHTML = "&nbsp;" + opts.longdesc + "&nbsp;";
+        } else {
+            td.innerHTML = "&nbsp;" + desc + "&nbsp;";
+        }
+        tr.appendChild(td);
+    }
+    return tr;
+};
+//创建空tr
+var createTempTr = function () {
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.className = "menu";
+    tr.appendChild(td);
+    return tr;
+};
+
+var quarter_Click_Close = function (year, month, day, h, m, s) {
+    quarter_Click(year, month, day, h, m, s);
+    getYearQuarter();
+};
+
+//选择季度
+var quarter_Click = function (year, month, day, h, m, s) {
+    hideQuarter();
+    switch (month) {
+        case 1:
+        case 2:
+        case 3:
+            document.getElementById("quarter").value = "第一季度";
+            document.getElementById("month").value = "01";
+            break;
+        case 4:
+        case 5:
+        case 6:
+            document.getElementById("quarter").value = "第二季度";
+            document.getElementById("month").value = "04";
+            break;
+        case 7:
+        case 8:
+        case 9:
+            document.getElementById("quarter").value = "第三季度";
+            document.getElementById("month").value = "07";
+            break;
+        case 10:
+        case 11:
+        case 12:
+            document.getElementById("quarter").value = "第四季度";
+            document.getElementById("month").value = "10";
+            break;
+        default:
+            break;
+    }
+}
+//选择年
+var year_Click = function (year) {
+    document.getElementById("year").value = year;
+    hideYear();
+    initQuickSelect();
+};
+//隐藏季度
+var hideQuarter = function () {
+    var quarter = document.getElementById("quarter");
+    quarter.className = "yminput";
+    document.getElementById("quarterdiv").style.display = "none";
+};
+
+var preYear = function () {
+    var year = document.getElementById("year");
+    year.value = year.value - 1;
+    initQuickSelect();
+};
+var nextYear = function () {
+    var year = document.getElementById("year");
+    var date = new Date();
+    var curYear = date.getFullYear();
+    if (year.value < curYear) {
+        year.value = parseInt(year.value) + 1;
+        initQuickSelect();
+    }
+};
+var getYearQuarter = function () {
+    var year = document.getElementById("year").value;
+    var month = document.getElementById("month").value;
+    var str = "";
+    switch (month) {
+        case "1":
+            str = "第一";
+            month = "01";
+            break;
+        case "4":
+            str = "第二";
+            month = "04";
+            break;
+        case "7":
+            str = "第三";
+            month = "07";
+            break;
+        case "01":
+            str = "第一";
+            break;
+        case "04":
+            str = "第二";
+            break;
+        case "07":
+            str = "第三";
+            break;
+        case "10":
+            str = "第四";
+            break;
+    }
+    activeDom.value = year + "年" + str + "季度";
+    activeDom.blur();
+    if (window.parent.hiddenValueElement) {
+        var vel = window.parent.document.getElementById(window.parent.hiddenValueElement);
+        if (vel) {
+           // vel.value = year + "-" + month + "-" + "01";
+        }
+    }
+
+    if (window.parent.wQuarterCallBack && typeof(window.parent.wQuarterCallBack) === "function") {
+        var trueValue = year + "-" + month + "-" + "01";
+        var displayValue = year + "年" + str + "季度";
+        window.parent.wQuarterCallBack.call(activeDom, trueValue, displayValue);
+    }
+
+    window.parent.quarterDivRemove();
+};
+window.onload = init;
+</script>
+</head>
+<body>
+<div class="WdateDiv" style="">
+<div id="dpTitle" style="">
+    <div class="NavImg NavImgll">
+        <a style="" id="preYear" onclick="preYear();"></a>
+    </div>
+    <div style="float: left">
+        <div id="quarterdiv" class="menuSel MMenu" style="display: none;">
+            <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody id="quarterbody">
+                </tbody>
+            </table>
+        </div>
+        <input id="quarter" class="yminput" style="" value="第一季度" onfocus="showQuarter();">
+        <input id="month" type="hidden" value="1">
+    </div>
+    <div style="float: left">
+        <div id="yeardiv" class="menuSel YMenu" style="display: none;">
+            <table border="0" cellspacing="0" cellpadding="3" nowrap="nowrap">
+                <tbody id="yearbody">
+                </tbody>
+            </table>
+            <table border="0" cellspacing="0" cellpadding="3" align="center">
+                <tbody id="yearoperate">
+                </tbody>
+            </table>
+        </div>
+        <input id="year" class="yminput" style="" value="" onfocus="showYear();" onchange="initQuickSelect();">
+    </div>
+    <div class="NavImg NavImgrr">
+        <a style="" id="nextYear" onclick="nextYear();"></a>
+    </div>
+    <div style="float: right">
+    </div>
+</div>
+<div style="position: absolute; overflow: hidden; display: block; width: 200px; height: 169px;">
+    <table class="WdayTable" width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody id="quickselect">
+        <tr class="MTitle">
+            <td>
+                <div style="float: left">
+                    快速选择
+                </div>
+                <div style="float: right;">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table class="WdayTable" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr class="MTitle" align="center">
+            <td>
+                一
+            </td>
+            <td>
+                二
+            </td>
+            <td>
+                三
+            </td>
+            <td>
+                四
+            </td>
+            <td>
+                五
+            </td>
+            <td>
+                六
+            </td>
+            <td>
+                日
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="dpControl" style="">
+    <input class="dpButton" id="dpOkInput" type="button" value="确定" style="" onclick="getYearQuarter();"></div>
+</div>
+</body>
+</html>

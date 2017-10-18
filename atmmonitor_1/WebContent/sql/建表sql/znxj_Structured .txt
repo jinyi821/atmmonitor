@@ -1,0 +1,7 @@
+CREATE TABLE znxj_Structured (
+ID int NOT NULL ,
+Task_Belong int  ,
+Task_Vendor int  ,
+Task_Type int  ,
+CONSTRAINT PK_znxj_Structured PRIMARY KEY (ID)
+)

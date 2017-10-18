@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.equipment.dao.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.equipment.model.Equipment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="factory" property="factory" jdbcType="VARCHAR" />
+    <result column="ownDept" property="owndept" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="INTEGER" />
+    <result column="LASTMODIFIER" property="lastmodifier" jdbcType="VARCHAR" />
+    <result column="LASTMODIFYTIME" property="lastmodifytime" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, type, factory, ownDept, STATUS, CREATER, CREATETIME, LASTMODIFIER, LASTMODIFYTIME, 
+    REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bs_equipresource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bs_equipresource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.equipment.model.Equipment" >
+    insert into bs_equipresource (id, name, type, 
+      factory, ownDept, STATUS, 
+      CREATER, CREATETIME, LASTMODIFIER, 
+      LASTMODIFYTIME, REMARK)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{factory,jdbcType=VARCHAR}, #{owndept,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{creater,jdbcType=VARCHAR}, #{createtime,jdbcType=INTEGER}, #{lastmodifier,jdbcType=VARCHAR}, 
+      #{lastmodifytime,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.equipment.model.Equipment" >
+    insert into bs_equipresource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="factory != null" >
+        factory,
+      </if>
+      <if test="owndept != null" >
+        ownDept,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="lastmodifier != null" >
+        LASTMODIFIER,
+      </if>
+      <if test="lastmodifytime != null" >
+        LASTMODIFYTIME,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="owndept != null" >
+        #{owndept,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="lastmodifier != null" >
+        #{lastmodifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifytime != null" >
+        #{lastmodifytime,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.equipment.model.Equipment" >
+    update bs_equipresource
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="factory != null" >
+        factory = #{factory,jdbcType=VARCHAR},
+      </if>
+      <if test="owndept != null" >
+        ownDept = #{owndept,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="lastmodifier != null" >
+        LASTMODIFIER = #{lastmodifier,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifytime != null" >
+        LASTMODIFYTIME = #{lastmodifytime,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.equipment.model.Equipment" >
+    update bs_equipresource
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      factory = #{factory,jdbcType=VARCHAR},
+      ownDept = #{owndept,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=INTEGER},
+      LASTMODIFIER = #{lastmodifier,jdbcType=VARCHAR},
+      LASTMODIFYTIME = #{lastmodifytime,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByStatus" resultMap="BaseResultMap" parameterType="com.equipment.model.Equipment" >
+    select 
+     a.id, a.name, a.type, a.factory, a.ownDept, a.STATUS, a.CREATER, a.CREATETIME, a.LASTMODIFIER, a.LASTMODIFYTIME,      a.REMARK    ,b.depname
+    from bs_equipresource a,bs_dep b
+    where a.status = #{status,jdbcType=INTEGER} and a.ownDept = #{owndept,jdbcType=VARCHAR} and b.pid=a.ownDept
+  </select>
+</mapper>

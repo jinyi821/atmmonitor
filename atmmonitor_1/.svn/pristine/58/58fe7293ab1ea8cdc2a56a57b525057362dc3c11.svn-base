@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+	default-autowire="byName">
+	<!-- 菜单 -->
+	<bean id="bsMenuDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsMenu</value>
+		</property>
+	</bean>
+	<!-- 角色 -->
+	<bean id="bsRoleDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsRole</value>
+		</property>
+	</bean>
+	<!-- 用户人员 -->
+	<bean id="bsUserinfoDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsUserinfo</value>
+		</property>
+	</bean>
+	<!--角色菜单 -->
+	<bean id="bsRoleMenuDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsRoleMenu</value>
+		</property>
+	</bean>
+	<!--人员角色 -->
+	<bean id="bsUserRoleDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsUserRole</value>
+		</property>
+	</bean>
+	
+    <!--用户类型,已废弃该功能  -->
+	<bean id="bsMapUserTypeDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsMapUserType</value>
+		</property>
+	</bean>
+	
+	<!-- 部门 -->
+	<bean id="bsDepDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsDep</value>
+		</property>
+	</bean>
+	<!--用户部门  -->
+	<bean id="bsUserDepDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsUserDep</value>
+		</property>
+	</bean>
+	<!-- 用户登录日志 -->
+	<bean id="bsUserloginRecordDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsUserloginRecord</value>
+		</property>
+	</bean>
+    
+	<!-- 用户访问记录 -->
+	<bean id="bsVistRecordeDao" class="com.common.dao.HibernateDaoImpl">
+		<property name="entityClass">
+			<value>com.usermanager.model.BsVistRecorde</value>
+		</property>
+	</bean>
+	
+	
+	
+	
+<!-- 	<context:component-scan base-package="com.usermanager" /> -->
+</beans>

@@ -1,0 +1,39 @@
+package com.inspection.operatelog.services;
+
+import java.util.List;
+
+import com.inspection.operatelog.model.OperateLog;
+
+/**
+ * 
+ * Created on 2017年4月20日
+ * <p>
+ * Title: [项目名称_一级模块名称_模块名称]
+ * </p>
+ * <p>
+ * Description: [描述该类概要功能介绍]
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2016
+ * </p>
+ * <p>
+ * Company: 北京神州泰岳
+ * </p>
+ * 
+ * @author <a href=huming@ultrapower.com.cn>huming</a>
+ * @version 1.0
+ */
+public interface OperateLogService {
+
+
+	/**
+	 * 查询操作日志列表
+	 * 
+	 * @param record
+	 * @return
+	 */
+	List<OperateLog> getOperateLogList(OperateLog record);
+
+	
+
+}

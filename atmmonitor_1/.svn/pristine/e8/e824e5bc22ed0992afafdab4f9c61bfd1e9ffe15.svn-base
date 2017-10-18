@@ -1,0 +1,83 @@
+package com.equipmaintainquery.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.common.constants.Constants;
+import com.equipment.model.Equipment;
+import com.equipment.model.EquipmentChange;
+import com.equipment.service.EquipmentChangeService;
+import com.equipment.service.EquipmentService;
+import com.portal.model.UserLoginInfo;
+import com.usermanager.model.BsDep;
+import com.usermanager.model.BsUserRole;
+import com.usermanager.services.BsDepService;
+import com.usermanager.services.BsUserRoleService;
+
+@Controller
+@RequestMapping(value = "/equipmaintain")
+public class equipMaintainQueryController {
+
+	@Autowired
+	private EquipmentChangeService equipmentChangeService;
+	@Autowired
+	private BsDepService bsDepService;
+
+	@Autowired
+	private EquipmentService equipmentService;
+
+	@Autowired
+	private BsUserRoleService bsUserRoleService;
+
+	private static Log logger = LogFactory.getLog(equipMaintainQueryController.class);
+
+	@RequestMapping(value = "/query")
+	public String query(HttpServletRequest req, Map<String, Object> map) {
+		
+		String menuId = req.getParameter("menuId");
+		UserLoginInfo userlogin = (UserLoginInfo) req.getSession().getAttribute(Constants.USERSESSION);
+		map.put("loginname", userlogin.getLoginname());
+		map.put("menuId", menuId);
+
+		return "/equipmaintainquery/equipMaintainQuery.jsp";
+	}
+
+	
+	@RequestMapping("equipmentChangeQueryDetail.action")
+	public String equipmentChangeQueryDetail(HttpServletRequest request, Integer pid, Map<String, Object> map) {
+
+		logger.info("equipmentChangeQueryDetail begin");
+		if (pid != null) {
+
+			EquipmentChange selectByPrimaryKey = equipmentChangeService.selectByPrimaryKey(pid);
+			map.put("equipmentChange", selectByPrimaryKey);
+
+		} 
+
+		UserLoginInfo userlogin = (UserLoginInfo) request.getSession().getAttribute(Constants.USERSESSION);
+		List<BsDep> depByLoginName = bsDepService.getDepByLoginName(userlogin.getLoginname());
+
+		if (depByLoginName != null && depByLoginName.size() > 0) {
+			Equipment record = new Equipment();
+			record.setStatus(1);
+			record.setOwndept(depByLoginName.get(0).getPid());
+			List<Equipment> selectByStatus = equipmentService.selectByStatus(record);
+			map.put("equipmentList", selectByStatus);
+		}
+		List<BsUserRole> userRoleByRole = bsUserRoleService.getUserRoleByRole(Constants.APPROVER_ROLE);
+		map.put("userList", userRoleByRole);
+
+		return "/equipmaintainquery/equipMaintainQueryDetail.jsp";
+	}
+
+	
+
+}

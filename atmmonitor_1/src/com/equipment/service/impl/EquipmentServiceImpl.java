@@ -1,0 +1,78 @@
+package com.equipment.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.equipment.dao.EquipmentMapper;
+import com.equipment.model.Equipment;
+import com.equipment.service.EquipmentService;
+import com.statis.contoller.DeptStatisVO;
+
+/**
+ * 
+ * Created on 2017年6月3日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [描述该类概要功能介绍]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+
+ * @author         <a href=jinyi@ultrapower.com.cn>jinyi</a>
+ * @version        1.0
+ */
+@Service("EquipmentServiceImpl")
+@Transactional(value = "transactionManager")
+public class EquipmentServiceImpl implements EquipmentService {
+
+	@Autowired
+	private EquipmentMapper equipmentMapper;
+	
+	@Override
+	public Equipment selectByPrimaryKey(Integer id) {
+		
+		return equipmentMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int deleteByPrimaryKey(Integer id) {
+		
+		return equipmentMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public int insert(Equipment record) {
+		
+		return equipmentMapper.insert(record);
+	}
+
+	@Override
+	public int insertSelective(Equipment record) {
+		
+		return equipmentMapper.insertSelective(record);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Equipment record) {
+		return equipmentMapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public int updateByPrimaryKey(Equipment record) {
+		// TODO Auto-generated method stub
+		return equipmentMapper.updateByPrimaryKey(record);
+	}
+
+	@Override
+	public List<Equipment> selectByStatus(Equipment record) {
+		
+		return equipmentMapper.selectByStatus(record);
+	}
+
+	@Override
+	public List<DeptStatisVO> getDeptEquipValueList() {
+		
+		return equipmentMapper.getDeptEquipValueList();
+	}
+
+}

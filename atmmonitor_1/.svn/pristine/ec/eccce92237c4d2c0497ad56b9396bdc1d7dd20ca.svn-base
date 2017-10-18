@@ -1,0 +1,566 @@
+@CHARSET "UTF-8";
+
+.tjBlock{
+	width: 1138px;
+	padding: 20px 30px 30px 30px;
+}
+
+.Tj_rightChartBlock{
+	width: 560px;
+	float: left;
+}
+
+.Tj_leftChartBlock{
+	width: 560px;
+	float: left;
+	margin-left: 18px;
+}
+
+.chartIcon1,.chartIcon4{
+	width:18px;
+	height: 8px;
+	display: inline-block;
+	margin-left: 30px;
+	vertical-align: middle;
+	margin-bottom: 4px;
+}
+
+.chartIcon1{
+	background: url(../../images/chartIcon1.png) no-repeat;
+}
+
+.chartIcon4{
+	background: url(../../images/chartIcon4.png) no-repeat;
+}
+
+.chartIcon2,.chartIcon3{
+	width:20px;
+	height: 12px;
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+.chartIcon2{
+	background: url(../../images/chartIcon2.png) no-repeat;
+}
+
+.chartIcon3{
+	background: url(../../images/chartIcon3.png) no-repeat;
+}
+
+.chartBtn{
+	height: 22px;
+	min-width: 38px;
+	width: auto;
+	background: #ffffff;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #0cc3ff;
+	color: #333333;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	font-family: "微软雅黑";
+	outline: none;
+}
+
+.chartBtnActive{
+	background: #0cc3ff;
+	color: #ffffff;
+}
+
+.tjChartshili,.tjChartshili1,.tjChartshili3,.tjChartshili2,.tjChartshili4,.tjChartshili5,.tjChartshili6,.tjChartshili7,.tjChartshili8{
+	margin: 0 auto;
+}
+
+
+
+.tjChartshili2{
+	width: 528px;
+	height: 297px;
+	background: url(../images/tjChartshili2.png)  no-repeat;
+}
+
+.tjChartshili3{
+	width: 521px;
+	height: 297px;
+	background: url(../images/tjChartshili3.png) no-repeat;
+}
+
+.userTjRightBlock,.userTjLeftBlock{
+	padding: 20px 30px 30px 30px;
+	width: 530px;
+	float: left;
+}
+
+.userTjRightBlock{
+	margin-left: 16px;
+}
+
+.excelIcon{
+	width: 21px;
+	height: 21px;
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../images/excel.png) no-repeat;
+	cursor: pointer;
+	float: right;
+}
+
+.excelIcon:hover{
+	background: url(../images/excelHover.png) no-repeat;
+}
+
+.excelTip{
+	width: 190px;
+    height: 35px;
+    position: absolute;
+    text-align: center;
+    padding-top: 10px;
+    top: -48px;
+    right: -88px;
+    background: url(../images/excelTip.png) no-repeat;
+    z-index: 10;
+}
+
+.spThead{
+	border-top: 1px solid #dddddd;
+}
+
+.per{
+	height: 12px;
+	background: #ffd265;
+	webkit-border-radius:1px;
+	-moz-border-radius:1px;
+	border-radius:1px;
+	display: inline-block;
+}
+
+.per1{
+	width: 80%;
+}
+
+.per2{
+	width: 70%;
+}
+.per3{
+	width: 65%;
+}
+.per4{
+	width: 60%;
+}
+
+.per5{
+	width: 55%;
+}
+.per6{
+	width: 50%;
+}
+.per7{
+	width: 40%;
+}
+.per8{
+	width: 37%;
+}
+
+.per9{
+	width: 33%;
+}
+
+.per10{
+	width: 25%;
+}
+
+.perNum{
+	color: #ff9600;
+	margin-right: 10px;
+	float: right;
+}
+
+.tjClick{
+	display: inline-block;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
+.tj_modalTableDiv{
+	height: 380px;
+	overflow:hidden;
+}
+
+.content_head1 {
+    width: 1138px;
+    overflow: hidden;
+    /*margin-left: 2px;*//**循环切换备用**/
+    /*margin-bottom: 15px;*/
+}
+
+.content_head1_section{
+	width: 260px;
+	height: 128px;
+	float: left;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.content_head1Margin{
+	margin-left: 32px;
+}
+
+/**循环切换备用样式最后一个div样式**/
+.content_head1Margin1{
+	margin-left: 32px;
+	margin-right: 32px;
+}
+
+.gdbk1,.gdbk2,.gdbk3,.gdbk4,.gdbk5{
+	width: 260px;
+	height: 120px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	position: relative;
+    text-align: center;
+    color: #ffffff;
+}
+
+.gdbk1{
+	background-color: #ffab60;
+}
+
+.gdbk2{
+	background-color: #fed340;
+}
+
+.gdbk3{
+	background-color: #a6e0ee;
+}
+
+.gdbk4{
+	background-color: #60f8ab;
+}
+
+.dtQuaGdContent{
+	width: 280px;
+	height: 120px;
+	float: left;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dtquGdbk1,.dtquGdbk2,.dtquGdbk3,.dtquGdbk4{
+	width: 280px;
+	height: 120px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	position: relative;
+    text-align: center;
+    color: #ffffff;
+}
+
+.dtquGdbk1{
+	background-color: #e3a6f0;
+}
+.dtquGdbk2{
+	background-color: #76daf3;
+}
+.dtquGdbk3{
+	background-color: #fed340;
+}
+.dtquGdbk4{
+	background-color: #46f69d;
+}
+
+.clickArrow1,.clickArrow2,.clickArrow3,.clickArrow4{
+	width: 15px;
+    height: 8px;
+    margin: 0 auto;
+    margin-top: -2px;
+}
+
+.clickArrow1{
+	background: url(../../images/clickArrow1.png) no-repeat;
+}
+
+.clickArrow2{
+	background: url(../../images/clickArrow2.png) no-repeat;
+}
+
+/**
+ * 2016-4-18 am add
+ * ***/
+
+.clickArrow3{
+	background: url(../../images/clickArrow3.png) no-repeat;
+}
+
+.clickArrow4{
+	background: url(../../images/clickArrow4.png) no-repeat;
+}
+
+.tjSearchInput{
+	width: 130px;
+	height: 24px;
+	position: absolute;
+	right: 38px;
+	top:0px;
+}
+
+.searchTj{
+	width: 38px;
+	height: 26px;
+	display: inline-block;
+	background: url(../../images/tjSearch.png) no-repeat;
+	cursor: pointer;
+	outline: none;
+	position: absolute;
+	right: 0px;
+	top:0px
+}
+
+.tjPageDiv{
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+.spbtn {
+    border-right: 1px solid #eeeeee;
+    border-left: 1px solid #eeeeee;
+    margin-left: -4px;
+}
+
+.contentTab {
+    margin-bottom: 15px;
+    height: 38px;
+    line-height: 38px;
+    border: 1px solid #eeeeee;
+    background: #f8f8f8;
+}
+
+.qoeLeftDiv{
+	width: 270px;
+	float: left;
+}
+
+.qoeLeftDiv_part{
+	width: 238px;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 54px;
+	line-height: 54px;
+	border: 1px solid #dddddd;
+	background: #f6fdff;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+}
+
+.qoeRightDiv,.gjRightDiv,.TaskRightDiv{
+	width: 846px;
+	float: left;
+	margin-left: 20px;
+	border: 1px solid #dddddd;
+}
+
+.qoeRightDiv{
+	height: 338px;
+}
+
+.gjRightDiv{
+	height: 318px;
+}
+
+.TaskRightDiv{
+	height: 438px;
+}
+
+.qoeRightDiv_part1,.gjRightDiv_part1,.TaskRightDiv_part1{
+	height: 39px;
+	line-height: 39px;
+	padding-left: 12px;
+	background: #fdfdfd;
+	padding-right: 10px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.tjchartP{
+	padding-top: 15px;
+	width: 50%;
+	float: left;
+}
+
+.tjChartshili4{
+	width: 304px;
+	height: 225px;
+	background: url(../../images/tjChartshili4.png) no-repeat;
+	margin-top: 30px;
+}
+
+.tjChartshili5{
+	width: 396px;
+	height: 271px;
+	background: url(../../images/tjChartshili5.png) no-repeat;
+}
+
+.tjChartshili6{
+	width: 1138px;
+	height: 288px;
+	background: url(../../images/tjChartshili6.png) no-repeat;
+}
+
+.qoefx_head{
+	height: 41px;
+	line-height: 41px;
+	background: #fbfbfb;
+	padding-left: 12px;
+}
+
+.dtQuaGdMargin{
+	margin-left: 26px;
+}
+
+.gjLeftDiv,.TaskLeftDiv{
+	width: 268px;
+	border: 1px solid #dddddd;
+	float: left;
+}
+
+.gjLeftDiv{
+	height: 318px;
+}
+
+.TaskLeftDiv{
+	height: 438px;
+}
+
+.gjLeftDiv_head,.TaskLeftDiv_head{
+	height: 39px;
+	line-height: 39px;
+	padding-left: 12px;
+	background: #fdfdfd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.gjLeftDiv_content,.TaskLeftDiv_content{
+	padding: 19px;
+}
+
+.gjLeftDiv_contentChild{
+	height: 40px;
+	line-height: 40px;
+	width: 200px;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin: 0 auto;
+	-webkit-border-radius:1px;
+	-moz-border-radius:1px;
+	border-radius:1px;
+}
+
+.gjLeftpart1{
+	background: #fea05b;
+}
+
+.gjLeftpart2{
+	background: #ffc657;
+}
+
+.gjLeftpart3{
+	background: #a0cbe2;
+}
+
+.tj_spmargin{
+	margin-top: 10px;
+}
+
+.tjChartshili7{
+	width: 677px;
+	height: 246px;
+	background: url(../../images/tjChartshili7.png) no-repeat;
+}
+
+.gjRightDiv_part2{
+	padding-top: 15px;
+	padding-left: 15px;
+}
+
+.gjRightDiv_part2_L1{
+	width: 677px;
+	float: left;
+}
+
+.gjRightDiv_part2_L2{
+	width: 140px;
+	float: left;
+	margin-left: 14px;
+	padding-top: 26px;
+}
+
+.gjTop,.gjDown{
+	display: inline-block;
+	height: 22px;
+	line-height: 22px;
+	width: 38px;
+	-webkit-border-radius: 1px;
+	-moz-border-radius: 1px;
+	border-radius: 1px;
+	color: #ffffff;
+	font-size: 14px;
+	text-align: center;
+}
+
+.gjTop{
+	background: #fea05b;
+}
+
+.gjDown{
+	background: #ffc657;
+}
+
+/**
+ * 2016-4-19 am add
+ * ***/
+.xqHead_title{
+	height: 59px;
+	line-height: 59px;
+	border: 1px solid #DDDDDD;
+	border-bottom: none;
+	background: #fdfdfd;
+	padding-left: 20px;
+}
+
+.table_Head1 .tj_tableHeight{
+	line-height: 20px;
+}
+
+.table_body1 .borderRightNone{
+	border-right: none;
+}
+
+.tjChartshili8{
+	width: 230px;
+	height: 239px;
+	background: url(../../images/tjChartshili8.png) no-repeat;
+}
+
+.TaskLeftDiv_foot{
+	border-top: 1px solid #dddddd;
+	padding: 15px;
+}
+.analysisTitleLocate {
+	position: absolute;
+	left: 120px;
+	top: 40px;
+	
+}
+
+.applyTitleLocate {
+	position: absolute;
+	left: 730px;
+	top: 40px;
+	
+}
+

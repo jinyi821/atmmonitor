@@ -1,0 +1,82 @@
+package com.inspection.basedata.model;
+
+import java.math.BigDecimal;
+
+public class Task {
+    private BigDecimal id;
+
+    private String taskName;
+
+    private String neVendor;
+
+    private String neType;
+
+    private String programId;
+
+    private String resourcesId;
+
+    private String rule;
+
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName == null ? null : taskName.trim();
+    }
+
+    public String getNeVendor() {
+        return neVendor;
+    }
+
+    public void setNeVendor(String neVendor) {
+        this.neVendor = neVendor == null ? null : neVendor.trim();
+    }
+
+    public String getNeType() {
+        return neType;
+    }
+
+    public void setNeType(String neType) {
+        this.neType = neType == null ? null : neType.trim();
+    }
+
+    public String getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(String programId) {
+        this.programId = programId == null ? null : programId.trim();
+    }
+
+    public String getResourcesId() {
+        return resourcesId;
+    }
+
+    public void setResourcesId(String resourcesId) {
+        this.resourcesId = resourcesId == null ? null : resourcesId.trim();
+    }
+
+    public String getRule() {
+        return rule;
+    }
+
+    public void setRule(String rule) {
+        this.rule = rule == null ? null : rule.trim();
+    }
+
+	@Override
+	public String toString() {
+		return "Task [neVendor=" + neVendor + ", neType=" + neType + "]";
+	}
+    
+    
+}

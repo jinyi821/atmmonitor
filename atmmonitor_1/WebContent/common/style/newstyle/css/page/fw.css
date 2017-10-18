@@ -1,0 +1,133 @@
+@CHARSET "UTF-8";
+
+.leftMenuTree {
+    width: 15%;
+    display: inline-block;
+    float: left;
+    background: #596877;
+    height: 603px;
+    overflow: auto;
+    /* height: auto; */
+}
+
+.fw_rightDiv{
+	width: 82.5%;
+    float: left;
+    padding: 1.25%;
+}
+
+.fw_rightDiv_part1{
+	background: url(../../images/bgIamge.png) repeat;
+	height: 50px;
+	line-height: 50px;
+	padding-left: 10px;
+	border: 1px solid #dddddd;
+}
+
+.fw_rightDiv_part2{
+	height: 45px;
+	line-height: 45px;
+	background: #fbfbfb;
+	padding-left: 10px;
+	border: 1px solid #dddddd;
+	border-top: none;
+	border-bottom: none;
+}
+
+.fw_uploadA{
+	display: inline-block;
+	height: 22px;
+	line-height: 22px;
+	width: 70px;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	background: #6dbde6;
+	font-family:"宋体";
+	font-size: 12px;
+	text-align: center;
+	color: #ffffff;
+	outline: none;
+	cursor: pointer;
+	border: 1px solid #6dbde6;
+	margin-bottom: 1px;
+}
+
+.fwSearchInput{
+	width: 190px;
+    height: 24px;
+    position: absolute;
+    right: 38px;
+    top: 10px;
+}
+
+.searchfw{
+    top: 10px;
+}
+
+.searchfw,.searchfw1{
+	width: 28px;
+    height: 26px;
+    display: inline-block;
+    background: url(../../images/fwSearch.png) no-repeat;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    right: 11px;
+}
+
+.fwSearchInput,.fwSearchInput1{
+	width: 190px;
+    height: 24px;
+    position: absolute;
+    right: 38px;
+}
+
+.fwSearchInput1{   
+    top: -12px;
+}
+
+.searchfw1{
+    top: -12px;
+}
+
+.fwVideoIcon{
+	width: 75px;
+	height: 60px;
+	background: url(../../images/fwVideoIcon.png) no-repeat;
+}
+
+.fw_videoTime{
+	height: 16px;
+	min-width: 39px;
+	width: auto;
+	background: #000000;
+	opacity: 0.7;
+	filter:alpha(opacity=70); 
+	color: #ffffff;
+	position: absolute;
+	bottom:0px;
+	left: 0px;
+	font-family: arial;
+	
+}
+
+.fwoverflowDiv{
+	width: 110px;
+	padding-top: 10px;
+	text-align: left;
+}
+
+.trCheck{
+	background: #fdfdfd;
+}
+
+.fwpageDiv{
+	margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+	background: #ffffff;
+	border: 1px solid #dddddd;
+	border-top: none;
+}

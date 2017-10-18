@@ -1,0 +1,79 @@
+package com.inspection.workorder.services;
+
+import java.util.List;
+
+import com.inspection.basedata.model.Belong;
+import com.inspection.basedata.model.Region;
+import com.inspection.basedata.model.Resouce;
+import com.inspection.basedata.model.Structured;
+import com.inspection.basedata.model.Task;
+import com.inspection.basedata.model.Type;
+import com.inspection.basedata.model.Vendor;
+import com.inspection.dailytask.services.CombineQuery;
+
+/**
+ * 
+ * Created on 2017年4月20日
+ * <p>
+ * Title: [项目名称_一级模块名称_模块名称]
+ * </p>
+ * <p>
+ * Description: [描述该类概要功能介绍]
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2016
+ * </p>
+ * <p>
+ * Company: 北京神州泰岳
+ * </p>
+ * 
+ * @author <a href=huming@ultrapower.com.cn>huming</a>
+ * @version 1.0
+ */
+public interface WorkOrderService {
+
+	List<Belong> getAllBelong();
+
+	List<Vendor> getVendorByBelog(Integer belong);
+
+	List<Type> getTypeListByVendor(Structured structured);
+
+	List<Region> getAllRegion();
+
+	/**
+	 * 查询任务列表
+	 * 
+	 * @param record
+	 * @return
+	 */
+	List<Task> getTaskList(Task record);
+
+	Belong getBelongById(String id);
+
+	Vendor getVendorById(String id);
+
+	Type getTypeById(String id);
+
+	Region getRegionById(String id);
+	
+	 /**
+     * 根据条件查询出网元名称
+     * @param combineQuery
+     * @return
+     */
+    List<Resouce> getResourceNameList(CombineQuery combineQuery);
+    /**
+     * 显示规则
+     * @param id
+     * @return
+     */
+	String showRule(Long id);
+	
+	/**
+	 * 显示任务信息
+	 * @param record
+	 * @return
+	 */
+	List<Task> getTaskListByTaskName(Task record);
+
+}

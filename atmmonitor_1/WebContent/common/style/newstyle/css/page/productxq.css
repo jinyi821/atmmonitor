@@ -1,0 +1,186 @@
+@CHARSET "UTF-8";
+
+.xqDiv{
+	width: 100%;
+	height: auto;
+	border: 1px solid #e6e6e6;
+}
+
+.xqTitle{
+	margin-top: 30px;
+	height: 50px;
+	line-height: 50px;
+}
+
+.xq_intro{
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 30px;
+	text-indent: 30px;
+	line-height: 25px;
+}
+
+.xq_chart{
+	border: 1px solid #eeeeee;
+	width: 990px;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 20px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.xq_chart_shili{
+	width: 909px;
+	height: 580px;
+	margin: 0 auto;
+	background: url(../../images/chart7.png) no-repeat;
+}
+
+.dztext{
+	visibility: hidden;
+	padding-right: 18px;
+}
+
+.dzNum{
+	font-size: 14px;
+	color: #999999;
+}
+
+.plContent{
+	width: 1140px;
+	margin: 0 auto;
+}
+
+.pl_textarea{
+	width: 99%;
+	padding-right: 5px;
+	background: #fdfdfd;
+}
+
+.bq{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: text-top;
+	background: url(../../images/smile.png) no-repeat;
+}
+
+.add_bq{
+	cursor: pointer;
+	float: left;
+}
+
+.add_bq:hover{
+	text-decoration: underline;
+}
+
+.commentBtn{
+	font-size: 14px;
+	float: right;
+}
+
+.hfDiv{
+	margin-left: 15px;
+	display: inline-block;
+}
+
+.hfDiv:hover{
+	text-decoration: underline;
+}
+
+.pl_text{
+	font-family: arial;
+	color: #999999;
+}
+
+.hfBtn{
+	float: right;
+	width: 50px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border: none;
+	background: #1eb2fc;
+	color: #ffffff;
+	font-size:12px ;
+	font-weight: normal;
+	font-family: "微软雅黑";
+	border-radius: 3px;
+	outline: none;
+	cursor: pointer;
+}
+
+.cancle_hf{
+	float: right;
+	height: 26px;
+	line-height: 26px;
+	border: none;
+	background: transparent;
+	font-size:12px ;
+	font-family: "宋体";
+	color: #999999;
+	outline: none;
+	cursor: pointer;
+	margin-right: 15px;
+}
+
+.hf_contentDiv{
+	margin-top: 10px;
+}
+
+.pl_pageNum{
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.plhf_content{
+	background: #f6f6f6;
+	border: 1px solid #e6e6e6;
+	width: 1098px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0 auto;
+	min-height: 78px;
+	height: auto;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.plhf_arrow{
+	width:9px;
+	height: 6px;
+	display: inline-block;
+	background: url(../../images/plhf_arrow.png) no-repeat;
+	position: absolute;
+	top: -6px;
+	left: 40px;
+}
+
+.plFloorNum{
+	float: right;
+}
+
+.prev_plContent{
+	font-family: "宋体";
+	font-size: 14px;
+}
+
+.prev_user{
+	font-size: 14px;
+	color: #3a9fd8;
+}
+
+.prev_time{
+	font-family: "宋体";
+	color: #999999;
+}
+
+.marginRight{
+	margin-right: 5px;
+}
+
+.spHeight{
+	height: 35px;
+	line-height: 35px;
+}

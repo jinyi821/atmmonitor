@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspection.workorder.dao.AlarmGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.inspection.workorder.model.AlarmGroup" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="GROUPNAME" property="groupname" jdbcType="VARCHAR" />
+    <result column="GROUPNAME2" property="groupname2" jdbcType="VARCHAR" />
+    <result column="REGION" property="region" jdbcType="VARCHAR" />
+    <result column="TASK_VENDOR" property="taskVendor" jdbcType="VARCHAR" />
+    <result column="CHNAME" property="chname" jdbcType="VARCHAR" />
+    <result column="TASK_TYPE" property="taskType" jdbcType="VARCHAR" />
+    <result column="GROUPTITILE" property="grouptitile" jdbcType="VARCHAR" />
+    <result column="TASKAVAILABLE" property="taskavailable" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.inspection.workorder.model.AlarmGroup" >
+    insert into ZNXJ_ALARMGROUP (ID, GROUPNAME, GROUPNAME2, 
+      REGION, TASK_VENDOR, CHNAME, 
+      TASK_TYPE, GROUPTITILE, TASKAVAILABLE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{groupname,jdbcType=VARCHAR}, #{groupname2,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{taskVendor,jdbcType=VARCHAR}, #{chname,jdbcType=VARCHAR}, 
+      #{taskType,jdbcType=VARCHAR}, #{grouptitile,jdbcType=VARCHAR}, #{taskavailable,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.workorder.model.AlarmGroup" >
+    insert into ZNXJ_ALARMGROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="groupname != null" >
+        GROUPNAME,
+      </if>
+      <if test="groupname2 != null" >
+        GROUPNAME2,
+      </if>
+      <if test="region != null" >
+        REGION,
+      </if>
+      <if test="taskVendor != null" >
+        TASK_VENDOR,
+      </if>
+      <if test="chname != null" >
+        CHNAME,
+      </if>
+      <if test="taskType != null" >
+        TASK_TYPE,
+      </if>
+      <if test="grouptitile != null" >
+        GROUPTITILE,
+      </if>
+      <if test="taskavailable != null" >
+        TASKAVAILABLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="groupname2 != null" >
+        #{groupname2,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="taskVendor != null" >
+        #{taskVendor,jdbcType=VARCHAR},
+      </if>
+      <if test="chname != null" >
+        #{chname,jdbcType=VARCHAR},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=VARCHAR},
+      </if>
+      <if test="grouptitile != null" >
+        #{grouptitile,jdbcType=VARCHAR},
+      </if>
+      <if test="taskavailable != null" >
+        #{taskavailable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

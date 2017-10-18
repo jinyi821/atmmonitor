@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+body  {
+	width: 1200px;
+	height: 350px;
+	background: url(../../images/exception.jpg) no-repeat  center center;
+	TEXT-ALIGN: center;
+}
+

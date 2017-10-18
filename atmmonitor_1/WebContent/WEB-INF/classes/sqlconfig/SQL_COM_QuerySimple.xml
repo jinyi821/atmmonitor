@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="SQL_SM_QuerySimple_001" >
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/ userid,username,pwd /*COUNT*/
+	 			  from test_user  
+	 			  where 1=1 $where1$
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="like"  datatype="" colname="username"  value="#username#" />
+			<field prepend="and" operator="&lt;="  datatype="7" colname="createtime"  value="#createtime#" />
+			
+			<sql prepend="and"><![CDATA[ 1=1 ]]></sql>
+			<switch prepend="and" exp="'#loginname#'>''">
+				<case value="true">
+					<field prepend="and" operator=">="  datatype="7" colname="fullname"  value="#d1#" />
+					<field prepend="and" operator="&lt;="  datatype="7" colname="fullname"  value="#d23#" />
+				</case>
+			</switch>
+			<if prepend="and" exp="1=1 and 2=2">
+				<success>
+					<![CDATA[ 2=2 and 3=3 ]]>
+				</success>
+				<else>
+					<field prepend="and" operator="="  datatype="" colname="fullname"  value="#fullname#" />
+				</else>
+			</if>
+		</customwhere>
+	</sqlquery>
+</sql-group>

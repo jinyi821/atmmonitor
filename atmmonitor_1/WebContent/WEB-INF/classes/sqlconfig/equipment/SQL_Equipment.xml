@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	
+	
+	<sqlquery name="SQL_Equipment.list">
+		<select>
+			<![CDATA[ 
+	 			  
+				SELECT 	 /*COUNT*/  
+					a.* ,
+					b.depname /*COUNT*/
+               from bs_equipresource a left join bs_dep b on   a.ownDept=b.pid  where 1=1 $where1$  order by a.ID desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="="  datatype="" colname="name"  label="" value="#name_condition#" />
+			
+		</customwhere>
+	</sqlquery>
+	
+	<sqlquery name="SQL_Equipment_CHANGE.list">
+		<select>
+			<![CDATA[ 
+	 			  
+				SELECT 	 /*COUNT*/  
+					a.* ,
+					b.depname /*COUNT*/
+               from bs_equipmentchange a left join bs_dep b on   a.applyDept=b.pid  where 1=1 $where1$  order by a.ID desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="="  datatype="" colname="equipmentName"  label="" value="#name_condition#" />
+			<field prepend="and" operator="="  datatype="" colname="a.CREATER"  label="" value="#creater_condition#" />
+			<field prepend="and" operator="="  datatype="" colname="approver"  label="" value="#approver_condition#" />
+			<field prepend="and" operator="="  datatype="" colname="maintainer"  label="" value="#maintainer_condition#" />
+			<field prepend="and" operator="="  datatype="" colname="a.STATUS"  label="" value="#status_condition#" />
+			
+		</customwhere>
+		
+	</sqlquery>
+	
+	
+	
+	<sqlquery name="SQL_Equipment_CHANGE_DETAIL.list">
+		<select>
+			<![CDATA[ 
+	 			  
+				SELECT 	 /*COUNT*/  
+					a.* ,
+					b.depname /*COUNT*/
+               from bs_equipmentchange a left join bs_dep b on   a.applyDept=b.pid  where 1=1 $where1$  $where2$ order by a.ID desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="="  datatype="" colname="equipmentName"  label="" value="#name_condition#" />
+			
+		</customwhere>
+		<customwhere name="where2" prepend="and" >
+		
+			<field prepend="or" operator="="  datatype="" colname="a.CREATER"  label="" value="#loginname_condition#" />
+			<field prepend="or" operator="="  datatype="" colname="a.approver"  label="" value="#loginname_condition#" />
+			<field prepend="or" operator="="  datatype="" colname="a.maintainer"  label="" value="#loginname_condition#" />
+		
+		</customwhere>
+	</sqlquery>
+	
+	
+	
+	
+</sql-group>

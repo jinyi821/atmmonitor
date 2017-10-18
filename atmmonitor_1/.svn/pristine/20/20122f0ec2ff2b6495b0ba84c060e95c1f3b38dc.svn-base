@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	<sqlquery name="SQL_BsSourceUrl.bsSourceUrlList">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/  pid,resid,opid,resname,opname,url,status,remark,creater,createtime,lastmodifier,lastmodifytime/*COUNT*/
+	 			  from  bs_resourceurl
+	 			  where 1=1 $where1$ order by createtime desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="like"  datatype="" colname="resname"  value="#par_condition#" />
+		</customwhere>
+	</sqlquery>
+</sql-group>

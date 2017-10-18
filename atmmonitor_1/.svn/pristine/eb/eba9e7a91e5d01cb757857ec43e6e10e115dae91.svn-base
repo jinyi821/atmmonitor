@@ -1,0 +1,9 @@
+CREATE TABLE znxj_NE_Connectivity (
+id int NOT NULL  ,
+nename varchar(100)  NOT NULL ,
+region varchar(100)   ,
+vendor varchar(100)  ,
+connection_states varchar(100)  ,
+datetime date NOT NULL ,
+netype varchar(100)  
+)

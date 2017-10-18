@@ -1,0 +1,22 @@
+package com.inspection.dailytask.services;
+
+/**
+ * 
+ * Created on 2017年5月9日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [相关的webservice接口]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+ * <p>Company:     北京神州泰岳</p>
+ * @author         <a href=jinyi@ultrapower.com.cn>jinyi</a>
+ * @version        1.0
+ */
+public interface DailyTaskWebService {
+	
+	/**
+	 * 执行任务
+	 * @param requestXML
+	 * @return
+	 */
+	
+    String executeOpscenario(String requestXML);
+}

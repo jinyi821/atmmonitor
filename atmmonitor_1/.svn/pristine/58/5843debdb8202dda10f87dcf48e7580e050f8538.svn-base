@@ -1,0 +1,37 @@
+package com.inspection.operatelog.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.inspection.operatelog.services.OperateLogService;
+
+
+/**
+ * 
+ * Created on 2017年4月27日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [描述该类概要功能介绍]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+ * <p>Company:     北京神州泰岳</p>
+ * @author         <a href=huming@ultrapower.com.cn>huming</a>
+ * @version        1.0
+ */
+@Controller
+@RequestMapping(value = "/inspection")
+public class OperateLogController {
+
+	private static Log logger = LogFactory.getLog(OperateLogController.class);
+	
+	@Resource(name = "OperateLogServiceImpl")
+	private OperateLogService operateLogService;
+	
+	@RequestMapping(value = "/operatelog.action")
+	public String  operatelog(HttpServletRequest req) {
+		logger.info("operatelog begin");
+		logger.info("operatelog end");
+		return "/inspection/operateLog.jsp";
+	}
+}

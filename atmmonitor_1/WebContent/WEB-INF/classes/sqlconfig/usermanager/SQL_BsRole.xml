@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	<sqlquery name="SQL_BsRole.bsRoleList">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/  roleid,rolename,createtime/*COUNT*/
+	 			  from  bs_role
+	 			  where 1=1 $where1$
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+		    <field prepend="and" operator="like"  datatype="" colname="roleid"  value="#par_condition#" />
+			<field prepend="or" operator="like"  datatype="" colname="rolename"  value="#par_condition#" />
+		</customwhere>		
+	</sqlquery>
+</sql-group>

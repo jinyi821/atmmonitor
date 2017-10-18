@@ -1,0 +1,27 @@
+.zwSq_Div{
+	border: 1px solid #DDDDDD;
+	background: #FFFFFF;
+	min-height:578px;
+	height: auto;
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+.zwSq_Div_content{
+	text-align: center;
+	margin-top: 230px;
+}
+.zw_sqBtn{
+	height: 60px;
+	line-height: 60px;
+	width: 220px;
+	font-size: 18px;
+	margin-top: 30px;
+}
+
+.zwSq_Div_part1{
+	margin-top: 70px;
+	margin-bottom: 40px;
+	padding-bottom: 20px;
+	border-bottom: 1px dashed #cccccc;
+}

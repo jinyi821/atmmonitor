@@ -1,0 +1,5 @@
+CREATE TABLE znxj_NE_Type_LTE_LOG (
+ID int NOT NULL  ,
+message varchar(4000) NOT NULL ,
+datetime date  
+)

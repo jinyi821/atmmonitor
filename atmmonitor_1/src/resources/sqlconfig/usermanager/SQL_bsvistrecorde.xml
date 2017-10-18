@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	<sqlquery name="SQL_bsvistrecorde.list">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/  pid,loginname,linkid,linkurl,vistdate,visthour,moduleid,modulename,createtime,apptype/*COUNT*/
+	 			  from  bs_vist_recorde
+	 			  where 1=1 $where1$ order by vistdate desc,createtime desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="like"  datatype="" colname="loginname"  value="#par_condition#" />
+			<field prepend="and" operator=">="  datatype="" colname="vistdate"  value="#par_vistdate_condition_begin#" />
+			<field prepend="and" operator="&lt;="  datatype="" colname="vistdate"  value="#par_vistdate_condition_end#" />
+			<field prepend="and" operator="like"  datatype="" colname="modulename"  value="#par_modulename_condition#" />
+			
+		</customwhere>
+	</sqlquery>
+	
+	
+	
+</sql-group>

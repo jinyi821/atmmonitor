@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+ <sqlquery name="SQL_BsUseDep.bsUserDepList">
+		<select>
+			<![CDATA[ 
+	 			  select
+	 			  /*COUNT*/ ud.pid,ud.loginname,ui.fullname,ud.depid,d.depname,d.depfullname,d.deptype,relatetype,ud.creater,ud.createtime,ud.lastmodifier,ud.lastmodifytime /*COUNT*/
+	 			  from bs_userdep ud
+	 			  left join bs_userinfo ui
+	 			  on  ud.loginname=ui.loginname 
+	 			  left join bs_dep d
+	 			  on ud.depid=d.pid
+	 			  where 1=1 $where1$
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+		     <field prepend="or" operator="like"  datatype="" colname="ud.loginname"  value="#par_condition#" />
+			 <field prepend="or" operator="like"  datatype="" colname="ui.fullname"  value="#par_condition#" />
+			 <field prepend="or" operator="like"  datatype="" colname="d.depname"  value="#par_condition#" />
+			 <field prepend="or" operator="like"  datatype="" colname="d.depfullname"  value="#par_condition#" /> 
+		</customwhere>
+	</sqlquery>
+<sqlquery name="SQL_BsDep.bsDepList">
+   <select>
+	 <![CDATA[ 
+	 select  
+	     /*COUNT*/
+        bd.pid,bd.creater,bd.createtime,bd.depassginee,bd.depdn,bd.depdns,bd.depemail,bd.depfax,bd.depfullname,
+        bd.depimage,bd.depname,bd.depphone,bd.deptype,bd.grouptype,bd.lastmodifier,bd.lastmodifytime,bd.locationzone,
+        bd.ordernum,bd.parentid,bd.remark,bd.status /*COUNT*/       
+        from  bs_dep bd    
+	    where bd.status=1 and 1=1 $where1$
+	 ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+		     <field prepend="or" operator="like"  datatype="" colname="bd.depname"  value="#par_condition#" />
+		       <field prepend="or" operator="like"  datatype="" colname="bd.depfullname"  value="#par_condition#" />
+     </customwhere>
+	</sqlquery>	
+</sql-group>

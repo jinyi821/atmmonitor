@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.equipment.dao.EquipmentChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.equipment.model.EquipmentChange" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="equipmentId" property="equipmentid" jdbcType="INTEGER" />
+    <result column="equipmentName" property="equipmentname" jdbcType="VARCHAR" />
+    <result column="applyDept" property="applydept" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="INTEGER" />
+    <result column="maintainer" property="maintainer" jdbcType="VARCHAR" />
+    <result column="maintainTIME" property="maintaintime" jdbcType="INTEGER" />
+    <result column="approver" property="approver" jdbcType="VARCHAR" />
+    <result column="approvetime" property="approvetime" jdbcType="INTEGER" />
+    <result column="ApplyREMARK" property="applyremark" jdbcType="VARCHAR" />
+    <result column="maintainremark" property="maintainremark" jdbcType="VARCHAR" />
+    <result column="approverRemark" property="approverremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, equipmentId, equipmentName, applyDept, STATUS, CREATER, CREATETIME, maintainer, 
+    maintainTIME, approver, approvetime, ApplyREMARK, maintainremark, approverRemark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bs_equipmentchange
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bs_equipmentchange
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.equipment.model.EquipmentChange" >
+    insert into bs_equipmentchange (id, equipmentId, equipmentName, 
+      applyDept, STATUS, CREATER, 
+      CREATETIME, maintainer, maintainTIME, 
+      approver, approvetime, ApplyREMARK, 
+      maintainremark, approverRemark)
+    values (#{id,jdbcType=INTEGER}, #{equipmentid,jdbcType=INTEGER}, #{equipmentname,jdbcType=VARCHAR}, 
+      #{applydept,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{creater,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=INTEGER}, #{maintainer,jdbcType=VARCHAR}, #{maintaintime,jdbcType=INTEGER}, 
+      #{approver,jdbcType=VARCHAR}, #{approvetime,jdbcType=INTEGER}, #{applyremark,jdbcType=VARCHAR}, 
+      #{maintainremark,jdbcType=VARCHAR}, #{approverremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.equipment.model.EquipmentChange" >
+    insert into bs_equipmentchange
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="equipmentid != null" >
+        equipmentId,
+      </if>
+      <if test="equipmentname != null" >
+        equipmentName,
+      </if>
+      <if test="applydept != null" >
+        applyDept,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="maintainer != null" >
+        maintainer,
+      </if>
+      <if test="maintaintime != null" >
+        maintainTIME,
+      </if>
+      <if test="approver != null" >
+        approver,
+      </if>
+      <if test="approvetime != null" >
+        approvetime,
+      </if>
+      <if test="applyremark != null" >
+        ApplyREMARK,
+      </if>
+      <if test="maintainremark != null" >
+        maintainremark,
+      </if>
+      <if test="approverremark != null" >
+        approverRemark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentid != null" >
+        #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentname != null" >
+        #{equipmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="applydept != null" >
+        #{applydept,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="maintainer != null" >
+        #{maintainer,jdbcType=VARCHAR},
+      </if>
+      <if test="maintaintime != null" >
+        #{maintaintime,jdbcType=INTEGER},
+      </if>
+      <if test="approver != null" >
+        #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvetime != null" >
+        #{approvetime,jdbcType=INTEGER},
+      </if>
+      <if test="applyremark != null" >
+        #{applyremark,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainremark != null" >
+        #{maintainremark,jdbcType=VARCHAR},
+      </if>
+      <if test="approverremark != null" >
+        #{approverremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.equipment.model.EquipmentChange" >
+    update bs_equipmentchange
+    <set >
+      <if test="equipmentid != null" >
+        equipmentId = #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentname != null" >
+        equipmentName = #{equipmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="applydept != null" >
+        applyDept = #{applydept,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=INTEGER},
+      </if>
+      <if test="maintainer != null" >
+        maintainer = #{maintainer,jdbcType=VARCHAR},
+      </if>
+      <if test="maintaintime != null" >
+        maintainTIME = #{maintaintime,jdbcType=INTEGER},
+      </if>
+      <if test="approver != null" >
+        approver = #{approver,jdbcType=VARCHAR},
+      </if>
+      <if test="approvetime != null" >
+        approvetime = #{approvetime,jdbcType=INTEGER},
+      </if>
+      <if test="applyremark != null" >
+        ApplyREMARK = #{applyremark,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainremark != null" >
+        maintainremark = #{maintainremark,jdbcType=VARCHAR},
+      </if>
+      <if test="approverremark != null" >
+        approverRemark = #{approverremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.equipment.model.EquipmentChange" >
+    update bs_equipmentchange
+    set equipmentId = #{equipmentid,jdbcType=INTEGER},
+      equipmentName = #{equipmentname,jdbcType=VARCHAR},
+      applyDept = #{applydept,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=INTEGER},
+      maintainer = #{maintainer,jdbcType=VARCHAR},
+      maintainTIME = #{maintaintime,jdbcType=INTEGER},
+      approver = #{approver,jdbcType=VARCHAR},
+      approvetime = #{approvetime,jdbcType=INTEGER},
+      ApplyREMARK = #{applyremark,jdbcType=VARCHAR},
+      maintainremark = #{maintainremark,jdbcType=VARCHAR},
+      approverRemark = #{approverremark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

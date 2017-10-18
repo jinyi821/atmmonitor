@@ -1,0 +1,132 @@
+#headerNav {
+	line-height: 70px;
+	list-style-type: none;
+	/*background:#fdfdfd; */
+	float: left;
+}
+
+#headerNav a {
+	display: block;
+	width: 120px;
+	text-align: center;
+}
+
+#headerNav a:link {
+	color: #999999;
+	text-decoration: none;
+}
+
+#headerNav a:visited {
+	color: #999999;
+	text-decoration: none;
+}
+
+#headerNav a:hover {
+	color: #67c8ff;
+	text-decoration: none;
+	/*font-weight:bold; */
+}
+
+#headerNav .firstLi {
+	float: left;
+	width: 120px;
+	text-align: center;
+	color: #999999;
+	height: 70px;
+	line-height: 70px;
+	cursor: pointer;
+}
+
+#headerNav .firstLi a:hover {
+	/*background:#f3f3f3; */
+	
+}
+
+#headerNav .firstLi ul {
+	line-height: 27px;
+	list-style-type: none;
+	text-align: center;
+	/*left: -999em; */
+	width: 118px;
+	border: 1px solid #eeeeee;
+	border-top: none;
+	-webkit-border-bottom-left-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-moz-border-bottom-left-radius: 2px;
+	-moz-border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	position: absolute;
+	z-index: 100;
+	background: #fafafa;
+}
+
+#headerNav .firstLi ul li {
+	float: left;
+	width: 118px;
+	height: 32px;
+	line-height: 32px;
+	border-top: 1px solid #eeeeee;
+	font-family: "宋体";
+	color: #999999;
+	background: #ffffff;
+}
+
+#headerNav .firstLi ul li:hover {
+	background: #fffff7;
+}
+
+#headerNav .firstLi ul a {
+	display: block;
+	width: 118px;
+	text-align: center;
+}
+
+/**
+ * 2016-4-26***/
+.firstUL_Li {
+	float: left;
+	line-height: 70px;
+	list-style-type: none;
+}
+
+.firstUL_Lihover {
+	background: #f3f3f3;
+}
+
+.firstLi1 {
+	float: left;
+	width: 55px;/*70px*/
+	text-align: center;
+	color: #999999;
+	height: 70px;
+	line-height: 70px;
+	cursor: pointer;
+}
+
+.headArrow {
+	display: inline-block;
+	width: 8px;
+	height: 5px;
+	background: url(../../images/headArrow.png) no-repeat;
+	position: absolute;
+	top: -5px;
+	right: 10px;
+}
+/**2016-8-10***/
+.tipNum {
+	width: 16px;
+	height: 16px;
+	font-size: 12px;
+	line-height: 16px;
+	background: url(../../images/red_cir.png) no-repeat;
+	text-align: center;
+	color: #FFFFFF;
+	position: absolute;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	top: 10px;
+	left: 85px; /*第一个按钮上方位置*/
+	/*left: 160px;*/ /*第二个按钮上方位置*/
+}

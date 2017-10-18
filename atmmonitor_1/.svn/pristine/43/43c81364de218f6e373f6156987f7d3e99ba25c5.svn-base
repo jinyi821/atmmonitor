@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspection.basedata.dao.StructuredMapper" >
+  <resultMap id="BaseResultMap" type="com.inspection.basedata.model.Structured" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="TASK_BELONG" property="taskBelong" jdbcType="DECIMAL" />
+    <result column="TASK_VENDOR" property="taskVendor" jdbcType="DECIMAL" />
+    <result column="TASK_TYPE" property="taskType" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TASK_BELONG, TASK_VENDOR, TASK_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from ZNXJ_STRUCTURED
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from ZNXJ_STRUCTURED
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.inspection.basedata.model.Structured" >
+    insert into ZNXJ_STRUCTURED (ID, TASK_BELONG, TASK_VENDOR, 
+      TASK_TYPE)
+    values (#{id,jdbcType=DECIMAL}, #{taskBelong,jdbcType=DECIMAL}, #{taskVendor,jdbcType=DECIMAL}, 
+      #{taskType,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.basedata.model.Structured" >
+    insert into ZNXJ_STRUCTURED
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="taskBelong != null" >
+        TASK_BELONG,
+      </if>
+      <if test="taskVendor != null" >
+        TASK_VENDOR,
+      </if>
+      <if test="taskType != null" >
+        TASK_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="taskBelong != null" >
+        #{taskBelong,jdbcType=DECIMAL},
+      </if>
+      <if test="taskVendor != null" >
+        #{taskVendor,jdbcType=DECIMAL},
+      </if>
+      <if test="taskType != null" >
+        #{taskType,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspection.basedata.model.Structured" >
+    update ZNXJ_STRUCTURED
+    <set >
+      <if test="taskBelong != null" >
+        TASK_BELONG = #{taskBelong,jdbcType=DECIMAL},
+      </if>
+      <if test="taskVendor != null" >
+        TASK_VENDOR = #{taskVendor,jdbcType=DECIMAL},
+      </if>
+      <if test="taskType != null" >
+        TASK_TYPE = #{taskType,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspection.basedata.model.Structured" >
+    update ZNXJ_STRUCTURED
+    set TASK_BELONG = #{taskBelong,jdbcType=DECIMAL},
+      TASK_VENDOR = #{taskVendor,jdbcType=DECIMAL},
+      TASK_TYPE = #{taskType,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

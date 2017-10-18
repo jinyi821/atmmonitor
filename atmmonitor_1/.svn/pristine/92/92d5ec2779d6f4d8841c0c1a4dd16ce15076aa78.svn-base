@@ -1,0 +1,198 @@
+@CHARSET "UTF-8";
+
+.up_head{
+	height: 53px;
+	line-height: 53px;
+	border: 1px solid #dddddd;
+	background: #fbfbfb;
+	margin-top: 15px;
+	padding-left: 10px;
+}
+
+.up_content{
+	min-height: 300px;
+	height: auto;
+	border: 1px solid #dddddd;
+	border-top: none;
+	background: #fdfdfd;
+	padding-top:50px;
+}
+
+.uploadFileBtnPostion{
+	position: absolute;
+	right: 29px;
+	top: 5px;
+}
+
+.FileBtn{
+	width: 26px;
+	height: 30px;
+    position: absolute;
+   	right: 29px;
+   	top: 5px;
+    opacity: 0;
+    filter:alpha(opacity=0);
+    z-index: 10;
+    cursor: pointer;
+}
+
+.uploadTextArea{
+	width: 95.7%;
+}
+
+.addTagIcon{
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	background: url(../../images/addTag.png) no-repeat;
+	cursor: pointer;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.coverBg,.AfterCoverBg{
+	width: 250px;
+	height: 200px;
+	display: inline-block;
+}
+
+.coverBg{
+	background: url(../../images/coverBg.png) no-repeat;
+}
+
+.AfterCoverBg{
+	background: url(../../images/coverBg1.png) no-repeat;
+}
+
+.ContentTable .sp_uploadHeight{
+	height: 20px;
+	line-height: 20px;
+}
+
+.saveWidth{
+	min-width: 60px;
+}
+
+.up_contentTableDiv{
+	padding-left: 60px;
+	padding-right: 100px;
+}
+
+.uploadBtnBlock{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 0px;
+}
+
+.uploadShowBlock{
+	height: 48px;
+	border: 1px solid #dddddd;
+	width: 95.5%;
+	background: #ffffff;
+	padding-left: 1%;
+}
+
+.uploadFileNameWidth{
+	width: 110px;
+	height: 48px;
+    line-height: 48px;
+}
+
+.showUploadTable tr{
+	height: 48px;
+	line-height: 0px;
+}
+
+.progressBarBg{
+	position: absolute;
+	top:18px;
+}
+
+.progressBar{
+	position: absolute;
+	top:18px;
+	width: 50px;
+}
+
+.uploadErrow{
+	width: 445px;
+	line-height: 20px;
+	float: left;
+	margin-left: 15px;
+}
+
+.cancleCover{
+	width: 50px;
+}
+
+.tagArrow{
+	width: 12px;
+	height: 30px;
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../../images/tagArrow.png) no-repeat;
+	margin-bottom: 3px;
+}
+
+.tagRec{
+	display: inline-block;
+	min-width: 53px;
+	width: auto;
+	border: 1px solid #eeeeee;
+	-webkit-border-top-right-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-moz-border-top-right-radius: 2px;
+	-moz-border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-left:none;
+	height: 28px;
+	line-height: 28px;
+	text-align: left;
+	padding-left: 8px;
+	padding-right: 18px;
+	background: #f3fbff;
+	margin-left: -3px;
+	color: #999999;
+}
+
+.delCover{
+	width: 6px;
+	height: 6px;
+	display: inline-block;
+	background: url(../../images/delCover.png) no-repeat;
+	z-index: 10;
+	cursor: pointer;
+	position: absolute;
+	right: 7px;
+    top: 17px;
+}
+
+.tagInput{
+	width: 88px;
+	margin-left: 5px;
+}
+
+.uploadLeft{
+	width: 290px;
+	float: left;
+}
+
+.uploadRight{
+	width: 720px;
+	float: left;
+	margin-left: 20px;
+}
+
+.uploadRight_Leftchild{
+	height: 48px;
+	line-height: 44px;
+	width: 60px;
+	float: left;
+}
+
+.uploadRight_Rightchild{
+	width: 660px;
+	float: left;
+	padding-top: 2px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	<sqlquery name="SQL_BsUserUnfreezeImpower.bsUserUnfreezeImpowerList">
+		<select>
+			<![CDATA[ 
+	        SELECT	/*COUNT*/ id,basepid,apply_loginname,apply_fulllname,frozen_reason,apply_unfreeze_note,impower_status,createtime,impowertime /*COUNT*/
+	        FROM bs_user_unfreeze_impower
+	        where 1=1  $where1$  $where2$
+	        order by id desc,createtime desc
+			]]> 
+		</select>
+			<customwhere name="where1" prepend="and" >
+		      <if prepend="and" exp="'#isAdminRole#'='false'">
+				<success>
+					<![CDATA[  apply_loginname=#userLoginname# ]]>
+				</success>
+			 </if>
+			 <switch prepend="and" exp="'#bg_date#'&lt;>''">
+				<case value="true">
+					<field prepend="and" operator=">="  datatype="7" colname="createtime"  value="#bg_date#" />
+				</case>
+			</switch>
+			<switch prepend="and" exp="'#ed_date#'&lt;>''">
+				<case value="true">
+					<field prepend="and" operator="&lt;="  datatype="7" colname="createtime"  value="#ed_date#" />
+				</case>
+			</switch>		     
+		</customwhere>
+		<customwhere name="where2" prepend="and">		   
+		     <field prepend="or" operator="like"  datatype="" colname="apply_loginname"  value="#apply_user#" />
+		     <field prepend="or" operator="like"  datatype="" colname="apply_fulllname"  value="#apply_user#" />
+		</customwhere>
+	</sqlquery>		
+</sql-group>

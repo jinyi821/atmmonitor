@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+
+.loginLogo{
+	height: 70px;
+    line-height: 70px;
+}
+
+.loginbg{
+	background: #039ae3;
+}
+
+.login{
+	width: 1200px;
+	height: 610px;
+	margin: 0 auto;
+	background: url(../../images/loginbg.jpg) no-repeat;
+}
+
+.loginInput{
+	width: 248px;
+	height: 35px;
+	line-height: 35px;
+	border: 1px solid #8C8C8C;
+	padding-left: 5px;
+	-webkit-border-radius:1px;
+	-moz-border-radius:1px;
+	border-radius:1px;
+}
+
+.loginBtn{
+	width: 86%;
+	margin-left: 7%;
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.loginCheck{
+	vertical-align: middle;
+}
+
+.forgetA{
+	float: right;
+	text-decoration: underline;
+	color: #0047e8;
+}
+
+.loginTableDiv{
+	position: absolute;
+	top: 145px;
+	right: 150px;
+	width: 300px;
+	height: 270px;
+	padding-top: 30px;
+	background:rgba(255,255,255,.75);
+	background:#fff\9;
+	filter:alpha(opacity=75)\9;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+}
+
+.inner{
+	position:relative\9;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.loginTableTr1{
+	height: 18px;
+	line-height: 18px;
+}
+
+.loginTableTr2{
+	height: 55px;
+	line-height: 55px;
+}
+
+.loginxq{
+	margin-top: 20px;
+    padding-left: 23px;
+    padding-right: 23px;
+    margin-bottom: 10px;
+}

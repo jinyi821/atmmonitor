@@ -1,0 +1,148 @@
+package com.inspection.basedata.model;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class Process {
+    private Long id;
+
+	private String taskName;
+
+	private String status;
+
+	private String dstatus;
+
+	private String value;
+
+	private String neName;
+
+	private String neRegion;
+
+	private String neVendor;
+
+	private String neType;
+
+	private Date starttime;
+
+	private Date endtime;
+
+	private String neunit;
+
+	private BigDecimal flag;
+
+	private String report;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTaskName() {
+		return taskName;
+	}
+
+	public void setTaskName(String taskName) {
+		this.taskName = taskName == null ? null : taskName.trim();
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status == null ? null : status.trim();
+	}
+
+	public String getDstatus() {
+		return dstatus;
+	}
+
+	public void setDstatus(String dstatus) {
+		this.dstatus = dstatus == null ? null : dstatus.trim();
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value == null ? null : value.trim();
+	}
+
+	public String getNeName() {
+		return neName;
+	}
+
+	public void setNeName(String neName) {
+		this.neName = neName == null ? null : neName.trim();
+	}
+
+	public String getNeRegion() {
+		return neRegion;
+	}
+
+	public void setNeRegion(String neRegion) {
+		this.neRegion = neRegion == null ? null : neRegion.trim();
+	}
+
+	public String getNeVendor() {
+		return neVendor;
+	}
+
+	public void setNeVendor(String neVendor) {
+		this.neVendor = neVendor == null ? null : neVendor.trim();
+	}
+
+	public String getNeType() {
+		return neType;
+	}
+
+	public void setNeType(String neType) {
+		this.neType = neType == null ? null : neType.trim();
+	}
+
+	public Date getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
+
+	public Date getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
+	}
+
+	public String getNeunit() {
+		return neunit;
+	}
+
+	public void setNeunit(String neunit) {
+		this.neunit = neunit == null ? null : neunit.trim();
+	}
+
+	public BigDecimal getFlag() {
+		return flag;
+	}
+
+	public void setFlag(BigDecimal flag) {
+		this.flag = flag;
+	}
+
+	public String getReport() {
+		return report;
+	}
+
+	public void setReport(String report) {
+		this.report = report == null ? null : report.trim();
+	}
+
+	
+}

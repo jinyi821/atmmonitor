@@ -1,0 +1,113 @@
+package com.inspection.workorder.model;
+
+/**
+ * 
+ * Created on 2017年5月17日
+ * <p>Title:       [项目名称_一级模块名称_模块名称]</p>
+ * <p>Description: [描述该类概要功能介绍]</p>
+ * <p>Copyright:   Copyright (c) 2016</p>
+ * <p>Company:     北京神州泰岳</p>
+ * @author         <a href=huming@ultrapower.com.cn>huming</a>
+ * @version        1.0
+ */
+public class AlarmGroup {
+    private Integer id;
+
+    private String groupname;
+
+    private String groupname2;
+    
+    private String belong;
+
+    private String region;
+
+    private String taskVendor;
+
+    private String chname;
+
+    private String taskType;
+
+    private String grouptitile;
+
+    private String taskavailable;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getGroupname() {
+        return groupname;
+    }
+
+    public void setGroupname(String groupname) {
+        this.groupname = groupname == null ? null : groupname.trim();
+    }
+
+    public String getGroupname2() {
+        return groupname2;
+    }
+
+    public void setGroupname2(String groupname2) {
+        this.groupname2 = groupname2 == null ? null : groupname2.trim();
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region == null ? null : region.trim();
+    }
+
+    public String getTaskVendor() {
+        return taskVendor;
+    }
+
+    public void setTaskVendor(String taskVendor) {
+        this.taskVendor = taskVendor == null ? null : taskVendor.trim();
+    }
+
+    public String getChname() {
+        return chname;
+    }
+
+    public void setChname(String chname) {
+        this.chname = chname == null ? null : chname.trim();
+    }
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType == null ? null : taskType.trim();
+    }
+
+    public String getGrouptitile() {
+        return grouptitile;
+    }
+
+    public void setGrouptitile(String grouptitile) {
+        this.grouptitile = grouptitile == null ? null : grouptitile.trim();
+    }
+
+    public String getTaskavailable() {
+        return taskavailable;
+    }
+
+    public void setTaskavailable(String taskavailable) {
+        this.taskavailable = taskavailable == null ? null : taskavailable.trim();
+    }
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
+	}
+}

@@ -1,0 +1,18 @@
+package com.inspection.basedata.dao;
+
+import com.inspection.basedata.model.Structured;
+import java.math.BigDecimal;
+
+public interface StructuredMapper {
+    int deleteByPrimaryKey(BigDecimal id);
+
+    int insert(Structured record);
+
+    int insertSelective(Structured record);
+
+    Structured selectByPrimaryKey(BigDecimal id);
+
+    int updateByPrimaryKeySelective(Structured record);
+
+    int updateByPrimaryKey(Structured record);
+}

@@ -1,0 +1,310 @@
+.leftMenuTree{
+	color: #ffffff;
+}
+
+.leftMenuTree_partDiv{
+		height: 36px;
+    line-height: 36px;
+    background: #56606d;
+    border-bottom: 1px solid #596877;
+    cursor: pointer;
+    padding-left: 20%;
+    position: relative;
+}
+
+.menu_ul li{
+	cursor: pointer;
+	height: 36px;
+	line-height: 36px;
+	padding-left: 18%;
+	border-bottom: 1px solid #596877;
+}
+
+.menuIcon1,.menuIcon2{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	position: absolute;
+	top: 30%;
+	left: 8%;
+}
+
+.menuIcon1{
+	background: url(../../images/3d-cube.png) no-repeat;
+}
+
+.menuIcon2{
+	background: url(../../images/settings.png) no-repeat;
+}
+
+.menuIcon3,.menuIcon6{
+	width: 14px;
+	height: 12px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+}
+
+.menuIcon3{
+	background: url(../../images/index.png) no-repeat;
+}
+
+.menuIcon4{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 28%;
+	left: 8%;
+	background: url(../../images/circleIcon.png) no-repeat;
+}
+
+.menuIcon5{
+	width: 13px;
+	height: 10px;
+	display: inline-block;
+	position: absolute;
+	top: 36%;
+	left: 8%;
+	background:url(../../images/listIcon.png) no-repeat ;
+}
+
+.menuIcon6{
+	background: url(../../images/other.png) no-repeat;
+}
+
+.liClick{
+	background: #fbfbfb;
+	color: #333333;
+}
+
+.showiconClick{
+	width: 4px;
+	height: 7px;
+	display: inline-block;
+	cursor: pointer;
+	background: url(../../images/UlarrowClick.png) no-repeat;
+	position: absolute;
+	top: 45%;
+	right: 7%;
+}
+
+.showicon{
+	width: 7px;
+	height: 4px;
+	display: inline-block;
+	cursor: pointer;
+	background: url(../../images/Ularrow.png) no-repeat;
+	position: absolute;
+	top: 45%;
+	right: 7%;
+}
+
+/**2016-5-13 am
+ * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�**/
+.leftMenuTree1{
+	width:220px;
+	padding: 6px 5px;
+    float: left;
+    height: auto;
+}
+
+.leftMenuTree1_partDiv{
+	height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    padding-left:10px;
+    font-size: 14px;
+    color: #333333;
+}
+
+.appIcon,.apiIcon,.jfIcon,.rssIcon,.coderIcon,.dataApplyIcon{
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+
+.appIcon{
+	width: 15px;
+	height: 15px;
+	background: url(../../images/app.png) no-repeat;
+}
+
+.apiIcon{
+	width: 16px;
+	height: 16px;
+	background: url(../../images/api.png) no-repeat;
+}
+
+.jfIcon{
+	width: 16px;
+	height: 16px;
+	background: url(../../images/jiaofu.png) no-repeat;
+}
+
+.rssIcon{
+	width: 16px;
+	height: 16px;
+	background: url(../../images/rss1.png) no-repeat;
+}
+
+.coderIcon{
+	width: 16px;
+	height: 14px;
+	background: url(../../images/coder.png) no-repeat;
+}
+.dataApplyIcon{
+	width: 16px;
+	height: 16px;
+	background: url(../../images/dataApply.png) no-repeat;
+}
+.leftMenuTree1_partDiv_active{
+	background: #f0f0f0;
+}
+
+.leftMenuTree1_partDiv_child{
+	padding-right:20px;
+}
+
+.menu1_ul li{
+	height: 34px;
+    line-height: 34px;
+    cursor: pointer;
+    padding-left:25px;
+    font-family: "微软雅黑";
+    color: #666666;
+	background-image: url(../../images/ks_li.png);
+	background-repeat:no-repeat ;
+	background-position:15px center ;
+}
+
+.menu1_ul_liClick{
+	color: #666666;
+	font-weight: bold;
+    background: #f0f0f0;
+}
+
+.leftMenuTree1_partA{
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	background: #fbfbfb;
+	text-align: center;
+	color: #63caff;
+	font-family: "微软雅黑";
+}
+
+/**
+ * 2016-5-26 am***/
+.menuIconBase{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 28%;
+    left: 7%;
+}
+
+.menuIcon7{
+	width: 16px;
+	height: 15px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon7.png) no-repeat;
+}
+
+.menuIcon8{
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon8.png) no-repeat;
+}
+.menuIcon9{
+	width: 15px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon9.png) no-repeat;
+}
+.menuIcon10{
+	width: 15px;
+	height: 14px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon10.png) no-repeat;
+}
+.menuIcon11{
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon11.png) no-repeat;
+}
+.menuIcon12{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon12.png) no-repeat;
+}
+.menuIcon13{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon13.png) no-repeat;
+}
+.menuIcon14{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon14.png) no-repeat;
+}
+.menuIcon15{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon15.png) no-repeat;
+}
+.menuIcon16{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon16.png) no-repeat;
+}
+.menuIcon17{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 33%;
+	left: 8%;
+	background:url(../../images/menuIcon17.png) no-repeat;
+}
+

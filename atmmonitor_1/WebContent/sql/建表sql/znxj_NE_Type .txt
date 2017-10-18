@@ -1,0 +1,11 @@
+CREATE TABLE znxj_NE_Type (
+ID int NOT NULL  ,
+NeName varchar(200) NOT NULL ,
+NeIp varchar(100)  ,
+NeType varchar(100)  ,
+NeProt varchar(100)  ,
+NeVendor varchar(100)  ,
+NeRegion varchar(100)  ,
+NeCommand varchar(400) ,
+unit varchar(100) 
+)

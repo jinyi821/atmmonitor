@@ -1,0 +1,9 @@
+package com.inspection.basedata.dao;
+
+import com.inspection.basedata.model.NeType;
+
+public interface NeTypeMapper {
+    int insert(NeType record);
+
+    int insertSelective(NeType record);
+}

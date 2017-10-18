@@ -1,0 +1,14 @@
+CREATE TABLE znxj_NE_Type_LTE (
+ID int NOT NULL  ,
+NeName varchar(200) NOT NULL ,
+NeIp varchar(50)  ,
+NeType varchar(100)  ,
+OMCname varchar(100)  ,
+NeProt varchar(100) ,
+NeVendor varchar(100)  ,
+NeRegion varchar(100)  ,
+NeCommand varchar(400)  ,
+SubNetwork varchar(100)  ,
+MEID varchar(100)  ,
+unit varchar(100) 
+)

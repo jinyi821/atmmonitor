@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.inspection.basedata.dao.ProcessMapper">
+  <resultMap id="BaseResultMap" type="com.inspection.basedata.model.Process">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="TASK_NAME" jdbcType="VARCHAR" property="taskName" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="DSTATUS" jdbcType="VARCHAR" property="dstatus" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="NE_NAME" jdbcType="VARCHAR" property="neName" />
+    <result column="NE_REGION" jdbcType="VARCHAR" property="neRegion" />
+    <result column="NE_VENDOR" jdbcType="VARCHAR" property="neVendor" />
+    <result column="NE_TYPE" jdbcType="VARCHAR" property="neType" />
+    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="NEUNIT" jdbcType="VARCHAR" property="neunit" />
+    <result column="FLAG" jdbcType="DECIMAL" property="flag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.inspection.basedata.model.Process">
+    <result column="REPORT" jdbcType="CLOB" property="report" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TASK_NAME, STATUS, DSTATUS, VALUE, NE_NAME, NE_REGION, NE_VENDOR, NE_TYPE, STARTTIME, 
+    ENDTIME, NEUNIT, FLAG
+  </sql>
+  <sql id="Blob_Column_List">
+    REPORT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ZNXJ_PROCESS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ZNXJ_PROCESS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.inspection.basedata.model.Process">
+    insert into ZNXJ_PROCESS (ID, TASK_NAME, STATUS, 
+      DSTATUS, VALUE, NE_NAME, 
+      NE_REGION, NE_VENDOR, NE_TYPE, 
+      STARTTIME, ENDTIME, NEUNIT, 
+      FLAG, REPORT)
+    values (#{id,jdbcType=DECIMAL}, #{taskName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{dstatus,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, #{neName,jdbcType=VARCHAR}, 
+      #{neRegion,jdbcType=VARCHAR}, #{neVendor,jdbcType=VARCHAR}, #{neType,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{neunit,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=DECIMAL}, #{report,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.basedata.model.Process">
+    insert into ZNXJ_PROCESS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="taskName != null">
+        TASK_NAME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="dstatus != null">
+        DSTATUS,
+      </if>
+      <if test="value != null">
+        VALUE,
+      </if>
+      <if test="neName != null">
+        NE_NAME,
+      </if>
+      <if test="neRegion != null">
+        NE_REGION,
+      </if>
+      <if test="neVendor != null">
+        NE_VENDOR,
+      </if>
+      <if test="neType != null">
+        NE_TYPE,
+      </if>
+      <if test="starttime != null">
+        STARTTIME,
+      </if>
+      <if test="endtime != null">
+        ENDTIME,
+      </if>
+      <if test="neunit != null">
+        NEUNIT,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="report != null">
+        REPORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="dstatus != null">
+        #{dstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="neName != null">
+        #{neName,jdbcType=VARCHAR},
+      </if>
+      <if test="neRegion != null">
+        #{neRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="neVendor != null">
+        #{neVendor,jdbcType=VARCHAR},
+      </if>
+      <if test="neType != null">
+        #{neType,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="neunit != null">
+        #{neunit,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=DECIMAL},
+      </if>
+      <if test="report != null">
+        #{report,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspection.basedata.model.Process">
+    update ZNXJ_PROCESS
+    <set>
+      <if test="taskName != null">
+        TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="dstatus != null">
+        DSTATUS = #{dstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="neName != null">
+        NE_NAME = #{neName,jdbcType=VARCHAR},
+      </if>
+      <if test="neRegion != null">
+        NE_REGION = #{neRegion,jdbcType=VARCHAR},
+      </if>
+      <if test="neVendor != null">
+        NE_VENDOR = #{neVendor,jdbcType=VARCHAR},
+      </if>
+      <if test="neType != null">
+        NE_TYPE = #{neType,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="neunit != null">
+        NEUNIT = #{neunit,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=DECIMAL},
+      </if>
+      <if test="report != null">
+        REPORT = #{report,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.inspection.basedata.model.Process">
+    update ZNXJ_PROCESS
+    set TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DSTATUS = #{dstatus,jdbcType=VARCHAR},
+      VALUE = #{value,jdbcType=VARCHAR},
+      NE_NAME = #{neName,jdbcType=VARCHAR},
+      NE_REGION = #{neRegion,jdbcType=VARCHAR},
+      NE_VENDOR = #{neVendor,jdbcType=VARCHAR},
+      NE_TYPE = #{neType,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      NEUNIT = #{neunit,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=DECIMAL},
+      REPORT = #{report,jdbcType=CLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspection.basedata.model.Process">
+    update ZNXJ_PROCESS
+    set TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DSTATUS = #{dstatus,jdbcType=VARCHAR},
+      VALUE = #{value,jdbcType=VARCHAR},
+      NE_NAME = #{neName,jdbcType=VARCHAR},
+      NE_REGION = #{neRegion,jdbcType=VARCHAR},
+      NE_VENDOR = #{neVendor,jdbcType=VARCHAR},
+      NE_TYPE = #{neType,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      NEUNIT = #{neunit,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+ 
+</mapper>

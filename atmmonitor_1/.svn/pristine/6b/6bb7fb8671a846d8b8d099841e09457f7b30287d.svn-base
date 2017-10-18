@@ -1,0 +1,20 @@
+package com.inspection.basedata.model;
+
+public class Resouce {
+	
+	String resourceId;
+	String resourceRname;
+	public String getResourceId() {
+		return resourceId;
+	}
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId;
+	}
+	public String getResourceRname() {
+		return resourceRname;
+	}
+	public void setResourceRname(String resourceRname) {
+		this.resourceRname = resourceRname;
+	}
+	
+}

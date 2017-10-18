@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspection.basedata.dao.NeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.inspection.basedata.model.NeType" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="NENAME" property="nename" jdbcType="VARCHAR" />
+    <result column="NEIP" property="neip" jdbcType="VARCHAR" />
+    <result column="NETYPE" property="netype" jdbcType="VARCHAR" />
+    <result column="NEPROT" property="neprot" jdbcType="VARCHAR" />
+    <result column="NEVENDOR" property="nevendor" jdbcType="VARCHAR" />
+    <result column="NEREGION" property="neregion" jdbcType="VARCHAR" />
+    <result column="NECOMMAND" property="necommand" jdbcType="VARCHAR" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.inspection.basedata.model.NeType" >
+    insert into ZNXJ_NE_TYPE (ID, NENAME, NEIP, 
+      NETYPE, NEPROT, NEVENDOR, 
+      NEREGION, NECOMMAND, UNIT
+      )
+    values (#{id,jdbcType=DECIMAL}, #{nename,jdbcType=VARCHAR}, #{neip,jdbcType=VARCHAR}, 
+      #{netype,jdbcType=VARCHAR}, #{neprot,jdbcType=VARCHAR}, #{nevendor,jdbcType=VARCHAR}, 
+      #{neregion,jdbcType=VARCHAR}, #{necommand,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.basedata.model.NeType" >
+    insert into ZNXJ_NE_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="nename != null" >
+        NENAME,
+      </if>
+      <if test="neip != null" >
+        NEIP,
+      </if>
+      <if test="netype != null" >
+        NETYPE,
+      </if>
+      <if test="neprot != null" >
+        NEPROT,
+      </if>
+      <if test="nevendor != null" >
+        NEVENDOR,
+      </if>
+      <if test="neregion != null" >
+        NEREGION,
+      </if>
+      <if test="necommand != null" >
+        NECOMMAND,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="nename != null" >
+        #{nename,jdbcType=VARCHAR},
+      </if>
+      <if test="neip != null" >
+        #{neip,jdbcType=VARCHAR},
+      </if>
+      <if test="netype != null" >
+        #{netype,jdbcType=VARCHAR},
+      </if>
+      <if test="neprot != null" >
+        #{neprot,jdbcType=VARCHAR},
+      </if>
+      <if test="nevendor != null" >
+        #{nevendor,jdbcType=VARCHAR},
+      </if>
+      <if test="neregion != null" >
+        #{neregion,jdbcType=VARCHAR},
+      </if>
+      <if test="necommand != null" >
+        #{necommand,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

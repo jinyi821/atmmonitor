@@ -1,0 +1,13 @@
+CREATE TABLE znxj_NE_Type_ZTE_LTE (
+ID number  ,
+ChildNum number  ,
+NeName varchar(600) ,
+NeIp varchar(600)  ,
+NeType varchar(600)  ,
+OMCname varchar(600) ,
+OMCProt number ,
+OMCServer varchar(600)  ,
+ServerIP varchar(600)  ,
+NeRegion varchar(600)  ,
+NeVendor varchar(600)  
+)

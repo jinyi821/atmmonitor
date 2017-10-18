@@ -1,0 +1,354 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 1.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+		<%@ include file="/common/taglibs.jsp"%> 
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>辽宁自动运维化平台</title>
+	    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">--%>
+	    <meta name="renderer" content="webkit">
+	    <script type="text/javascript" src="${ctx}/common/js/listview_new.js"></script>
+	    <script src="${ctx}/common/js/moveLeftAndRight.js" type="text/javascript"></script>
+	    <script type="text/javascript" src="${ctx}/common/js/timeutil.js"></script>
+		<script type="text/javascript" src="${ctx}/common/js/datepicker/wdatepicker.js"></script>
+		 <script type="text/javascript" src="${ctx}/common/style/newstyle/js/common/layer/layer.js" ></script>
+	    <script language="javascript" type="text/javascript">
+	    	function show(){
+	    		$("#add").removeClass("overlay-scale");
+	    	}
+	    	function hide(){
+	    		$("#add").addClass("overlay-scale");
+	    	}
+	        function changeBelong(value){
+	   
+				$.ajax({
+					type : "POST",
+					async : false,
+					dataType : "JSON",
+					cache : false,
+					url : "${ctx}/inspection/workorder/getVendorByBelong.action",
+					data : {
+						belongId : value
+					},
+					success : function(data) {
+	                     $("#vendorSelect").empty();
+	                      $("#vendorSelect").append($("<option>").val(0).text("请选择网元厂家"));
+	                      
+	                      $("#vendor_select").empty();
+	                      $("#vendor_select").append($("<option>").val(0).text("请选择网元厂家"));
+	                      
+	                       $("#typeSelect").empty();
+	                      $("#typeSelect").append($("<option>").val(0).text("请选择网元类型"));
+	                      
+	                      $("#type_select").empty();
+	                      $("#type_select").append($("<option>").val(0).text("请选择网元类型"));
+	                      
+	                      $("#regionSelect").val();
+	                      
+	                       $("#taskList").empty();
+	                       $("#list2").empty();
+	                       
+	                       $("#resourceNameList").empty();
+	                       $("#list4").empty();
+						  $.each(data["vendorByBelongList"], function(){
+					           var option = $("<option>").val(this.id).text(this.chsname);
+					           $("#vendorSelect").append(option);
+					           $("#vendor_select").append(option);
+						});
+						
+					}//end-callback
+				});//end-ajax
+		    }
+		    
+		    function changeVendor(value){
+		    	$.ajax({
+					type : "POST",
+					async : false,
+					dataType : "JSON",
+					cache : false,
+					url : "${ctx}/inspection/workorder/changeVendor.action",
+					data : {
+						belongId :$("#belongSelect").val(),
+						vendorId : value
+					},
+					success : function(data) {
+					
+	                      $("#typeSelect").empty();
+	                      $("#typeSelect").append($("<option>").val(0).text("请选择网元类型"));
+	                      
+	                      $("#type_select").empty();
+	                      $("#type_select").append($("<option>").val(0).text("请选择网元类型"));
+	                       
+	                       $("#regionSelect").val(0);
+	                      
+	                       $("#taskList").empty();
+	                       $("#list2").empty();
+	                       
+	                       $("#resourceNameList").empty();
+	                       $("#list4").empty();
+						  $.each(data["typeListByVendor"], function(){
+					           var option = $("<option>").val(this.id).text(this.chsname);
+					           $("#typeSelect").append(option);
+					           $("#type_select").append(option);
+						});
+						
+					}//end-callback
+				});//end-ajax
+		    }
+		    function changeType(value){
+		    
+		          $("#regionSelect").val(0);
+	                      
+	              $("#taskList").empty();
+	              $("#list2").empty();
+	                       
+	             $("#resourceNameList").empty();
+	             $("#list4").empty();
+		    
+		    }
+		    function changeRegion(value){
+		    	$.ajax({
+					type : "POST",
+					async : false,
+					dataType : "JSON",
+					cache : false,
+					url : "${ctx}/inspection/workorder/changeRegion.action",
+					data : {
+						belongId :$("#belongSelect").val(),
+						vendorId : $("#vendorSelect").val(),
+						type:$("#typeSelect").val(),
+						regionId:value
+					},
+					success : function(data) {
+					       $("#taskList").empty();
+	              		   $("#list2").empty();
+	                       
+	                       $("#resourceNameList").empty();
+	                       $("#list4").empty();
+	                     
+						  $.each(data["taskList"], function(){
+						     
+					           var option = $("<option>").val(this.id).text(this.taskName);
+					           $("#taskList").append(option);
+						  });
+						  $.each(data["resourceNameList"], function(){
+					           var option = $("<option>").val(this.id).text(this.chsname);
+					           $("#resourceNameList").append(option);
+						  });
+						
+					}//end-callback
+				});//end-ajax
+		    }
+		    
+	
+	    </script>
+  </head>
+<body>
+<%@ include file="/common/header.jsp" %>
+<div class="all-wrap">
+  <div class="search-block mar-t10">
+    <!-- 弹出框 开始 -->
+          <div class="form-list">
+	      <select id="belongSelect" class="select-1 mar-l30" onchange="changeBelong(this.value)">
+	        <option value="" >请选择网元专业</option>
+
+			<c:forEach items="${allBelong}"  var="belong">
+				<option  value="${belong.id}">${belong.chsname}</option>
+			</c:forEach>
+
+	      </select>
+	      <select name="vendorSelect" class="select-1 mar-l30" id="vendorSelect" onchange="changeVendor(this.value)">
+	        <option value="">请选择网元厂家</option>
+	      </select>
+	      
+	      <select name="typeSelect" id="typeSelect" class="select-1 mar-l30" onchange="changeType()">
+	        <option value="">请选择网元类型</option>
+	      </select>
+	      <select id="regionSelect" name="" class="select-1 mar-l30" onchange="changeRegion(this.value)">
+	        <option value="">请选择网元地市</option>
+			<c:forEach items="${allRegion}"  var="region">
+				<option  value="${region.id}">${region.chsname}</option>
+			</c:forEach>
+	      </select>
+	       <label>是否开启：</label>
+	      <select name="" class="select-3">
+	        <option>全部</option>
+	      </select>
+	      <input name="" type="button" class="btn-cx" value="查询"  onclick="query();"/>
+	      <input name="" type="button" class="btn-tj" value="添加" onclick="show();"/>
+	      <input name="" type="button" class="btn-sc" value="删除" />
+	    </div>
+	    <div  id="add" class="overlay overlay-scale">
+     	 <div class="icp-tj" id="apDiv2">
+     	 	<div class="search-block">
+     	 	 <div class="form-list">
+     	 	 	  <label>网元专业：</label>
+			      <select id="belong_select" class="select-1 " onchange="changeBelong(this.value)">
+			        <option value="0" >请选择网元专业</option>
+		
+					<c:forEach items="${allBelong}"  var="belong">
+						<option  value="${belong.id}">${belong.chsname}</option>
+					</c:forEach>
+		
+			      </select>
+			      <label>网元厂家：</label>
+			      <select name="vendor_select" class="select-1" id="vendor_select" onchange="changeVendor(this.value)">
+			        <option value="0">请选择网元厂家</option>
+			      </select>
+			      <label>网元类型：</label>
+			      <select name="type_select" id="type_select" class="select-1" onchange="changeType()">
+			        <option value="0">请选择网元类型</option>
+			      </select>
+			      <label>网元地市：</label>
+			      <select id="region_select" name="region_select" class="select-1" onchange="changeRegion(this.value)">
+			        <option value="0">请选择网元地市</option>
+					<c:forEach items="${allRegion}"  var="region">
+						<option  value="${region.id}">${region.chsname}</option>
+					</c:forEach>
+			      </select>
+	      </div>
+          <div class="list-wrap">
+            <div>
+              <p>任务列表</p>
+              <ul class="list-block">
+                <li>检查CP负荷</li>
+                <li class="li-on">检查链路状态</li>
+                <li>检查基站状态</li>
+              </ul>
+            </div>
+            <div class="btn-block">
+              <input name="" type="button" value="添加" class="btn-1" />
+              <input name="" type="button" value="删除" class="btn-1 mar-t10" />
+            </div>
+            <div>
+              <p>已选任务列表</p>
+              <ul class="list-block">
+                <li>检查链路状态</li>
+              </ul>
+            </div>
+          </div>
+          <div class="list-wrap">
+            <div>
+              <p>网元列表</p>
+              <ul class="list-block">
+                <li>ASBSC1A</li>
+                <li class="li-on">ASBSC1A</li>
+                <li>ASBSC1A</li>
+                <li>ASBSC1A</li>
+                <li>ASBSC1A</li>
+              </ul>
+            </div>
+            <div class="btn-block">
+              <input name="" type="button" value="添加" class="btn-1" />
+              <input name="" type="button" value="删除" class="btn-1 mar-t10" />
+            </div>
+            <div>
+              <p>已选网元列表</p>
+              <ul class="list-block">
+                <li>
+                <li>ASBSC1A</li>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-list2">
+            <input name="" type="checkbox" value="" class="box-bor mar-l30" />
+            <label>省属组</label>
+            <input name="" type="checkbox" class="box-bor mar-l30" value="" />
+            <label>市属组</label>
+            <label class="mar-l70">派单组名称：</label>
+            <input name="" type="text" class="input-1" />
+            <input name="" type="button" class="btn-2 mar-l30" value="添加派单组" />
+            <input name="" type="button" class="btn-2 mar-l10" value="取消派单组" />
+          </div>
+          <div class="text-cen mar-b10">
+            <button type="button" class="btn-tj">添加</button>
+            <button type="button" class="overlay-close btn-fh mar-l40" onclick="hide();">返回</button>
+          </div>
+         </div>
+         </div>
+    </div>
+    <!-- 弹出框 结束 --> 
+  </div>
+  <div class="table-block mar-t10 mar-b20">
+    <table id="listtable" width="100%" border="0" cellspacing="0" cellpadding="0" class="table-bg">
+      <thead class="table_head fontSize3">
+        <td><input type="checkbox" name="checkbox" id="checkbox" /></td>
+        <td>省属组</td>
+        <td>市属组</td>
+        <td>厂家</td>
+        <td>类型</td>
+        <td>地市</td>
+        <td>任务名</td>
+        <td>是否开启</td>
+        <td>操作</td>
+      </thead>
+      <tbody class="table_body">
+      <tr>
+        <td><input type="checkbox" name="checkbox" id="checkbox" /></td>
+        <td>@@{groupname2}</td>
+        <td>@@{groupname}</td>
+        <td>@@{task_vendor}</td>
+        <td>@@{task_type}</td>
+        <td>@@{region}</td>
+        <td>@@{chname}</td>
+        <td><a href="#">开启</a></td>
+        <td><a href="#">修改</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+ <script type="text/javascript">
+	 
+	 function preFunc(paraStr) {
+		 paraStr.belong=$("#belongSelect").val();
+		 if($("#vendorSelect").find("option:selected").text()!="请选择网元厂家"){
+			 paraStr.taskVendor=$("#vendorSelect").find("option:selected").text();
+		 }
+		 if($("#typeSelect").find("option:selected").text()!="请选择网元类型"){
+			 paraStr.taskType=$("#typeSelect").find("option:selected").text(); 
+		 }
+	     if($("#regionSelect").find("option:selected").text()!="请选择网元地市"){
+	    	 paraStr.region=$("#regionSelect").find("option:selected").text(); 
+	     }
+	     
+	     paraStr.taskavailable=$("#taskavailable").find("option:selected").text();
+	 }
+	 
+	 function dataFunc(dataRow) {
+		/*  if(dataRow.task_vendor=="1"){
+			 dataRow.task_vendor="爱立信";
+		 }else if(dataRow.task_vendor=="2"){
+				dataRow.task_vendor="华为";
+			}
+		 else if(dataRow.task_vendor=="3"){
+				dataRow.task_vendor="中兴";
+			}
+		 else if(dataRow.task_vendor=="4"){
+				dataRow.task_vendor="大唐";
+			}
+		 else if(dataRow.task_vendor=="5"){
+				dataRow.task_vendor="贝尔";
+			}
+		 else if(dataRow.task_vendor=="6"){
+				dataRow.task_vendor="IBM";
+			}
+		 else if(dataRow.task_vendor=="7"){
+				dataRow.task_vendor="天波";
+			}
+		 else if(dataRow.task_vendor=="8"){
+				dataRow.task_vendor="阿尔卡特";
+			} */
+		}
+		   
+	function query() {
+		table.submit();
+	}
+	
+	 var table = new ListTable("listtable", "${ctx}/commonQuery/query.action",
+				10, [ [ "sqlname", "SQL_AlarmGroup.list" ] ], preFunc, dataFunc,tableBoot);
+	 
+ </script>
+</body>
+</html>

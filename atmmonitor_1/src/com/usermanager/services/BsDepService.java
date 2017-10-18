@@ -1,0 +1,140 @@
+package com.usermanager.services;
+import java.util.List;
+
+import com.usermanager.model.BsDep;
+public interface BsDepService
+{
+	public boolean  addBsDep(BsDep bsdep); 
+	public boolean  saveOrUpdateBsDep(BsDep bsdep); 
+	public boolean  deleteBsDepById(String pid); 
+	public BsDep  getBsDepById(String pid); 
+	public boolean  deleteBsDepByIds(List<String> bsDepIdList);
+	
+	public List<BsDep> getAllDeptList(Object[] deptype);
+	
+	/**
+	 * 根据节点iD查询下级节点
+	 * @param itemId
+	 * @return
+	 */
+	public String getChildNode(String itemId);
+	
+	/**
+	 * 根据上级部门Id查询子部门
+	 * @param parentId
+	 * @return
+	 */
+	public List<BsDep> getListByParentId(String parentId);
+	
+	
+	/**
+	 * 根据上级部门Id查询状态为启用的子部门
+	 * @param parentId
+	 * @return
+	 */
+	public List<BsDep> getUseListByParentId(String parentId);
+	
+	/**
+	 * 得到为启用状态的部门树	
+	 */
+	public String getUseDepTreeNode();
+
+	
+	/**
+	 * 根据用户登录名获取用户部门集合
+	 * @param loginname
+	 * @return
+	 */
+	public List<BsDep> selectUserDepList(String loginname);
+	/**
+	 * 根据节点iD查询为启用状态的下级节点
+	 * @param itemId 节点id
+	 * @param type  树类型，depuser 部门用户数，dep部门树
+	 * @return
+	 */
+	public String getUseChildNode(String itemId,String type);
+	
+
+
+	/**
+	 * 同步新增修改使用
+	 * @param bsDep
+	 * @param   isAdd  0:新增   1:修改 
+	 * @return
+	 */
+	public boolean syncSaveOrUpdateBsDep(BsDep bsDep,String isAdd);
+	
+	/**
+	 * 同步删除 调用
+	 * @param bsDep
+	 * @return
+	 */
+	public boolean syncDeleteBsDep(String pid);
+	/**
+	 * 创建新的DNS和DN     重新创建
+	 * @param parentId
+	 * @param parentDns
+	 */
+	public void createDnAndDns(String parentId, String parentDns);
+	public boolean blukSaveBsDep(List<BsDep> list);
+	/**
+	 * 获取所有父节点     顺序是父节点在后
+	 * @param parentId
+	 */
+	public List<BsDep> getParent(String parentId,List<BsDep> list);
+	
+	/**
+	 * 根据多个depid查询多部门信息
+	 * @param depid
+	 * @return
+	 */
+	public List<BsDep> getBsDepListByPid(String depids);
+	/**
+	 * 根据用户的id查询用户所在部门信息
+	 * @param loginName
+	 * @return
+	 */
+	public List<BsDep> getDepByLoginName(String loginName);
+	
+	/**
+	 * 根据用户ID  获取用户所在的dns  若是部门的DNS为0001.0001.0001   则返回  0001.0001.0001,0001.0001,0001的无序集合(已去重)
+	 * @param loginName
+	 * @return
+	 */
+	public List<String> getDnsListByLonginName(String loginName);
+	
+	/**
+	 * 获取部门的DNS   若是部门的DNS为0001.0001.0001   则返回  0001.0001.0001,0001.0001,0001的无序集合(已去重)
+	 * @param depList  部门集合
+	 * @return
+	 */
+	public List<String> getDnsListByBsDep(List<BsDep> depList);
+	/**
+	 * 根据用户ID  获取用户所在的dns  若是部门的DNS为0001.0001.0001   则返回  [0001.0001.0001,0001.0001,0001]JSON
+	 * @param loginName
+	 * @return
+	 */
+	public String getDnsJsonByLonginName(String loginName);
+	
+	/**
+	 * 根据用户ID集合(多个用逗号(,)分隔)  获取用户所在的dns  若是部门的DNS为0001.0001.0001   则返回  0001.0001.0001,0001.0001,0001
+	 * @param loginName
+	 * @return
+	 */
+	public String getDnsConByLonginName(String loginNames);
+
+	/**
+	 * 修改部门全称
+	 * 
+	 * @return
+	 */
+	Boolean modifyDeptFullName();
+	
+	/**
+	 * 得到部门全程
+	 * @param id
+	 * @return
+	 */
+	String getDeptFullName(String id);
+	
+}

@@ -1,0 +1,95 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 1.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+		<%@ include file="/common/taglibs.jsp"%> 
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>辽宁自动运维化平台</title>
+	    <%--<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">--%>
+	    <meta name="renderer" content="webkit">
+	    <script type="text/javascript" src="${ctx}/common/js/listview_new.js"></script>
+	    <script src="${ctx}/common/js/moveLeftAndRight.js" type="text/javascript"></script>
+	    <script type="text/javascript" src="${ctx}/common/js/timeutil.js"></script>
+		<script type="text/javascript" src="${ctx}/common/js/datepicker/wdatepicker.js"></script>
+		<script type="text/javascript" src="${ctx}/common/style/newstyle/js/common/layer/layer.js" ></script>
+
+  </head>
+  <body>
+    <%@ include file="/common/header.jsp" %>
+    <div class="all-wrap">
+      <form action="${ctx}/gpdata/import/importGPData.action" method="post" enctype="multipart/form-data"  name="myform" id="myform" target="iframe1">
+    
+	  <div class="search-block mar-t10">
+		    <div class="form-list">
+		      <label>表名：</label>
+		      <select id="tableSelect" name ="tableSelect" class="select-1" >
+		        <option value="0" >请选择表名</option>
+	            <option value="ZNXJ_TASK">ZNXJ_TASK</option>
+	            <option value="ZNXJ_BELONG">ZNXJ_BELONG</option>
+	            <option value="ZNXJ_REGION">ZNXJ_REGION</option>
+	            <option value="ZNXJ_STRUCTURED">ZNXJ_STRUCTURED</option>
+	            <option value="ZNXJ_TYPE">ZNXJ_TYPE</option>
+	            <option value="ZNXJ_VENDOR">ZNXJ_VENDORE</option>
+	            <option value="ZNXJ_PROCESS">ZNXJ_PROCESS</option>
+	            
+		      </select>
+		      <label>上传文件名：</label>
+		      <input class="select-1" name ="uploadFile" id="uploadFile" type="file" style="width:30%;height:35px;line-height:28px;"> 	
+		    </div>
+		    <div class="text-cen mar-b10">
+		      <input id="uploadButton" type="button" class="btn-cx" value="导入" onclick="checkSubmit();" />
+		      <input id="downloadButton" type="button" class="btn-dc mar-l40" value="导出" onclick="exportExcelFile();"/>
+		    </div>
+	   </div>
+	   </form>
+	</div>
+    <iframe src="" height="50px" id="iframe1" name="iframe1" width="1000px" style="border: 1px"> </iframe>
+    </body>
+  <script type="text/javascript">
+	function checkSubmit() {
+	
+
+		var tableSelect=$('#tableSelect').val();
+		
+		if (tableSelect==0){
+			alert("请输入上传表名！");
+			return ;
+		}
+		
+		var uploadFile=document.getElementById("uploadFile").value;
+		if (!uploadFile){
+		    alert("请上传Excel文件！");
+			return ; 
+		}
+
+   	  if(!window.confirm("是否确认上传"+tableSelect+"?")) return;
+      disabledButtonS();
+      document.getElementById("myform").submit();
+		
+	}	
+	function disabledButtonS(){
+		$("#uploadButton").attr({"disabled":"disabled"});
+		$("#downloadButton").attr({"disabled":"disabled"});
+	}
+	function removeDisabledButtonS(){
+	    
+		$("#uploadButton").removeAttr("disabled");
+		$("#downloadButton").removeAttr("disabled");
+	}
+	function exportExcelFile()
+	{
+		var tableSelect=$('#tableSelect').val();
+		
+		if (tableSelect==0){
+			alert("请输入上传表名！");
+			return ;
+		}
+
+		var url=$ctx+"/gpdata/import/exportBaseData.action?tableSelect="+tableSelect;
+		var form=$('<form/>',{action:url,method:"post",style:"display:none"}).appendTo("body");
+		
+		form.submit();
+	
+	}
+</script>
+</html>

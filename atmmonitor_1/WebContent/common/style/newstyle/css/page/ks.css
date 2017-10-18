@@ -1,0 +1,237 @@
+@CHARSET "UTF-8";
+
+.ks_leftMenu{
+	margin-top: 15px;
+	width: 220px;
+	display: inline-block;
+	float: left;
+}
+
+.ks_leftMenu_part{
+	
+}
+
+.ks_menuLabel{
+	font-size: 14px;
+	color: #333333;
+	cursor: pointer;
+}
+
+.ks_leftMenu_partDiv{
+	height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    padding-left: 20%;
+    position: relative;
+}
+
+.ks_menu_ul li{
+	font-family: "宋体";
+	width: 85%;
+	color: #666666;
+	cursor: pointer;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 15%;
+	position: relative;
+	background-image: url(../../images/ks_li.png);
+	background-repeat:no-repeat ;
+	background-position:10% center ;
+}
+
+.ks_menuIcon1{
+	width: 16px;
+	height: 15px;
+	display: inline-block;
+	background: url(../../images/ks_tree.png) no-repeat;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+}
+
+.ks_menuIcon2,.ks_menuIcon4{
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+}
+
+.ks_menuIcon2{
+	background: url(../../images/ks_home.png) no-repeat;
+}
+
+.ks_menuIcon4{
+	background: url(../../images/search.png) no-repeat;
+}
+
+.ks_liClick{
+	background-color: #f0f0f0;
+	font-weight: bold;
+}
+
+.dtMap_rightContent,.rss_rightContent{
+	width: 980px;
+	display: inline-block;
+	float: left;
+}
+.dtMart_rightContent{
+	width:1200px;
+	display: inline-block;
+	float: left;
+}
+.ks_shili{
+	width: 964px;
+	height: 769px;
+	margin: 0 auto;
+	background: url(../../images/pic.png) no-repeat;
+}
+
+.ks_menuIcon3{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	background: url(../../images/rss.png) no-repeat;
+	position: absolute;
+	top: 30%;
+	left: 10%;
+}
+
+.rss_searchBtn{
+	margin-left: -5px;
+	background: #20bfe6;
+	font-size: 14px;
+}
+
+.rss_searchInfo{
+	width: 670px;
+	display: inline-block;
+	float: left;
+}
+
+.searchCiTiao{
+	margin-top: 20px;
+}
+
+.ctA{
+	text-decoration: underline;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.storePos{
+	width: 296px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.storePos label.font:hover{
+	color: #558baa;
+}
+
+.storePosUl{
+	margin-left: 5px;
+	margin-right: 5px;
+	padding-top: 10px;
+}
+
+.storePosUl li{
+	height: 25px;
+	line-height: 25px;
+	cursor: pointer;
+	padding-left: 5px;
+}
+
+.storePosUl li:hover{
+	background: #f6f6f6;
+}
+
+.ks_tip{
+	width: 602px;
+	height: 271px;
+	background: url(../../images/tipBg.png) no-repeat;
+	z-index: 1001;
+	position: absolute;
+}
+
+.rss_index{
+	width: 240px;
+	display: inline-block;
+	float: left;
+	margin-left: 20px;
+}
+
+.rss_indexIcon{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	vertical-align: text-top;
+	background: url(../../images/rss_index.png) no-repeat;
+}
+
+.rss_indexList_Ul li{
+	list-style: initial;
+	height: 30px;
+	line-height: 30px;
+}
+
+.base3{
+	margin-bottom: -3%;
+}
+/***2016-8-10***/
+.gw_Block{
+	position: fixed;
+	top: 350px;
+	right: 0px;
+}
+
+.gwCar{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background:#c9c9c9 url(../../images/gouwu_car.png) no-repeat center;
+	cursor: pointer;
+}
+
+.gwCar:hover{
+	background-color: #bebebe;
+}
+
+.gwCar1{
+	display: inline-block;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #DDDDDD;
+	padding-left: 60px;
+	background:#e2e2e2 url(../../images/gouwu_car1.png) no-repeat 10% center;
+	cursor: pointer;
+}
+
+.gwCar1:hover{
+	background-color: #bebebe;
+}
+
+.gw_num{
+	width: 16px;
+	height: 16px;
+	font-size: 12px;
+	line-height: 16px;
+	background: url(../../images/red_cir.png) no-repeat;
+	text-align: center;
+	color: #FFFFFF;
+	position: absolute;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.gw_num{
+	top: -8px;
+	right: 5px;
+}
+

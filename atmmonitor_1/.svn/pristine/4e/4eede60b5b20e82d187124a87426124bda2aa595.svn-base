@@ -1,0 +1,37 @@
+### direct log messages to stdout ###
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %c{1}:%L - %m%n
+# \u8f93\u51fa\u7684\u6587\u4ef6\u76ee\u5f55 
+log4j.appender.dayRollingFile.File=c\:/logs/autoom.txt 
+ # \u4fdd\u5b58\u7684\u5929\u6570 
+log4j.appender.dayRollingFile.maxBackupIndex=7
+log4j.appender.dayRollingFile.layout=org.apache.log4j.PatternLayout 
+log4j.appender.dayRollingFile.layout.ConversionPattern= %d{ABSOLUTE} %5p %c{1}:%L - %m%n
+
+log4j.appender.dayRollingFile=com.common.log.CustomLogAppender 
+### set log levels - for more verbose logging change 'info' to 'debug' ###
+
+log4j.rootLogger=DEBUG,stdout,dayRollingFile
+
+#log4j.logger.org.hibernate=info
+log4j.logger.org.hibernate=error
+
+### log HQL query parser activity
+log4j.logger.org.hibernate.hql.ast.AST=debug
+
+### log just the SQL
+log4j.logger.org.hibernate.SQL=debug
+### log JDBC bind parameters ###
+log4j.logger.org.hibernate.type=debug
+#log4j.logger.org.hibernate.type=debug
+
+### log schema export/update ###
+log4j.logger.org.hibernate.tool.hbm2ddl=info
+log4j.logger.java.sql.ResultSet=INFO
+log4j.logger.org=INFO
+log4j.logger.java.sql.Connection=DEBUG
+log4j.logger.java.sql.Statement=DEBUG
+log4j.logger.java.sql.PreparedStatement=DEBUG
+log4j.logger.org.springframework.transaction.annotation.Transactional=DEBUG

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<service name="Webservice"
+		targetNamespace="http://localhost:8080/autoom/services/Webservice">
+		<schema schemaNamespace="http://localhost:8080/autoom/services/Webservice" />
+		<description> Webservice</description>
+		<parameter name="SpringBeanName">demoWebService</parameter>
+		<!--<parameter name="ServiceClass">com.eoms.server.EomsService</parameter> -->
+		<parameter name="ServiceObjectSupplier">
+			org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<!-- <parameter name="SpringBeanName"> workSheetDao </parameter> -->
+		<operation name="sayHello">
+			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<!-- http://localhost:8080/autoom/services/Webservice/sayHello?name=1 -->
+		<operation name="getWorld">
+			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="hello">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
+		</operation>
+		<operation name="isAlive">
+			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+
+		<excludeOperations>
+			<operation>hello</operation>
+
+		</excludeOperations>
+	</service>
+
+</serviceGroup>

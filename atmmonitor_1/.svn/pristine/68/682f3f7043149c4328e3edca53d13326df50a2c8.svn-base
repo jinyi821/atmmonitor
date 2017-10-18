@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 	
+	</doc>
+	
+	
+	<sqlquery name="SQL_AlarmGroup.list">
+		<select>
+			<![CDATA[ 
+	 			  
+				SELECT 	 /*COUNT*/  
+					      *
+					    /*COUNT*/
+               from znxj_alarmgroup WHERE  1=1 $where1$  order by ID desc
+			  ]]> 
+		</select>
+		<customwhere name="where1" prepend="and" >
+			<field prepend="and" operator="="  datatype="" colname="belong"  label="" value="#belong#" />
+			<field prepend="and" operator="="  datatype="" colname="region"  label="" value="#region#" />
+			<field prepend="and" operator="="  datatype="" colname="task_vendor"  label="" value="#taskVendor#" />
+			<field prepend="and" operator="="  datatype="" colname="task_type"  label="" value="#taskType#" />
+			<field prepend="and" operator="="  datatype="" colname="taskavailable"  label="" value="#taskavailable#" />
+		</customwhere>
+	</sqlquery>
+	
+	
+	
+	
+</sql-group>

@@ -1,0 +1,45 @@
+package com.inspection.basedata.model;
+
+import java.math.BigDecimal;
+
+public class Structured {
+    private BigDecimal id;
+
+    private BigDecimal taskBelong;
+
+    private BigDecimal taskVendor;
+
+    private BigDecimal taskType;
+
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
+
+    public BigDecimal getTaskBelong() {
+        return taskBelong;
+    }
+
+    public void setTaskBelong(BigDecimal taskBelong) {
+        this.taskBelong = taskBelong;
+    }
+
+    public BigDecimal getTaskVendor() {
+        return taskVendor;
+    }
+
+    public void setTaskVendor(BigDecimal taskVendor) {
+        this.taskVendor = taskVendor;
+    }
+
+    public BigDecimal getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(BigDecimal taskType) {
+        this.taskType = taskType;
+    }
+}

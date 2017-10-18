@@ -1,0 +1,95 @@
+package com.inspection.basedata.model;
+
+import java.math.BigDecimal;
+
+public class NeType {
+    private BigDecimal id;
+
+    private String nename;
+
+    private String neip;
+
+    private String netype;
+
+    private String neprot;
+
+    private String nevendor;
+
+    private String neregion;
+
+    private String necommand;
+
+    private String unit;
+
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
+
+    public String getNename() {
+        return nename;
+    }
+
+    public void setNename(String nename) {
+        this.nename = nename == null ? null : nename.trim();
+    }
+
+    public String getNeip() {
+        return neip;
+    }
+
+    public void setNeip(String neip) {
+        this.neip = neip == null ? null : neip.trim();
+    }
+
+    public String getNetype() {
+        return netype;
+    }
+
+    public void setNetype(String netype) {
+        this.netype = netype == null ? null : netype.trim();
+    }
+
+    public String getNeprot() {
+        return neprot;
+    }
+
+    public void setNeprot(String neprot) {
+        this.neprot = neprot == null ? null : neprot.trim();
+    }
+
+    public String getNevendor() {
+        return nevendor;
+    }
+
+    public void setNevendor(String nevendor) {
+        this.nevendor = nevendor == null ? null : nevendor.trim();
+    }
+
+    public String getNeregion() {
+        return neregion;
+    }
+
+    public void setNeregion(String neregion) {
+        this.neregion = neregion == null ? null : neregion.trim();
+    }
+
+    public String getNecommand() {
+        return necommand;
+    }
+
+    public void setNecommand(String necommand) {
+        this.necommand = necommand == null ? null : necommand.trim();
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit == null ? null : unit.trim();
+    }
+}

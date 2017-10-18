@@ -1,0 +1,6 @@
+CREATE TABLE znxj_unit_type (
+id int NOT NULL  ,
+type varchar(100)  ,
+content varchar(100)  ,
+CONSTRAINT PK_znxj_unit_type PRIMARY KEY (id)
+)

@@ -1,0 +1,47 @@
+package com.inspection.operatelog.services.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.inspection.operatelog.dao.OperateLogMapper;
+import com.inspection.operatelog.model.OperateLog;
+import com.inspection.operatelog.services.OperateLogService;
+
+/**
+ * 
+ * Created on 2017年4月20日
+ * <p>
+ * Title: [项目名称_一级模块名称_模块名称]
+ * </p>
+ * <p>
+ * Description: [日常作业各种调用]
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2016
+ * </p>
+ * <p>
+ * Company: 北京神州泰岳
+ * </p>
+ * 
+ * @author <a href=humingi@ultrapower.com.cn>huming</a>
+ * @version 1.0
+ */
+@Service("OperateLogServiceImpl")
+@Transactional(value = "transactionManager")
+public class OperateLogServiceImpl implements OperateLogService {
+
+	
+	@Autowired
+	private OperateLogMapper operateLogMapper;
+
+	@Override
+	public List<OperateLog> getOperateLogList(OperateLog record) {
+		
+		return null;
+	}
+
+    
+
+}

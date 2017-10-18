@@ -1,0 +1,33 @@
+package com.inspection.basedata.model;
+
+public class Belong {
+    private String id;
+
+    private String engname;
+
+    private String chsname;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
+
+    public String getEngname() {
+        return engname;
+    }
+
+    public void setEngname(String engname) {
+        this.engname = engname == null ? null : engname.trim();
+    }
+
+    public String getChsname() {
+        return chsname;
+    }
+
+    public void setChsname(String chsname) {
+        this.chsname = chsname == null ? null : chsname.trim();
+    }
+}

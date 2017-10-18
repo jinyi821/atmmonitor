@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.inspection.basedata.dao.BelongMapper" >
+  <resultMap id="BaseResultMap" type="com.inspection.basedata.model.Belong" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ENGNAME" property="engname" jdbcType="VARCHAR" />
+    <result column="CHSNAME" property="chsname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ENGNAME, CHSNAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ZNXJ_BELONG
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ZNXJ_BELONG
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.inspection.basedata.model.Belong" >
+    insert into ZNXJ_BELONG (ID, ENGNAME, CHSNAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{engname,jdbcType=VARCHAR}, #{chsname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.inspection.basedata.model.Belong" >
+    insert into ZNXJ_BELONG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="engname != null" >
+        ENGNAME,
+      </if>
+      <if test="chsname != null" >
+        CHSNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="engname != null" >
+        #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="chsname != null" >
+        #{chsname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.inspection.basedata.model.Belong" >
+    update ZNXJ_BELONG
+    <set >
+      <if test="engname != null" >
+        ENGNAME = #{engname,jdbcType=VARCHAR},
+      </if>
+      <if test="chsname != null" >
+        CHSNAME = #{chsname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.inspection.basedata.model.Belong" >
+    update ZNXJ_BELONG
+    set ENGNAME = #{engname,jdbcType=VARCHAR},
+      CHSNAME = #{chsname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+   <!-- 查询全部网元专业-->
+  <select id="getAllBelong" resultType="com.inspection.basedata.model.Belong">
+         select * from ZNXJ_BELONG
+  </select>
+</mapper>

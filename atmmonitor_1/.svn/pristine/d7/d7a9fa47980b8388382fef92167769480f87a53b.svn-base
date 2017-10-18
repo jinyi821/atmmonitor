@@ -1,0 +1,22 @@
+package com.inspection.basedata.dao;
+
+import java.util.List;
+
+import com.inspection.basedata.model.Belong;
+
+public interface BelongMapper {
+	
+    int deleteByPrimaryKey(String id);
+
+    int insert(Belong record);
+
+    int insertSelective(Belong record);
+
+    Belong selectByPrimaryKey(String id);
+
+    int updateByPrimaryKeySelective(Belong record);
+
+    int updateByPrimaryKey(Belong record);
+    
+    List<Belong> getAllBelong();
+}

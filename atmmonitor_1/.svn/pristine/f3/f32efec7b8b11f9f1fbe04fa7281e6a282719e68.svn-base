@@ -1,0 +1,586 @@
+package com.inspection.dailytask.controller;
+
+import java.io.BufferedOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.common.constants.PropertiesUtils;
+import com.common.core.component.data.DataRow;
+import com.common.core.component.data.DataTable;
+import com.common.core.component.rquery.RQuery;
+import com.common.core.util.AxisWebServiceUtil;
+import com.common.core.util.ExcelUtil;
+import com.common.core.util.TimeUtils;
+import com.common.core.util.TransFormat;
+import com.inspection.basedata.model.Belong;
+import com.inspection.basedata.model.Process;
+import com.inspection.basedata.model.Region;
+import com.inspection.basedata.model.Resouce;
+import com.inspection.basedata.model.Structured;
+import com.inspection.basedata.model.Task;
+import com.inspection.basedata.model.Vendor;
+import com.inspection.dailytask.services.CombineQuery;
+import com.inspection.dailytask.services.DailyTaskService;
+import com.inspection.dailytask.services.DailyTaskWebService;
+
+/**
+ * 
+ * Created on 2017年4月19日
+ * <p>
+ * Title: [辽宁移动智能巡检-日常作业]
+ * </p>
+ * <p>
+ * Description: [描述该类概要功能介绍]
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2016
+ * </p>
+ * <p>
+ * Company: 北京神州泰岳
+ * </p>
+ * 
+ * @author <a href=jinyi@ultrapower.com.cn>jinyi</a>
+ * @version 1.0
+ */
+@Controller
+@RequestMapping(value = "/inspection")
+public class DailyTaskController {
+
+	@Resource(name = "DailyTaskServiceImpl")
+	private DailyTaskService dailyTaskService;
+	private static Log logger = LogFactory.getLog(DailyTaskController.class);
+
+	/**
+	 * 进入日常作业
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/dailyTask.action", method = RequestMethod.GET)
+	public String dailyTask(HttpServletRequest req, Map<String, Object> map) {
+
+		logger.info("dailyTask begin");
+		List<Belong> allBelong = dailyTaskService.getAllBelong();
+		map.put("allBelong", allBelong);
+
+		List<Region> allRegion = dailyTaskService.getAllRegion();
+		map.put("allRegion", allRegion);
+
+		logger.info("dailyTask end");
+
+		return "/inspection/dailyTask.jsp";
+	}
+
+	/**
+	 * 取相关厂家信息
+	 * 
+	 * @param cube_id
+	 * @return
+	 */
+	@RequestMapping(value = "getVendorByBelong.action")
+	@ResponseBody
+	public Map<String, Object> getVendorByBelong(String belongId) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+			List<Vendor> vendorByBelogList = dailyTaskService.getVendorByBelog(new Integer(belongId));
+			map.put("vendorByBelongList", vendorByBelogList);
+
+		} catch (Exception e) {
+
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+
+	/**
+	 * 取厂家类型
+	 * 
+	 * @param belongId
+	 * @return
+	 */
+	@RequestMapping(value = "changeVendor.action")
+	@ResponseBody
+	public Map<String, Object> getTypeListByVendor(String belongId, String vendorId) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Structured structured = new Structured();
+		structured.setTaskBelong(new BigDecimal(belongId));
+		structured.setTaskVendor(new BigDecimal(vendorId));
+
+		try {
+			List<com.inspection.basedata.model.Type> typeList = dailyTaskService.getTypeListByVendor(structured);
+			map.put("typeListByVendor", typeList);
+
+		} catch (Exception e) {
+
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+
+	/**
+	 * 网元城市改变调用
+	 * 
+	 * @param belongId
+	 * @return
+	 */
+	@RequestMapping(value = "changeRegion.action")
+	@ResponseBody
+	public Map<String, Object> getRegion(String belongId, String vendorId, String type, String regionId) {
+		
+		logger.info("getRegion begin");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Task record = new Task();
+		Vendor vendorById = dailyTaskService.getVendorById(vendorId);
+		record.setNeVendor(vendorById.getEngname());
+		record.setNeType(dailyTaskService.getTypeById(type).getEngname());
+
+		String vendorAndType = "";
+		if (vendorById != null) {
+
+			if (StringUtils.isNotBlank(record.getNeVendor())) {
+				vendorAndType = vendorById.getChsname();
+			}
+			if (StringUtils.isNotBlank(record.getNeType())) {
+				vendorAndType = vendorAndType + "" + record.getNeType();
+			}
+		}
+
+		try {
+			// 查询任务列表
+			List<Task> taskList = dailyTaskService.getTaskList(record);
+			logger.info("根据厂家和类型=" + record + "查找任务列表List<Task> taskList=" + taskList.size());
+			map.put("taskList", taskList);
+
+			CombineQuery combineQuery = new CombineQuery();
+			combineQuery.setVendorAndType(vendorAndType);
+
+			Region regionById = dailyTaskService.getRegionById(regionId);
+			if (regionById != null) {
+				combineQuery.setRegion(regionById.getChsname());
+			}
+
+			List<Resouce> resourceNameList = dailyTaskService.getResourceNameList(combineQuery);
+			logger.info("根据厂家类型，地市" + combineQuery + "查找网元列表List<Resouce> resourceNameList =" + resourceNameList.size());
+
+			// 查询网元列表
+			map.put("resourceNameList", resourceNameList);
+			logger.info("getRegion end");
+
+		} catch (Exception e) {
+
+			logger.error(e.getMessage());
+		}
+		return map;
+	}
+
+	/**
+	 * 进入执行日常作业页面
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/execDailyTaskPage.action", method = RequestMethod.GET)
+	public String execDailyTaskPage(HttpServletResponse res, Map<String, Object> map) {
+
+		logger.info("execDailyTask");
+		List<Belong> allBelong = dailyTaskService.getAllBelong();
+		map.put("allBelong", allBelong);
+
+		List<Region> allRegion = dailyTaskService.getAllRegion();
+		map.put("allRegion", allRegion);
+
+		logger.info("execDailyTask");
+
+		return "/inspection/execDailyTask.jsp";
+	}
+
+	/**
+	 * 进入执行日常作业
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/execDailyTask.action", method = RequestMethod.POST)
+	@ResponseBody
+	public List<String> execDailyTask(String taskname_condition, String neid_condition, String netext_condition) {
+
+		logger.info("====开始手工执行日常任务=====");
+		List<String> runTask = runTask(taskname_condition, neid_condition, netext_condition);
+		logger.info("=====结束手工执行日常任务=====");
+
+		return runTask;
+	}
+
+	/**
+	 * 显示规则
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/showRule.action", method = RequestMethod.GET)
+	public String showRule(String taskName, Map<String, Object> map, HttpServletRequest req) {
+
+		try {
+			taskName = URLDecoder.decode(taskName, "UTF-8");
+
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		logger.info("showRule begin");
+		Task record = new Task();
+		record.setTaskName(taskName);
+		try {
+			List<Task> taskListByTaskName = dailyTaskService.getTaskListByTaskName(record);
+			if (taskListByTaskName != null && taskListByTaskName.size() > 0) {
+				// map.put("rule", "111你哈！");
+				String rule = taskListByTaskName.get(0).getRule();
+				map.put("rule", rule.replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;"));
+				map.put("taskName", taskName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		logger.info("showRule end");
+
+		return "/inspection/showRule.jsp";
+	}
+
+	/**
+	 *  调用执行任务
+	 * @param taskname_condition
+	 * @param neid_condition
+	 * @return
+	 */
+	private List<String> runTask(String taskname_condition, String neid_condition, String netext_condition) {
+
+		List<String> resultList = new ArrayList<String>();
+		logger.info("执行开始runTask");
+		String[] neidArray = neid_condition.split(",");
+		String[] netextArray = netext_condition.split(",");
+		String[] tasknameArray = taskname_condition.split(",");
+		String serviceUrl = PropertiesUtils.getProperty("serviceUrl");
+		String targetNamespace = PropertiesUtils.getProperty("targetNamespace");
+		DailyTaskWebService service = (DailyTaskWebService) AxisWebServiceUtil.getAxisProxyBean(DailyTaskWebService.class, serviceUrl, targetNamespace);
+
+		for (int i = 0; i < neidArray.length; i++) {
+
+			for (int n = 0; n < tasknameArray.length; n++) {
+
+				String taskName = tasknameArray[n];
+				Task record = new Task();
+				record.setTaskName(taskName);
+				List<Task> taskListByTaskName = dailyTaskService.getTaskListByTaskName(record);
+				if (taskListByTaskName == null || taskListByTaskName.size() == 0) {
+
+					resultList.add("【" + netextArray[i] + "-" + taskName + "】手动执行失败。原因：该任务名有误！<br/>");
+					continue;
+				}
+				Task task = taskListByTaskName.get(0);
+				// taskName="ALL";
+				StringBuffer requestXml = new StringBuffer();
+				requestXml.append("<request><opscenarios><opscenario><resourceid>");
+				requestXml.append(neidArray[i]).append("</resourceid><opscenarioid>");
+				requestXml.append(task.getProgramId()).append("</opscenarioid><parms><parm><key>dw_resource_id</key>");
+				requestXml.append("<value>").append(neidArray[i]).append("</value></parm>");
+				requestXml.append("<parm><key>units</key>");
+				requestXml.append("<value>").append(taskName).append("</value></parm></parms></opscenario></opscenarios></request>");
+
+				try {
+
+					logger.info("runTask参数=" + requestXml.toString());
+					Long ll = System.currentTimeMillis();
+					String executeOpscenario = service.executeOpscenario(requestXml.toString());
+
+					Long aa = (System.currentTimeMillis() - ll) / 1000;
+					logger.info("runTask用时(秒)=" + aa);
+					logger.info("runTask结果=" + executeOpscenario);
+
+					int beginIndex = executeOpscenario.indexOf("state=\"") + "state=\"".length();
+					String substring2 = executeOpscenario.substring(beginIndex);
+					int endIndex = substring2.indexOf("\"");
+					String substring = substring2.substring(0, endIndex);
+
+					if (!substring.equals("执行成功")) {
+						logger.info("【" + netextArray[i] + "-" + taskName + "】手动执行不成功。用时：" + aa + "s");
+						resultList.add("【" + netextArray[i] + "-" + taskName + "】手动执行不成功。用时：" + aa + "s");
+
+					} else {
+						logger.info(netextArray[i] + "-" + taskName + "执行成功。用时：" + aa);
+						// resultList.add("【"+netextArray[i]+"-"+taskName+"】手动执行成功。用时："+aa+"s")
+						// ;
+					}
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+					resultList.add("【" + netextArray[i] + "-" + taskName + "】手动执行有异常。");
+					logger.error("runTask异常=" + e);
+
+				}
+			}
+		}
+		return resultList;
+	}
+
+	/**
+	 * 
+	 * Created on 2016-4-20
+	 * <p>
+	 * Discription:[导出执行程序日志Excel]
+	 * </p>
+	 * 
+	 * @return
+	 * @author:<a href=21990173@qq.com>jinyi</a>
+	 * @update:[日期YYYY-MM-DD] [更改人姓名]
+	 */
+	@RequestMapping(value = "exportProcessData.action", method = RequestMethod.POST)
+	public void exportProcessData(HttpServletRequest request, HttpServletResponse response) {
+
+		logger.info("exportProcessData");
+		String fileName = getFileName(request);
+
+		List<Object[]> list = getExcelData();
+
+		logger.info("======进入 =======");
+		String realPath = request.getSession().getServletContext().getRealPath("/WEB-INF/template/autoom.xlsx");
+		logger.info("======返回 =======" + realPath);
+		logger.info("ExcelUtil.exportToExcelFromOB");
+		ExcelUtil.exportToExcelFromOB(list, request, response, realPath, fileName + ".xlsx", fileName, new TransFormat() {
+			// 数据转化
+			@Override
+			public String objectToString(int i, Object o) {
+
+				if ((i == 2) || (i == 3)) {
+					if (o != null) {
+						if (o.toString().equals("1")) {
+							o = "正常";
+						} else {
+							o = "异常";
+						}
+					}
+				}
+				if ((i == 9) || (i == 10)) {
+					if (o != null && o.toString().length() == 21) {
+						o = o.toString().split("\\.")[0];
+					}
+				}
+				return o.toString();
+			}
+
+		}, 1);
+		logger.info("finish ExcelUtil.exportToExcelFromOB end ");
+	}
+
+	/**
+	 * 得到Excel导入数据
+	 * 
+	 * @return
+	 */
+	private List<Object[]> getExcelData() {
+
+		RQuery query = new RQuery("SQL_DailyTask.list", null);
+		DataTable dt = query.getDataTable();
+		DataRow row = null;
+		List<DataRow> drList = dt != null ? dt.getRowList() : null;
+
+		int lens = drList == null ? 0 : drList.size();
+
+		List<Object[]> list = new ArrayList<Object[]>();
+		for (int i = 0; i < lens; i++) {
+			row = drList.get(i);
+			Object[] obj = new Object[13];
+			for (int n = 0; n < 13; n++) {
+				obj[n] = row.getObject(n);
+			}
+			Task record = new Task();
+			record.setTaskName(row.getObject(1).toString());
+			List<Task> taskListByTaskName = dailyTaskService.getTaskListByTaskName(record);
+			if (taskListByTaskName != null && taskListByTaskName.size() > 0) {
+				System.out.println(taskListByTaskName.get(0).getRule());
+				obj[12] = taskListByTaskName.get(0).getRule();
+			}
+			list.add(obj);
+		}
+		return list;
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private String getFileName(HttpServletRequest request) {
+
+		String fileName = "";
+
+		String nevendor_condition = request.getParameter("nevendor_condition");
+		String type_condition = request.getParameter("type_condition");
+		String time = TimeUtils.formatDateToDateString(new Date(), "yyyy-MM-dd+HH-mm-ss");
+
+		if (StringUtils.isNotBlank(nevendor_condition)) {
+			fileName = nevendor_condition;
+		}
+		if (StringUtils.isNotBlank(type_condition)) {
+			try {
+				type_condition = new String(type_condition.getBytes("ISO-8859-1"), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (fileName.length() > 0) {
+				fileName = fileName + "_" + type_condition;
+			} else {
+				fileName = type_condition;
+			}
+		}
+		if (StringUtils.isNotBlank(time)) {
+			if (fileName.length() > 0) {
+				fileName = fileName + "_" + time;
+			} else {
+				fileName = time;
+			}
+		}
+		return fileName;
+	}
+
+	/**
+	 * export导出规则文本文件
+	 */
+	@RequestMapping(value = "exportRuleTxt.action", method = { RequestMethod.POST })
+	public void exportRuleTxt(String taskName, HttpServletRequest request, HttpServletResponse response) {
+
+		// 导出txt文件
+		response.setContentType("text/plain");
+		String fileName = "rule.txt";
+		BufferedOutputStream buff = null;
+
+		try {
+			logger.info("showRule begin");
+			Task record = new Task();
+			record.setTaskName(taskName);
+			taskName = URLDecoder.decode(taskName, "UTF-8");
+			String rule = "";
+			List<Task> taskListByTaskName = dailyTaskService.getTaskListByTaskName(record);
+			if (taskListByTaskName != null && taskListByTaskName.size() > 0) {
+				rule = taskListByTaskName.get(0).getRule();
+				rule = rule.replaceAll("\n", "\r\n");
+
+			}
+			fileName = URLEncoder.encode("rule", "UTF-8");
+			response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".txt");
+
+			buff = new BufferedOutputStream(response.getOutputStream());
+			// 把内容写入文件 rule.getBytes("UTF-8")
+
+			buff.write(rule.getBytes());
+			buff.flush();
+			buff.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				buff.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 显示报文信息
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value = "/showReport.action", method = RequestMethod.GET)
+	public String showReport(Long id, Map<String, Object> map, HttpServletRequest req) {
+
+		logger.info("showReport begin");
+
+		try {
+			Process selectProcessByPrimaryKey = dailyTaskService.selectProcessByPrimaryKey(id);
+			if (selectProcessByPrimaryKey != null) {
+
+				String report = selectProcessByPrimaryKey.getReport();
+				report = report.replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;");
+				map.put("report", report);
+				map.put("id", id);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		logger.info("showRule end");
+
+		return "/inspection/showReport.jsp";
+	}
+
+	/**
+	 * export导出报文文本
+	 */
+	@RequestMapping(value = "exportReportTxt.action", method = { RequestMethod.POST })
+	public void exportReportTxt(Long id, HttpServletRequest request, HttpServletResponse response) {
+
+		// 导出txt文件
+		response.setContentType("text/plain");
+		String fileName = "report.txt";
+		BufferedOutputStream buff = null;
+		String report = "";
+		try {
+			logger.info("exportReportTxt begin");
+
+			Process selectProcessByPrimaryKey = dailyTaskService.selectProcessByPrimaryKey(id);
+			if (selectProcessByPrimaryKey != null) {
+
+				report = selectProcessByPrimaryKey.getReport();
+				report = report.replaceAll("\n", "\r\n");
+			}
+			fileName = URLEncoder.encode("report", "UTF-8");
+			response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".txt");
+
+			buff = new BufferedOutputStream(response.getOutputStream());
+			// 把内容写入文件 rule.getBytes("UTF-8")
+
+			buff.write(report.getBytes());
+			buff.flush();
+			buff.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				buff.close();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

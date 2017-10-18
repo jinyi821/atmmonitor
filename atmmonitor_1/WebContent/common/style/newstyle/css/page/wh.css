@@ -1,0 +1,307 @@
+@CHARSET "UTF-8";
+
+.wh_head{
+	height: 40px;
+	line-height: 40px;
+	background: #0085d0;
+}
+
+.wh_tabDiv,.wh_content{
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.wh_Tabbtn{
+	height: 40px;
+	*height: 39px;
+	height: 39px\0;
+	background: transparent;
+	border: none;
+	outline: none;
+	text-align: center;
+	width: 104px;
+	font-size: 14px;
+	color: #ffffff;
+	cursor: pointer;
+}
+
+.wh_Tabbtn_active{
+	background: #0077bb;
+	background-image:url(../../images/arrow.png);
+	background-position:center bottom;
+	background-repeat:no-repeat ; 
+}
+
+.wh_contentDiv{
+	width: 100%;
+	/*padding-top: 15px;*/
+	padding-bottom: 15px;
+}
+.treeDiv,.rightContent,.mxContent{
+	border: 1px solid #dddddd;
+	background: #fdfdfd;
+	display: inline-block;
+	float: left;
+}
+.treeDiv,.rightContent,.mxContentNew{
+	border: 1px solid #dddddd;
+	background: #fdfdfd;
+	display: inline-block;
+	float: left;
+}
+.treeDiv,.rightContent,.minContent{
+	border: 1px solid #dddddd;
+	background: #fdfdfd;
+	display: inline-block;
+	float: left;
+}
+.treeDiv{
+	/*width: 213px;*/
+	border-left: none;
+	border-top: none;
+	width: 19.5%;
+	min-height:602px;
+	height: auto;
+	padding-left: 5px;	
+}
+
+.rightContent{
+	/*width:963px ;*/
+	width: 78.2%;
+	/*min-height:592px;*/
+	height: auto;
+	margin-left:15px ;
+}
+
+.Right_content_div{
+	padding: 15px;
+}
+
+.tableBorder td{
+	border: 1px solid #dddddd;
+}
+
+/***2016-3-25 am**/
+.wh_modal{
+	border: 1px solid #dddddd;
+}
+
+.wh_modal_head{
+	height: 46px;
+	line-height: 46px;
+	background: #fafafa;
+}
+
+.searchInfo{
+	position: absolute;
+	right: 35px;
+	display: inline-block;
+}
+
+.searchInput{
+	width: 175px;
+	height: 24px;
+	padding-left: 20px;
+	line-height: 24px;
+	border: 1px solid #dddddd;
+}
+
+.searchIcon{
+	width: 13px;
+	height: 13px;
+	display: inline-block;
+	cursor: pointer;
+	background: url(../../images/tcircle.png) no-repeat;
+	position: absolute;
+	left: 8px;
+	top: 16px;
+}
+.searchIcon1{
+	width: 13px;
+	height: 13px;
+	display: inline-block;
+	cursor: pointer;
+	background: url(../../images/tcircle.png) no-repeat;
+	left: 8px;
+	top: 16px;
+}
+
+.slideIcon{
+	width: 24px;
+	height: 26px;
+	display: inline-block;
+	cursor: pointer;
+	background: url(../../images/showSearch.png) no-repeat;
+	position: absolute;
+	right: -23px;
+    top: 10px;
+}
+
+.slideIconClick{
+	background: url(../../images/hidesearch.png) no-repeat;
+}
+
+.wh_searchDiv{
+	padding-top: 20px;
+}
+
+.wh_set{
+	margin-left: 25px;
+	width: 33px;
+	height: 28px;
+	display: inline-block;
+	background-color:#ffffff ;
+	background: url(../../images/arrow1.png) no-repeat 90% center;
+	border: 1px solid #dddddd;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	cursor: pointer;
+}
+
+.setIcon1{
+	width: 16px;
+	height: 17px;
+	display: inline-block;
+	background: url(../../images/set1.png) no-repeat;
+	position: absolute;
+	top:5px;
+	left: 5px;
+}
+
+.setInfo{
+	min-width: 88px;
+	width: auto;
+	border: 1px solid #dddddd;
+	position: absolute;
+	top:31px;
+	right: 0px;
+	z-index: 10;
+	background: #ffffff;
+}
+
+.setInfoUl{}
+
+.setInfoUl li{
+	height: 26px;
+	line-height: 26px;
+	padding-left: 5px;
+	padding-right: 10px;
+	cursor: pointer;
+}
+
+.setInfoUl li:hover{
+	background: #caedfc;
+}
+
+.setInfoUl li label{
+	float: right;
+	width: 48px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: inline-block;
+}
+
+.checkIcon{
+	width: 10px;
+	height: 9px;
+	display: inline-block;
+	background: url(../../images/checkIcon.png) no-repeat;
+	cursor: pointer;
+	margin-right:5px ;
+	margin-left: 5px;
+}
+
+/***2016-3-28 am***/
+.leftMenuTree{
+	width: 15%;
+	display: inline-block;
+	float: left;
+	background: #596877;
+	height:603px;
+	overflow: auto;
+	/*height: auto;*/
+}
+
+.mxContent{
+	width: 98%;
+	min-height:592px;
+	height: auto;
+	margin-left:15px ;
+}
+.minContent{
+	width: 98%;
+	min-height:302px;
+	height: auto;
+	margin-left:15px ;
+}
+.mxContentNew{
+	width: 78%;
+	min-height:592px;
+	height: auto;
+	margin-left:15px ;
+}
+.hideTreeBtn{
+	width: 11px;
+	height: 30px;
+	display: inline-block;
+	background: url(../../images/hideTree.png) no-repeat;
+	cursor: pointer;
+	position: absolute;
+	top: 45%;
+	left: 20%;
+}
+
+.showTreeBtn{
+	width: 11px;
+	height: 30px;
+	display: inline-block;
+	background: url(../../images/showTree.png) no-repeat;
+	cursor: pointer;
+	position: absolute;
+	top: 45%;
+	left: 0%;	
+}
+
+.rightContentBig{
+	width:100%;
+}
+
+.rightDiv{
+	width: 85%;
+	float: left;
+}
+.tabrightDiv{
+	width: 88%;
+	float: right;
+}
+.tableftDiv{
+	width: 12%;
+	float: left;
+}
+
+.tabmxContent{
+	width: 80%;
+	min-height:492px;
+	height: auto;
+	margin-left:15px ;
+}
+.bg{
+	background-color:rgb(190, 190, 190);
+}
+.topDiv{
+	border-top:solid;
+	border-left:solid;
+	border-right:solid;
+    border-width:1px;
+    border-color:#dddddd;
+}
+.tableDiv{
+	border-top:solid;
+	border-bottom:solid;
+	border-left:solid;
+	border-right:solid;
+    border-width:1px;
+    border-color:#dddddd;
+}
