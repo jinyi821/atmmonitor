@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsFtpServerMapper" >
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+    <id column="ftp_id" property="ftpId" jdbcType="INTEGER" />
+    <result column="ftp_ip" property="ftpIp" jdbcType="VARCHAR" />
+    <result column="ftp_port" property="ftpPort" jdbcType="INTEGER" />
+    <result column="ftp_user_name" property="ftpUserName" jdbcType="VARCHAR" />
+    <result column="ftp_password" property="ftpPassword" jdbcType="VARCHAR" />
+    <result column="ftp_work_directory" property="ftpWorkDirectory" jdbcType="VARCHAR" />
+    <result column="ftp_last_scan_time" property="ftpLastScanTime" jdbcType="BIGINT" />
+    <result column="ftp_period" property="ftpPeriod" jdbcType="INTEGER" />
+    <result column="ftp_scanner_id" property="ftpScannerId" jdbcType="INTEGER" />
+    <result column="scanner_ip" property="scannerIp" jdbcType="VARCHAR" />
+    <result column="ftp_last_server_time" property="ftpLastServerTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ftp_id, ftp_ip, ftp_port, ftp_user_name, ftp_password, ftp_work_directory, ftp_last_scan_time, 
+    ftp_period, ftp_scanner_id, scanner_ip,ftp_last_server_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcs_ftp_server
+    where ftp_id = #{ftpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dcs_ftp_server
+    where ftp_id = #{ftpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+    insert into dcs_ftp_server (ftp_id, ftp_ip, ftp_port, 
+      ftp_user_name, ftp_password, ftp_work_directory, 
+      ftp_last_scan_time, ftp_period, ftp_scanner_id, 
+      ftp_last_server_time)
+    values (#{ftpId,jdbcType=INTEGER}, #{ftpIp,jdbcType=VARCHAR}, #{ftpPort,jdbcType=INTEGER}, 
+      #{ftpUserName,jdbcType=VARCHAR}, #{ftpPassword,jdbcType=VARCHAR}, #{ftpWorkDirectory,jdbcType=VARCHAR}, 
+      #{ftpLastScanTime,jdbcType=BIGINT}, #{ftpPeriod,jdbcType=INTEGER}, #{ftpScannerId,jdbcType=INTEGER}, 
+      #{ftpLastServerTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+    insert into dcs_ftp_server
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ftpId != null" >
+        ftp_id,
+      </if>
+      <if test="ftpIp != null" >
+        ftp_ip,
+      </if>
+      <if test="ftpPort != null" >
+        ftp_port,
+      </if>
+      <if test="ftpUserName != null" >
+        ftp_user_name,
+      </if>
+      <if test="ftpPassword != null" >
+        ftp_password,
+      </if>
+      <if test="ftpWorkDirectory != null" >
+        ftp_work_directory,
+      </if>
+      <if test="ftpLastScanTime != null" >
+        ftp_last_scan_time,
+      </if>
+      <if test="ftpPeriod != null" >
+        ftp_period,
+      </if>
+      <if test="ftpScannerId != null" >
+        ftp_scanner_id,
+      </if>
+      <if test="ftpLastServerTime != null" >
+        ftp_last_server_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ftpId != null" >
+        #{ftpId,jdbcType=INTEGER},
+      </if>
+      <if test="ftpIp != null" >
+        #{ftpIp,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPort != null" >
+        #{ftpPort,jdbcType=INTEGER},
+      </if>
+      <if test="ftpUserName != null" >
+        #{ftpUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPassword != null" >
+        #{ftpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpWorkDirectory != null" >
+        #{ftpWorkDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpLastScanTime != null" >
+        #{ftpLastScanTime,jdbcType=BIGINT},
+      </if>
+      <if test="ftpPeriod != null" >
+        #{ftpPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="ftpScannerId != null" >
+        #{ftpScannerId,jdbcType=INTEGER},
+      </if>
+      <if test="ftpLastServerTime != null" >
+        #{ftpLastServerTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+    update dcs_ftp_server
+    <set >
+      <if test="ftpIp != null" >
+        ftp_ip = #{ftpIp,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPort != null" >
+        ftp_port = #{ftpPort,jdbcType=INTEGER},
+      </if>
+      <if test="ftpUserName != null" >
+        ftp_user_name = #{ftpUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpPassword != null" >
+        ftp_password = #{ftpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpWorkDirectory != null" >
+        ftp_work_directory = #{ftpWorkDirectory,jdbcType=VARCHAR},
+      </if>
+      <if test="ftpLastScanTime != null" >
+        ftp_last_scan_time = #{ftpLastScanTime,jdbcType=BIGINT},
+      </if>
+      <if test="ftpPeriod != null" >
+        ftp_period = #{ftpPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="ftpScannerId != null" >
+        ftp_scanner_id = #{ftpScannerId,jdbcType=INTEGER},
+      </if>
+      <if test="ftpLastServerTime != null" >
+        ftp_last_server_time = #{ftpLastServerTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ftp_id = #{ftpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+    update dcs_ftp_server
+    set ftp_ip = #{ftpIp,jdbcType=VARCHAR},
+      ftp_port = #{ftpPort,jdbcType=INTEGER},
+      ftp_user_name = #{ftpUserName,jdbcType=VARCHAR},
+      ftp_password = #{ftpPassword,jdbcType=VARCHAR},
+      ftp_work_directory = #{ftpWorkDirectory,jdbcType=VARCHAR},
+      ftp_last_scan_time = #{ftpLastScanTime,jdbcType=BIGINT},
+      ftp_period = #{ftpPeriod,jdbcType=INTEGER},
+      ftp_scanner_id = #{ftpScannerId,jdbcType=INTEGER},
+      ftp_last_server_time = #{ftpLastServerTime,jdbcType=BIGINT}
+    where ftp_id = #{ftpId,jdbcType=INTEGER}
+  </update>
+  <select id="getFTPserverList" resultType="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+    SELECT a.ftp_id as ftpId ,a.ftp_ip as ftpIp,a.ftp_port as ftpPort,a.ftp_user_name as ftpUserName,a.ftp_password
+    as ftpPassword
+    ,a.ftp_work_directory as ftpWorkDirectory,c.path_ftp as pathFtp,
+    c.data_type_path_reg as  pathReg
+
+    FROM dcs_ftp_server a ,dcs_ftp_type_rel b ,dcs_data_type c WHERE a.ftp_id=b.ftp_id AND b.data_type_id=c.data_type_id
+
+  </select>
+  <select id="getFTPserverListForOne" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+
+    FROM dcs_ftp_server a ,dcs_scanner b WHERE a.ftp_scanner_id =b.scanner_id
+
+  </select>
+  
+  <select id="getFTPserverListForNone" resultMap="BaseResultMap"  >
+    select
+     ftp_id, ftp_ip, ftp_port, ftp_user_name, ftp_password, ftp_work_directory, ftp_last_scan_time,
+    ftp_period, ftp_scanner_id, ftp_last_server_time
+    from dcs_ftp_server
+
+  </select>
+ 
+</mapper>

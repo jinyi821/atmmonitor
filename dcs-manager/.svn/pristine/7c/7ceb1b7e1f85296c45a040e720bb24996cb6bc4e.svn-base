@@ -1,0 +1,40 @@
+<script>
+    var pageSize=10;
+    var probeId=-1;
+    var ftpId=-1;
+    var dataTypeId=-1;
+    var fileName=null;
+    var fileStatus=-1;
+
+    $(document).ready(function(){
+        $("#pageSize").bind('change', function () {
+            pageSize = $("#pageSize").val();
+            probeId=$("#probeId").val();
+            ftpId=$("#ftpId").val();
+            dataTypeId=$("#dataTypeId").val();
+            fileStatus=$("#fileStatus").val();
+            fileName=$("#fileName").val();
+            goto(1);
+        });
+        $("#pageSize").val(${pageInfo.pageSize});
+        pageSize=${pageInfo.pageSize};
+        $("#searchButton").bind('click', function() {
+            probeId=$("#probeId").val();
+            ftpId= $("#ftpId").val();
+            dataTypeId = $("#dataTypeId").val();
+            fileStatus=$("#fileStatus").val();
+            fileName=$("#fileName").val();
+            pageSize = $("#pageSize").val();
+            goto(1);
+        });
+        $("#dt_basic tbody td").bind("dblclick",function(){
+            $(this).css({"text-overflow":"","overflow":"auto"}); //prop("contentEditable",true)
+        })
+    });
+    function goto(pn) {
+        $("#tableContent").load("${BASE_PATH}/probeRunning/dealFailureFile/", {probeId:probeId,ftpId:ftpId,dataTypeId:dataTypeId,fileStatus:fileStatus,fileName:fileName,pn: pn,pageSize:pageSize,refreshPart:1}, function (txt) {
+            if (!txt) {
+            }
+        });
+    };
+</script>

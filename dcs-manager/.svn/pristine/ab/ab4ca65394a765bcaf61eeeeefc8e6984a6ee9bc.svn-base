@@ -1,0 +1,399 @@
+<script>
+
+    var pageSize = 10;
+    var pid = -1;
+    var pkid = -1;
+
+    function goto(pn) {
+        $("#tableContent").load(BASE_PATH + "/dcsFtpServer/",
+                {
+                    pn: pn,
+
+                    pageSize: pageSize,
+                    refreshPart: 1
+                }, function (txt) {
+
+                    if (!txt) {
+
+                    }
+
+                });
+    }
+
+    $('#addModalId').on('shown.bs.modal', function () {
+
+        var col = dataList[pid];
+        
+        $("#ftpScannerId").empty();
+        <#list dcsScanners as col>
+            $("#ftpScannerId").append("<option value='${col["scannerId"]}'>${col["scannerIp"]}</option>");
+        </#list>
+        resultOk=false;
+        $("#dcsForm").data('bootstrapValidator').resetForm();
+        if (pid == -1) {
+
+            $("#ftpIp").val("");
+            $("#ftpPort").val("");
+            $("#ftpUserName").val("");
+            $("#ftpPassword").val("");
+            $("#ftpWorkDirectory").val("");
+            $("#ftpLastScanTime").val("");
+            $("#ftpLastScanTime_time").val("");
+            $("#ftpPeriod").val("");
+            $("#ftpScannerId").val("");
+            $("#ftpLastServerTime").val("");
+            $("#ftpLastServerTime_time").val("");
+            $("#addLabel").html("添加FTP元数据");
+
+        } else {
+
+            var col = dataList[pid];
+            $("#ftpIp").val(col["ftpIp"]);
+            $("#ftpPort").val(col["ftpPort"]);
+            $("#ftpUserName").val(col["ftpUserName"]);
+            $("#ftpPassword").val(col["ftpPassword"]);
+
+            $("#ftpWorkDirectory").val(col["ftpWorkDirectory"]);
+            var  datetime= col["ftpLastScanTime"].split(' ');
+            $("#ftpLastScanTime").val(datetime[0]);
+            $("#ftpLastScanTime_time").val(datetime[1]);
+            $("#ftpPeriod").val(col["ftpPeriod"]);
+            $("#ftpScannerId").find("option[text='" + col["ftpScannerId"] + "']").attr("selected", true);
+            var  datetime1= col["ftpLastServerTime"].split(' ');
+            $("#ftpLastServerTime").val(datetime1[0]);
+            $("#ftpLastServerTime_time").val(datetime1[1]);
+            $("#addLabel").html("修改FTP元数据");
+        }
+
+
+    });
+    
+    $("#saveButton_add").click(function(){
+
+     
+        //$("#dcsDataTypeForm").submit();
+        //获取表单对象
+        var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+        //手动触发验证
+        bootstrapValidator.validate();
+        if(bootstrapValidator.isValid()){
+            ;
+            //表单提交的方法、比如ajax提交
+            var ftpIp = $("#ftpIp").val();
+            var ftpPort = $("#ftpPort").val();
+            var ftpUserName = $("#ftpUserName").val();
+            var ftpPassword = $("#ftpPassword").val();
+            var ftpWorkDirectory = $("#ftpWorkDirectory").val();
+            var ftpLastScanTime = $("#ftpLastScanTime").val();
+            var ftpLastScanTime_time = $("#ftpLastScanTime_time").val();
+            var ftpPeriod = $("#ftpPeriod").val();
+            var ftpLastServerTime = $("#ftpLastServerTime").val();
+            var ftpLastServerTime_time = $("#ftpLastServerTime_time").val();
+            var ftpScannerId = $("#ftpScannerId").val();
+            var postdata = {
+                ftpIp: ftpIp,
+                ftpPort: ftpPort,
+                ftpUserName: ftpUserName,
+                ftpPassword: ftpPassword,
+                ftpWorkDirectory: ftpWorkDirectory,
+                ftpLastScanTime: ConvertStrToDate(ftpLastScanTime+" "+ftpLastScanTime_time).getTime(),
+                ftpPeriod: ftpPeriod,
+                ftpScannerId: ftpScannerId,
+                ftpLastServerTime: ConvertStrToDate(ftpLastServerTime+" "+ftpLastServerTime_time).getTime(),
+                ftpId: pkid
+
+            };
+            
+            ;
+            $.ajax({
+                type:"post",
+                url:BASE_PATH + "/dcsFtpServer/add",
+                data:postdata,
+                async:false,
+                success:function(result){
+                    resultOk=true;
+                    $('#addModalId').modal('hide');
+                    
+
+                }
+
+            });
+        }
+    });
+    $("#messageSureButton").click(function(){
+
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsFtpServer/delete",
+            data:{id:pkid},
+            async:false,
+            success:function(result){
+                resultOk=true;
+                $('#messageModalId').modal('hide');
+               
+            }
+
+        });
+    });
+    function deleteRecord(){
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsFtpServer/delete",
+            data:{id:pkid},
+            async:false,
+            success:function(result){
+
+                if (pageSize==1 && pid==1){
+                    goto(${pageInfo.pageNum} -1);
+                } else {
+                    goto(${pageInfo.pageNum});
+                }
+
+                showMessage("删除成功!");
+            }
+
+        });
+    }
+    $(function () {
+//        layui.use('laydate', function(){
+//            var laydate = layui.laydate;
+//
+//            //执行一个laydate实例
+//            laydate.render({
+//                elem: '#ftpLastScanTime',
+//                calendar: true,
+//                lang: 'cn' ,
+//                type: 'datetime',
+//                format:'yyyy-MM-dd HH:mm:ss'
+//                ,done: function(value, date, endDate){
+//                    var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+//                    if (!value) {
+//
+//                        bootstrapValidator.updateStatus('ftpLastScanTime', 'NOT_VALIDATED').validateField('ftpLastScanTime'); //错误提示信息变了
+//                    } else {
+//                        bootstrapValidator.updateStatus('ftpLastScanTime', 'VALID').validateField('ftpLastScanTime');
+//                    }
+//                }
+//            });
+//            //执行一个laydate实例
+//            laydate.render({
+//                elem: '#ftpLastServerTime',
+//                calendar: true,
+//                lang: 'cn' ,
+//                type: 'datetime',
+//                format:'yyyy-MM-dd HH:mm:ss',
+//                done: function(value, date, endDate){
+//                    var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+//                    if (!value) {
+//
+//                        bootstrapValidator.updateStatus('ftpLastServerTime', 'NOT_VALIDATED').validateField('ftpLastServerTime'); //错误提示信息变了
+//                    } else {
+//                        bootstrapValidator.updateStatus('ftpLastServerTime', 'VALID').validateField('ftpLastServerTime');
+//                    }
+//                }
+//            });
+//        });
+        $('#ftpLastScanTime').datepicker({
+
+            dateFormat : 'yy-mm-dd',
+            prevText : '<i class="fa fa-chevron-left"></i>',
+            nextText : '<i class="fa fa-chevron-right"></i>',
+            onSelect : function(selectedDate) {
+                var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+                    if (!selectedDate) {
+
+                        bootstrapValidator.updateStatus('ftpLastScanTime', 'NOT_VALIDATED').validateField('ftpLastScanTime'); //错误提示信息变了
+                    } else {
+                        bootstrapValidator.updateStatus('ftpLastScanTime', 'VALID').validateField('ftpLastScanTime');
+                    }
+            }
+        });
+
+        $('#ftpLastServerTime').datepicker({
+            dateFormat : 'yy-mm-dd',
+            prevText : '<i class="fa fa-chevron-left"></i>',
+            nextText : '<i class="fa fa-chevron-right"></i>',
+            onSelect : function(selectedDate) {
+                var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+                if (!selectedDate) {
+
+                    bootstrapValidator.updateStatus('ftpLastServerTime', 'NOT_VALIDATED').validateField('ftpLastServerTime'); //错误提示信息变了
+                } else {
+                    bootstrapValidator.updateStatus('ftpLastServerTime', 'VALID').validateField('ftpLastServerTime');
+                }
+            }
+        });
+        $('#ftpLastScanTime_time').timepicker({
+            defaultTime:'current',
+            showMeridian:false,
+            showSeconds : true ,
+           
+        }).bind("change", function(){
+            selectedDate=$(this).val();
+            var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+            if (!selectedDate) {
+
+                bootstrapValidator.updateStatus('ftpLastScanTime_time', 'NOT_VALIDATED').validateField('ftpLastScanTime_time'); //错误提示信息变了
+            } else {
+                bootstrapValidator.updateStatus('ftpLastScanTime_time', 'VALID').validateField('ftpLastScanTime_time');
+            }
+        });
+        $('#ftpLastServerTime_time').timepicker({
+            defaultTime:'current',
+            showMeridian:false,
+            showSeconds : true
+        }).bind("change", function(){
+            selectedDate=$(this).val();
+            var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+            if (!selectedDate) {
+
+                bootstrapValidator.updateStatus('ftpLastServerTime_time', 'NOT_VALIDATED').validateField('ftpLastServerTime_time'); //错误提示信息变了
+            } else {
+                bootstrapValidator.updateStatus('ftpLastServerTime_time', 'VALID').validateField('ftpLastServerTime_time');
+            }
+        });
+        $('#dcsForm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                ftpIp: {
+                    validators: {
+                        notEmpty: {
+                            message: 'FTP IP不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 15,
+                            message: 'FTP IP必须在0到15位之间'
+                        },
+                        regexp: {
+                            regexp: /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
+                            message: 'FTP IP不是有效IP地址'
+                        }
+                    }
+                },
+                ftpPort: {
+                    validators: {
+                        notEmpty: {
+                            message: '端口不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 3,
+                            message: '端口长度必须在0到3位之间'
+                        },
+                        regexp: {
+                            regexp: /^\d+$/,
+                            message: '端口应为整数'
+                        }
+                    }
+                },
+                ftpUserName: {
+                    validators: {
+                        notEmpty: {
+                            message: '用户名称不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 50,
+                            message: '用户名称长度必须在0到50位之间'
+                        }
+                    }
+                },
+                ftpPassword: {
+                    validators: {
+                        notEmpty: {
+                            message: '用户密码不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 20,
+                            message: '用户密码长度必须在0到20位之间'
+                        }
+                    }
+                },
+                ftpWorkDirectory: {
+                    validators: {
+                        notEmpty: {
+                            message: 'FTP工作目录不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 30,
+                            message: 'FTP工作目录长度必须在0到30位之间'
+                        }
+                    }
+                },
+                ftpLastScanTime: {
+                    validators: {
+                        notEmpty: {
+                            message: '最后扫描日期不能为空'
+                        }
+                    }
+                },
+                ftpLastScanTime_time: {
+                    validators: {
+                        notEmpty: {
+                            message: '最后扫描时间不能为空'
+                        } ,
+                        regexp: {
+                            regexp: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/,
+                            message: '时间为非法'
+                        }
+                    }
+                },
+                ftpPeriod: {
+                    validators: {
+                        notEmpty: {
+                            message: '扫描间隔时长不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 3,
+                            message: '扫描间隔时长长度必须在0到3位之间'
+                        },
+                        regexp: {
+                            regexp: /^\d+$/,
+                            message: '扫描间隔时长应为整数'
+                        }
+                    }
+                },
+                ftpLastServerTime: {
+                    validators: {
+                        notEmpty: {
+                            message: '服务器最后启动日期不能为空'
+                        }
+                    }
+                },
+                ftpLastServerTime_time: {
+                    validators: {
+                        notEmpty: {
+                            message: '服务器最后启动时间不能为空'
+                        },
+                        regexp: {
+                            regexp: /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/,
+                            message: '时间为非法'
+                        }
+                    }
+                },
+                ftpScannerId: {
+                    validators: {
+                        notEmpty: {
+                            message: 'ScannerIP不能为空'
+                        }
+                    }
+                }
+
+            }
+
+        });
+        
+
+    });
+
+
+</script>

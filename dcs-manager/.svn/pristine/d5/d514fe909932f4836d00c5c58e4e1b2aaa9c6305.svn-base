@@ -1,0 +1,182 @@
+<!--页码块-->
+<style>
+    .col-lg-s,.col-lg-sb,.col-lg-m,.col-lg-b,.col-lg-l{
+        position:relative;
+        /* min-height:1px;
+           padding-left:5px;*/
+    }
+    .col-lg-s{
+        float:left;
+        width:6%;
+    }
+    .col-lg-sb{
+        float:left;
+        width:10%;
+    }
+    .col-lg-m{
+        float:left;
+        width:12%;
+    }
+    .col-lg-b{
+        float:left;
+        width:14%;
+    }
+    .col-lg-l{
+        float:left;
+        width:22%;
+    }
+    .col-lg-bl{
+        float:left;
+        width:27%;
+    }
+    .col-lg-sl{
+        float:left;
+        width:36%;
+    }
+    .wrap{
+        word-break:break-all;
+        max-width:120px;
+        overflow:auto;
+    }
+    .pagination > li > a, .pagination > li > span {
+        color: #b7b7b7;
+        background:white;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<div class="data-div" style="border:1px dotted darkgrey">
+    <div class="tablebody" id="accordion">
+        <div class="row">
+            <div class="col-lg-s">
+                probe名称
+            </div>
+            <div class="col-lg-sb">
+                任务FTP
+            </div>
+           <#-- <div class="col-lg-middle">
+                Ftp数据类型
+            </div>-->
+            <div class="col-lg-sl">
+                FTP路径文件
+            </div>
+            <#--<div class="col-lg-middle">
+                FTP文件大小
+            </div>-->
+            <div class="col-lg-b">
+                文件下载时间
+            </div>
+            <div class="col-lg-bl">
+                目标HDFS路径
+            </div>
+            <div class="col-lg-s">
+                文件状态
+            </div>
+        </div>
+      <#list pageInfo.list as col>
+          <div class="row">
+              <div class="col-lg-s">
+              ${col["probe_name"]}
+              </div>
+            <div class="col-lg-sb">
+            ${col["ftp_ip"]}
+            </div>
+            <#--<div class="col-lg-middle">
+            ${col["data_type_name"]}
+            </div>-->
+            <div class="col-lg-sl">
+            ${col["ftp_path_and_name"]}
+            </div>
+            <#--<div class="col-lg-middle">
+            ${col["file_size"]}
+            </div>-->
+            <div class="col-lg-b">
+              ${(col["file_insert_time"]?string("yyyy-MM-dd HH:mm:ss"))!}
+            </div>
+            <div class="col-lg-bl">
+            ${col["hdfs_path"]}
+            </div>
+            <#-- <div class="col-lg-s" title=" <#if col["status"] == 0>已下发到probe未下载
+                      <#elseif col["status"] == 1>已下载未上传hdfs
+                     <#elseif col["status"] == 2>已成功上传hdfs
+                     <#elseif col["status"] == 3>上传hdfs失败
+                     <#else>正上传hdfs上传进行中</#if>">
+                  <#if col["status"] == 0>
+                      P<span class="glyphicon glyphicon-arrow-down" style="color:yellow;" ></span>
+                  <#elseif col["status"] == 1>
+                      H<span class="glyphicon glyphicon-arrow-up" style="color:yellow;" ></span>
+                  <#elseif col["status"] == 2>
+                      H<span class="glyphicon glyphicon-arrow-up" style="color:red;" ></span>
+                  <#elseif col["status"] == 3>
+                      H<span class="glyphicon glyphicon-cloud-upload" style="color:red;" ></span>
+                  <#else>
+                      H<span class="glyphicon glyphicon-arrow-up" style="color:green;" ></span>
+                  </#if>
+              </div>-->
+              <div class="col-lg-s" title="${col.getDcsFileStatusEnum().titleContext}">
+               ${col.getDcsFileStatusEnum().htmlContent}
+            </div>
+
+        </div>
+
+    </#list>
+        <div style="float:right">
+
+
+            <!--显示分页信息-->
+
+            <!--文字信息
+        <div class="col-md-6">
+         当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+        </div>  -->
+
+
+            <ul class="pagination">
+                <li><a href="#" onclick="goNewPage(1,this)">首页</a></li>
+                <!--上一页-->
+                <li>
+                <#if pageInfo.hasPreviousPage>
+                    <a href="#" onclick="goNewPage('${pageInfo.pageNum-1}')" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </#if>
+
+                </li>
+
+                <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+            <#list pageInfo.navigatepageNums as page_num>
+                <#if page_num == pageInfo.pageNum>
+                    <li class="active"><a href="#">${page_num}</a></li>
+                <#else>
+                    <li><a href="#" onclick="goNewPage('${page_num}')">${page_num}</a></li>
+                </#if>
+            </#list>
+
+                <!--下一页-->
+                <li>
+
+                <#if pageInfo.hasNextPage>
+                    <a href="#" onclick="goToPage('${pageInfo.pageNum+1}')"
+                       aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </#if>
+                </li>
+                <li><a href="#" onclick="goNewPage('${pageInfo.pages}')">尾页</a></li>
+                <li>共 ${pageInfo.pages} 页</li>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <script>
+       function goNewPage(pn) {
+            $("#dealFailureFile").load(BASE_PATH + "/portal/probeRunning/dealFailureFile/", {pn: pn}, function (txt) {
+             if (!txt) {
+
+             }
+            });
+        }
+    </script>
+</div>
+           

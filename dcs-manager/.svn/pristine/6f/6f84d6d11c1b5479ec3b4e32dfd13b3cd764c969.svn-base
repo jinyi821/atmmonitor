@@ -1,0 +1,265 @@
+<!-- 数据类型配置模块 -->
+
+<div role="tabpanel" class="tab-pane" id="char">
+
+    <div class="check-div">
+        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#adddataType" onclick="initID(-1,-1)">添加类型</button>
+    </div>
+    <div class="data-div">
+        <div class="row tableHeader">
+            <div class="col-xs-1 ">
+                ID
+            </div>
+            <div class="col-xs-1">
+                类型名称
+            </div>
+            <div class="col-xs-2">
+                正则表达式
+            </div>
+            <div class="col-xs-2">
+                是否删除ftp文件
+            </div>
+            <div class="col-xs-2">
+                是否删除本地文件
+            </div>
+            <div class="col-xs-1">
+                hdfs路径
+            </div>
+            <div class="col-xs-1">
+                相对路径
+            </div>
+            <div class="col-xs-2">
+                操作
+            </div>
+        </div>
+        <div class="tablebody">
+        <#list pageInfo.list as col>
+            <div class="row">
+                <div class="col-xs-1 ">
+                ${col["dataTypeId"]}
+                </div>
+                <div class="col-xs-1">
+                ${col["dataTypeName"]}
+                </div>
+                <div title=" ${col["dataTypePathReg"]?html}" class="col-xs-2">
+                
+                    <#if col["dataTypePathReg"]?? && col["dataTypePathReg"]?length lt 10>
+                    ${col["dataTypePathReg"]?html}
+                    <#else>
+                    ${col["dataTypePathReg"][0..9]?default("")?html}...
+                    </#if>
+                </div>
+                <div class="col-xs-2">
+                    <#if col["isFtpDelete"]== 0>不删除</#if><#if col["isFtpDelete"]== 1>删除</#if>
+                </div>
+                <div class="col-xs-2">
+
+                    <#if col["isFileDelete"]== 0>不删除</#if><#if col["isFileDelete"]== 1>删除</#if>
+                </div>
+                <div class="col-xs-1" title=" ${col["hdfsPath"]}">
+                    <#if col["hdfsPath"]?? && col["hdfsPath"]?length lt 10>
+                    ${col["hdfsPath"]}
+                    <#else>
+                    ${col["hdfsPath"][0..9]?default("")}...
+                    </#if>
+
+                </div>
+                <div class="col-xs-1" title=" ${col["pathFtp"]}">
+                    <#if col["pathFtp"]?? && col["pathFtp"]?length lt 10>
+                    ${col["pathFtp"]}
+                    <#else>
+                    ${col["pathFtp"][0..9]?default("")}...
+                    </#if>
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#adddataType" onclick="initID('${col_index}','${col["dataTypeId"]}')">修改</button>
+                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deletedataType" onclick="initID('${col_index}','${col["dataTypeId"]}')">删除</button>
+                </div>
+            </div>
+
+        </#list>
+        </div>
+    </div>
+<#include "/page.ftl">
+    
+<#assign modalId="deletedataType">
+<#assign modaltitle="确定要删除该类型？删除后不可恢复！">
+<#include "/messageModal.ftl">
+<#assign formcontenturl="/dcsDataType/form_content.ftl">
+<#assign modalId="dataType">
+<#include "/addModal.ftl">
+</div>
+<script>
+    var pid=-1;
+    var  dataTypeId=-1;
+    var dataList =new Array();
+    var size= ${pageInfo.size};
+    console.info("size="+size);
+    
+     function initID(id,data_TypeId){
+         pid=id;
+         dataTypeId=data_TypeId;
+         console.info("id1="+pid);
+         console.info("dataTypeId="+data_TypeId);
+     }
+     function showTip(id,tip){
+         $("#"+id).attr('title',tip).tooltip('fixTitle').tooltip('show');
+         setTimeout(function(){
+             
+             $("#"+id).tooltip({delay:{ show: 500, hide: 1000 },animation:true }).tooltip('destroy');
+         },3000)
+     }
+     $('#adddataType').on('shown.bs.modal', function () {
+         
+         console.info("id2="+pid);
+         if (pid==-1) {
+             
+             $("#dataTypeName").val("");
+             $("#dataTypePathReg").val("");
+             $("#hdfsPath").val("");
+             $("#pathFtp").val("");
+             $("#adddataTypeLabel").text("添加类型");
+
+         } else {
+         
+             var col=dataList[pid];
+             $("#dataTypeName").val(col["dataTypeName"]);
+             $("#dataTypePathReg").val(col["dataTypePathReg"]);
+             $("#hdfsPath").val(col["hdfsPath"]);
+             $("#pathFtp").val(col["pathFtp"]);
+             var isFtpDelete = col["isFtpDelete"]
+             $(":radio[name='isFtpDelete'][value='" + isFtpDelete + "']").prop("checked", "checked");
+             var isFileDelete = col["isFileDelete"]
+             $(":radio[name='isFileDelete'][value='" + isFileDelete + "']").prop("checked", "checked");
+             $("#adddataTypeLabel").text("修改类型");
+         }
+     })
+    $(function(){
+
+        <#list pageInfo.list as col>
+            dataList.push(
+                    {
+                        dataTypeId:${col["dataTypeId"]},
+                        dataTypeName: '${col["dataTypeName"]}',
+                        dataTypePathReg:'${col["dataTypePathReg"]}',
+                        hdfsPath:'${col["hdfsPath"]}',
+                        pathFtp:'${col["pathFtp"]}',
+                        isFtpDelete:${col["isFtpDelete"]},
+                        isFileDelete:${col["isFileDelete"]}
+                    });
+        </#list>
+        $("#saveButton_dataType").click(function(){
+            
+            console.info("1----");
+            console.info("dataTypeId="+dataTypeId);
+            var dataTypeName= $("#dataTypeName").val();
+            var dataTypePathReg=$("#dataTypePathReg").val();
+            var isFtpDelete=$("input[name='isFtpDelete']:checked").val();
+            var isFileDelete=$("input[name='isFileDelete']:checked").val();
+            var hdfsPath= $("#hdfsPath").val();
+            var pathFtp=$("#pathFtp").val();
+            var postdata ={
+                dataTypeName:dataTypeName,
+                dataTypePathReg:dataTypePathReg,
+                isFtpDelete:isFtpDelete,
+                isFileDelete:isFileDelete,
+                hdfsPath:hdfsPath,
+                pathFtp:pathFtp,
+                dataTypeId: dataTypeId
+            } ;
+            console.info("2----");
+            var  i=0;
+            if (dataTypeName.length==0) {
+                
+                showTip("dataTypeName","类型名称不能为空");
+                i=1;
+            }
+            if (dataTypeName.length>20) {
+                showTip("dataTypeName","类型名称长度不能超过20");
+                i=1;
+            }
+            if (dataTypePathReg.length==0) {
+                showTip("dataTypePathReg","正则表达式不能为空");
+                i=1;
+            }
+            if (dataTypePathReg.length>255) {
+                showTip("dataTypePathReg","正则表达式长度不能超过255");
+                i=1;
+            }
+            if (hdfsPath.length==0) {
+                showTip("hdfsPath","hdfs路径不能为空");
+                i=1;
+            }
+            if (hdfsPath.length>500) {
+                showTip("hdfsPath","hdfs路径长度不能超过500");
+                i=1;
+            }
+            if (pathFtp.length==0) {
+                showTip("pathFtp","相对路径不能为空");
+                i=1;
+            }
+            if (pathFtp.length>200) {
+                showTip("pathFtp","相对路径长度不能超过200");
+                i=1;
+            }
+
+            if (i==0){
+
+                $.ajax({
+                    type:"post",
+                    url:BASE_PATH + "/portal/dcsDataType/add",
+                    data:postdata,
+                    async:false,
+                    success:function(result){
+                        $('#adddataType').modal('hide');
+                        setTimeout(function(){
+                            if(pid== -1){
+                                goto(${pageInfo.pageSize});
+                            } else{
+                                goto(${pageInfo.pageNum});
+                            }
+                        },1000);
+                        toastr.info("保存成功!");
+
+                    }
+                    
+                });
+            }
+        })
+
+        $("#deletedataTypeButton").click(function(){
+
+            $.ajax({
+                type:"post",
+                url:BASE_PATH + "/portal/dcsDataType/delete",
+                data:{id:dataTypeId},
+                async:false,
+                success:function(result){
+                    $('#deletedataType').modal('hide');
+                    toastr.info("删除成功!");
+                    setTimeout(function(){
+                        if (size==1 && pid==1){
+                            goto(${pageInfo.pageNum} -1);
+                        } else {
+                            goto(${pageInfo.pageNum});
+                        }
+                       
+                    },3000);
+                }
+
+            });
+        });
+       
+    })
+     
+    function goto(pn) {
+         console.info(" gotoC(pn)")
+        $("#dcsDataType").load(BASE_PATH + "/portal/dcsDataType/", {pn: pn}, function (txt) {
+
+            if (!txt) {
+
+            }
+
+        });
+    }
+</script>

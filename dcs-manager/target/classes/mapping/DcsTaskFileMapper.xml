@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsTaskFileMapper" >
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsTaskFile" >
+    <id column="file_id" property="file_id" jdbcType="INTEGER" />
+    <result column="ftp_id" property="ftp_id" jdbcType="INTEGER" />
+    <result column="data_type_id" property="data_type_id" jdbcType="INTEGER" />
+    <result column="path_and_name" property="path_and_name" jdbcType="VARCHAR" />
+    <result column="rename_file_name" property="rename_file_name" jdbcType="VARCHAR" />
+    <result column="file_insert_time" property="file_insert_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="probe_id" property="probe_id" jdbcType="INTEGER" />
+    <result column="file_size" property="file_size" jdbcType="BIGINT" />
+    <result column="ftp_path_and_name" property="ftp_path_and_name" jdbcType="VARCHAR" />
+    <result column="download_duration" property="download_duration" jdbcType="BIGINT" />
+    <result column="hdfs_path" property="hdfs_path" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ExtendResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsTaskFile" >
+    <id column="file_id" property="file_id" jdbcType="INTEGER" />
+    <result column="ftp_id" property="ftp_id" jdbcType="INTEGER" />
+    <result column="ftp_ip" property="ftp_ip" jdbcType="VARCHAR" />
+    <result column="data_type_id" property="data_type_id" jdbcType="INTEGER" />
+    <result column="data_type_name" property="data_type_name" jdbcType="VARCHAR" />
+    <result column="path_and_name" property="path_and_name" jdbcType="VARCHAR" />
+    <result column="rename_file_name" property="rename_file_name" jdbcType="VARCHAR" />
+    <result column="file_insert_time" property="file_insert_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="probe_id" property="probe_id" jdbcType="INTEGER" />
+    <result column="probe_name" property="probe_name" jdbcType="VARCHAR" />
+    <result column="file_size" property="file_size" jdbcType="BIGINT" />
+    <result column="ftp_path_and_name" property="ftp_path_and_name" jdbcType="VARCHAR" />
+    <result column="download_duration" property="download_duration" jdbcType="BIGINT" />
+    <result column="hdfs_path" property="hdfs_path" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    file_id, ftp_id, data_type_id, path_and_name, rename_file_name, file_insert_time, 
+    status, probe_id, file_size, ftp_path_and_name, download_duration, hdfs_path
+  </sql>
+  <sql id="Extend_Column_List" >
+    dtf.file_id,dtf.ftp_id,dfs.ftp_ip, dtf.data_type_id,ddt.data_type_name, dtf.path_and_name, dtf.rename_file_name, dtf.file_insert_time,
+    dtf.status, dtf.probe_id,dp.probe_name,dtf.file_size, dtf.ftp_path_and_name, dtf.download_duration, dtf.hdfs_path
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcs_task_file
+    where file_id = #{file_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dcs_task_file
+    where file_id = #{file_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsTaskFile" >
+    insert into dcs_task_file (file_id, ftp_id, data_type_id, 
+      path_and_name, rename_file_name, file_insert_time, 
+      status, probe_id, file_size, 
+      ftp_path_and_name, download_duration, hdfs_path
+      )
+    values (#{file_id,jdbcType=INTEGER}, #{ftp_id,jdbcType=INTEGER}, #{data_type_id,jdbcType=INTEGER}, 
+      #{path_and_name,jdbcType=VARCHAR}, #{rename_file_name,jdbcType=VARCHAR}, #{file_insert_time,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{probe_id,jdbcType=INTEGER}, #{file_size,jdbcType=BIGINT}, 
+      #{ftp_path_and_name,jdbcType=VARCHAR}, #{download_duration,jdbcType=BIGINT}, #{hdfs_path,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsTaskFile" >
+    insert into dcs_task_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="file_id != null" >
+        file_id,
+      </if>
+      <if test="ftp_id != null" >
+        ftp_id,
+      </if>
+      <if test="data_type_id != null" >
+        data_type_id,
+      </if>
+      <if test="path_and_name != null" >
+        path_and_name,
+      </if>
+      <if test="rename_file_name != null" >
+        rename_file_name,
+      </if>
+      <if test="file_insert_time != null" >
+        file_insert_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="probe_id != null" >
+        probe_id,
+      </if>
+      <if test="file_size != null" >
+        file_size,
+      </if>
+      <if test="ftp_path_and_name != null" >
+        ftp_path_and_name,
+      </if>
+      <if test="download_duration != null" >
+        download_duration,
+      </if>
+      <if test="hdfs_path != null" >
+        hdfs_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="file_id != null" >
+        #{file_id,jdbcType=INTEGER},
+      </if>
+      <if test="ftp_id != null" >
+        #{ftp_id,jdbcType=INTEGER},
+      </if>
+      <if test="data_type_id != null" >
+        #{data_type_id,jdbcType=INTEGER},
+      </if>
+      <if test="path_and_name != null" >
+        #{path_and_name,jdbcType=VARCHAR},
+      </if>
+      <if test="rename_file_name != null" >
+        #{rename_file_name,jdbcType=VARCHAR},
+      </if>
+      <if test="file_insert_time != null" >
+        #{file_insert_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="probe_id != null" >
+        #{probe_id,jdbcType=INTEGER},
+      </if>
+      <if test="file_size != null" >
+        #{file_size,jdbcType=BIGINT},
+      </if>
+      <if test="ftp_path_and_name != null" >
+        #{ftp_path_and_name,jdbcType=VARCHAR},
+      </if>
+      <if test="download_duration != null" >
+        #{download_duration,jdbcType=BIGINT},
+      </if>
+      <if test="hdfs_path != null" >
+        #{hdfs_path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsTaskFile" >
+    update dcs_task_file
+    <set >
+      <if test="ftp_id != null" >
+        ftp_id = #{ftp_id,jdbcType=INTEGER},
+      </if>
+      <if test="data_type_id != null" >
+        data_type_id = #{data_type_id,jdbcType=INTEGER},
+      </if>
+      <if test="path_and_name != null" >
+        path_and_name = #{path_and_name,jdbcType=VARCHAR},
+      </if>
+      <if test="rename_file_name != null" >
+        rename_file_name = #{rename_file_name,jdbcType=VARCHAR},
+      </if>
+      <if test="file_insert_time != null" >
+        file_insert_time = #{file_insert_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="probe_id != null" >
+        probe_id = #{probe_id,jdbcType=INTEGER},
+      </if>
+      <if test="file_size != null" >
+        file_size = #{file_size,jdbcType=BIGINT},
+      </if>
+      <if test="ftp_path_and_name != null" >
+        ftp_path_and_name = #{ftp_path_and_name,jdbcType=VARCHAR},
+      </if>
+      <if test="download_duration != null" >
+        download_duration = #{download_duration,jdbcType=BIGINT},
+      </if>
+      <if test="hdfs_path != null" >
+        hdfs_path = #{hdfs_path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where file_id = #{file_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ultrapower.dcs.cluster.control.model.DcsTaskFile" >
+    update dcs_task_file
+    set  = #{ftp_id,jdbcType=INTEGER},
+      data_type_id = #{data_type_id,jdbcType=INTEGER},
+      path_and_name = #{path_and_name,jdbcType=VARCHAR},
+      rename_file_name = #{rename_file_name,jdbcType=VARCHAR},
+      file_insert_time = #{file_insert_time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      probe_id = #{probe_id,jdbcType=INTEGER},
+      file_size = #{file_size,jdbcType=BIGINT},
+      ftp_path_and_name = #{ftp_path_and_name,jdbcType=VARCHAR},
+      download_duration = #{download_duration,jdbcType=BIGINT},
+      hdfs_path = #{hdfs_path,jdbcType=VARCHAR}
+    where file_id = #{file_id,jdbcType=INTEGER}
+  </update>
+  <select id="findDcsProbeRelCurrentTaskList" resultMap="ExtendResultMap">
+    SELECT <include refid="Extend_Column_List" />
+    FROM dcs_task_file dtf
+    left join  dcs_ftp_server dfs on dtf.ftp_id=dfs.ftp_id
+    left join  dcs_data_type ddt on dtf.data_type_id=ddt.data_type_id
+    left join  dcs_probe dp on dtf.probe_id=dp.probe_id
+     where 1=1 and dtf.probe_id=#{probe_id,jdbcType=INTEGER}
+    <if test="ftp_id != null" >
+       and dtf.ftp_id= #{ftp_id,jdbcType=INTEGER}
+    </if>
+    <if test="data_type_id != null" >
+         and dtf.data_type_id= #{data_type_id,jdbcType=INTEGER}
+    </if>
+    <if test="fileStatus != null" >
+      and dtf.status= #{fileStatus,jdbcType=INTEGER}
+    </if>
+    <if test="fileName != null and  fileName !=''" >
+      and dtf.ftp_path_and_name like '%${fileName}%'
+    </if>
+      order by dtf.file_id asc
+  </select>
+</mapper>

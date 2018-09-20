@@ -1,0 +1,47 @@
+<div role="content">
+
+    <!-- widget edit box -->
+    <div class="jarviswidget-editbox">
+        <!-- This area used as dropdown edit box -->
+         
+    </div>
+    <!-- end widget edit box -->
+    <!-- widget content -->
+    <div class="widget-body">
+        
+        <table id="displayTable" class="table table-bordered table-striped" style="clear: both">
+            <tbody>
+            <tr>
+                <td >类型名称</td>
+                <td ><label class="control-label" id="dataTypeName1"></label></td>
+            </tr>
+            <tr>
+                <td>正则表达式</td>
+                <td><label class="control-label" id="dataTypePathReg"></label></td>
+            </tr>
+            <tr>
+                <td>是否删除FTP文件</td>
+                <td><label class="control-label" id="isFtpDelete"></label></td>
+            </tr>
+            <tr>
+                <td>是否删除本地文件</td>
+                <td><label class="control-label" id="isFileDelete"></label></td>
+            </tr>
+            <tr>
+                <td>文件存储HDFS路径</td>
+                <td><label class="control-label" id="hdfsPath1"></label></td>
+            </tr>
+
+            <tr>
+                <td>文件转义相对路径</td>
+                <td><label class="control-label" id="pathFtp"></label></td>
+            </tr>
+
+</tbody>
+</table>
+
+
+</div>
+<!-- end widget content -->
+
+</div>

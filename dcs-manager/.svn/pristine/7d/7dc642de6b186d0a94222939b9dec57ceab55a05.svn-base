@@ -1,0 +1,165 @@
+<div class="row" style="margin-top: 18px">
+    <div class='col-sm-1'>
+    </div>
+    <div class='col-sm-3'>
+        <div class="form-group">
+
+            <!--指定 date标记-->
+            <div class='input-group input-group-sm date' id='datetimepicker1'>
+
+                <input id="beginDate" type='text' class="form-control " placeholder="开始时间"/>
+                <span class="input-group-addon ">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-3'>
+        <div class="form-group">
+
+            <!--指定 date标记-->
+            <div class='input-group input-group-sm date' id='datetimepicker2'>
+
+                <input id="endDate" type='text' class="form-control" placeholder="结束时间"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4">
+
+
+        <button id="b1" type="button" class="btn btn-primary btn-sm1">查 询</button>
+    </div>
+</div>
+
+<div id="table">
+    <table class="table table-striped table-hover table-bordered">
+        <colgroup>
+            <col style>
+            <col style>
+            <col style>
+            <col style="width: 10px"></col>
+            <col style>
+            <col style>
+            <col style>
+            <col style>
+            <col style>
+            <col style>
+        </colgroup>
+        <thead class="tableHeader">
+        <tr>
+            <th>文件ID</th>
+            <th>IP地址</th>
+            <th>probe名称</th>
+            <th>类型名称</th>
+            <th>文件名称</th>
+            <th>生成时间</th>
+            <th>状态</th>
+            <th>大小(GB)</th>
+            <th>下载时长(ms)</th>
+            <th>上传时长(ms)</th>
+            <th>HDFS路径</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list pageInfo.list as col>
+        <tr>
+            <td> ${col["fileId"]?c}</td>
+            <td> ${col["ftpIp"]}</td>
+            <td> ${col["probeName"]}</td>
+            <td> ${col["dataTypeName"]}</td>
+            <td title='${col["pathAndName"]}'>
+                <#if col["pathAndName"]?? && col["pathAndName"]?length lt 10>
+                ${col["pathAndName"]}
+                <#else>
+                ${col["pathAndName"][0..9]?default("")}...
+                </#if>
+            </td>
+            <td>${col["fileInsertTime"]?string('yyyy-MM-dd HH:mm:ss')}</td>
+            <td title="<#if col["status"]== 0>正在下载</#if><#if col["status"]== 1>准备上传hdfs</#if><#if col["status"]== 2>上传hdfs成功</#if><#if col["status"]== 3>上传hdfs失败</#if><#if col["status"]== 4>正在上传hdfs</#if>">
+                <#if col["status"]== 0>正在下载</#if><#if col["status"]== 1>准备上传hdfs</#if><#if col["status"]== 2>上传hdfs成功</#if><#if col["status"]== 3>上传hdfs失败</#if><#if col["status"]== 4>正在上传hdfs</#if></td>
+            <td> ${col["fileSize"]}</td>
+            <td>${col["downloadDuration"]}</td>
+            <td> ${col["toHdfsDuration"]}</td>
+            <td title="${col["hdfsPath"]}">
+                <#if col["hdfsPath"]?? && col["hdfsPath"]?length lt 10>
+                ${col["hdfsPath"]}
+                <#else>
+                ${col["hdfsPath"][0..9]?default("")}...
+                </#if>
+            </td>
+        </tr>
+        </#list>
+        </tbody>
+    </table>
+<#include "/page.ftl">
+
+
+    <script>
+        $(function () {
+
+            var picker1 = $('#datetimepicker1').datetimepicker({
+                format: 'YYYYMMDD',
+                locale: moment.locale('zh-cn'),
+                defaultDate: new Date()
+            });
+            var picker2 = $('#datetimepicker2').datetimepicker({
+                format: 'YYYYMMDD',
+                locale: moment.locale('zh-cn'),
+                defaultDate: new Date()
+            });
+            //动态设置最小值
+            picker1.on('dp.change', function (e) {
+                picker2.data('DateTimePicker').minDate(e.date);
+            });
+            //动态设置最大值
+            picker2.on('dp.change', function (e) {
+                picker1.data('DateTimePicker').maxDate(e.date);
+            });
+            $("#b1").bind("click", function () {
+                var d1 = $("#beginDate").val();
+                var d2 = $("#endDate").val();
+                if (!d1) {
+                    alert("开始日期不能为空！");
+                    return;
+                }
+
+                if (!d2) {
+                    alert("结束日期不能为空！");
+                    return;
+                }
+                console.info('b1');
+                console.info($("#beginDate").val());
+                console.info($("#endDate").val());
+                goto(1);
+            });
+
+        });
+
+
+        function goto(pn) {
+
+            var d1 = $("#beginDate").val();
+            var d2 = $("#endDate").val();
+            if (!d1) {
+                alert("开始日期不能为空！");
+                return;
+            }
+
+            if (!d2) {
+                alert("结束日期不能为空！");
+                return;
+            }
+            $("#table").load(BASE_PATH + "/portal/historyFiles/", {pn: pn, beginTime: d1, endTime: d2}, function (txt) {
+
+                if (!txt) {
+
+                }
+
+            });
+        }
+    </script>
+</div>
+           

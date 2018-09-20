@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsFailureFileMapper" >
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsFailureFile" >
+    <result column="file_id" property="file_id" jdbcType="INTEGER" />
+    <result column="ftp_id" property="ftp_id" jdbcType="INTEGER" />
+    <result column="data_type_id" property="data_type_id" jdbcType="INTEGER" />
+    <result column="path_and_name" property="path_and_name" jdbcType="VARCHAR" />
+    <result column="rename_file_name" property="rename_file_name" jdbcType="VARCHAR" />
+    <result column="file_insert_time" property="file_insert_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="probe_id" property="probe_id" jdbcType="INTEGER" />
+    <result column="file_size" property="file_size" jdbcType="BIGINT" />
+    <result column="ftp_path_and_name" property="ftp_path_and_name" jdbcType="VARCHAR" />
+    <result column="download_duration" property="download_duration" jdbcType="BIGINT" />
+    <result column="to_hdfs_duration" property="to_hdfs_duration" jdbcType="BIGINT" />
+    <result column="hdfs_path" property="hdfs_path" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ExtendResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsFailureFile" >
+    <result column="file_id" property="file_id" jdbcType="INTEGER" />
+    <result column="ftp_id" property="ftp_id" jdbcType="INTEGER" />
+    <result column="ftp_ip" property="ftp_ip" jdbcType="VARCHAR" />
+    <result column="data_type_id" property="data_type_id" jdbcType="INTEGER" />
+    <result column="data_type_name" property="data_type_name" jdbcType="VARCHAR" />
+    <result column="path_and_name" property="path_and_name" jdbcType="VARCHAR" />
+    <result column="rename_file_name" property="rename_file_name" jdbcType="VARCHAR" />
+    <result column="file_insert_time" property="file_insert_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="probe_id" property="probe_id" jdbcType="INTEGER" />
+    <result column="probe_name" property="probe_name" jdbcType="VARCHAR" />
+    <result column="file_size" property="file_size" jdbcType="BIGINT" />
+    <result column="ftp_path_and_name" property="ftp_path_and_name" jdbcType="VARCHAR" />
+    <result column="download_duration" property="download_duration" jdbcType="BIGINT" />
+    <result column="to_hdfs_duration" property="to_hdfs_duration" jdbcType="BIGINT" />
+    <result column="hdfs_path" property="hdfs_path" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Extend_Column_List">
+  dff.file_id,dff.ftp_id,dfs.ftp_ip, dff.data_type_id,ddt.data_type_name, dff.path_and_name, dff.rename_file_name, dff.file_insert_time,
+  dff.status,dff.probe_id,dp.probe_name,dff.file_size,dff.ftp_path_and_name,dff.download_duration,dff.hdfs_path
+ </sql>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFailureFile" >
+    insert into dcs_failure_file (file_id, ftp_id, data_type_id, 
+      path_and_name, rename_file_name, file_insert_time, 
+      status, probe_id, file_size, 
+      ftp_path_and_name, download_duration, to_hdfs_duration, 
+      hdfs_path)
+    values (#{file_id,jdbcType=INTEGER}, #{ftp_id,jdbcType=INTEGER}, #{data_type_id,jdbcType=INTEGER}, 
+      #{path_and_name,jdbcType=VARCHAR}, #{rename_file_name,jdbcType=VARCHAR}, #{file_insert_time,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{probe_id,jdbcType=INTEGER}, #{file_size,jdbcType=BIGINT}, 
+      #{ftp_path_and_name,jdbcType=VARCHAR}, #{download_duration,jdbcType=BIGINT}, #{to_hdfs_duration,jdbcType=BIGINT}, 
+      #{hdfs_path,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFailureFile" >
+    insert into dcs_failure_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="file_id != null" >
+        file_id,
+      </if>
+      <if test="ftp_id != null" >
+        ftp_id,
+      </if>
+      <if test="data_type_id != null" >
+        data_type_id,
+      </if>
+      <if test="path_and_name != null" >
+        path_and_name,
+      </if>
+      <if test="rename_file_name != null" >
+        rename_file_name,
+      </if>
+      <if test="file_insert_time != null" >
+        file_insert_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="probe_id != null" >
+        probe_id,
+      </if>
+      <if test="file_size != null" >
+        file_size,
+      </if>
+      <if test="ftp_path_and_name != null" >
+        ftp_path_and_name,
+      </if>
+      <if test="download_duration != null" >
+        download_duration,
+      </if>
+      <if test="to_hdfs_duration != null" >
+        to_hdfs_duration,
+      </if>
+      <if test="hdfs_path != null" >
+        hdfs_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="file_id != null" >
+        #{file_id,jdbcType=INTEGER},
+      </if>
+      <if test="ftp_id != null" >
+        #{ftp_id,jdbcType=INTEGER},
+      </if>
+      <if test="data_type_id != null" >
+        #{data_type_id,jdbcType=INTEGER},
+      </if>
+      <if test="path_and_name != null" >
+        #{path_and_name,jdbcType=VARCHAR},
+      </if>
+      <if test="rename_file_name != null" >
+        #{rename_file_name,jdbcType=VARCHAR},
+      </if>
+      <if test="file_insert_time != null" >
+        #{file_insert_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="probe_id != null" >
+        #{probe_id,jdbcType=INTEGER},
+      </if>
+      <if test="file_size != null" >
+        #{file_size,jdbcType=BIGINT},
+      </if>
+      <if test="ftp_path_and_name != null" >
+        #{ftp_path_and_name,jdbcType=VARCHAR},
+      </if>
+      <if test="download_duration != null" >
+        #{download_duration,jdbcType=BIGINT},
+      </if>
+      <if test="to_hdfs_duration != null" >
+        #{to_hdfs_duration,jdbcType=BIGINT},
+      </if>
+      <if test="hdfs_path != null" >
+        #{hdfs_path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="findDcsFailureFileList" resultMap="ExtendResultMap">
+    SELECT <include refid="Extend_Column_List" />
+    FROM dcs_failure_file dff
+    left join  dcs_ftp_server dfs on dff.ftp_id=dfs.ftp_id
+    left join  dcs_data_type ddt on dff.data_type_id=ddt.data_type_id
+    left join  dcs_probe dp on dff.probe_id=dp.probe_id
+    WHERE 1=1
+    <if test="probe_id != null" >
+      and dff.probe_id= #{probe_id,jdbcType=INTEGER}
+    </if>
+    <if test="ftp_id != null" >
+      and dff.ftp_id= #{ftp_id,jdbcType=INTEGER}
+    </if>
+    <if test="data_type_id != null" >
+      and dff.data_type_id= #{data_type_id,jdbcType=INTEGER}
+    </if>
+    <if test="fileStatus != null" >
+      and dff.status= #{fileStatus,jdbcType=INTEGER}
+    </if>
+    <if test="fileName != null and  fileName !=''" >
+      and dff.ftp_path_and_name like '%${fileName}%'
+    </if>
+    order by file_id asc
+  </select>
+</mapper>

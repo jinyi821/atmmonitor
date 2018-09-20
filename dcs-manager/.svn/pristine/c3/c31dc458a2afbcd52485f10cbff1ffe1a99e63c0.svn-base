@@ -1,0 +1,3042 @@
+.skin-2 .sidebar-shortcuts .btn:focus {
+	outline: 0px;
+}
+.skin-3 .sidebar-shortcuts-large > .btn:focus {
+	outline: 0px;
+}
+.skin-1 {
+	background-color: rgb(74, 79, 86);
+}
+.skin-1 .navbar {
+	background: rgb(44, 106, 160);
+}
+.skin-1 .sidebar {
+	border-right-width: 0px; background-color: rgb(34, 42, 45);
+}
+.skin-1 .nav-list > li {
+	border-color: rgb(63, 78, 84);
+}
+.skin-1 .nav-list > li > a {
+	color: rgb(186, 194, 200); background-color: rgb(34, 42, 45);
+}
+.skin-1 .nav-list > li:hover > a {
+	color: rgb(225, 234, 241); background-color: rgb(65, 75, 81);
+}
+.skin-1 .nav-list > li.open:hover > a {
+	color: rgb(133, 192, 236); background-color: rgb(34, 42, 45);
+}
+.skin-1 .nav-list > li.open > a {
+	color: rgb(133, 192, 236); background-color: rgb(34, 42, 45);
+}
+.skin-1 .nav-list > li.active:hover > a {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .nav-list > li.active > a {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .nav-list > li:hover::before {
+	background-color: rgb(98, 156, 201);
+}
+.skin-1 .nav-list > li.active::before {
+	display: block; background-color: rgb(77, 150, 198);
+}
+.skin-1 .nav-list li.active > a::after {
+	border-width: 11px 7px; top: 8px; right: 0px; border-right-color: rgb(255, 255, 255);
+}
+.skin-1 .nav-list > li.active > .submenu li.active > a::after {
+	top: 5px;
+}
+.skin-1 .nav-list > li .submenu {
+	background-color: rgb(51, 61, 63);
+}
+.skin-1 .nav-list > li.active .submenu {
+	background-color: rgb(24, 30, 32);
+}
+.skin-1 .nav-list > li .submenu > li > a {
+	border-top-color: rgb(69, 77, 78); border-top-style: solid; background-color: rgb(51, 61, 63);
+}
+.skin-1 .nav-list > li .submenu > li > a:hover {
+	background-color: rgb(45, 54, 56);
+}
+.skin-1 .nav-list > li.active .submenu > li > a {
+	border-top-color: rgb(34, 37, 38); background-color: rgb(24, 30, 32);
+}
+.skin-1 .nav-list > li.active .submenu > li > a:hover {
+	background-color: rgb(20, 25, 26);
+}
+.skin-1 .nav-list > li > .submenu {
+	border-top-color: rgb(80, 90, 91);
+}
+.skin-1 .nav-list > li.active > .submenu {
+	border-top-color: rgb(47, 62, 68);
+}
+.skin-1 .nav-list > li > .submenu > li > a {
+	color: rgb(217, 223, 230);
+}
+.skin-1 .nav-list > li > .submenu > li:hover > a {
+	color: rgb(138, 180, 222);
+}
+.skin-1 .nav-list > li > .submenu > li.active > a {
+	color: rgb(123, 183, 229); background-color: rgb(22, 27, 29);
+}
+.skin-1 .nav-list > li > .submenu::before {
+	border-color: rgb(100, 108, 112);
+}
+.skin-1 .nav-list > li > .submenu > li::before {
+	border-color: rgb(100, 108, 112);
+}
+.skin-1 .nav-list > li.active > .submenu::before {
+	border-color: rgb(63, 78, 84);
+}
+.skin-1 .nav-list > li.active > .submenu > li::before {
+	border-color: rgb(63, 78, 84);
+}
+.skin-1 .nav-list > li .submenu li > .submenu li > a {
+	color: rgb(217, 223, 230);
+}
+.skin-1 .nav-list > li .submenu li > .submenu li:hover > a {
+	color: rgb(138, 180, 222);
+}
+.skin-1 .nav-list > li .submenu li.open > a {
+	color: rgb(133, 192, 236);
+}
+.skin-1 .nav-list > li .submenu li > .submenu > li.open > a {
+	color: rgb(133, 192, 236);
+}
+.skin-1 .nav-list > li .submenu li > .submenu li.active > a {
+	color: rgb(97, 168, 221);
+}
+.skin-1 .nav-list > li .submenu li > .submenu li.active:hover > a {
+	color: rgb(133, 192, 236);
+}
+.skin-1 .sidebar .nav-list > li.highlight.active {
+	border-color: rgb(80, 107, 127);
+}
+.skin-1 .sidebar .nav-list > li.highlight.active + li {
+	border-color: rgb(80, 107, 127);
+}
+.skin-1 .sidebar .nav-list > li.highlight.active + li:last-child {
+	border-bottom-color: rgb(63, 78, 84);
+}
+.skin-1 .sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 20px 10px; top: 0px; right: -9px; border-right-color: transparent; border-left-color: rgb(20, 26, 27); z-index: 1;
+}
+.skin-1 .sidebar .nav-list > li.highlight.active > a::before {
+	border-width: 20px 0px 20px 10px; border-style: solid; border-color: transparent; top: 0px; right: -11px; position: absolute; z-index: 1; content: "";
+}
+.skin-1 .sidebar-shortcuts {
+	border-color: rgb(63, 78, 84); background-color: rgb(34, 42, 45);
+}
+.skin-1 .sidebar-shortcuts-mini {
+	border-color: rgb(63, 78, 84); background-color: rgb(34, 42, 45);
+}
+.skin-1 .sidebar > .nav-search {
+	border-color: rgb(63, 78, 84); background-color: rgb(34, 42, 45);
+}
+.skin-1 .sidebar-toggle {
+	border-color: rgb(63, 78, 84); background-color: rgb(24, 30, 33);
+}
+.skin-1 .sidebar-toggle > .ace-icon {
+	border-color: rgb(170, 170, 170); color: rgb(170, 170, 170); background-color: rgb(34, 42, 45);
+}
+.skin-1 .breadcrumbs {
+	border-width: 0px; background-color: rgb(240, 240, 240);
+}
+@media all and (min-width:992px)
+{
+.skin-1 .breadcrumbs-fixed.breadcrumbs {
+	border-bottom-width: 1px;
+}
+}
+@media only screen and (max-width:991px)
+{
+.skin-1 .responsive.sidebar {
+	border-width: 0px; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-1 .responsive.sidebar .nav-list li.active > a::after {
+	display: none;
+}
+.skin-1 .responsive.sidebar .nav-list > li.highlight.active > a::after {
+	display: block;
+}
+}
+.skin-1 .menu-min.sidebar .nav-list > li.open > a {
+	color: rgb(186, 194, 200); background-color: rgb(34, 42, 45);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > a::after {
+	border-width: 9px 6px; top: 10px;
+}
+.skin-1 .menu-min.sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 20px 10px; top: 0px;
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active:hover > a::after {
+	border-right-color: rgb(36, 42, 43);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > a {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > a:hover {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .menu-min.sidebar .nav-list > li:hover > a {
+	color: rgb(225, 234, 241);
+}
+.skin-1 .menu-min.sidebar .nav-list > li > a > .menu-text {
+	background-color: rgb(65, 75, 81);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > a > .menu-text {
+	border-width: 1px 1px 0px; border-style: solid; border-color: rgb(59, 69, 71) rgb(59, 69, 71) rgb(59, 69, 71) rgb(48, 86, 117); border-image: none; background-color: rgb(36, 42, 43);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > a:not(.dropdown-toggle) > .menu-text {
+	border-width: 1px; border-top-color: rgb(74, 92, 99); border-right-color: rgb(74, 92, 99); border-bottom-color: rgb(74, 92, 99);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active:hover > a {
+	color: rgb(123, 183, 229);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > a > .menu-text {
+	color: rgb(123, 183, 229);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active.open > a {
+	background-color: rgb(20, 26, 27);
+}
+.skin-1 .menu-min.sidebar .nav-list > li > .submenu {
+	border-width: 0px 0px 0px 1px; border-left-color: rgb(24, 29, 31); border-left-style: solid; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-1 .menu-min.sidebar .nav-list > li > a > .menu-text {
+	border-width: 0px 0px 0px 1px; border-left-color: rgb(24, 29, 31); border-left-style: solid; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-1 .menu-min.sidebar .nav-list > li > .submenu {
+	border-top-color: rgb(90, 96, 106); border-top-width: 1px !important; border-top-style: solid; background-color: rgb(51, 61, 63);
+}
+.skin-1 .menu-min.sidebar .nav-list > li > .submenu::after {
+	display: none;
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > .submenu {
+	border-top-color: rgb(59, 69, 71); border-left-color: rgb(48, 86, 117); background-color: rgb(24, 30, 32);
+}
+.skin-1 .menu-min.sidebar .nav-list > li > .arrow::after {
+	border-right-color: rgb(65, 75, 81);
+}
+.skin-1 .menu-min.sidebar .nav-list > li > .arrow::before {
+	border-right-color: rgb(17, 20, 21);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > .arrow::after {
+	border-right-color: rgb(36, 42, 43);
+}
+.skin-1 .menu-min.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(80, 160, 221);
+}
+.skin-1 .menu-min.sidebar .sidebar-shortcuts-large {
+	border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgb(74, 92, 99); border-image: none; top: 0px; box-shadow: none; background-color: rgb(34, 42, 45); -webkit-box-shadow: none;
+}
+@media all and (max-width:991px)
+{
+.skin-1 .responsive-min.sidebar .nav-list > li.open > a {
+	color: rgb(186, 194, 200); background-color: rgb(34, 42, 45);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a::after {
+	border-width: 9px 6px; top: 10px;
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 20px 10px; top: 0px;
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active:hover > a::after {
+	border-right-color: rgb(36, 42, 43);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a:hover {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li:hover > a {
+	color: rgb(225, 234, 241);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > a > .menu-text {
+	background-color: rgb(65, 75, 81);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a > .menu-text {
+	border-width: 1px 1px 0px; border-style: solid; border-color: rgb(59, 69, 71) rgb(59, 69, 71) rgb(59, 69, 71) rgb(48, 86, 117); border-image: none; background-color: rgb(36, 42, 43);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a:not(.dropdown-toggle) > .menu-text {
+	border-width: 1px; border-top-color: rgb(74, 92, 99); border-right-color: rgb(74, 92, 99); border-bottom-color: rgb(74, 92, 99);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active:hover > a {
+	color: rgb(123, 183, 229);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a > .menu-text {
+	color: rgb(123, 183, 229);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active.open > a {
+	background-color: rgb(20, 26, 27);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > .submenu {
+	border-width: 0px 0px 0px 1px; border-left-color: rgb(24, 29, 31); border-left-style: solid; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > a > .menu-text {
+	border-width: 0px 0px 0px 1px; border-left-color: rgb(24, 29, 31); border-left-style: solid; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > .submenu {
+	border-top-color: rgb(90, 96, 106); border-top-width: 1px !important; border-top-style: solid; background-color: rgb(51, 61, 63);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > .submenu::after {
+	display: none;
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > .submenu {
+	border-top-color: rgb(59, 69, 71); border-left-color: rgb(48, 86, 117); background-color: rgb(24, 30, 32);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > .arrow::after {
+	border-right-color: rgb(65, 75, 81);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li > .arrow::before {
+	border-right-color: rgb(17, 20, 21);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > .arrow::after {
+	border-right-color: rgb(36, 42, 43);
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(80, 160, 221);
+}
+.skin-1 .responsive-min.sidebar .sidebar-shortcuts-large {
+	border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgb(74, 92, 99); border-image: none; top: 0px; box-shadow: none; background-color: rgb(34, 42, 45); -webkit-box-shadow: none;
+}
+.skin-1 .responsive-min.sidebar .nav-list > li.active > a::after {
+	display: block;
+}
+.skin-1 .responsive-max.sidebar .nav-list li.active > a::after {
+	display: none;
+}
+.skin-1 .responsive-max.sidebar .nav-list > li.active.highlight > a::after {
+	display: block;
+}
+}
+@media only screen and (min-width:992px)
+{
+.skin-1 .nav-list li.hover > .submenu {
+	border-color: rgb(35, 40, 40); padding-right: 0px; padding-bottom: 2px; padding-left: 0px;
+}
+.skin-1 .nav-list li.hover > .submenu > li > a {
+	margin-top: 0px; margin-bottom: 0px; border-top-width: 1px;
+}
+.skin-1 .nav-list li.hover > .submenu > li:first-child > a {
+	border-top-width: 0px;
+}
+.skin-1 .nav-list > li > .submenu li.hover > .submenu {
+	padding: 3px 2px;
+}
+.skin-1 .nav-list > li.active > .submenu li.hover > .submenu {
+	border-left-color: rgb(71, 85, 97); background-color: rgb(23, 30, 31);
+}
+.skin-1 .nav-list li.active > .submenu li.active.hover > .submenu {
+	border-left-color: rgb(48, 86, 117);
+}
+.skin-1 .nav-list li.active.hover > .submenu {
+	border-left-color: rgb(48, 86, 117);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li:not(:hover):not(.active):not(:focus).hover.open > a {
+	color: rgb(186, 194, 200);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li.hover.open:hover > a {
+	color: rgb(225, 234, 241); background-color: rgb(65, 75, 81);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li.hover.active:hover > a {
+	color: rgb(123, 183, 229); background-color: rgb(20, 26, 27);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li > .submenu li:not(:hover):not(.active):not(:focus).hover.open > a {
+	color: rgb(217, 223, 230);
+}
+}
+@media only screen and (max-width:991px) and (min-width:992px)
+{
+.skin-1 .navbar-collapse.sidebar .nav-list li.hover > .submenu {
+	padding-bottom: 0px; border-top-color: rgb(80, 90, 91);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list li.active.hover > .submenu {
+	border-top-color: rgb(47, 62, 68);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list li.active > .submenu li.active.hover > .submenu {
+	border-left-width: 0px;
+}
+.skin-1 .navbar-collapse.sidebar .nav-list li.active.hover > .submenu {
+	border-left-width: 0px;
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li > .submenu li.hover > .submenu {
+	border-left-width: 0px;
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li > .submenu li.hover > .submenu {
+	padding: 0px;
+}
+.skin-1 .navbar-collapse.sidebar .nav-list li li.hover > .submenu > li:first-child > a {
+	border-top-width: 1px;
+}
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li .submenu > li.hover:hover > a {
+	background-color: rgb(45, 54, 56);
+}
+.skin-1 .navbar-collapse.sidebar .nav-list > li.active .submenu > li.hover:hover > a {
+	background-color: rgb(20, 25, 26);
+}
+@media only screen and (min-width:992px)
+{
+.skin-1 :not(.navbar-collapse).sidebar .nav-list > li .submenu > li.hover:hover > a {
+	background-color: rgb(45, 54, 56);
+}
+.skin-1 :not(.navbar-collapse).sidebar .nav-list > li.active .submenu > li.hover:hover > a {
+	background-color: rgb(20, 25, 26);
+}
+}
+.skin-1 .nav-list li > .arrow::after {
+	border-right-color: rgb(53, 60, 61);
+}
+.skin-1 .nav-list li > .arrow::before {
+	border-right-color: rgb(29, 33, 34);
+}
+.skin-1 .nav-list > li.active > .arrow::after {
+	border-right-color: rgb(23, 30, 31);
+}
+.skin-1 .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(48, 86, 117);
+}
+.skin-1 .nav-list > li.active > .submenu li.hover > .arrow::before {
+	border-right-color: rgb(79, 110, 134);
+}
+.skin-1 .nav-list > li.active > .submenu li.active.hover > .arrow::before {
+	border-right-color: rgb(48, 86, 117);
+}
+.skin-1 .nav-list > li.active > .submenu li.hover > .arrow::after {
+	border-right-color: rgb(23, 30, 31);
+}
+.skin-1 .nav-list li.pull_up > .arrow::after {
+	border-right-color: rgb(53, 60, 61) !important;
+}
+.skin-1 .nav-list li.pull_up > .arrow::before {
+	border-right-color: rgb(29, 33, 34) !important;
+}
+.skin-1 .nav-list li.active.pull_up > .arrow::after {
+	border-right-color: rgb(23, 30, 31) !important;
+}
+.skin-1 .nav-list li.active.pull_up > .arrow::before {
+	border-right-color: rgb(48, 86, 117) !important;
+}
+.skin-1 .main-container .menu-toggler {
+	background-color: rgb(68, 68, 68);
+}
+.skin-1 .main-container .menu-toggler::before {
+	border-top-color: rgb(135, 184, 127); border-bottom-color: rgb(111, 179, 224);
+}
+.skin-1 .main-container .menu-toggler::after {
+	border-top-color: rgb(255, 162, 77); border-bottom-color: rgb(209, 91, 71);
+}
+.skin-1 .main-container .menu-toggler > .toggler-text {
+	border-top-color: rgb(68, 68, 68);
+}
+.display.skin-1 {
+	background-color: rgb(93, 130, 162);
+}
+.display.skin-1::before {
+	border-top-color: rgb(181, 211, 176); border-bottom-color: rgb(174, 212, 238);
+}
+.display.skin-1::after {
+	border-top-color: rgb(255, 202, 154); border-bottom-color: rgb(224, 146, 132);
+}
+.display.skin-1 > .toggler-text {
+	border-top-color: rgb(93, 130, 162);
+}
+.skin-1 .navbar .navbar-toggle {
+	background-color: rgb(77, 157, 204);
+}
+.skin-1 .navbar .navbar-toggle:focus {
+	border-color: transparent; background-color: rgb(77, 157, 204);
+}
+.skin-1 .navbar .navbar-toggle:hover {
+	border-color: rgba(255, 255, 255, 0.1); background-color: rgb(57, 146, 198);
+}
+.skin-1 .navbar .display.navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.35); box-shadow: inset 1px 1px 2px 0px rgba(0,0,0,0.25); background-color: rgb(51, 132, 179);
+}
+.skin-1 .navbar [data-toggle=collapse]:not(.collapsed).navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.35); box-shadow: inset 1px 1px 2px 0px rgba(0,0,0,0.25); background-color: rgb(51, 132, 179);
+}
+@media only screen and (min-width:768px)
+{
+.skin-1 .main-container.container::before {
+	box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.1);
+}
+}
+@media only screen and (min-width:992px)
+{
+.skin-1 .h-sidebar.sidebar::before {
+	border-bottom-color: rgb(74, 92, 99); background-color: rgb(56, 66, 74);
+}
+.skin-1 .h-sidebar.sidebar .nav-list {
+	border-bottom-width: 0px;
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active::before {
+	display: block;
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active.hover > a::after {
+	border-width: 8px; border-color: transparent transparent rgb(255, 255, 255); left: 50%; top: auto; right: auto; bottom: 0px; margin-left: -8px; display: block; content: "";
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active.highlight > a::before {
+	display: none;
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.hover-show.active.hover > a::after {
+	display: none;
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active.hover:hover > a::after {
+	display: none;
+}
+.skin-1 .h-sidebar.sidebar + .main-content .breadcrumbs {
+	border-color: rgb(232, 232, 232);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li {
+	border-color: rgb(63, 78, 84);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li:hover {
+	border-left-color: rgb(80, 101, 117);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li:hover + li {
+	border-left-color: rgb(80, 101, 117);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li:last-child:hover {
+	border-right-color: rgb(80, 101, 117);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active {
+	border-left-color: rgb(85, 115, 138);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active + li {
+	border-left-color: rgb(85, 115, 138);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li:hover + li.active {
+	border-left-color: rgb(85, 115, 138);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li:last-child.active {
+	border-right-color: rgb(85, 115, 138);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.hover > .submenu {
+	border-top-color: rgb(35, 40, 40);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active.hover > .submenu {
+	border-top-color: rgb(48, 86, 117); border-left-color: rgb(35, 40, 40);
+}
+.skin-1 .h-sidebar.sidebar .sidebar-shortcuts-large {
+	border-width: 1px; border-style: solid; border-color: rgb(48, 86, 117) rgb(35, 40, 40) rgb(35, 40, 40); border-image: none; top: 100%; background-color: rgb(34, 42, 45);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li > .arrow::after {
+	border-right-color: transparent; border-bottom-color: rgb(53, 60, 61);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li > .arrow::before {
+	border-right-color: transparent; border-bottom-color: rgb(25, 28, 28);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: transparent; border-bottom-color: rgb(80, 160, 221);
+}
+.skin-1 .h-sidebar.sidebar .sidebar-shortcuts-large::before {
+	border-right-color: transparent; border-bottom-color: rgb(80, 160, 221);
+}
+.skin-1 .h-sidebar.sidebar .nav-list > li.active > .arrow::after {
+	border-right-color: transparent; border-bottom-color: rgb(23, 30, 31);
+}
+.skin-1 .h-sidebar.sidebar .sidebar-shortcuts-large::after {
+	border-right-color: transparent; border-bottom-color: rgb(23, 30, 31);
+}
+.skin-1 .h-sidebar.sidebar .sidebar-shortcuts-large::after {
+	border-bottom-color: rgb(34, 42, 45);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li > a > .menu-text {
+	border-width: 1px 0px 0px; border-top-color: rgb(24, 29, 31);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li.active > a > .menu-text {
+	border-top-color: rgb(48, 86, 117);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li.active > .submenu {
+	border-top-color: rgb(59, 69, 71);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li > .arrow::after {
+	border-bottom-color: rgb(65, 75, 81);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li > .arrow::before {
+	border-bottom-color: rgb(17, 20, 21);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li.active > .arrow::after {
+	border-bottom-color: rgb(36, 42, 43);
+}
+.skin-1 .menu-min.h-sidebar.sidebar .nav-list > li.active > .arrow::before {
+	border-bottom-color: rgb(80, 160, 221);
+}
+.skin-1 .sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 86px;
+}
+.skin-1 .no-gap.sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 72px;
+}
+.skin-1 .menu-min.sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 61px;
+}
+.skin-1 .no-gap.menu-min.sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 47px;
+}
+.skin-1 .main-content .sidebar.h-sidebar .nav-list {
+	border-left-color: rgb(74, 92, 99); border-left-width: 1px; border-left-style: solid;
+}
+}
+.skin-1 .sidebar-scroll .sidebar-shortcuts {
+	border-bottom-color: rgb(74, 92, 99);
+}
+.skin-1 .sidebar-scroll .sidebar-toggle {
+	border-top-color: rgb(74, 92, 99);
+}
+.skin-1 .scrollout .scroll-track {
+	background-color: transparent;
+}
+.skin-1 .scrollout .scroll-bar {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+@media only screen and (max-width:991px) and (min-width:768px)
+{
+.skin-1 .navbar-collapse.navbar {
+	background-color: transparent;
+}
+.skin-1 .navbar-collapse.navbar .navbar-container {
+	background: rgb(44, 106, 160);
+}
+.skin-1 .navbar-collapse.navbar::before {
+	background: rgb(44, 106, 160);
+}
+}
+.skin-1 .nav-list > li.disabled::before {
+	display: none !important;
+}
+.skin-1 .nav-list > li.disabled > a {
+	color: rgb(170, 170, 170) !important; background-color: rgb(51, 51, 51) !important;
+}
+.skin-1 .nav-list li .submenu > li.disabled > a {
+	color: rgb(160, 160, 160) !important; cursor: not-allowed !important; background-color: rgb(68, 68, 68) !important;
+}
+.skin-1 .nav-list li.disabled .submenu > li > a {
+	color: rgb(160, 160, 160) !important; cursor: not-allowed !important; background-color: rgb(68, 68, 68) !important;
+}
+.skin-1 .nav-list li .submenu > li.disabled > a > .menu-icon {
+	display: none;
+}
+.skin-1 .nav-list li.disabled .submenu > li > a > .menu-icon {
+	display: none;
+}
+.skin-1 .nav-list > li.disabled .submenu > li > a {
+	border-top-color: rgb(80, 80, 80);
+}
+.skin-2 {
+	background-color: rgb(92, 92, 92);
+}
+.skin-2 .navbar {
+	background: rgb(198, 72, 126);
+}
+.skin-2 .sidebar {
+	border-right-width: 0px; background-color: rgb(80, 80, 80);
+}
+.skin-2 .nav-list > li {
+	border-color: rgb(72, 72, 72);
+}
+.skin-2 .nav-list > li:first-child {
+	border-top-color: rgb(90, 90, 90);
+}
+.skin-2 .nav-list > li:last-child {
+	border-bottom-color: rgb(98, 98, 98);
+}
+.skin-2 .nav-list > li > a {
+	color: rgb(230, 230, 230); background-color: rgb(57, 57, 57);
+}
+.skin-2 .nav-list > li.hover-show > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li.open > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li:hover > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li > a > .arrow {
+	color: rgb(230, 230, 230);
+}
+.skin-2 .nav-list > li > a > .menu-text {
+	color: rgb(230, 230, 230);
+}
+.skin-2 .nav-list > li.hover-show > a > .menu-text {
+	color: rgba(0, 0, 0, 0.6); font-weight: 700;
+}
+.skin-2 .nav-list > li:hover > a > .menu-text {
+	color: rgba(0, 0, 0, 0.6); font-weight: 700;
+}
+.skin-2 .nav-list > li.hover-show > a > .arrow {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.hover-show > a > .menu-icon {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li:hover > a > .arrow {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li:hover > a > .menu-icon {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.open > a > .menu-text {
+	color: rgba(0, 0, 0, 0.6); font-weight: 700;
+}
+.skin-2 .nav-list > li.open > a > .arrow {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.open > a > .menu-icon {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.active > a {
+	color: rgb(255, 255, 255); background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li.active > a > .menu-icon {
+	color: inherit;
+}
+.skin-2 .nav-list > li.highlight.active > a > .menu-icon {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.active > a > .arrow {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.active > a > .menu-text {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.hover-show.active > a {
+	background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li:not(.highlight).open.active > a {
+	background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li.open.active > a {
+	background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li.active:hover > a {
+	background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li:not(.highlight).hover-show.active > a {
+	background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li:not(.highlight).active:hover > a {
+	background-color: rgb(36, 36, 36);
+}
+.skin-2 .nav-list > li.highlight.active > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list li.active > a::after {
+	border-width: 11px 7px; top: 8px; right: 0px; border-right-color: rgb(255, 255, 255);
+}
+.skin-2 .nav-list > li.active > .submenu li.active > a::after {
+	top: 6px;
+}
+.skin-2 .nav-list > li::before {
+	top: 0px; height: 39px;
+}
+.skin-2 .nav-list > li.active::before {
+	display: block; background-color: rgb(206, 125, 167);
+}
+.skin-2 .nav-list > li.highlight.active::before {
+	background-color: rgb(222, 168, 196);
+}
+.skin-2 .nav-list > li::before {
+	background-color: rgb(222, 168, 196);
+}
+.skin-2 .nav-list > li > .submenu {
+	border-top-width: 0px; background-color: rgb(69, 48, 59);
+}
+.skin-2 .nav-list > li > .submenu > li {
+	background-color: inherit;
+}
+.skin-2 .nav-list > li > .submenu > li > .submenu {
+	background-color: inherit;
+}
+.skin-2 .nav-list > li > .submenu > li > .submenu > li {
+	background-color: inherit;
+}
+.skin-2 .nav-list > li > .submenu > li > .submenu > li .submenu {
+	background-color: inherit;
+}
+.skin-2 .nav-list > li > .submenu > li > .submenu > li .submenu li {
+	background-color: inherit;
+}
+.skin-2 .nav-list > li .submenu > li > a {
+	padding-left: 32px; border-top-color: rgba(255, 255, 255, 0.08); border-top-width: 1px; border-top-style: solid; background-color: transparent;
+}
+.skin-2 .nav-list > li .submenu > li > a:hover {
+	color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .nav-list > li .submenu > li > a:hover > .menu-icon {
+	background-color: transparent;
+}
+.skin-2 .nav-list > li.active .submenu > li > a:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .nav-list > li > .submenu > li > a {
+	color: rgb(238, 238, 238);
+}
+.skin-2 .nav-list > li > .submenu > li:first-child > a {
+	border-top-width: 0px;
+}
+.skin-2 .nav-list > li > .submenu > li.active > a {
+	font-weight: 700; background-color: rgba(0, 0, 0, 0.05);
+}
+.skin-2 .nav-list > li > .submenu > li.active > a > .menu-icon {
+	color: inherit; background-color: transparent;
+}
+.skin-2 .nav-list li .submenu li > a {
+	color: rgb(238, 238, 238); font-size: 13px;
+}
+.skin-2 .nav-list > li > .submenu::before {
+	display: none;
+}
+.skin-2 .nav-list > li > .submenu > li::before {
+	display: none;
+}
+.skin-2 .nav-list > li .submenu > li > a > .menu-icon {
+	left: 12px;
+}
+@media only screen and (min-width:992px)
+{
+.skin-2 .nav-list > li .submenu > li.hover > a {
+	padding-left: 26px;
+}
+.skin-2 .nav-list > li .submenu > li.hover > a > .menu-icon {
+	left: 6px;
+}
+}
+.skin-2 .nav-list > li > .submenu li > .submenu > li > a {
+	padding-top: 8px; padding-bottom: 10px; padding-left: 37px; margin-left: 0px; border-top-width: 0px;
+}
+.skin-2 .nav-list > li > .submenu li > .submenu > li > .submenu > li > a {
+	padding-left: 51px; margin-left: 0px;
+}
+.skin-2 .nav-list > li > .submenu li.active > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li > .submenu li.hover-show > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li > .submenu li.open > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li > .submenu li:hover > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li > .submenu li > a > .ace-icon {
+	background-color: transparent;
+}
+.skin-2 .nav-list > li.highlight.active .badge {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li.highlight.active .label {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li:not(.active).hover-show > a .badge {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li:not(.active).hover-show > a .label {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li:not(.active).open > a .badge {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li:not(.active).open > a .label {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li:not(.active):hover > a .badge {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li:not(.active):hover > a .label {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li.highlight.active .badge-transparent.badge {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li.highlight.active .label-transparent.label {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li:not(.active).hover-show > a .badge-transparent.badge {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li:not(.active).hover-show > a .label-transparent.label {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li:not(.active).open > a .badge-transparent.badge {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li:not(.active).open > a .label-transparent.label {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li:not(.active):hover > a .badge-transparent.badge {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li:not(.active):hover > a .label-transparent.label {
+	color: rgba(255, 255, 255, 0.8) !important; background-color: transparent !important;
+}
+.skin-2 .nav-list > li.highlight.active .badge-transparent.badge .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li.highlight.active .label-transparent.label .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li:not(.active).hover-show > a .badge-transparent.badge .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li:not(.active).hover-show > a .label-transparent.label .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li:not(.active).open > a .badge-transparent.badge .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li:not(.active).open > a .label-transparent.label .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li:not(.active):hover > a .badge-transparent.badge .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list > li:not(.active):hover > a .label-transparent.label .ace-icon {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+.skin-2 .nav-list li > .arrow::after {
+	border-right-color: rgb(69, 48, 59);
+}
+.skin-2 .nav-list li > .arrow::before {
+	border-right-color: rgb(25, 25, 25);
+}
+.skin-2 .nav-list > li.pull_up > .arrow::after {
+	border-right-color: rgb(69, 48, 59) !important;
+}
+.skin-2 .nav-list > li.pull_up > .arrow::before {
+	border-right-color: rgb(25, 25, 25) !important;
+}
+.skin-2 .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 20px 10px; top: 0px; right: -9px; border-right-color: transparent; border-left-color: rgb(189, 82, 137); display: block; z-index: 1;
+}
+.skin-2 .nav-list > li:nth-child(1) > a {
+	color: rgb(0, 190, 103);
+}
+.skin-2 .nav-list > li:nth-child(1).open > a {
+	background-color: rgb(24, 166, 101);
+}
+.skin-2 .nav-list > li:nth-child(1).hover-show > a {
+	background-color: rgb(24, 166, 101);
+}
+.skin-2 .nav-list > li:nth-child(1):hover > a {
+	background-color: rgb(24, 166, 101);
+}
+.skin-2 .nav-list > li:nth-child(1) > .submenu {
+	background-color: rgb(42, 65, 55);
+}
+.skin-2 .nav-list > li:nth-child(1) li > .arrow::after {
+	border-right-color: rgb(42, 65, 55);
+}
+.skin-2 .nav-list > li:nth-child(1) > .arrow::after {
+	border-right-color: rgb(42, 65, 55);
+}
+.skin-2 .nav-list > li:nth-child(1).pull_up > .arrow::after {
+	border-right-color: rgb(42, 65, 55) !important;
+}
+.skin-2 .nav-list > li:nth-child(1) > .submenu li.active > a {
+	color: rgb(30, 237, 142);
+}
+.skin-2 .nav-list > li:nth-child(1) > .submenu li.hover-show > a {
+	color: rgb(30, 237, 142);
+}
+.skin-2 .nav-list > li:nth-child(1) > .submenu li.open > a {
+	color: rgb(30, 237, 142);
+}
+.skin-2 .nav-list > li:nth-child(1) > .submenu li:hover > a {
+	color: rgb(30, 237, 142);
+}
+.skin-2 .nav-list > li:nth-child(1).active::before {
+	background-color: rgb(82, 188, 140);
+}
+.skin-2 .nav-list > li:nth-child(1).highlight.active::before {
+	background-color: rgb(139, 211, 178);
+}
+.skin-2 .nav-list > li:nth-child(1)::before {
+	background-color: rgb(139, 211, 178);
+}
+.skin-2 .nav-list > li:nth-child(2) > a {
+	color: rgb(94, 208, 43);
+}
+.skin-2 .nav-list > li:nth-child(2).open > a {
+	background-color: rgb(106, 177, 74);
+}
+.skin-2 .nav-list > li:nth-child(2).hover-show > a {
+	background-color: rgb(106, 177, 74);
+}
+.skin-2 .nav-list > li:nth-child(2):hover > a {
+	background-color: rgb(106, 177, 74);
+}
+.skin-2 .nav-list > li:nth-child(2) > .submenu {
+	background-color: rgb(54, 67, 47);
+}
+.skin-2 .nav-list > li:nth-child(2) li > .arrow::after {
+	border-right-color: rgb(54, 67, 47);
+}
+.skin-2 .nav-list > li:nth-child(2) > .arrow::after {
+	border-right-color: rgb(54, 67, 47);
+}
+.skin-2 .nav-list > li:nth-child(2).pull_up > .arrow::after {
+	border-right-color: rgb(54, 67, 47) !important;
+}
+.skin-2 .nav-list > li:nth-child(2) > .submenu li.active > a {
+	color: rgb(146, 210, 117);
+}
+.skin-2 .nav-list > li:nth-child(2) > .submenu li.hover-show > a {
+	color: rgb(146, 210, 117);
+}
+.skin-2 .nav-list > li:nth-child(2) > .submenu li.open > a {
+	color: rgb(146, 210, 117);
+}
+.skin-2 .nav-list > li:nth-child(2) > .submenu li:hover > a {
+	color: rgb(146, 210, 117);
+}
+.skin-2 .nav-list > li:nth-child(2).active::before {
+	background-color: rgb(143, 196, 120);
+}
+.skin-2 .nav-list > li:nth-child(2).highlight.active::before {
+	background-color: rgb(180, 216, 165);
+}
+.skin-2 .nav-list > li:nth-child(2)::before {
+	background-color: rgb(180, 216, 165);
+}
+.skin-2 .nav-list > li:nth-child(3) > a {
+	color: rgb(167, 215, 0);
+}
+.skin-2 .nav-list > li:nth-child(3).open > a {
+	background-color: rgb(152, 188, 27);
+}
+.skin-2 .nav-list > li:nth-child(3).hover-show > a {
+	background-color: rgb(152, 188, 27);
+}
+.skin-2 .nav-list > li:nth-child(3):hover > a {
+	background-color: rgb(152, 188, 27);
+}
+.skin-2 .nav-list > li:nth-child(3) > .submenu {
+	background-color: rgb(62, 68, 42);
+}
+.skin-2 .nav-list > li:nth-child(3) li > .arrow::after {
+	border-right-color: rgb(62, 68, 42);
+}
+.skin-2 .nav-list > li:nth-child(3) > .arrow::after {
+	border-right-color: rgb(62, 68, 42);
+}
+.skin-2 .nav-list > li:nth-child(3).pull_up > .arrow::after {
+	border-right-color: rgb(62, 68, 42) !important;
+}
+.skin-2 .nav-list > li:nth-child(3) > .submenu li.active > a {
+	color: rgb(197, 239, 53);
+}
+.skin-2 .nav-list > li:nth-child(3) > .submenu li.hover-show > a {
+	color: rgb(197, 239, 53);
+}
+.skin-2 .nav-list > li:nth-child(3) > .submenu li.open > a {
+	color: rgb(197, 239, 53);
+}
+.skin-2 .nav-list > li:nth-child(3) > .submenu li:hover > a {
+	color: rgb(197, 239, 53);
+}
+.skin-2 .nav-list > li:nth-child(3).active::before {
+	background-color: rgb(178, 205, 84);
+}
+.skin-2 .nav-list > li:nth-child(3).highlight.active::before {
+	background-color: rgb(204, 222, 141);
+}
+.skin-2 .nav-list > li:nth-child(3)::before {
+	background-color: rgb(204, 222, 141);
+}
+.skin-2 .nav-list > li:nth-child(4) > a {
+	color: rgb(206, 225, 0);
+}
+.skin-2 .nav-list > li:nth-child(4).open > a {
+	background-color: rgb(183, 197, 28);
+}
+.skin-2 .nav-list > li:nth-child(4).hover-show > a {
+	background-color: rgb(183, 197, 28);
+}
+.skin-2 .nav-list > li:nth-child(4):hover > a {
+	background-color: rgb(183, 197, 28);
+}
+.skin-2 .nav-list > li:nth-child(4) > .submenu {
+	background-color: rgb(67, 69, 42);
+}
+.skin-2 .nav-list > li:nth-child(4) li > .arrow::after {
+	border-right-color: rgb(67, 69, 42);
+}
+.skin-2 .nav-list > li:nth-child(4) > .arrow::after {
+	border-right-color: rgb(67, 69, 42);
+}
+.skin-2 .nav-list > li:nth-child(4).pull_up > .arrow::after {
+	border-right-color: rgb(67, 69, 42) !important;
+}
+.skin-2 .nav-list > li:nth-child(4) > .submenu li.active > a {
+	color: rgb(224, 239, 62);
+}
+.skin-2 .nav-list > li:nth-child(4) > .submenu li.hover-show > a {
+	color: rgb(224, 239, 62);
+}
+.skin-2 .nav-list > li:nth-child(4) > .submenu li.open > a {
+	color: rgb(224, 239, 62);
+}
+.skin-2 .nav-list > li:nth-child(4) > .submenu li:hover > a {
+	color: rgb(224, 239, 62);
+}
+.skin-2 .nav-list > li:nth-child(4).active::before {
+	background-color: rgb(201, 211, 85);
+}
+.skin-2 .nav-list > li:nth-child(4).highlight.active::before {
+	background-color: rgb(219, 226, 142);
+}
+.skin-2 .nav-list > li:nth-child(4)::before {
+	background-color: rgb(219, 226, 142);
+}
+.skin-2 .nav-list > li:nth-child(5) > a {
+	color: rgb(248, 198, 0);
+}
+.skin-2 .nav-list > li:nth-child(5).open > a {
+	background-color: rgb(217, 180, 31);
+}
+.skin-2 .nav-list > li:nth-child(5).hover-show > a {
+	background-color: rgb(217, 180, 31);
+}
+.skin-2 .nav-list > li:nth-child(5):hover > a {
+	background-color: rgb(217, 180, 31);
+}
+.skin-2 .nav-list > li:nth-child(5) > .submenu {
+	background-color: rgb(72, 66, 42);
+}
+.skin-2 .nav-list > li:nth-child(5) li > .arrow::after {
+	border-right-color: rgb(72, 66, 42);
+}
+.skin-2 .nav-list > li:nth-child(5) > .arrow::after {
+	border-right-color: rgb(72, 66, 42);
+}
+.skin-2 .nav-list > li:nth-child(5).pull_up > .arrow::after {
+	border-right-color: rgb(72, 66, 42) !important;
+}
+.skin-2 .nav-list > li:nth-child(5) > .submenu li.active > a {
+	color: rgb(241, 209, 83);
+}
+.skin-2 .nav-list > li:nth-child(5) > .submenu li.hover-show > a {
+	color: rgb(241, 209, 83);
+}
+.skin-2 .nav-list > li:nth-child(5) > .submenu li.open > a {
+	color: rgb(241, 209, 83);
+}
+.skin-2 .nav-list > li:nth-child(5) > .submenu li:hover > a {
+	color: rgb(241, 209, 83);
+}
+.skin-2 .nav-list > li:nth-child(5).active::before {
+	background-color: rgb(227, 198, 87);
+}
+.skin-2 .nav-list > li:nth-child(5).highlight.active::before {
+	background-color: rgb(236, 217, 143);
+}
+.skin-2 .nav-list > li:nth-child(5)::before {
+	background-color: rgb(236, 217, 143);
+}
+.skin-2 .nav-list > li:nth-child(6) > a {
+	color: rgb(255, 171, 0);
+}
+.skin-2 .nav-list > li:nth-child(6).open > a {
+	background-color: rgb(223, 160, 32);
+}
+.skin-2 .nav-list > li:nth-child(6).hover-show > a {
+	background-color: rgb(223, 160, 32);
+}
+.skin-2 .nav-list > li:nth-child(6):hover > a {
+	background-color: rgb(223, 160, 32);
+}
+.skin-2 .nav-list > li:nth-child(6) > .submenu {
+	background-color: rgb(73, 63, 42);
+}
+.skin-2 .nav-list > li:nth-child(6) li > .arrow::after {
+	border-right-color: rgb(73, 63, 42);
+}
+.skin-2 .nav-list > li:nth-child(6) > .arrow::after {
+	border-right-color: rgb(73, 63, 42);
+}
+.skin-2 .nav-list > li:nth-child(6).pull_up > .arrow::after {
+	border-right-color: rgb(73, 63, 42) !important;
+}
+.skin-2 .nav-list > li:nth-child(6) > .submenu li.active > a {
+	color: rgb(242, 192, 90);
+}
+.skin-2 .nav-list > li:nth-child(6) > .submenu li.hover-show > a {
+	color: rgb(242, 192, 90);
+}
+.skin-2 .nav-list > li:nth-child(6) > .submenu li.open > a {
+	color: rgb(242, 192, 90);
+}
+.skin-2 .nav-list > li:nth-child(6) > .submenu li:hover > a {
+	color: rgb(242, 192, 90);
+}
+.skin-2 .nav-list > li:nth-child(6).active::before {
+	background-color: rgb(231, 184, 88);
+}
+.skin-2 .nav-list > li:nth-child(6).highlight.active::before {
+	background-color: rgb(239, 208, 143);
+}
+.skin-2 .nav-list > li:nth-child(6)::before {
+	background-color: rgb(239, 208, 143);
+}
+.skin-2 .nav-list > li:nth-child(7) > a {
+	color: rgb(255, 110, 0);
+}
+.skin-2 .nav-list > li:nth-child(7).open > a {
+	background-color: rgb(223, 114, 32);
+}
+.skin-2 .nav-list > li:nth-child(7).hover-show > a {
+	background-color: rgb(223, 114, 32);
+}
+.skin-2 .nav-list > li:nth-child(7):hover > a {
+	background-color: rgb(223, 114, 32);
+}
+.skin-2 .nav-list > li:nth-child(7) > .submenu {
+	background-color: rgb(73, 55, 42);
+}
+.skin-2 .nav-list > li:nth-child(7) li > .arrow::after {
+	border-right-color: rgb(73, 55, 42);
+}
+.skin-2 .nav-list > li:nth-child(7) > .arrow::after {
+	border-right-color: rgb(73, 55, 42);
+}
+.skin-2 .nav-list > li:nth-child(7).pull_up > .arrow::after {
+	border-right-color: rgb(73, 55, 42) !important;
+}
+.skin-2 .nav-list > li:nth-child(7) > .submenu li.active > a {
+	color: rgb(242, 155, 90);
+}
+.skin-2 .nav-list > li:nth-child(7) > .submenu li.hover-show > a {
+	color: rgb(242, 155, 90);
+}
+.skin-2 .nav-list > li:nth-child(7) > .submenu li.open > a {
+	color: rgb(242, 155, 90);
+}
+.skin-2 .nav-list > li:nth-child(7) > .submenu li:hover > a {
+	color: rgb(242, 155, 90);
+}
+.skin-2 .nav-list > li:nth-child(7).active::before {
+	background-color: rgb(231, 150, 88);
+}
+.skin-2 .nav-list > li:nth-child(7).highlight.active::before {
+	background-color: rgb(239, 185, 143);
+}
+.skin-2 .nav-list > li:nth-child(7)::before {
+	background-color: rgb(239, 185, 143);
+}
+.skin-2 .nav-list > li:nth-child(8) > a {
+	color: rgb(242, 28, 48);
+}
+.skin-2 .nav-list > li:nth-child(8).open > a {
+	background-color: rgb(212, 58, 72);
+}
+.skin-2 .nav-list > li:nth-child(8).hover-show > a {
+	background-color: rgb(212, 58, 72);
+}
+.skin-2 .nav-list > li:nth-child(8):hover > a {
+	background-color: rgb(212, 58, 72);
+}
+.skin-2 .nav-list > li:nth-child(8) > .submenu {
+	background-color: rgb(71, 46, 48);
+}
+.skin-2 .nav-list > li:nth-child(8) li > .arrow::after {
+	border-right-color: rgb(71, 46, 48);
+}
+.skin-2 .nav-list > li:nth-child(8) > .arrow::after {
+	border-right-color: rgb(71, 46, 48);
+}
+.skin-2 .nav-list > li:nth-child(8).pull_up > .arrow::after {
+	border-right-color: rgb(71, 46, 48) !important;
+}
+.skin-2 .nav-list > li:nth-child(8) > .submenu li.active > a {
+	color: rgb(234, 113, 124);
+}
+.skin-2 .nav-list > li:nth-child(8) > .submenu li.hover-show > a {
+	color: rgb(234, 113, 124);
+}
+.skin-2 .nav-list > li:nth-child(8) > .submenu li.open > a {
+	color: rgb(234, 113, 124);
+}
+.skin-2 .nav-list > li:nth-child(8) > .submenu li:hover > a {
+	color: rgb(234, 113, 124);
+}
+.skin-2 .nav-list > li:nth-child(8).active::before {
+	background-color: rgb(223, 107, 118);
+}
+.skin-2 .nav-list > li:nth-child(8).highlight.active::before {
+	background-color: rgb(234, 157, 164);
+}
+.skin-2 .nav-list > li:nth-child(8)::before {
+	background-color: rgb(234, 157, 164);
+}
+.skin-2 .nav-list > li:nth-child(9) > a {
+	color: rgb(219, 52, 138);
+}
+.skin-2 .nav-list > li:nth-child(9).open > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li:nth-child(9).hover-show > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li:nth-child(9):hover > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li:nth-child(9) > .submenu {
+	background-color: rgb(69, 48, 59);
+}
+.skin-2 .nav-list > li:nth-child(9) li > .arrow::after {
+	border-right-color: rgb(69, 48, 59);
+}
+.skin-2 .nav-list > li:nth-child(9) > .arrow::after {
+	border-right-color: rgb(69, 48, 59);
+}
+.skin-2 .nav-list > li:nth-child(9).pull_up > .arrow::after {
+	border-right-color: rgb(69, 48, 59) !important;
+}
+.skin-2 .nav-list > li:nth-child(9) > .submenu li.active > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li:nth-child(9) > .submenu li.hover-show > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li:nth-child(9) > .submenu li.open > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li:nth-child(9) > .submenu li:hover > a {
+	color: rgb(218, 129, 175);
+}
+.skin-2 .nav-list > li:nth-child(9).active::before {
+	background-color: rgb(206, 125, 167);
+}
+.skin-2 .nav-list > li:nth-child(9).highlight.active::before {
+	background-color: rgb(222, 168, 196);
+}
+.skin-2 .nav-list > li:nth-child(9)::before {
+	background-color: rgb(222, 168, 196);
+}
+.skin-2 .nav-list > li:nth-child(10) > a {
+	color: rgb(197, 94, 231);
+}
+.skin-2 .nav-list > li:nth-child(10).open > a {
+	background-color: rgb(185, 117, 208);
+}
+.skin-2 .nav-list > li:nth-child(10).hover-show > a {
+	background-color: rgb(185, 117, 208);
+}
+.skin-2 .nav-list > li:nth-child(10):hover > a {
+	background-color: rgb(185, 117, 208);
+}
+.skin-2 .nav-list > li:nth-child(10) > .submenu {
+	background-color: rgb(66, 54, 70);
+}
+.skin-2 .nav-list > li:nth-child(10) li > .arrow::after {
+	border-right-color: rgb(66, 54, 70);
+}
+.skin-2 .nav-list > li:nth-child(10) > .arrow::after {
+	border-right-color: rgb(66, 54, 70);
+}
+.skin-2 .nav-list > li:nth-child(10).pull_up > .arrow::after {
+	border-right-color: rgb(66, 54, 70) !important;
+}
+.skin-2 .nav-list > li:nth-child(10) > .submenu li.active > a {
+	color: rgb(217, 169, 233);
+}
+.skin-2 .nav-list > li:nth-child(10) > .submenu li.hover-show > a {
+	color: rgb(217, 169, 233);
+}
+.skin-2 .nav-list > li:nth-child(10) > .submenu li.open > a {
+	color: rgb(217, 169, 233);
+}
+.skin-2 .nav-list > li:nth-child(10) > .submenu li:hover > a {
+	color: rgb(217, 169, 233);
+}
+.skin-2 .nav-list > li:nth-child(10).active::before {
+	background-color: rgb(203, 152, 220);
+}
+.skin-2 .nav-list > li:nth-child(10).highlight.active::before {
+	background-color: rgb(220, 186, 231);
+}
+.skin-2 .nav-list > li:nth-child(10)::before {
+	background-color: rgb(220, 186, 231);
+}
+.skin-2 .nav-list > li:nth-child(11) > a {
+	color: rgb(33, 139, 238);
+}
+.skin-2 .nav-list > li:nth-child(11).open > a {
+	background-color: rgb(63, 138, 208);
+}
+.skin-2 .nav-list > li:nth-child(11).hover-show > a {
+	background-color: rgb(63, 138, 208);
+}
+.skin-2 .nav-list > li:nth-child(11):hover > a {
+	background-color: rgb(63, 138, 208);
+}
+.skin-2 .nav-list > li:nth-child(11) > .submenu {
+	background-color: rgb(46, 59, 71);
+}
+.skin-2 .nav-list > li:nth-child(11) li > .arrow::after {
+	border-right-color: rgb(46, 59, 71);
+}
+.skin-2 .nav-list > li:nth-child(11) > .arrow::after {
+	border-right-color: rgb(46, 59, 71);
+}
+.skin-2 .nav-list > li:nth-child(11).pull_up > .arrow::after {
+	border-right-color: rgb(46, 59, 71) !important;
+}
+.skin-2 .nav-list > li:nth-child(11) > .submenu li.active > a {
+	color: rgb(116, 176, 231);
+}
+.skin-2 .nav-list > li:nth-child(11) > .submenu li.hover-show > a {
+	color: rgb(116, 176, 231);
+}
+.skin-2 .nav-list > li:nth-child(11) > .submenu li.open > a {
+	color: rgb(116, 176, 231);
+}
+.skin-2 .nav-list > li:nth-child(11) > .submenu li:hover > a {
+	color: rgb(116, 176, 231);
+}
+.skin-2 .nav-list > li:nth-child(11).active::before {
+	background-color: rgb(111, 167, 220);
+}
+.skin-2 .nav-list > li:nth-child(11).highlight.active::before {
+	background-color: rgb(159, 196, 232);
+}
+.skin-2 .nav-list > li:nth-child(11)::before {
+	background-color: rgb(159, 196, 232);
+}
+.skin-2 .nav-list > li:nth-child(12) > a {
+	color: rgb(46, 206, 231);
+}
+.skin-2 .nav-list > li:nth-child(12).open > a {
+	background-color: rgb(75, 185, 202);
+}
+.skin-2 .nav-list > li:nth-child(12).hover-show > a {
+	background-color: rgb(75, 185, 202);
+}
+.skin-2 .nav-list > li:nth-child(12):hover > a {
+	background-color: rgb(75, 185, 202);
+}
+.skin-2 .nav-list > li:nth-child(12) > .submenu {
+	background-color: rgb(48, 67, 70);
+}
+.skin-2 .nav-list > li:nth-child(12) li > .arrow::after {
+	border-right-color: rgb(48, 67, 70);
+}
+.skin-2 .nav-list > li:nth-child(12) > .arrow::after {
+	border-right-color: rgb(48, 67, 70);
+}
+.skin-2 .nav-list > li:nth-child(12).pull_up > .arrow::after {
+	border-right-color: rgb(48, 67, 70) !important;
+}
+.skin-2 .nav-list > li:nth-child(12) > .submenu li.active > a {
+	color: rgb(126, 214, 227);
+}
+.skin-2 .nav-list > li:nth-child(12) > .submenu li.hover-show > a {
+	color: rgb(126, 214, 227);
+}
+.skin-2 .nav-list > li:nth-child(12) > .submenu li.open > a {
+	color: rgb(126, 214, 227);
+}
+.skin-2 .nav-list > li:nth-child(12) > .submenu li:hover > a {
+	color: rgb(126, 214, 227);
+}
+.skin-2 .nav-list > li:nth-child(12).active::before {
+	background-color: rgb(120, 202, 215);
+}
+.skin-2 .nav-list > li:nth-child(12).highlight.active::before {
+	background-color: rgb(165, 220, 228);
+}
+.skin-2 .nav-list > li:nth-child(12)::before {
+	background-color: rgb(165, 220, 228);
+}
+@media only screen and (min-width:992px)
+{
+.skin-2 .nav-list > li > .submenu li > .submenu > li.hover > a {
+	padding-bottom: 9px; border-top-width: 1px;
+}
+.skin-2 .nav-list > li > .submenu li > .submenu > li:first-child.hover > a {
+	border-top-width: 0px;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(1).hover > a {
+	color: rgb(0, 190, 103);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(1).hover > .arrow::after {
+	border-bottom-color: rgb(42, 65, 55);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(2).hover > a {
+	color: rgb(94, 208, 43);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(2).hover > .arrow::after {
+	border-bottom-color: rgb(54, 67, 47);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(3).hover > a {
+	color: rgb(167, 215, 0);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(3).hover > .arrow::after {
+	border-bottom-color: rgb(62, 68, 42);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(4).hover > a {
+	color: rgb(206, 225, 0);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(4).hover > .arrow::after {
+	border-bottom-color: rgb(67, 69, 42);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(5).hover > a {
+	color: rgb(248, 198, 0);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(5).hover > .arrow::after {
+	border-bottom-color: rgb(72, 66, 42);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(6).hover > a {
+	color: rgb(255, 171, 0);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(6).hover > .arrow::after {
+	border-bottom-color: rgb(73, 63, 42);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(7).hover > a {
+	color: rgb(255, 110, 0);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(7).hover > .arrow::after {
+	border-bottom-color: rgb(73, 55, 42);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(8).hover > a {
+	color: rgb(242, 28, 48);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(8).hover > .arrow::after {
+	border-bottom-color: rgb(71, 46, 48);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(9).hover > a {
+	color: rgb(219, 52, 138);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(9).hover > .arrow::after {
+	border-bottom-color: rgb(69, 48, 59);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(10).hover > a {
+	color: rgb(197, 94, 231);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(10).hover > .arrow::after {
+	border-bottom-color: rgb(66, 54, 70);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(11).hover > a {
+	color: rgb(33, 139, 238);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(11).hover > .arrow::after {
+	border-bottom-color: rgb(46, 59, 71);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(12).hover > a {
+	color: rgb(46, 206, 231);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:nth-child(12).hover > .arrow::after {
+	border-bottom-color: rgb(48, 67, 70);
+}
+}
+.skin-2 .nav-list > li:nth-child(1).active.highlight > a {
+	background-color: rgb(24, 166, 101);
+}
+.skin-2 .nav-list > li:nth-child(1).highlight.active > a::after {
+	border-left-color: rgb(24, 166, 101);
+}
+.skin-2 .nav-list > li:nth-child(2).active.highlight > a {
+	background-color: rgb(106, 177, 74);
+}
+.skin-2 .nav-list > li:nth-child(2).highlight.active > a::after {
+	border-left-color: rgb(106, 177, 74);
+}
+.skin-2 .nav-list > li:nth-child(3).active.highlight > a {
+	background-color: rgb(152, 188, 27);
+}
+.skin-2 .nav-list > li:nth-child(3).highlight.active > a::after {
+	border-left-color: rgb(152, 188, 27);
+}
+.skin-2 .nav-list > li:nth-child(4).active.highlight > a {
+	background-color: rgb(183, 197, 28);
+}
+.skin-2 .nav-list > li:nth-child(4).highlight.active > a::after {
+	border-left-color: rgb(183, 197, 28);
+}
+.skin-2 .nav-list > li:nth-child(5).active.highlight > a {
+	background-color: rgb(217, 180, 31);
+}
+.skin-2 .nav-list > li:nth-child(5).highlight.active > a::after {
+	border-left-color: rgb(217, 180, 31);
+}
+.skin-2 .nav-list > li:nth-child(6).active.highlight > a {
+	background-color: rgb(223, 160, 32);
+}
+.skin-2 .nav-list > li:nth-child(6).highlight.active > a::after {
+	border-left-color: rgb(223, 160, 32);
+}
+.skin-2 .nav-list > li:nth-child(7).active.highlight > a {
+	background-color: rgb(223, 114, 32);
+}
+.skin-2 .nav-list > li:nth-child(7).highlight.active > a::after {
+	border-left-color: rgb(223, 114, 32);
+}
+.skin-2 .nav-list > li:nth-child(8).active.highlight > a {
+	background-color: rgb(212, 58, 72);
+}
+.skin-2 .nav-list > li:nth-child(8).highlight.active > a::after {
+	border-left-color: rgb(212, 58, 72);
+}
+.skin-2 .nav-list > li:nth-child(9).active.highlight > a {
+	background-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li:nth-child(9).highlight.active > a::after {
+	border-left-color: rgb(189, 82, 137);
+}
+.skin-2 .nav-list > li:nth-child(10).active.highlight > a {
+	background-color: rgb(185, 117, 208);
+}
+.skin-2 .nav-list > li:nth-child(10).highlight.active > a::after {
+	border-left-color: rgb(185, 117, 208);
+}
+.skin-2 .nav-list > li:nth-child(11).active.highlight > a {
+	background-color: rgb(63, 138, 208);
+}
+.skin-2 .nav-list > li:nth-child(11).highlight.active > a::after {
+	border-left-color: rgb(63, 138, 208);
+}
+.skin-2 .nav-list > li:nth-child(12).active.highlight > a {
+	background-color: rgb(75, 185, 202);
+}
+.skin-2 .nav-list > li:nth-child(12).highlight.active > a::after {
+	border-left-color: rgb(75, 185, 202);
+}
+.skin-2 .sidebar-shortcuts .btn {
+	border-width: 2px; border-radius: 32px; background-color: rgb(85, 85, 85) !important;
+}
+.skin-2 .sidebar-shortcuts .btn:hover {
+	background-color: rgb(34, 34, 34) !important;
+}
+.skin-2 .sidebar-shortcuts-mini .btn {
+	border-width: 2px; padding: 6px; border-radius: 32px; opacity: 1;
+}
+.skin-2 .sidebar-shortcuts {
+	background-color: rgb(57, 57, 57);
+}
+.skin-2 .sidebar-shortcuts-mini {
+	background-color: rgb(57, 57, 57);
+}
+.skin-2 .sidebar > .nav-search {
+	background-color: rgb(57, 57, 57);
+}
+.skin-2 .sidebar-toggle {
+	border-color: rgb(118, 118, 118); background-color: rgb(47, 47, 47);
+}
+.skin-2 .sidebar-toggle::before {
+	border-color: inherit;
+}
+.skin-2 .sidebar-toggle > .ace-icon {
+	border-color: rgb(170, 170, 170); color: rgb(170, 170, 170); background-color: rgb(51, 51, 51);
+}
+.skin-2 .breadcrumbs {
+	border-width: 0px; margin: 8px 8px 0px; border-radius: 4px; background-color: rgb(231, 242, 248);
+}
+@media all and (min-width:992px)
+{
+.skin-2 .breadcrumbs-fixed.breadcrumbs + .page-content {
+	padding-top: 57px;
+}
+}
+@media all and (max-width:991px) and (min-width:992px)
+{
+.skin-2 .breadcrumbs-fixed.breadcrumbs + .page-content {
+	padding-top: 54px;
+}
+.skin-2 .menu-toggler + .reponsive.sidebar + .main-content .breadcrumbs-fixed.breadcrumbs + .page-content {
+	padding-top: 49px;
+}
+.skin-2 .main-container.container .breadcrumbs-fixed {
+	width: 734px;
+}
+.skin-2 .main-container.container .compact.sidebar + .main-content .breadcrumbs-fixed {
+	width: 734px;
+}
+.skin-2 .main-container.container .menu-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 734px;
+}
+.skin-2 .main-container.container .responsive-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 691px;
+}
+}
+@media all and (min-width:992px)
+{
+.skin-2 .main-container.container .compact.sidebar + .main-content .breadcrumbs-fixed {
+	width: 843px;
+}
+.skin-2 .main-container.container .breadcrumbs-fixed {
+	width: 964px;
+}
+.skin-2 .main-container.container .sidebar + .main-content .breadcrumbs-fixed {
+	width: 758px;
+}
+.skin-2 .main-container.container .menu-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 905px;
+}
+}
+@media all and (min-width:1200px)
+{
+.skin-2 .main-container.container .compact.sidebar + .main-content .breadcrumbs-fixed {
+	width: 1043px;
+}
+.skin-2 .main-container.container .breadcrumbs-fixed {
+	width: 1148px;
+}
+.skin-2 .main-container.container .sidebar + .main-content .breadcrumbs-fixed {
+	width: 958px;
+}
+.skin-2 .main-container.container .menu-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 1105px;
+}
+}
+@media only screen and (max-width:991px)
+{
+.skin-2 .breadcrumbs {
+	margin: 5px 5px 0px;
+}
+.skin-2 .menu-toggler + .responsive.sidebar + .main-content .breadcrumbs {
+	margin: 0px; border-radius: 0px;
+}
+.skin-2 .sidebar {
+	border-width: 0px; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-2 .nav-list li.active > a::after {
+	display: none;
+}
+}
+.skin-2 .menu-min.sidebar .nav-list > li.open > a {
+	color: rgb(230, 230, 230);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > a {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > a::after {
+	border-width: 9px 6px; top: 10px;
+}
+.skin-2 .menu-min.sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 20px 10px; top: 0px;
+}
+.skin-2 .menu-min.sidebar .nav-list > li > a > .menu-text {
+	border-width: 0px 0px 0px 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.4); color: rgba(0, 0, 0, 0.6); font-weight: 700; margin-left: 1px; box-shadow: none; background-color: inherit; -webkit-box-shadow: none;
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > a > .menu-text {
+	color: rgb(255, 255, 255); background-color: inherit;
+}
+.skin-2 .menu-min.sidebar .nav-list > li > .submenu {
+	border-width: 1px 0px 0px 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.3); margin-left: 1px; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-2 .menu-min.sidebar .nav-list > li > .submenu::after {
+	display: none;
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > .submenu {
+	border-top-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .menu-min.sidebar .sidebar-shortcuts-large {
+	border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgb(102, 102, 102); border-image: none; top: 0px; box-shadow: none; background-color: rgb(57, 57, 57); -webkit-box-shadow: none;
+}
+.skin-2 .menu-min.sidebar .nav-list > li.highlight.active > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .menu-min.sidebar .nav-list > li > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.highlight.active > .arrow::before {
+	border-right-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .menu-min.sidebar .nav-list > li > .arrow::before {
+	border-right-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:not(.highlight).active > a:not(.dropdown-toggle) > .menu-text {
+	border-width: 1px; border-top-color: rgb(85, 85, 85); border-right-color: rgb(85, 85, 85); border-bottom-color: rgb(85, 85, 85);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.highlight.active > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .menu-min.sidebar .nav-list > li > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.highlight.active.pull_up > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.pull_up > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:not(.highlight).active.pull_up > a > .menu-text {
+	border-left-color: rgb(102, 102, 102);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(1).highlight.active > .arrow::after {
+	border-right-color: rgb(24, 166, 101);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(1) > .arrow::after {
+	border-right-color: rgb(24, 166, 101);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(2).highlight.active > .arrow::after {
+	border-right-color: rgb(106, 177, 74);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(2) > .arrow::after {
+	border-right-color: rgb(106, 177, 74);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(3).highlight.active > .arrow::after {
+	border-right-color: rgb(152, 188, 27);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(3) > .arrow::after {
+	border-right-color: rgb(152, 188, 27);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(4).highlight.active > .arrow::after {
+	border-right-color: rgb(183, 197, 28);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(4) > .arrow::after {
+	border-right-color: rgb(183, 197, 28);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(5).highlight.active > .arrow::after {
+	border-right-color: rgb(217, 180, 31);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(5) > .arrow::after {
+	border-right-color: rgb(217, 180, 31);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(6).highlight.active > .arrow::after {
+	border-right-color: rgb(223, 160, 32);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(6) > .arrow::after {
+	border-right-color: rgb(223, 160, 32);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(7).highlight.active > .arrow::after {
+	border-right-color: rgb(223, 114, 32);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(7) > .arrow::after {
+	border-right-color: rgb(223, 114, 32);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(8).highlight.active > .arrow::after {
+	border-right-color: rgb(212, 58, 72);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(8) > .arrow::after {
+	border-right-color: rgb(212, 58, 72);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(9).highlight.active > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(9) > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(10).highlight.active > .arrow::after {
+	border-right-color: rgb(185, 117, 208);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(10) > .arrow::after {
+	border-right-color: rgb(185, 117, 208);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(11).highlight.active > .arrow::after {
+	border-right-color: rgb(63, 138, 208);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(11) > .arrow::after {
+	border-right-color: rgb(63, 138, 208);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(12).highlight.active > .arrow::after {
+	border-right-color: rgb(75, 185, 202);
+}
+.skin-2 .menu-min.sidebar .nav-list > li:nth-child(12) > .arrow::after {
+	border-right-color: rgb(75, 185, 202);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > a > .menu-text {
+	border-left-color: rgb(119, 119, 119);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > .arrow::after {
+	border-right-color: rgb(36, 36, 36);
+}
+.skin-2 .menu-min.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(136, 136, 136);
+}
+@media all and (max-width:991px)
+{
+.skin-2 .responsive.sidebar .nav-list > li.active > a::after {
+	display: none;
+}
+.skin-2 .responsive.sidebar .nav-list > li.highlight.active > a::after {
+	display: block;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.open > a {
+	color: rgb(230, 230, 230);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > a {
+	color: rgb(255, 255, 255);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > a::after {
+	border-width: 9px 6px; top: 10px;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 20px 10px; top: 0px;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li > a > .menu-text {
+	border-width: 0px 0px 0px 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.4); color: rgba(0, 0, 0, 0.6); font-weight: 700; margin-left: 1px; box-shadow: none; background-color: inherit; -webkit-box-shadow: none;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > a > .menu-text {
+	color: rgb(255, 255, 255); background-color: inherit;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li > .submenu {
+	border-width: 1px 0px 0px 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.3); margin-left: 1px; box-shadow: none; -webkit-box-shadow: none;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li > .submenu::after {
+	display: none;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > .submenu {
+	border-top-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .responsive-min.sidebar .sidebar-shortcuts-large {
+	border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgb(102, 102, 102); border-image: none; top: 0px; box-shadow: none; background-color: rgb(57, 57, 57); -webkit-box-shadow: none;
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.highlight.active > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.highlight.active > .arrow::before {
+	border-right-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li > .arrow::before {
+	border-right-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:not(.highlight).active > a:not(.dropdown-toggle) > .menu-text {
+	border-width: 1px; border-top-color: rgb(85, 85, 85); border-right-color: rgb(85, 85, 85); border-bottom-color: rgb(85, 85, 85);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.highlight.active > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.highlight.active.pull_up > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.pull_up > a > .menu-text {
+	border-left-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:not(.highlight).active.pull_up > a > .menu-text {
+	border-left-color: rgb(102, 102, 102);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(1).highlight.active > .arrow::after {
+	border-right-color: rgb(24, 166, 101);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(1) > .arrow::after {
+	border-right-color: rgb(24, 166, 101);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(2).highlight.active > .arrow::after {
+	border-right-color: rgb(106, 177, 74);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(2) > .arrow::after {
+	border-right-color: rgb(106, 177, 74);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(3).highlight.active > .arrow::after {
+	border-right-color: rgb(152, 188, 27);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(3) > .arrow::after {
+	border-right-color: rgb(152, 188, 27);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(4).highlight.active > .arrow::after {
+	border-right-color: rgb(183, 197, 28);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(4) > .arrow::after {
+	border-right-color: rgb(183, 197, 28);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(5).highlight.active > .arrow::after {
+	border-right-color: rgb(217, 180, 31);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(5) > .arrow::after {
+	border-right-color: rgb(217, 180, 31);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(6).highlight.active > .arrow::after {
+	border-right-color: rgb(223, 160, 32);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(6) > .arrow::after {
+	border-right-color: rgb(223, 160, 32);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(7).highlight.active > .arrow::after {
+	border-right-color: rgb(223, 114, 32);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(7) > .arrow::after {
+	border-right-color: rgb(223, 114, 32);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(8).highlight.active > .arrow::after {
+	border-right-color: rgb(212, 58, 72);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(8) > .arrow::after {
+	border-right-color: rgb(212, 58, 72);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(9).highlight.active > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(9) > .arrow::after {
+	border-right-color: rgb(189, 82, 137);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(10).highlight.active > .arrow::after {
+	border-right-color: rgb(185, 117, 208);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(10) > .arrow::after {
+	border-right-color: rgb(185, 117, 208);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(11).highlight.active > .arrow::after {
+	border-right-color: rgb(63, 138, 208);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(11) > .arrow::after {
+	border-right-color: rgb(63, 138, 208);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(12).highlight.active > .arrow::after {
+	border-right-color: rgb(75, 185, 202);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li:nth-child(12) > .arrow::after {
+	border-right-color: rgb(75, 185, 202);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > a > .menu-text {
+	border-left-color: rgb(119, 119, 119);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > .arrow::after {
+	border-right-color: rgb(36, 36, 36);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(136, 136, 136);
+}
+.skin-2 .responsive-min.sidebar .nav-list > li.active > a::after {
+	display: block;
+}
+}
+@media only screen and (min-width:992px)
+{
+.skin-2 .nav-list li.hover > .submenu {
+	border: 1px solid rgba(0, 0, 0, 0.4); border-image: none; padding-right: 0px; padding-left: 0px;
+}
+.skin-2 .nav-list li.hover > .submenu > li > a {
+	margin-top: 0px; margin-bottom: 0px;
+}
+.skin-2 .nav-list li.hover > .submenu > li:first-child > a {
+	border-top-width: 0px;
+}
+.skin-2 .nav-list li .submenu > li.active.hover > a {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+.skin-2 .nav-list > li > .submenu li.hover > .submenu {
+	padding: 2px;
+}
+.skin-2 .nav-list > li > .submenu li > .submenu > li.hover > a {
+	border-top-color: rgba(255, 255, 255, 0.08);
+}
+.skin-2 .menu-min .nav-list > li.hover-show.active > a::after {
+	display: none;
+}
+.skin-2 .menu-min .nav-list > li.active:hover > a::after {
+	display: none;
+}
+.skin-2 .nav-list > li.hover-show.hover.active > a.dropdown-toggle::after {
+	display: none;
+}
+.skin-2 .nav-list > li.hover.active:hover > a.dropdown-toggle::after {
+	display: none;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li:not(:hover):not(.active):not(:focus).hover.open > a {
+	font-weight: 400; background-color: rgb(57, 57, 57);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li:not(:hover):not(.active):not(:focus).hover.open > a > .arrow {
+	color: inherit;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li:not(:hover):not(.active):not(:focus).hover.open > a > .menu-icon {
+	color: inherit;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li:not(:hover):not(.active):not(:focus).hover.open > a > .menu-text {
+	color: inherit;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li:not(:hover):not(.active):not(:focus).hover.open > a {
+	color: rgb(238, 238, 238);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu > li:not(:hover):not(.active):not(:focus).hover.open > a > .menu-icon {
+	display: none;
+}
+.skin-2 :not(.navbar-collapse).sidebar .nav-list > li .submenu > li.hover-show.hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 :not(.navbar-collapse).sidebar .nav-list > li .submenu > li.hover:hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 :not(.navbar-collapse).sidebar .nav-list > li.active .submenu > li.hover-show.hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 :not(.navbar-collapse).sidebar .nav-list > li.active .submenu > li.hover:hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+}
+@media only screen and (max-width:991px)
+{
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu::before {
+	display: none;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu > li::before {
+	display: none;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu > li > .submenu::before {
+	display: none;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li::before {
+	top: 0px; height: 41px !important;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li > .submenu > li > a {
+	padding-left: 42px; margin-left: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li > .submenu > li > .submenu > li > a {
+	padding-left: 58px; margin-left: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li.highlight.active > a > .menu-text {
+	border-width: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > a > .menu-text {
+	border-width: 0px;
+}
+}
+@media only screen and (max-width:991px) and (min-width:992px)
+{
+.skin-2 .navbar-collapse.sidebar .nav-list > li.hover > .submenu {
+	padding-bottom: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li.hover > .submenu {
+	border-width: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li li.hover-show.hover > a {
+	background-color: transparent;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li li.hover:hover > a {
+	background-color: transparent;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li li.hover > a:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu > li.hover-show.hover.active > a {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu > li.hover.active:hover > a {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu > li.hover.active > a:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li.hover > .submenu {
+	padding: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li.hover > .submenu > li > a {
+	padding-left: 37px !important; margin-left: 0px !important;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li > .submenu > li > .submenu > li > a {
+	padding-left: 51px !important; margin-left: 0px !important;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li.hover > .submenu li > a {
+	padding-left: 32px !important;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li.hover > .submenu li > a > .menu-icon {
+	background-color: transparent;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li.hover > .submenu > li.active > a {
+	font-weight: 400; background-color: transparent;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li.hover > .submenu > li.active > a {
+	font-weight: 700; background-color: rgba(0, 0, 0, 0.05);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list li.hover > .submenu > li.active > a:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li .submenu > li.hover-show.hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li .submenu > li.hover:hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li.active .submenu > li.hover-show.hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li.active .submenu > li.hover:hover > a {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li > .submenu li > .submenu > li.hover > a {
+	border-top-width: 0px;
+}
+.skin-2 .navbar-collapse.sidebar .nav-list > li .submenu > li.hover > a > .menu-icon {
+	left: 12px;
+}
+.skin-2 .menu-min.navbar-collapse.sidebar .nav-list li.hover > .submenu li > a {
+	padding-left: 32px;
+}
+}
+@media only screen and (max-width:991px)
+{
+.skin-2 .menu-min.navbar-collapse.sidebar .sidebar-shortcuts-large {
+	border-width: 0px;
+}
+.skin-2 .menu-min.navbar-collapse.sidebar .nav-list > li > a > .menu-text {
+	color: rgb(230, 230, 230); font-weight: 400; margin-left: 0px;
+}
+.skin-2 .menu-min.navbar-collapse.sidebar .nav-list > li:hover > a > .menu-text {
+	color: rgba(0, 0, 0, 0.6); font-weight: 700;
+}
+.skin-2 .menu-min.navbar-collapse.sidebar .nav-list > li.active > a > .menu-text {
+	color: rgb(255, 255, 255); font-weight: 700;
+}
+.skin-2 .menu-min.navbar-collapse.sidebar .nav-list > li > .submenu {
+	margin-left: 0px; border-top-width: 0px;
+}
+.skin-2 .menu-min.navbar-collapse.sidebar .nav-list > li > .submenu li > a > .menu-icon {
+	left: 12px;
+}
+}
+@media all and (min-width:992px)
+{
+.skin-2 .compact.sidebar .nav-list > li::before {
+	height: auto; bottom: 0px;
+}
+}
+.skin-2 .main-container .menu-toggler {
+	background-color: rgb(214, 133, 176);
+}
+.skin-2 .main-container .menu-toggler::after {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.skin-2 .main-container .menu-toggler::before {
+	border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);
+}
+.skin-2 .main-container .menu-toggler > .toggler-text {
+	border-top-color: rgb(214, 133, 176);
+}
+.skin-2 .navbar .navbar-toggle {
+	background-color: rgb(219, 120, 161);
+}
+.skin-2 .navbar .navbar-toggle:focus {
+	border-color: transparent; background-color: rgb(219, 120, 161);
+}
+.skin-2 .navbar .navbar-toggle:hover {
+	border-color: rgba(255, 255, 255, 0.1); background-color: rgb(215, 104, 150);
+}
+.skin-2 .navbar .display.navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.35); box-shadow: inset 1px 1px 2px 0px rgba(0,0,0,0.25); background-color: rgb(210, 88, 139);
+}
+.skin-2 .navbar [data-toggle=collapse]:not(.collapsed).navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.35); box-shadow: inset 1px 1px 2px 0px rgba(0,0,0,0.25); background-color: rgb(210, 88, 139);
+}
+@media only screen and (min-width:768px)
+{
+.skin-2 .main-container.container::before {
+	box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.1);
+}
+}
+@media only screen and (min-width:992px)
+{
+.skin-2 .h-sidebar.sidebar {
+	background-color: rgb(57, 57, 57);
+}
+.skin-2 .h-sidebar.sidebar::before {
+	border-bottom-color: rgb(123, 123, 123); background-color: rgb(118, 118, 118);
+}
+.skin-2 .h-sidebar.sidebar .nav-list {
+	border-bottom-width: 0px;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li > a > .menu-text {
+	color: rgb(230, 230, 230); font-weight: 400;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.hover-show > a > .menu-text {
+	color: rgb(255, 255, 255); font-weight: 400;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li:hover > a > .menu-text {
+	color: rgb(255, 255, 255); font-weight: 400;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.active > a > .menu-text {
+	color: rgb(255, 255, 255); font-weight: 700;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li::before {
+	left: 0px; right: 0px;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.hover > .submenu {
+	border-width: 1px; margin-left: -1px; border-top-color: rgba(0, 0, 0, 0.4);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li .submenu > li.hover > a {
+	padding-left: 22px;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li .submenu > li.hover > a > .menu-icon {
+	left: 4px;
+}
+.skin-2 .compact.h-sidebar.sidebar .nav-list > li.active::before {
+	height: 2px; bottom: auto;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.active.highlight > a::after {
+	display: none;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.active.hover > a::after {
+	border-width: 8px; border-color: transparent transparent rgb(255, 255, 255); left: 50%; top: auto; right: auto; bottom: 0px; margin-left: -8px; display: block;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.hover-show.active.hover > a::after {
+	display: none;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.active.hover:hover > a::after {
+	display: none;
+}
+.skin-2 .h-sidebar.sidebar .sidebar-shortcuts-large {
+	border-width: 1px 0px 0px !important; top: 100%; border-top-color: rgb(119, 119, 119); border-top-style: solid; background-color: rgb(80, 80, 80);
+}
+.skin-2 .h-sidebar.sidebar .sidebar-shortcuts-mini {
+	padding-top: 2px;
+}
+.skin-2 .h-sidebar.sidebar .sidebar-shortcuts-mini > .btn {
+	padding: 7px;
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.highlight.active > .arrow::after {
+	border-right-color: transparent; border-bottom-color: rgb(189, 82, 137);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.highlight.active > .arrow::before {
+	border-right-color: transparent; border-bottom-color: rgb(25, 25, 25);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.hover > .arrow::after {
+	border-right-color: transparent; border-bottom-color: rgb(69, 48, 59);
+}
+.skin-2 .h-sidebar.sidebar .nav-list > li.hover > .arrow::before {
+	border-right-color: transparent; border-bottom-color: rgb(25, 25, 25);
+}
+.skin-2 .h-sidebar.sidebar .sidebar-shortcuts-large::after {
+	border-bottom-color: rgb(80, 80, 80);
+}
+.skin-2 .h-sidebar.sidebar .sidebar-shortcuts-large::before {
+	border-bottom-color: rgb(153, 153, 153);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .sidebar-shortcuts-mini {
+	padding-top: 3px;
+}
+.skin-2 .menu-min.h-sidebar.sidebar .sidebar-shortcuts-mini > .btn {
+	padding: 6px;
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li > a > .menu-text {
+	border-width: 1px 0px 0px; border-top-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li.highlight.active > .arrow::before {
+	border-bottom-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li > .arrow::before {
+	border-bottom-color: rgba(0, 0, 0, 0.7);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(1).highlight.active > .arrow::after {
+	border-bottom-color: rgb(24, 166, 101);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(1) > .arrow::after {
+	border-bottom-color: rgb(24, 166, 101);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(2).highlight.active > .arrow::after {
+	border-bottom-color: rgb(106, 177, 74);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(2) > .arrow::after {
+	border-bottom-color: rgb(106, 177, 74);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(3).highlight.active > .arrow::after {
+	border-bottom-color: rgb(152, 188, 27);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(3) > .arrow::after {
+	border-bottom-color: rgb(152, 188, 27);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(4).highlight.active > .arrow::after {
+	border-bottom-color: rgb(183, 197, 28);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(4) > .arrow::after {
+	border-bottom-color: rgb(183, 197, 28);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(5).highlight.active > .arrow::after {
+	border-bottom-color: rgb(217, 180, 31);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(5) > .arrow::after {
+	border-bottom-color: rgb(217, 180, 31);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(6).highlight.active > .arrow::after {
+	border-bottom-color: rgb(223, 160, 32);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(6) > .arrow::after {
+	border-bottom-color: rgb(223, 160, 32);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(7).highlight.active > .arrow::after {
+	border-bottom-color: rgb(223, 114, 32);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(7) > .arrow::after {
+	border-bottom-color: rgb(223, 114, 32);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(8).highlight.active > .arrow::after {
+	border-bottom-color: rgb(212, 58, 72);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(8) > .arrow::after {
+	border-bottom-color: rgb(212, 58, 72);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(9).highlight.active > .arrow::after {
+	border-bottom-color: rgb(189, 82, 137);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(9) > .arrow::after {
+	border-bottom-color: rgb(189, 82, 137);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(10).highlight.active > .arrow::after {
+	border-bottom-color: rgb(185, 117, 208);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(10) > .arrow::after {
+	border-bottom-color: rgb(185, 117, 208);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(11).highlight.active > .arrow::after {
+	border-bottom-color: rgb(63, 138, 208);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(11) > .arrow::after {
+	border-bottom-color: rgb(63, 138, 208);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(12).highlight.active > .arrow::after {
+	border-bottom-color: rgb(75, 185, 202);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li:nth-child(12) > .arrow::after {
+	border-bottom-color: rgb(75, 185, 202);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li.active > .arrow::after {
+	border-bottom-color: rgb(36, 36, 36);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li.active > .arrow::before {
+	border-bottom-color: rgb(136, 136, 136);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li.highlight.active > a > .menu-text {
+	border-top-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li > a > .menu-text {
+	border-top-color: rgba(0, 0, 0, 0.5);
+}
+.skin-2 .menu-min.h-sidebar.sidebar .nav-list > li.active > a > .menu-text {
+	border-top-color: rgb(119, 119, 119);
+}
+.skin-2 .h-sidebar.sidebar + .main-content .breadcrumbs {
+	border-color: rgb(213, 231, 241); top: 2px;
+}
+.skin-2 .sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 86px;
+}
+.skin-2 .no-gap.sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 72px;
+}
+.skin-2 .menu-min.sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 61px;
+}
+.skin-2 .no-gap.menu-min.sidebar-fixed.h-sidebar + .main-content {
+	padding-top: 47px;
+}
+.skin-2 .main-content .sidebar.h-sidebar .nav-list {
+	border-left-color: rgb(87, 87, 87); border-left-width: 1px; border-left-style: solid;
+}
+}
+.skin-2 .sidebar-scroll .sidebar-shortcuts {
+	border-bottom-color: rgb(85, 85, 85);
+}
+.skin-2 .sidebar-scroll .sidebar-toggle {
+	border-top-color: rgb(85, 85, 85);
+}
+.skin-3 .nav-list > li.open + li {
+	border-top-color: rgb(149, 186, 210) !important;
+}
+.skin-3 .nav-list > li:hover + li {
+	border-top-color: rgb(149, 186, 210) !important;
+}
+.skin-2 .scrollout .scroll-track {
+	background-color: transparent;
+}
+.skin-2 .scrollout .scroll-bar {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+@media only screen and (max-width:991px) and (min-width:768px)
+{
+.skin-2 .navbar-collapse.navbar {
+	background-color: transparent;
+}
+.skin-2 .navbar-collapse.navbar .navbar-container {
+	background: rgb(198, 72, 126);
+}
+.skin-2 .navbar-collapse.navbar::before {
+	background: rgb(198, 72, 126);
+}
+}
+.skin-2 .nav-list > li.disabled::before {
+	display: none !important;
+}
+.skin-2 .nav-list > li.disabled > a {
+	color: rgb(204, 204, 204) !important; background-color: rgb(85, 85, 85) !important;
+}
+.skin-2 .nav-list > li > a.disabled {
+	color: rgb(204, 204, 204) !important; background-color: rgb(85, 85, 85) !important;
+}
+.skin-2 .nav-list > li.disabled > a > .menu-text {
+	color: rgb(204, 204, 204) !important;
+}
+.skin-2 .nav-list > li > a.disabled > .menu-text {
+	color: rgb(204, 204, 204) !important;
+}
+.skin-2 .nav-list > li.disabled > a .badge {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li.disabled > a .label {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li > a.disabled .badge {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li > a.disabled .label {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.skin-2 .nav-list > li.disabled.highlight.active > a::after {
+	border-left-color: rgb(85, 85, 85) !important;
+}
+.skin-2 .nav-list > li.highlight.active > a.disabled::after {
+	border-left-color: rgb(85, 85, 85) !important;
+}
+.skin-2 .nav-list li .submenu > li.disabled > a {
+	color: rgb(221, 221, 221) !important; cursor: not-allowed !important; background-color: rgb(102, 102, 102) !important;
+}
+.skin-2 .nav-list li .submenu > li > a.disabled {
+	color: rgb(221, 221, 221) !important; cursor: not-allowed !important; background-color: rgb(102, 102, 102) !important;
+}
+.skin-2 .nav-list li.disabled .submenu > li > a {
+	color: rgb(221, 221, 221) !important; cursor: not-allowed !important; background-color: rgb(102, 102, 102) !important;
+}
+.skin-2 .nav-list li > a.disabled + .submenu > li > a {
+	color: rgb(221, 221, 221) !important; cursor: not-allowed !important; background-color: rgb(102, 102, 102) !important;
+}
+.skin-2 .nav-list li .submenu > li.disabled > a > .menu-icon {
+	display: none;
+}
+.skin-2 .nav-list li .submenu > li > a.disabled > .menu-icon {
+	display: none;
+}
+.skin-2 .nav-list li.disabled .submenu > li > a > .menu-icon {
+	display: none;
+}
+.skin-2 .nav-list li > a.disabled + .submenu > li > a > .menu-icon {
+	display: none;
+}
+.skin-3 {
+	background-color: rgb(187, 187, 187);
+}
+.skin-3 .main-container::before {
+	background: -ms-linear-gradient(rgb(238, 245, 250) 0px, rgb(255, 255, 255) 8%) 0px 4px / 100% 26px; -moz-background-size: 100% 26px; -webkit-background-size: 100% 26px; -o-background-size: 100% 26px; -ms-background-size: 100% 26px;
+}
+@media all and (min-width:768px)
+{
+.skin-2 .main-container.container .h-sidebar.sidebar + .main-content .breadcrumbs-fixed {
+	width: auto;
+}
+.skin-3 .container.main-container::before {
+	box-shadow: 0px 0px 0px 1px rgba(50,100,200,0.1); -webkit-box-shadow: 0 0 0 1px rgba(50, 100, 200, .1);
+}
+}
+.skin-3 .navbar {
+	background: rgb(64, 64, 64);
+}
+.skin-3 .sidebar {
+	border-width: 0px 1px 0px 0px; border-style: solid; border-color: rgb(164, 198, 221); background-color: rgb(219, 219, 219);
+}
+.skin-3 .nav-list > li {
+	border-color: rgb(242, 242, 242);
+}
+.skin-3 .nav-list > li.open {
+	border-color: rgb(149, 186, 210) !important;
+}
+.skin-3 .nav-list > li:hover {
+	border-color: rgb(149, 186, 210) !important;
+}
+.skin-3 .nav-list > li > a {
+	color: rgb(90, 90, 90); background-color: rgb(227, 227, 227);
+}
+.skin-3 .nav-list > li > a > .arrow {
+	color: inherit;
+}
+.skin-3 .nav-list > li > a:focus {
+	color: rgb(90, 90, 90); background-color: rgb(232, 232, 232);
+}
+.skin-3 .nav-list > li.active {
+	border-color: rgb(164, 198, 221) !important;
+}
+.skin-3 .nav-list > li.active + li {
+	border-color: rgb(164, 198, 221) !important;
+}
+.skin-3 .nav-list > li.active + li:last-child {
+	border-bottom-color: rgb(242, 242, 242) !important;
+}
+.skin-3 .nav-list > li.active + li:last-child:hover {
+	border-bottom-color: rgb(149, 186, 210) !important;
+}
+.skin-3 .nav-list > li:hover > a {
+	color: rgb(51, 125, 187); background-color: rgb(255, 255, 255);
+}
+.skin-3 .nav-list > li.open:hover > a {
+	color: rgb(51, 125, 187); background-color: rgb(248, 248, 248);
+}
+.skin-3 .nav-list > li.open > a {
+	color: rgb(51, 125, 187); background-color: rgb(248, 248, 248);
+}
+.skin-3 .nav-list > li.open > a > .arrow {
+	color: inherit;
+}
+.skin-3 .nav-list > li.highlight.active > a {
+	color: rgb(77, 150, 203) !important; background-color: rgb(243, 250, 255) !important;
+}
+.skin-3 .nav-list > li.active > a {
+	color: rgb(77, 150, 203) !important; background-color: rgb(243, 250, 255) !important;
+}
+.skin-3 .nav-list > li.open::before {
+	display: block; background-color: rgb(79, 138, 180) !important;
+}
+.skin-3 .nav-list > li:hover::before {
+	display: block; background-color: rgb(79, 138, 180) !important;
+}
+.skin-3 .nav-list > li.active::before {
+	display: block; background-color: rgb(77, 150, 203) !important;
+}
+.skin-3 .page-content {
+	background-color: transparent;
+}
+.skin-3 .infobox-container :not(.infobox-dark).infobox {
+	border-style: solid; background-color: transparent;
+}
+.skin-3 .nav-list > li.active::after {
+	display: none;
+}
+.skin-3 .nav-list li.active > a::after {
+	border-width: 12px 8px; top: 7px; right: -1px; border-right-color: rgb(255, 255, 255);
+}
+.skin-3 .nav-list li.active > a::before {
+	border-width: 12px 8px; border-style: solid; border-color: transparent rgb(145, 186, 214) transparent transparent; top: 7px; right: 0px; display: block; position: absolute; content: ""; background-color: transparent;
+}
+.skin-3 .nav-list > li.active > .submenu li.active > a::after {
+	top: 4px;
+}
+.skin-3 .nav-list > li.active > .submenu li.active > a::before {
+	top: 4px;
+}
+.skin-3 .nav-list li.open.active > a::before {
+	display: none;
+}
+.skin-3 .nav-list li.open.active.highlight > a::before {
+	display: block;
+}
+.skin-3 .nav-list li:not(.open).active li.active > a::before {
+	display: none !important;
+}
+.skin-3 .nav-list > li.active.highlight > a::after {
+	border-left-color: rgb(243, 250, 255);
+}
+.skin-3 .nav-list > li.active.highlight > a::before {
+	border-left-color: rgb(145, 186, 214);
+}
+.skin-3 .nav-list li > .arrow::before {
+	border-right-color: rgb(127, 175, 207);
+}
+.skin-3 .nav-list > li .submenu > li:not(.open).active > a {
+	background-color: rgb(245, 247, 250);
+}
+.skin-3 .nav-list > li .submenu > li:not(.open).active > a:hover {
+	background-color: rgb(241, 245, 249);
+}
+@media only screen and (max-width:991px)
+{
+.skin-3 .responsive.sidebar .nav-list > li.open.active > a::after {
+	display: none;
+}
+}
+@media only screen and (min-width:992px)
+{
+.skin-3 .nav-list li.hover > .submenu {
+	border-color: rgb(153, 191, 217);
+}
+.skin-3 .nav-list li.active.hover > a::before {
+	display: block;
+}
+.skin-3 .nav-list li.hover .submenu > li.active > a::before {
+	display: none;
+}
+}
+.skin-3 .menu-min.sidebar .nav-list > li > a > .menu-text {
+	border-color: rgb(164, 198, 221); background-color: rgb(241, 245, 249);
+}
+.skin-3 .menu-min.sidebar .nav-list > li.active > a > .menu-text {
+	background-color: rgb(237, 243, 247);
+}
+.skin-3 .menu-min.sidebar .nav-list > li > .submenu {
+	border-color: rgb(201, 218, 229) rgb(164, 198, 221) rgb(164, 198, 221);
+}
+.skin-3 .menu-min.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(112, 159, 191);
+}
+.skin-3 .menu-min.sidebar .nav-list > li > .arrow::after {
+	border-right-color: rgb(237, 243, 247);
+}
+.skin-3 .menu-min.sidebar .nav-list li.active > a::after {
+	display: none;
+}
+.skin-3 .menu-min.sidebar .nav-list li.active > a::before {
+	display: none;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.active > a::after {
+	border-width: 9px 7px; top: 10px; display: block;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.active > a::before {
+	border-width: 9px 7px; top: 10px; display: block;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 21px 10px; top: -1px;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.highlight.active > a::before {
+	border-width: 20px 0px 21px 10px; top: -1px;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.hover-show.active > a::after {
+	display: none;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.hover-show.active > a::before {
+	display: none;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.active:hover > a::after {
+	display: none;
+}
+.skin-3 .menu-min.sidebar .nav-list > li.active:hover > a::before {
+	display: none;
+}
+.skin-3 .menu-min.sidebar .sidebar-shortcuts-large {
+	background-color: rgb(245, 245, 245);
+}
+@media only screen and (max-width:991px)
+{
+.skin-3 .responsive.menu-min.sidebar .nav-list > li.active > a::after {
+	display: none;
+}
+.skin-3 .responsive.menu-min.sidebar .nav-list > li.active > a::before {
+	display: none;
+}
+.skin-3 .responsive.sidebar {
+	border-bottom-width: 1px !important;
+}
+.skin-3 .responsive.sidebar .nav-list > li.open.active > a::after {
+	display: none;
+}
+.skin-3 .responsive.sidebar .nav-list > li.highlight.active > a::after {
+	display: block;
+}
+.skin-3 .responsive.sidebar .nav-list > li.highlight.active > a::before {
+	display: block;
+}
+.skin-3 .nav-list li.active > a::after {
+	display: none;
+}
+.skin-3 .nav-list li.active > a::before {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list li.active > a::after {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list li.active > a::before {
+	display: none;
+}
+.skin-3 .navbar-collapse.sidebar {
+	border-bottom-color: rgb(164, 198, 221);
+}
+.skin-3 .responsive-min.sidebar .nav-list > li > a > .menu-text {
+	border-color: rgb(164, 198, 221); background-color: rgb(241, 245, 249);
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.active > a > .menu-text {
+	background-color: rgb(237, 243, 247);
+}
+.skin-3 .responsive-min.sidebar .nav-list > li > .submenu {
+	border-color: rgb(201, 218, 229) rgb(164, 198, 221) rgb(164, 198, 221);
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.active > .arrow::before {
+	border-right-color: rgb(112, 159, 191);
+}
+.skin-3 .responsive-min.sidebar .nav-list > li > .arrow::after {
+	border-right-color: rgb(237, 243, 247);
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.active > a::after {
+	border-width: 9px 7px; top: 10px; display: block;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.active > a::before {
+	border-width: 9px 7px; top: 10px; display: block;
+}
+.skin-3 .responsive-max.sidebar .nav-list li.active.hover > a::before {
+	display: none;
+}
+.skin-3 .responsive-max.sidebar .nav-list > li.open.active > a::after {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.hover-show.active > a::after {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.hover-show.active > a::before {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.active:hover > a::after {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.active:hover > a::before {
+	display: none;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.highlight.active > a::after {
+	border-width: 20px 0px 21px 10px; top: -1px;
+}
+.skin-3 .responsive-min.sidebar .nav-list > li.highlight.active > a::before {
+	border-width: 20px 0px 21px 10px; top: -1px;
+}
+.skin-3 .responsive-min.sidebar .sidebar-shortcuts-large {
+	background-color: rgb(245, 245, 245);
+}
+.skin-3 .responsive-max.sidebar {
+	border-width: 0px 1px 1px 0px;
+}
+.skin-3 .responsive-max.sidebar .nav-list > li.highlight.active > a::after {
+	display: block;
+}
+.skin-3 .responsive-max.sidebar .nav-list > li.highlight.active > a::before {
+	display: block;
+}
+.skin-3 .navbar-collapse.sidebar .sidebar-shortcuts-large {
+	background-color: transparent;
+}
+.skin-3 .navbar-collapse.sidebar .nav-list > li::before {
+	height: 43px !important;
+}
+.skin-3 .navbar-collapse.sidebar .sidebar-shortcuts {
+	padding: 0px 0px 3px !important;
+}
+}
+.skin-3 .sidebar-shortcuts {
+	background-color: rgb(219, 219, 219);
+}
+.skin-3 .sidebar-shortcuts-mini {
+	background-color: rgb(219, 219, 219);
+}
+.skin-3 .sidebar > .nav-search {
+	background-color: rgb(219, 219, 219);
+}
+.skin-3 .sidebar-toggle {
+	border-color: rgb(242, 242, 242); background-color: rgb(208, 208, 208);
+}
+.skin-3 .sidebar-toggle::before {
+	border-color: rgb(242, 242, 242);
+}
+.skin-3 .sidebar-toggle > .ace-icon {
+	border-color: rgb(153, 153, 153); color: rgb(153, 153, 153); background-color: rgb(255, 255, 255);
+}
+.skin-3 .sidebar-scroll .nav-wrap-up + .sidebar-toggle::after {
+	top: 0px; right: -1px; bottom: 0px; border-right-color: rgb(164, 198, 221); border-right-width: 1px; border-right-style: solid; display: block; position: absolute; content: "";
+}
+.skin-3 .main-container .menu-toggler {
+	color: rgb(255, 255, 255); background-color: rgb(98, 168, 209);
+}
+.skin-3 .navbar .navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.15); background-color: rgb(100, 140, 174);
+}
+.skin-3 .navbar .navbar-toggle:focus {
+	border-color: rgba(255, 255, 255, 0.15); background-color: rgb(100, 140, 174);
+}
+.skin-3 .main-container .menu-toggler::after {
+	border-color: rgb(255, 255, 255);
+}
+.skin-3 .main-container .menu-toggler::before {
+	border-color: rgb(255, 255, 255);
+}
+.skin-3 .main-container .menu-toggler > .toggler-text {
+	border-top-color: rgb(98, 168, 209);
+}
+.skin-3 .main-container .menu-toggler > .toggler-text::after {
+	color: rgb(255, 255, 255);
+}
+.skin-3 .navbar .navbar-toggle {
+	transition:background-color 0.1s;
+}
+.skin-3 .navbar .navbar-toggle:hover {
+	border-color: rgba(255, 255, 255, 0.15); background-color: rgb(87, 130, 167);
+}
+.skin-3 .navbar .display.navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.3); background-color: rgb(80, 120, 153);
+}
+.skin-3 .navbar [data-toggle=collapse]:not(.collapsed).navbar-toggle {
+	border-color: rgba(255, 255, 255, 0.3); background-color: rgb(80, 120, 153);
+}
+.skin-3 .breadcrumbs {
+	border-width: 0px; margin: 8px 8px 0px; border-radius: 4px; background-color: rgb(231, 242, 248);
+}
+@media all and (min-width:992px)
+{
+.skin-3 .breadcrumbs-fixed.breadcrumbs + .page-content {
+	padding-top: 57px;
+}
+}
+@media all and (max-width:991px) and (min-width:992px)
+{
+.skin-3 .breadcrumbs-fixed.breadcrumbs + .page-content {
+	padding-top: 54px;
+}
+.skin-3 .menu-toggler + .reponsive.sidebar + .main-content .breadcrumbs-fixed.breadcrumbs + .page-content {
+	padding-top: 49px;
+}
+.skin-3 .main-container.container .breadcrumbs-fixed {
+	width: 734px;
+}
+.skin-3 .main-container.container .compact.sidebar + .main-content .breadcrumbs-fixed {
+	width: 734px;
+}
+.skin-3 .main-container.container .menu-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 734px;
+}
+.skin-3 .main-container.container .responsive-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 691px;
+}
+}
+@media all and (min-width:992px)
+{
+.skin-3 .main-container.container .compact.sidebar + .main-content .breadcrumbs-fixed {
+	width: 843px;
+}
+.skin-3 .main-container.container .breadcrumbs-fixed {
+	width: 964px;
+}
+.skin-3 .main-container.container .sidebar + .main-content .breadcrumbs-fixed {
+	width: 758px;
+}
+.skin-3 .main-container.container .menu-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 905px;
+}
+}
+@media all and (min-width:1200px)
+{
+.skin-3 .main-container.container .compact.sidebar + .main-content .breadcrumbs-fixed {
+	width: 1043px;
+}
+.skin-3 .main-container.container .breadcrumbs-fixed {
+	width: 1148px;
+}
+.skin-3 .main-container.container .sidebar + .main-content .breadcrumbs-fixed {
+	width: 958px;
+}
+.skin-3 .main-container.container .menu-min.sidebar + .main-content .breadcrumbs-fixed {
+	width: 1105px;
+}
+}
+@media only screen and (max-width:991px)
+{
+.skin-3 .breadcrumbs {
+	margin: 5px 5px 0px;
+}
+.skin-3 .menu-toggler + .responsive.sidebar + .main-content .breadcrumbs {
+	margin: 0px; border-radius: 0px;
+}
+.skin-3 .nav-list li.active > a::after {
+	display: none;
+}
+.skin-3 .nav-list li.active > a::before {
+	display: none;
+}
+}
+.skin-3 .sidebar-shortcuts-large > .btn {
+	border-width: 1px; line-height: 26px;
+}
+.skin-3 .sidebar-shortcuts-mini {
+	padding-top: 3px; padding-bottom: 3px; padding-left: 1px;
+}
+.skin-3 .sidebar-shortcuts-mini > .btn {
+	border-width: 1px; margin: 1px 1px 0px 0px; padding: 7px; opacity: 1;
+}
+@media only screen and (min-width:992px)
+{
+.skin-3 .nav-list > li.hover-show.hover.active > a.dropdown-toggle::after {
+	display: none;
+}
+.skin-3 .nav-list > li.hover-show.hover.active > a.dropdown-toggle::before {
+	display: none;
+}
+.skin-3 .nav-list > li.hover.active:hover > a.dropdown-toggle::after {
+	display: none;
+}
+.skin-3 .nav-list > li.hover.active:hover > a.dropdown-toggle::before {
+	display: none;
+}
+.skin-3 .h-sidebar.sidebar {
+	background-color: rgb(227, 227, 227);
+}
+.skin-3 .h-sidebar.sidebar::before {
+	border-bottom-width: 0px; background-color: rgb(203, 208, 214);
+}
+.skin-3 .h-sidebar.sidebar .sidebar-shortcuts-mini > .btn {
+	padding: 8px;
+}
+.skin-3 .h-sidebar.sidebar .sidebar-shortcuts-large {
+	line-height: 36px; background-color: rgb(255, 255, 255);
+}
+.skin-3 .h-sidebar.sidebar + .main-content .breadcrumbs {
+	border-color: rgb(213, 231, 241); top: 2px;
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li.hover > .submenu {
+	border-color: rgb(164, 198, 221);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li {
+	border-color: rgb(242, 242, 242);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li:hover {
+	border-left-color: rgb(149, 186, 210);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li:hover + li {
+	border-left-color: rgb(149, 186, 210);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li.active {
+	border-left-color: rgb(164, 198, 221);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li.active + li {
+	border-left-color: rgb(164, 198, 221);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li:hover + li.active {
+	border-left-color: rgb(164, 198, 221);
+}
+.skin-3 .menu-min.h-sidebar.sidebar .nav-list > li.active > a > .menu-text {
+	border-left-color: rgb(164, 198, 221);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li:last-child:hover {
+	border-right-color: rgb(149, 186, 210);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li:last-child.active {
+	border-right-color: rgb(164, 198, 221);
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li.active > a::after {
+	border-width: 8px 7px !important; border-color: transparent transparent rgb(255, 255, 255); left: 50%; top: auto; right: auto; bottom: -2px; margin-left: -7px;
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li.active > a::before {
+	border-width: 8px !important; border-color: transparent transparent rgb(116, 173, 215); left: 50%; top: auto; right: auto; bottom: -1px; margin-left: -8px !important; display: block;
+}
+.skin-3 .h-sidebar.sidebar .nav-list > li.hover > .arrow::before {
+	border-right-color: transparent; border-bottom-color: rgb(127, 175, 207);
+}
+.skin-3 .menu-min.h-sidebar.sidebar .sidebar-shortcuts {
+	padding-right: 2px; padding-left: 2px; max-width: 52px;
+}
+.skin-3 .menu-min.h-sidebar.sidebar .sidebar-shortcuts-mini > .btn {
+	padding: 7px;
+}
+.skin-3 .menu-min.h-sidebar.sidebar .nav-list > li.hover > .submenu {
+	border-top-color: rgb(201, 218, 229);
+}
+.skin-3 .menu-min.h-sidebar.sidebar .nav-list > li > .arrow::after {
+	border-bottom-color: rgb(237, 243, 247);
+}
+}
+.skin-3 .sidebar-scroll .sidebar-shortcuts {
+	
+}
+.skin-3 .sidebar-scroll .sidebar-toggle {
+	border-top-color: rgb(153, 182, 201);
+}
+@media only screen and (max-width:991px) and (min-width:768px)
+{
+.skin-3 .navbar-collapse.navbar {
+	background-color: transparent;
+}
+.skin-3 .navbar-collapse.navbar .navbar-container {
+	background: rgb(64, 64, 64);
+}
+.skin-3 .navbar-collapse.navbar::before {
+	background: rgb(64, 64, 64);
+}
+}
+.skin-3 .nav-list > li.disabled::before {
+	display: none !important;
+}

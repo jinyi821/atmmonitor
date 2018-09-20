@@ -1,0 +1,346 @@
+<!-- 数据类型配置模块 -->
+
+<div role="tabpanel" class="tab-pane" id="char">
+
+    <div class="check-div">
+        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addftpServer" onclick="initID(-1,-1)">
+            <script>
+                var pid = -1;
+                var ftpId = -1
+                function initID(id, data_TypeId) {
+                    console.info("id=" + id);
+                    pid = id;
+                    ftpId = data_TypeId;
+                    console.info("id1=" + pid);
+                    console.info("ftpId=" + data_TypeId);
+                }
+            </script>
+            添加FTP配置
+        </button>
+    </div>
+    <div class="data-div">
+        <div class="row tableHeader">
+            <div class="col-xs-1 ">
+                ID
+            </div>
+            <div class="col-xs-2">
+                ip:端口
+            </div>
+            <div class="col-xs-2">
+                用户名密码
+            </div>
+            <div class="col-xs-2">
+                服务端工作目录
+            </div>
+            <div class="col-xs-2">
+                scannerIP
+            </div>
+
+            <div class="col-xs-1">
+                其它
+            </div>
+
+
+            <div class="col-xs-2">
+                操作
+            </div>
+        </div>
+        <div class="tablebody">
+        <#list pageInfo.list as col>
+            <div class="row">
+                <div class="col-xs-1 ">
+                ${col["ftpId"]}
+                </div>
+                <div class="col-xs-2">
+                ${col["ftpIp"]}：${col["ftpPort"]}
+                </div>
+                <div class="col-xs-2">
+                ${col["ftpUserName"]}/${col["ftpPassword"]}
+                </div>
+                <div class="col-xs-2" title=" ${col["ftpWorkDirectory"]}">
+                    <#if col["ftpWorkDirectory"]?? && col["ftpWorkDirectory"]?length lt 10>
+                    ${col["ftpWorkDirectory"]}
+                    <#else>
+                    ${col["ftpWorkDirectory"][0..9]?default("")}...
+                    </#if>
+
+                </div>
+                <div class="col-xs-2">
+                ${col["scannerIp"]!'1'}
+
+                </div>
+                <div class="col-xs-1" title="扫描间隔时长:${col["ftpPeriod"]}
+最后扫描时间:${col["ftpLastScanTime"]?number_to_datetime}
+最后服务器启动时间: ${col["ftpLastServerTime"]?number_to_datetime}
+">
+                    ->
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#addftpServer"
+                            onclick="initID('${col_index}','${col["ftpId"]}')">修改
+                    </button>
+                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteftpServer"
+                            onclick="initID('${col_index}','${col["ftpId"]}')">删除
+                    </button>
+                </div>
+            </div>
+
+        </#list>
+        </div>
+    </div>
+<#include "/page.ftl">
+
+<#assign modalId="deleteftpServer">
+<#assign modaltitle="确定要删除该配置？删除后不可恢复！">
+<#include "/messageModal.ftl">
+<#assign formcontenturl="/dcsFtpServer/form_content.ftl">
+<#assign modalId="ftpServer">
+<#include "/addModal.ftl">
+
+</div>
+<script>
+
+    var dataList = new Array();
+    var dcsScannersList = new Array();
+    var size = ${pageInfo.size};
+    console.info("size=" + size);
+
+    function showTip(id, tip) {
+        $("#" + id).attr('title', tip).tooltip('fixTitle').tooltip('show');
+        setTimeout(function () {
+
+            $("#" + id).tooltip({delay: {show: 500, hide: 1000}, animation: true}).tooltip('destroy');
+        }, 3000)
+    }
+    $('#addftpServer').on('shown.bs.modal', function () {
+
+        console.info("===id2=" + pid);
+        $("#ftpScannerId").empty();
+    <#list dcsScanners as col>
+        $("#ftpScannerId").append("<option value='${col["scannerId"]}'>${col["scannerIp"]}</option>");
+    </#list>
+
+
+        if (pid == -1) {
+
+            $("#ftpIp").val("");
+            $("#ftpPort").val("");
+            $("#ftpUserName").val("");
+            $("#ftpPassword").val("");
+            $("#ftpWorkDirectory").val("");
+            $("#ftpLastScanTime").val("");
+            $("#ftpPeriod").val("");
+            $("#ftpScannerId").val("");
+            $("#ftpLastServerTime").val("");
+
+            $("#addftpServerLabel").text("添加配置");
+
+        } else {
+
+            var col = dataList[pid];
+
+            $("#ftpIp").val(col["ftpIp"]);
+            $("#ftpPort").val(col["ftpPort"]);
+            $("#ftpUserName").val(col["ftpUserName"]);
+            $("#ftpPassword").val(col["ftpPassword"]);
+
+            $("#ftpWorkDirectory").val(col["ftpWorkDirectory"]);
+
+            $("#ftpLastScanTime").val(col["ftpLastScanTime"]);
+
+            $("#ftpPeriod").val(col["ftpPeriod"]);
+            $("#ftpScannerId").find("option[text='" + col["ftpScannerId"] + "']").attr("selected", true);
+
+            $("#ftpLastServerTime").val(col["ftpLastServerTime"]);
+            $("#addftpServerLabel").text("修改配置");
+
+        }
+    })
+    $(function () {
+
+    <#list pageInfo.list as col>
+        dataList.push(
+                {
+                    ftpId:${col["ftpId"]},
+                    ftpIp: '${col["ftpIp"]}',
+                    ftpPort: '${col["ftpPort"]}',
+                    ftpUserName: '${col["ftpUserName"]}',
+                    ftpPassword: '${col["ftpPassword"]}',
+                    ftpWorkDirectory: '${col["ftpWorkDirectory"]}',
+                    ftpLastScanTime: '${col["ftpLastScanTime"]?number_to_datetime}',
+                    ftpPeriod:${col["ftpPeriod"]},
+                    ftpLastServerTime: '${col["ftpLastServerTime"]?number_to_datetime}',
+                    ftpScannerId:${col["ftpScannerId"]},
+                    scannerIP: '${col["scannerIp"]}'
+
+                });
+    </#list>
+        var picker1 = $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            locale: moment.locale('zh-cn'),
+            defaultDate: new Date()
+        });
+        var picker2 = $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            locale: moment.locale('zh-cn'),
+            defaultDate: new Date()
+        });
+        $("#saveButton_ftpServer").click(function () {
+            debugger;
+            console.info("1----");
+            console.info("ftpId=" + ftpId);
+            var ftpIp = $("#ftpIp").val();
+            var ftpPort = $("#ftpPort").val();
+            var ftpUserName = $("#ftpUserName").val();
+            var ftpPassword = $("#ftpPassword").val();
+            var ftpWorkDirectory = $("#ftpWorkDirectory").val();
+            var ftpLastScanTime = $("#ftpLastScanTime").val();
+            var ftpPeriod = $("#ftpPeriod").val();
+            var ftpLastServerTime = $("#ftpLastServerTime").val();
+            var ftpScannerId = $("#ftpScannerId").val();
+            console.info("ftpScannerId=" + ftpScannerId);
+            console.info("2----");
+            var i = 0;
+            if (ftpIp.length == 0) {
+
+                showTip("ftpIp", "ftpIp不能为空");
+                i = 1;
+            }
+            if (ftpIp.length > 15) {
+                showTip("ftpIp", "ftpIp不能超过15");
+                i = 1;
+            }
+            if (!isValidIP(ftpIp)) {
+                showTip("ftpIp", "ftpIp不是有效IP地址");
+                i = 1;
+            }
+            if (ftpPort.length == 0) {
+                showTip("ftpPort", "ftp端口不能为空");
+                i = 1;
+            }
+            if (ftpPort.length > 4) {
+                showTip("ftpPort", "端口长度不能超过4");
+                i = 1;
+            }
+            if (!/^\d+$/.test(ftpPort)) {
+                showTip("ftpPort", "端口应为整数");
+                i = 1;
+            }
+            if (ftpUserName.length == 0) {
+                showTip("ftpUserName", "用户名字不能为空");
+                i = 1;
+            }
+            if (ftpUserName.length > 50) {
+                showTip("ftpUserName", "用户名字不能超过50");
+                i = 1;
+            }
+            if (ftpPassword.length == 0) {
+                showTip("ftpPassword", "用户密码不能为空");
+                i = 1;
+            }
+            if (ftpPassword.length > 50) {
+                showTip("ftpPassword", "用户密码不能超过50");
+                i = 1;
+            }
+            if (ftpWorkDirectory.length == 0) {
+                showTip("ftpWorkDirectory", "FTP工作目录不能为空");
+                i = 1;
+            }
+            if (ftpWorkDirectory.length > 30) {
+                showTip("ftpWorkDirectory", "FTP工作目录长度不能超过30");
+                i = 1;
+            }
+            if (ftpLastScanTime.length == 0) {
+                showTip("ftpLastScanTime", "最后扫描时间不能为空");
+                i = 1;
+            }
+            if (ftpPeriod.length == 0) {
+                showTip("ftpPeriod", "时间间隔不能为空");
+                i = 1;
+            }
+            if (!/^\d+$/.test(ftpPeriod)) {
+                showTip("ftpPeriod", "时间间隔应为整数");
+                i = 1;
+            }
+            if (ftpLastServerTime.length == 0) {
+                showTip("ftpLastServerTime", "最后服务器启动时间不能为空");
+                i = 1;
+            }
+            if (!ftpScannerId||ftpScannerId.length == 0) {
+
+                showTip("ftpScannerId", "Ip不能为空");
+                i = 1;
+            }
+            var postdata = {
+                ftpIp: ftpIp,
+                ftpPort: ftpPort,
+                ftpUserName: ftpUserName,
+                ftpPassword: ftpPassword,
+                ftpWorkDirectory: ftpWorkDirectory,
+                ftpLastScanTime: ConvertStrToDate(ftpLastScanTime).getTime(),
+                ftpPeriod: ftpPeriod,
+                ftpScannerId: ftpScannerId,
+                ftpLastServerTime: ConvertStrToDate(ftpLastServerTime).getTime(),
+                ftpId: ftpId
+
+            };
+            if (i == 0) {
+
+                $.ajax({
+                    type: "post",
+                    url: BASE_PATH + "/portal/dcsFtpServer/add",
+                    data: postdata,
+                    async: false,
+                    success: function (result) {
+                        $('#addftpServer').modal('hide');
+                        setTimeout(function () {
+                            if (pid == -1) {
+                                goto(${pageInfo.pageSize});
+                            } else {
+                                goto(${pageInfo.pageNum});
+                            }
+                        }, 1000);
+                        toastr.info("保存成功!");
+
+                    }
+
+                });
+            }
+        })
+
+        $("#deleteftpServerButton").click(function () {
+            console.info("delete");
+            $.ajax({
+                type: "post",
+                url: BASE_PATH + "/portal/dcsFtpServer/delete",
+                data: {id: ftpId},
+                async: false,
+                success: function (result) {
+                    $('#deleteftpServer').modal('hide');
+                    toastr.info("删除成功!");
+                    setTimeout(function () {
+                        if (size == 1 && pid == 1) {
+                            goto(${pageInfo.pageNum}-1);
+                        } else {
+                            goto(${pageInfo.pageNum});
+                        }
+
+                    }, 1000);
+                }
+
+            });
+        });
+
+    })
+
+    function goto(pn) {
+        console.info(" gotoC(pn)")
+        $("#dcsFtpServer").load(BASE_PATH + "/portal/dcsFtpServer/", {pn: pn}, function (txt) {
+
+            if (!txt) {
+
+            }
+
+        });
+    }
+</script>

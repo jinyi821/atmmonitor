@@ -1,0 +1,76 @@
+<div class="form-group ">
+    <label for="ftpIp" class="col-xs-4 control-label"> ftpIp：</label>
+    <div class="col-xs-8 ">
+        <input type="text" class="form-control input-sm duiqi" id="ftpIp"
+               placeholder="输入ftpIp">
+    </div>
+</div>
+<div class="form-group">
+    <label for="ftpPort" class="col-xs-4 control-label">ftp端口：</label>
+    <div class="col-xs-8 ">
+        <input type="text" class="form-control input-sm duiqi" id="ftpPort"
+               placeholder="输入ftp端口">
+    </div>
+</div>
+<div class="form-group">
+    <label for="ftpUserName" class="col-xs-4 control-label">用户名：</label>
+    <div class="col-xs-8 ">
+        <input type="text" class="form-control input-sm duiqi" id="ftpUserName"
+               placeholder="输入用户名">
+    </div>
+</div>
+<div class="form-group ">
+    <label for="ftpPassword" class="col-xs-4 control-label">密码：</label>
+    <div class="col-xs-8  ">
+        <input type="text" class="form-control input-sm duiqi" id="ftpPassword"
+               placeholder="输入密码">
+    </div>
+</div>
+<div class="form-group">
+    <label for="ftpWorkDirectory" class="col-xs-4 control-label">服务端工作目录：</label>
+    <div class="col-xs-8">
+        <input type="text" size="50" class="form-control input-sm duiqi"
+               id="ftpWorkDirectory" placeholder="输入服务端工作目录">
+    </div>
+</div>
+<div class="form-group">
+    <label for="scannerIP" class="col-xs-4 control-label">scannerIP：</label>
+    <div class="col-xs-8">
+        
+        <select class="form-control input-sm duiqi" id="ftpScannerId" placeholder="输入scannerIP" >
+
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="ftpLastScanTime" class="col-xs-4 control-label">最后扫描时间：</label>
+    <!--指定 date标记-->
+    <div class='input-group input-group-sm date col-xs-5 duiqi'  id='datetimepicker1'>
+
+        <input id="ftpLastScanTime" type='text' class="form-control " placeholder="最后扫描时间"/>
+        <span class="input-group-addon ">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+    </div>
+</div>
+<div class="form-group">
+    <label for="ftpPeriod" class="col-xs-4 control-label">扫描间隔时长：</label>
+    <div class="col-xs-8">
+        <input type="text" size="50" class="form-control input-sm duiqi" id="ftpPeriod"
+               placeholder="输入扫描间隔时长">
+    </div>
+</div>
+<div class="form-group">
+    
+
+    <label for="ftpLastServerTime" class="col-xs-4 control-label">最后服务器启动时间：</label>
+    <!--指定 date标记-->
+    <div class='input-group input-group-sm date col-xs-5 '  id='datetimepicker2'>
+
+        <input id="ftpLastServerTime" type='text' class="form-control " placeholder="最后服务器启动时间"/>
+        <span class="input-group-addon ">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+    </div>
+</div>

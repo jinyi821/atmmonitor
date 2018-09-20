@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsDataTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsDataType" >
+    <id column="data_type_id" property="dataTypeId" jdbcType="INTEGER" />
+    <result column="data_type_name" property="dataTypeName" jdbcType="VARCHAR" />
+    <result column="data_type_path_reg" property="dataTypePathReg" jdbcType="VARCHAR" />
+    <result column="is_ftp_delete" property="isFtpDelete" jdbcType="INTEGER" />
+    <result column="is_file_delete" property="isFileDelete" jdbcType="INTEGER" />
+    <result column="hdfs_path" property="hdfsPath" jdbcType="VARCHAR" />
+    <result column="path_ftp" property="pathFtp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    data_type_id, data_type_name, data_type_path_reg, is_ftp_delete, is_file_delete, 
+    hdfs_path, path_ftp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcs_data_type
+    where data_type_id = #{dataTypeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dcs_data_type
+    where data_type_id = #{dataTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert"
+          useGeneratedKeys="true" keyColumn="data_type_id" keyProperty="dataTypeId"
+          parameterType="com.ultrapower.dcs.cluster.control.model.DcsDataType" >
+    insert into dcs_data_type (data_type_id, data_type_name, data_type_path_reg, 
+      is_ftp_delete, is_file_delete, hdfs_path, 
+      path_ftp)
+    values (#{dataTypeId,jdbcType=INTEGER}, #{dataTypeName,jdbcType=VARCHAR}, #{dataTypePathReg,jdbcType=VARCHAR}, 
+      #{isFtpDelete,jdbcType=INTEGER}, #{isFileDelete,jdbcType=INTEGER}, #{hdfsPath,jdbcType=VARCHAR}, 
+      #{pathFtp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsDataType" >
+    insert into dcs_data_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dataTypeId != null" >
+        data_type_id,
+      </if>
+      <if test="dataTypeName != null" >
+        data_type_name,
+      </if>
+      <if test="dataTypePathReg != null" >
+        data_type_path_reg,
+      </if>
+      <if test="isFtpDelete != null" >
+        is_ftp_delete,
+      </if>
+      <if test="isFileDelete != null" >
+        is_file_delete,
+      </if>
+      <if test="hdfsPath != null" >
+        hdfs_path,
+      </if>
+      <if test="pathFtp != null" >
+        path_ftp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dataTypeId != null" >
+        #{dataTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="dataTypeName != null" >
+        #{dataTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTypePathReg != null" >
+        #{dataTypePathReg,jdbcType=VARCHAR},
+      </if>
+      <if test="isFtpDelete != null" >
+        #{isFtpDelete,jdbcType=INTEGER},
+      </if>
+      <if test="isFileDelete != null" >
+        #{isFileDelete,jdbcType=INTEGER},
+      </if>
+      <if test="hdfsPath != null" >
+        #{hdfsPath,jdbcType=VARCHAR},
+      </if>
+      <if test="pathFtp != null" >
+        #{pathFtp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsDataType" >
+    update dcs_data_type
+    <set >
+      <if test="dataTypeName != null" >
+        data_type_name = #{dataTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTypePathReg != null" >
+        data_type_path_reg = #{dataTypePathReg,jdbcType=VARCHAR},
+      </if>
+      <if test="isFtpDelete != null" >
+        is_ftp_delete = #{isFtpDelete,jdbcType=INTEGER},
+      </if>
+      <if test="isFileDelete != null" >
+        is_file_delete = #{isFileDelete,jdbcType=INTEGER},
+      </if>
+      <if test="hdfsPath != null" >
+        hdfs_path = #{hdfsPath,jdbcType=VARCHAR},
+      </if>
+      <if test="pathFtp != null" >
+        path_ftp = #{pathFtp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where data_type_id = #{dataTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ultrapower.dcs.cluster.control.model.DcsDataType" >
+    update dcs_data_type
+    set data_type_name = #{dataTypeName,jdbcType=VARCHAR},
+      data_type_path_reg = #{dataTypePathReg,jdbcType=VARCHAR},
+      is_ftp_delete = #{isFtpDelete,jdbcType=INTEGER},
+      is_file_delete = #{isFileDelete,jdbcType=INTEGER},
+      hdfs_path = #{hdfsPath,jdbcType=VARCHAR},
+      path_ftp = #{pathFtp,jdbcType=VARCHAR}
+    where data_type_id = #{dataTypeId,jdbcType=INTEGER}
+  </update>
+  <select id="getDcsDataTypeList" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from dcs_data_type
+   
+  </select>
+  <select id="getDcsDataTypeListForRest" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    FROM dcs_data_type WHERE data_type_id NOT IN (SELECT data_type_id FROM dcs_ftp_type_rel WHERE ftp_id =#{ftp_id,jdbcType=INTEGER} )
+
+  </select>
+
+</mapper>

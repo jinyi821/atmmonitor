@@ -1,0 +1,22 @@
+<div class="col-xs-8 col-sm-8">
+    
+    <button class="btn btn-sm btn-primary tooltips" type="button" title="添加数据文件元数据"
+            data-toggle="modal" data-target="#addModalId" onclick="initID(-1,-1)"
+    ><span class="fa fa-plus"></span></button>
+    
+</div>
+
+<div class="col-sm-4 col-xs-4 hidden-xs">
+    <div class="dataTables_length" id="dt_basic_length">
+
+        <label> <select id = "pageSize"
+                          name="dt_basic_length" aria-controls="dt_basic"
+                          class="form-control input-sm">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select></label>
+
+    </div>
+</div>

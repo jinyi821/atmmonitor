@@ -1,0 +1,248 @@
+<script>
+
+    var pageSize = 10;
+    var pid = -1;
+    var pkid = -1;
+
+    function goto(pn) {
+        $("#tableContent").load(BASE_PATH + "/dcsDataType/",
+                {
+                    pn: pn,
+
+                    pageSize: pageSize,
+                    refreshPart: 1
+                }, function (txt) {
+
+                    if (!txt) {
+
+                    }
+
+                });
+    }
+
+    $('#addModalId').on('shown.bs.modal', function () {
+
+        var col = dataList[pid];
+        
+        resultOk=false;
+        $("#dcsDataTypeForm").data('bootstrapValidator').resetForm();
+        if (pid == -1) {
+
+            $("#dataTypeName").val("");
+            $("#dataTypePathReg").val("");
+            $("#hdfsPath").val("");
+            $("#pathFtp").val("");
+            //$("#isFtpDelete").val("-1");
+            //$("#isFileDelete").val("-1");
+            $(":checkbox[id='isFtpDelete'][value='1']").prop("checked", "");
+            $(":checkbox[id='isFileDelete'][value='1']").prop("checked", "");
+            $("#addLabel").html("添加数据文件元数据");
+
+        } else {
+
+            var col = dataList[pid];
+            $("#dataTypeName").val(col["dataTypeName"]);
+            $("#dataTypePathReg").val(col["dataTypePathReg"]);
+            $("#hdfsPath").val(col["hdfsPath"]);
+            $("#pathFtp").val(col["pathFtp"]);
+            var isFtpDelete = col["isFtpDelete"];
+            if (isFtpDelete == 1) {
+                $(":checkbox[id='isFtpDelete'][value='1']").prop("checked", "checked");
+            } else {
+                $(":checkbox[id='isFtpDelete'][value='1']").prop("checked", "");
+            }
+            //$("#isFtpDelete").val(isFtpDelete);
+            //$("#isFtpDelete").find("option[value='" + isFtpDelete + "']").attr("selected", true);
+            var isFileDelete = col["isFileDelete"];
+            //$("#isFileDelete").val(isFileDelete);
+            if (isFileDelete == 1) {
+                $(":checkbox[id='isFileDelete'][value='1']").prop("checked", "checked");
+            } else {
+                $(":checkbox[id='isFileDelete'][value='1']").prop("checked", "");
+            }
+
+            $("#addLabel").html("修改数据文件元数据");
+        }
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsDataType/selectFtpServerByDataType",
+            data:{dataTypeId: pkid},
+            async:false,
+            success:function(result){
+                $("#ftpIds").empty();
+                result.forEach(function(item,index){
+                    $("#ftpIds").append("<option value='"+
+                            item["ftpId"]+"'" +(item["dataTypeId"]? " selected='selected'":"")+ ">"+item["ftpIp"]+":"+item["ftpPort"]+"</option>");
+                })
+
+            }
+
+        });
+
+
+    });
+    
+    $("#saveButton_add").click(function(){
+       
+        //$("#dcsDataTypeForm").submit();
+        //获取表单对象
+        var bootstrapValidator = $("#dcsDataTypeForm").data('bootstrapValidator');
+        //手动触发验证
+        bootstrapValidator.validate();
+        if(bootstrapValidator.isValid()){
+            debugger;
+            //表单提交的方法、比如ajax提交
+            var dataTypeName= $("#dataTypeName").val();
+            var dataTypePathReg=$("#dataTypePathReg").val();
+            var isFtpDelete= 0;
+            var isFileDelete= 0;
+            if ($("#isFtpDelete").is(":checked")) {//选中
+                isFtpDelete = 1
+            } else {
+                isFtpDelete = 0
+            }
+            if ($("#isFileDelete").is(":checked")) {//选中
+                isFileDelete = 1
+            } else {
+                isFileDelete = 0
+            }
+            var hdfsPath= $("#hdfsPath").val();
+            var pathFtp=$("#pathFtp").val();
+            var  ftpIds=""
+            $("#ftpIds option:selected").each(function () {
+                if (!ftpIds) {
+                    ftpIds=$(this).val();
+                } else {
+                    ftpIds=ftpIds+","+($(this).val());
+                }
+               
+            })
+            
+            var postdata ={
+                dataTypeName:dataTypeName,
+                dataTypePathReg:dataTypePathReg,
+                isFtpDelete:isFtpDelete,
+                isFileDelete:isFileDelete,
+                hdfsPath:hdfsPath,
+                pathFtp:pathFtp,
+                dataTypeId: pkid,
+                ftpIds:ftpIds
+            } ;
+            $.ajax({
+                type:"post",
+                url:BASE_PATH + "/dcsDataType/add",
+                data:postdata,
+                async:false,
+                success:function(result){
+                    resultOk=true;
+                    $('#addModalId').modal('hide');
+                    
+
+                }
+
+            });
+        }
+    });
+    $("#messageSureButton").click(function(){
+
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsDataType/delete",
+            data:{id:pkid},
+            async:false,
+            success:function(result){
+                resultOk=true;
+                $('#messageModalId').modal('hide');
+               
+            }
+
+        });
+    });
+    function deleteRecord(){
+       $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsDataType/delete",
+            data:{id:pkid},
+            async:false,
+            success:function(result){
+
+                if (pageSize==1 && pid==1){
+                    goto(${pageInfo.pageNum} -1);
+                } else {
+                    goto(${pageInfo.pageNum});
+                }
+
+                showMessage("删除成功!");
+            }
+
+        });
+    }
+    $(function () {
+        
+        
+        $('#dcsDataTypeForm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                dataTypeName: {
+                    validators: {
+                        notEmpty: {
+                            message: '类型名称不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 20,
+                            message: '类型名称长度必须在0到20位之间'
+                        }
+                    }
+                },
+                dataTypePathReg: {
+                    validators: {
+                        notEmpty: {
+                            message: '正则表达式不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 255,
+                            message: '正则表达式必须在0到255位之间'
+                        }
+                    }
+                },
+                hdfsPath: {
+                    validators: {
+                        notEmpty: {
+                            message: 'HDFS路径不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 500,
+                            message: 'HDFS路径长度必须在0到500位之间'
+                        }
+                    }
+                },
+                pathFtp: {
+                    validators: {
+                        notEmpty: {
+                            message: '相对路径不能为空'
+                        },
+                        stringLength: {
+                            min: 0,
+                            max: 500,
+                            message: '相对路径长度必须在0到500位之间'
+                        }
+                    }
+                }
+
+            }
+
+        });
+        
+
+    });
+
+
+</script>

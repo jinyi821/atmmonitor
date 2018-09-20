@@ -1,0 +1,86 @@
+dcs_server_server_rmiurl=rmi://192.168.32.218:8888/serverInterface
+#dcs_server_client_rmiurl=//192.168.32.218:8888/serverInterface
+dcs_master_server_client_rmiurl=//192.168.131.135:9999/IRmiTest
+
+#扫描器配置
+dcs_scanner_server_ssh_host=192.168.131.135
+dcs_scanner_server_ssh_port=22
+dcs_scanner_server_ssh_username=root
+dcs_scanner_server_ssh_password=root123
+dcs_scanner_server_ssh_active_cmd=ps -ef | grep dcs-scan-rmi-test |grep -v grep
+dcs_scanner_server_ssh_kill_cmd=ps -ef | grep dcs-scan-rmi-test |grep -v grep|awk '{print $2}'|xargs kill -9
+dcs_scanner_server_ssh_start_cmd=sh /opt/examples/dcs-scan-rmi-test-start.sh
+
+#DCS数据库配置
+dcs_db_server_cmd_param=mysqladmin
+dcs_db_server_useer_param=-uroot
+dcs_db_server_host_param=-h192.168.131.135
+dcs_db_server_password_param=-proot123
+dcs_db_server_port_param=-P3306
+dcs_db_server_ping_param=ping
+
+#dcs主serverIP,现场包括scan、probe、server的主机IP,现场IP为10.204.210.31、192.168.32.31。
+dcs_master_server_ssh_host=192.168.131.135
+dcs_master_server_ssh_port=22
+dcs_master_server_ssh_username=root
+dcs_master_server_ssh_password=root123
+dcs_master_server_ssh_datetime_cmd= date -d today +"%Y-%m-%d %T"
+dcs_master_server_ssh_active_cmd=ps -ef | grep dcs-server-rmi-test |grep -v grep
+dcs_master_server_ssh_kill_cmd=ps -ef | grep dcs-server-rmi-test |grep -v grep|awk '{print $2}'|xargs kill -9
+dcs_master_server_ssh_start_cmd=sh /opt/examples/dcs-server-rmi-test-start.sh
+
+#probe各机器配置
+dcs_probe30_server_ssh_host=192.168.131.135
+dcs_probe30_server_ssh_port=22
+dcs_probe30_server_ssh_username=root
+dcs_probe30_server_ssh_password=root123
+#dcs_probe30_server_ssh_datetime_cmd= date -d today +"%Y-%m-%d %T"
+dcs_probe30_server_ssh_active_cmd=ps -ef | grep dcs-probe30-rmi-test |grep -v grep
+dcs_probe30_server_ssh_kill_cmd=ps -ef | grep dcs-probe30-rmi-test |grep -v grep|awk '{print $2}'|xargs kill -9
+dcs_probe30_server_ssh_start_cmd=sh /opt/examples/dcs-probe30-rmi-test-start.sh
+
+dcs_probe31_server_ssh_host=192.168.131.135
+dcs_probe31_server_ssh_port=22
+dcs_probe31_server_ssh_username=root
+dcs_probe31_server_ssh_password=root123
+#dcs_probe31_server_ssh_datetime_cmd= date -d today +"%Y-%m-%d %T"
+dcs_probe31_server_ssh_active_cmd=ps -ef | grep dcs-probe31-rmi-test |grep -v grep
+dcs_probe31_server_ssh_kill_cmd=ps -ef | grep dcs-probe31-rmi-test |grep -v grep|awk '{print $2}'|xargs kill -9
+dcs_probe31_server_ssh_start_cmd=sh /opt/examples/dcs-probe31-rmi-test-start.sh
+
+dcs_probe33_server_ssh_host=192.168.131.135
+dcs_probe33_server_ssh_port=22
+dcs_probe33_server_ssh_username=root
+dcs_probe33_server_ssh_password=root123
+#dcs_probe33_server_ssh_datetime_cmd= date -d today +"%Y-%m-%d %T"
+dcs_probe33_server_ssh_active_cmd=ps -ef | grep dcs-probe33-rmi-test |grep -v grep
+dcs_probe33_server_ssh_kill_cmd=ps -ef | grep dcs-probe33-rmi-test |grep -v grep|awk '{print $2}'|xargs kill -9
+dcs_probe33_server_ssh_start_cmd=sh /opt/examples/dcs-probe33-rmi-test-start.sh
+
+dcs_probe34_server_ssh_host=192.168.131.135
+dcs_probe34_server_ssh_port=22
+dcs_probe34_server_ssh_username=root
+dcs_probe34_server_ssh_password=root123
+#dcs_probe34_server_ssh_datetime_cmd= date -d today +"%Y-%m-%d %T"
+dcs_probe34_server_ssh_active_cmd=ps -ef | grep dcs-probe34-rmi-test |grep -v grep
+dcs_probe34_server_ssh_kill_cmd=ps -ef | grep dcs-probe34-rmi-test |grep -v grep|awk '{print $2}'|xargs kill -9
+dcs_probe34_server_ssh_start_cmd=sh /opt/examples/dcs-probe34-rmi-test-start.sh
+
+#probeServer检查心跳间隔分钟数
+dcs_probe_server_check_heart_interval_minutes=2
+clusterStopArray=scanner,probe30,probe31,probe33,probe34,master
+clusterStartArray=master,scanner,probe30,probe31,probe33,probe34
+probeArray=probe30,probe31,probe33,probe34
+serverPreValidateArray=scanner,probe30,probe31,probe33,probe34
+
+#普通server重启流程步骤?集合
+commonServerStopStepArray=ValidateStop,Stop
+commonServerStartStepArray=ValidateStart,Start
+commonServerRestartStepArray=ValidateStop,Stop,ValidateStart,Start
+#集群服务重启流程步骤集合
+clusterServiceStopStepArray=ValidateStop,Stop
+clusterServiceStartStepArray=ValidateStart,Start
+clusterServiceRestartStepArray=ValidateStop,Stop,ValidateStart,Start
+
+
+

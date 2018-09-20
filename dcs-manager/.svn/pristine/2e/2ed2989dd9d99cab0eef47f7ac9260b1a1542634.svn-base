@@ -1,0 +1,206 @@
+<!--页码块-->
+<style>
+    .col-lg-small,.col-lg-middle,.col-lg-sbig,.col-lg-big,.col-lg-large{
+        position:relative;
+        min-height:1px;
+        padding-left:5px;
+    }
+    .col-lg-small{
+      float:left;
+      width:6%;
+    }
+    .col-lg-middle{
+     float:left;
+     width:10%;
+    }
+    .col-lg-sbig{
+        float:left;
+        width:14%;
+    }
+
+    .col-lg-big{
+        float:left;
+        width:16%;
+    }
+    .col-lg-large{
+        float:left;
+        width:22%;
+    }
+    .col-lg-bigLarge{
+        float:left;
+        width:30%;
+    }
+    .col-lg-superLarge{
+        float:left;
+        width:40%;
+    }
+    .wrap{
+        word-break:break-all;
+        max-width:120px;
+        overflow:auto;
+    }
+    .pagination > li > a, .pagination > li > span {
+        color: #b7b7b7;
+        background:white;
+        border: 1px solid #ddd;
+    }
+</style>
+<div class="data-div">
+    <div class="row tableHeader">
+        <#--<div class="col-lg-small">
+            probeId
+        </div>-->
+        <div class="col-lg-middle">
+            probe名称
+        </div>
+        <div class="col-lg-middle">
+            probe主机IP
+        </div>
+        <div class="col-lg-middle">
+            数据分配的硬盘
+        </div>
+        <div class="col-lg-sbig">
+            硬盘总空间(GB)
+        </div>
+        <div class="col-lg-sbig">
+            硬盘剩余空间(GB)
+        </div>
+        <div class="col-lg-sbig">
+            硬盘已用空间(GB)
+        </div>
+        <div class="col-lg-middle">
+            心跳间隔时间(ms)
+        </div>
+        <div class="col-lg-big">
+            最后一次修改时间
+        </div>
+     </div>
+     <div class="tablebody" id="accordion">
+     <#list pageInfo.list as col>
+        <div class="row">
+           <#-- <div class="col-lg-small">
+            ${col["probe_id"]}
+            </div>-->
+            <div id="${"top"+col_index}" class="col-lg-middle"  role="button"
+                 data-toggle="collapse" data-parent="#accordion" href="${"#collapse"+col_index}"  
+                 aria-expanded="true" aria-controls="collapseOne" onClick="toogleClass(${col["probe_id"]},${col_index})">
+                  <span id="${"topC"+col_index}"    class="glyphicon glyphicon-triangle-right"></span>
+                <span>
+                ${col["probe_name"]}
+                </span>
+            </div>
+            <div class="col-lg-middle">
+               ${col["probe_ip"]}
+               </div>
+            <div class="col-lg-middle">
+            ${col["hard_disk"]}
+            </div>
+           <div class="col-lg-sbig">
+             <#list col.total_space?split(",") as total>
+                 <#if total_has_next>
+                   ${(total?eval/1024/1024/1024)?string("0.##")},
+                   <#else> <!--最后一项-->
+                   ${(total?eval/1024/1024/1024)?string("0.##")}
+                 </#if>
+             </#list>
+            </div>
+            <div class="col-lg-sbig">
+            <#list col.free_space?split(",") as free>
+                <#if free_has_next>
+                ${(free?eval/1024/1024/1024)?string("0.##")},
+                <#else> <!--最后一项-->
+                ${(free?eval/1024/1024/1024)?string("0.##")}
+                </#if>
+            </#list>
+            </div>
+            <div class="col-lg-sbig">
+             <#list col.use_space?split(",") as use>
+                 <#if use_has_next>
+                 ${(use?eval/1024/1024/1024)?string("0.##")},
+                 <#else> <!--最后一项-->
+                 ${(use?eval/1024/1024/1024)?string("0.##")}
+                 </#if>
+              </#list>
+            </div>
+            <div class="col-lg-middle">
+            ${col["heart_interval"]}
+            </div>
+            <div class="col-lg-big">
+            ${(col["update_time"]?string("yyyy-MM-dd HH:mm:ss"))!}
+            </div>
+
+        </div>
+        
+       <div id="${"collapse"+col_index}" class="collapse " aria-expanded="true">
+     </div>
+     </#list>
+   </div>
+  </div>
+</div>
+
+<!--显示分页信息-->
+<footer class="footer">
+    <#--文字信息
+    <div class="col-md-6">
+            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+    </div>-->
+    <ul class="pagination">
+        <li><a href="#" onclick="goPage(1)">首页</a></li>
+        <!--上一页-->
+        <li>
+        <#if pageInfo.hasPreviousPage>
+            <a href="#" onclick="goPage('${pageInfo.pageNum-1}')" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+            </a>
+        </#if>
+        </li>
+
+        <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+    <#list pageInfo.navigatepageNums as page_num>
+        <#if page_num == pageInfo.pageNum>
+            <li class="active"><a href="#">${page_num}</a></li>
+        <#else>
+            <li><a href="#" onclick="goPage('${page_num}')">${page_num}</a></li>
+        </#if>
+    </#list>
+
+        <!--下一页-->
+        <li>
+
+        <#if pageInfo.hasNextPage>
+            <a href="#" onclick="goPage('${pageInfo.pageNum+1}')"
+               aria-label="Next">
+                <span aria-hidden="true">»</span>
+            </a>
+        </#if>
+        </li>
+
+        <li><a href="#" onclick="goPage('${pageInfo.pages}')">尾页</a></li>
+        <li>共 ${pageInfo.pages} 页</li>
+    </ul>
+</footer>
+
+<script>
+    function toogleClass(probe_id,col_id){
+        $("#topC"+col_id).toggleClass(" glyphicon-triangle-right");
+        $("#topC"+col_id).toggleClass(" glyphicon-triangle-bottom");
+        if ($("#topC"+col_id).hasClass("glyphicon-triangle-bottom")){
+            $("#collapse"+col_id).load(BASE_PATH + "/portal/probeRunning/findDcsProbeRelCurrentTaskList/",{probe_id:probe_id,pn: 1},function (txt) {
+              if (!txt) {
+                     console.info("findDcsProbeRelCurrentTaskList");
+                }
+
+            });
+        }
+        
+    }
+    function goPage(pn) {
+       $("#currentProbeTask").load(BASE_PATH + "/portal/probeRunning/currentProbeTaskList/", {pn: pn}, function (txt) {
+         if (!txt) {
+
+            }
+
+        });
+    }
+</script>
+           

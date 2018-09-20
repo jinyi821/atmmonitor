@@ -1,0 +1,201 @@
+<script>
+
+    var pageSize = 10;
+    var dataTypeId=-1;
+    var ftpId= -1;
+    var dataTypeId1=-1;
+    var ftpId1= -1;
+    var enabled= -1;
+    function goto(pn) {
+        $("#tableContent").load(BASE_PATH + "/dcsFtpTypeRel/",
+                {
+                    pn: pn,
+                    ftpId:$("#ftpId1").val(),
+                    dataTypeId:$("#dataTypeId1").val(),
+                    enabled:$("#enabled").val(),
+                    pageSize: pageSize,
+                    refreshPart: 1
+                }, function (txt) {
+
+                    if (!txt) {
+
+                    }
+
+                });
+    }
+    $("#ftpId").bind('change', function() {
+        var ftpId=$("#ftpId").val();
+
+        $("#dcsForm").data('bootstrapValidator').resetForm();
+        $("#dataTypeId").empty();
+        $.ajax({
+            type: "post",
+            url: BASE_PATH + "/dcsFtpTypeRel/getDcsDataTypeListForRest",
+            data: {ftpId:ftpId},
+            async: false,
+            success: function (result) {
+                
+                result.forEach(function(item,index){
+                    $("#dataTypeId").append("<option value='"+
+                            item["dataTypeId"]+"'>"+item["dataTypeName"]+"</option>");
+                })
+
+
+            }
+
+        });
+
+    })
+    $('#addModalId').on('shown.bs.modal', function () {
+
+
+        $("#ftpId").empty();
+    <#list ftPserverList as col1>
+        $("#ftpId").append("<option value='${col1["ftpId"]}'>${col1["ftpIp"]!}:${col1["ftpPort"]!}</option>");
+    </#list>
+    <#-- 
+     -->
+        $("#dataTypeId").empty();
+    <#--<#list dcsDataTypeList as col>-->
+        <#--$("#dataTypeId").append("<option value='${col["dataTypeId"]}'>${col["dataTypeName"]}</option>");-->
+    <#--</#list>-->
+
+        $("#ftpId").val("");
+        $("#dataTypeId").val("");
+        $("#addLabel").html("添加关系映射");
+        resultOk=false;
+        $("#dcsForm").data('bootstrapValidator').resetForm();
+        
+    });
+    
+    $("#saveButton_add").click(function(){
+
+     
+        //$("#dcsDataTypeForm").submit();
+        //获取表单对象
+        var bootstrapValidator = $("#dcsForm").data('bootstrapValidator');
+        //手动触发验证
+        bootstrapValidator.validate();
+        if(bootstrapValidator.isValid()){
+            ;
+            //表单提交的方法、比如ajax提交
+            var ftpId = $("#ftpId").val();
+            var dataTypeId = $("#dataTypeId").val();
+            var enabled = $("#enabled").val();
+            var postdata = {
+                ftpId: ftpId,
+                dataTypeId: dataTypeId,
+                enabled: 0,
+                id:-1
+            };
+            $.ajax({
+                type:"post",
+                url:BASE_PATH + "/dcsFtpTypeRel/add",
+                data:postdata,
+                async:false,
+                success:function(result){
+                    resultOk=true;
+                    $('#addModalId').modal('hide');
+                    
+
+                }
+
+            });
+        }
+    });
+
+    function deleteRecord(){
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsFtpTypeRel/delete",
+            data: {ftpId: ftpId,dataTypeId:dataTypeId},
+            async:false,
+            success:function(result){
+
+                if (pageSize==1 && pid==1){
+                    goto(${pageInfo.pageNum} -1);
+                } else {
+                    goto(${pageInfo.pageNum});
+                }
+
+                showMessage("删除成功!");
+            }
+
+        });
+    }
+    function runRecord(){
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsFtpTypeRel/add",
+            data: {id:1,ftpId: ftpId,dataTypeId:dataTypeId,enabled:1},
+            async:false,
+            success:function(result){
+                goto(${pageInfo.pageNum});
+                showMessage("启用成功!");
+            }
+
+        });
+    }
+    function stopRecord(){
+        $.ajax({
+            type:"post",
+            url:BASE_PATH + "/dcsFtpTypeRel/add",
+            data: {id:1,ftpId: ftpId,dataTypeId:dataTypeId,enabled:0},
+            async:false,
+            success:function(result){
+                goto(${pageInfo.pageNum});
+                showMessage("停用成功!");
+            }
+
+        });
+    }
+    $(function () {
+        $("#searchButton").bind('click', function() {
+           
+            goto(1);
+        });
+        $("#ftpId1").empty();
+
+        $("#ftpId1").append("<option value='-1'  >所有FTP</option>");
+        <#list ftPserverList as col>
+             $("#ftpId1").append("<option value='${col["ftpId"]}'>${col["ftpIp"]}:${col["ftpPort"]}</option>");
+        </#list>
+
+        $("#dataTypeId1").empty();
+
+        $("#dataTypeId1").append("<option value='-1'  >所有数据类型</option>");
+    <#list dcsDataTypeList as col>
+        $("#dataTypeId1").append("<option value='${col["dataTypeId"]}'>${col["dataTypeName"]}</option>");
+    </#list>
+        $('#dcsForm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                ftpId: {
+                    validators: {
+                        notEmpty: {
+                            message: 'FTP IP不能为空'
+                        }
+                    }
+                },
+                dataTypeId: {
+                    validators: {
+                        notEmpty: {
+                            message: '类型名称不能为空'
+                        }
+                    }
+                }
+
+            }
+
+        });
+        
+
+    });
+
+
+</script>

@@ -1,0 +1,136 @@
+<script>
+    var ftpId=-1;
+    var dataTypeId=-1;
+    var pageSize=10;
+    var pid=-1;
+    var pkid=-1;
+    var probeId =-1;
+    var pathAndName="";
+    $('#addModalId').on('shown.bs.modal', function () {
+        
+        var col = dataList[pid];
+       
+        $("#fileId").text(col["fileId"]);
+        $("#pathAndName1").text(col["pathAndName"]);
+        $("#renameFileName").text(col["renameFileName"]);
+        $("#dataTypeName").text(col["dataTypeName"]);
+        $("#ftpIp").text(col["ftpIp"]);
+        $("#probeName").text(col["probeName"]);
+
+        $("#fileInsertTime").text(col["fileInsertTime"]);
+
+        $("#status").text(col["status"]);
+
+        $("#fileSize").text(col["fileSize"]);
+        $("#ftpPathAndName").text(col["ftpPathAndName"]);
+        $("#downloadDuration").text(col["downloadDuration"]);
+        $("#toHdfsDuration").text(col["toHdfsDuration"]);
+        $("#hdfsPath").text(col["hdfsPath"]);
+        $("#addLabel").html("采集文件明细");
+
+    });
+
+    function dateToString(date){
+        var year = date.getFullYear();
+        var month =(date.getMonth() + 1).toString();
+        var day = (date.getDate()).toString();
+        if (month.length == 1) {
+            month = "0" + month;
+        }
+        if (day.length == 1) {
+            day = "0" + day;
+        }
+        var dateTime = year + "-" + month + "-" + day;
+        return dateTime;
+    }
+    function goto(pn) {
+        
+        ftpId= $("#ftpId").val();
+        dataTypeId = $("#dataTypeId").val();
+        pageSize =   $("#pageSize").val();
+        probeId =  $("#probeId").val();
+        var startdate=$('#startdate') .val();
+        var finishdate=$('#finishdate') .val();
+        var pathAndName=$('#pathAndName').val();
+       
+        if ((!startdate) ||  (!finishdate)){
+            showMessage("开始日期和结束日期不能为空！");
+            return;
+        }
+        $("#tableContent").load(BASE_PATH + "/historyFiles/",
+                {
+                    pn: pn,
+                    ftpId:ftpId,
+                    dataTypeId:dataTypeId,
+                    pageSize:pageSize,
+                    refreshPart:1,
+                    beginTime:startdate.replace("-","").replace("-",""),
+                    endTime:finishdate.replace("-","").replace("-",""),
+                    probeId:probeId,
+                    pathAndName:pathAndName
+                }, function (txt) {
+                    
+                    if (txt) {
+
+                       
+                    }
+
+                });
+    }
+    $(function(){
+
+        $('#startdate') .val(dateToString(new Date()));
+        $('#finishdate') .val(dateToString(new Date()));
+        // START AND FINISH DATE
+        $('#startdate').datepicker({
+            
+            dateFormat : 'yy-mm-dd',
+            prevText : '<i class="fa fa-chevron-left"></i>',
+            nextText : '<i class="fa fa-chevron-right"></i>',
+            onSelect : function(selectedDate) {
+                $('#finishdate').datepicker('option', 'minDate', selectedDate);
+            }
+        });
+
+        $('#finishdate').datepicker({
+            dateFormat : 'yy-mm-dd',
+            prevText : '<i class="fa fa-chevron-left"></i>',
+            nextText : '<i class="fa fa-chevron-right"></i>',
+            onSelect : function(selectedDate) {
+                $('#startdate').datepicker('option', 'maxDate', selectedDate);
+            }
+        });
+
+        $("#searchButton").bind('click', function() {
+
+            goto(1);
+        });
+       
+        
+        $("#ftpId").empty();
+
+        $("#ftpId").append("<option value='-1'  >所有FTP</option>");
+    <#list ftPserverList as col>
+        $("#ftpId").append("<option value='${col["ftpId"]}'>${col["ftpIp"]}:${col["ftpPort"]}</option>");
+    </#list>
+
+        $("#dataTypeId").empty();
+
+//        $("#dataTypeId").append("<option value='-1' style='display:none' >请选择数据类型</option>");
+        $("#dataTypeId").append("<option value='-1'  >所有数据类型</option>");
+    <#list dcsDataTypeList as col>
+        $("#dataTypeId").append("<option value='${col["dataTypeId"]}'>${col["dataTypeName"]}</option>");
+    </#list>
+
+        $("#probeId").empty();
+
+//        $("#probeId").append("<option value='-1' style='display:none' >请选择Probe</option>");
+        $("#probeId").append("<option value='-1'  >所有Probe</option>");
+    <#list allDcsProbeList as col>
+        $("#probeId").append("<option value='${col["probe_id"]}'>${col["probe_name"]}</option>");
+    </#list>
+    })
+    
+
+
+</script>

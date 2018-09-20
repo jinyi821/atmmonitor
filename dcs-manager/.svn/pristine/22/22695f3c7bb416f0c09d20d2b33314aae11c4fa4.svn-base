@@ -1,0 +1,64 @@
+<div role="content">
+
+    <!-- widget edit box -->
+    <div class="jarviswidget-editbox">
+        <!-- This area used as dropdown edit box -->
+         
+    </div>
+    <!-- end widget edit box -->
+
+    <!-- widget content -->
+    <div class="widget-body">
+
+        
+        <table id="displayTable" class="table table-bordered table-striped" style="clear: both">
+            <tbody>
+            <tr>
+                <td >ID</td>
+                <td ><label class="control-label" id="fileId"></label></td>
+            </tr>
+            <tr>
+                <td>FTP名称</td>
+                <td><label class="control-label" id="ftpName"></label></td>
+            </tr>
+            <tr>
+                <td>数据类型</td>
+                <td><label class="control-label" id="dataTypeName"></label></td>
+            </tr>
+            <tr>
+                <td>文件路径及名称</td>
+                <td><label class="control-label" id="pathAndName"></label></td>
+            </tr>
+            <tr>
+                <td>文件更改后的名称</td>
+                <td><label class="control-label" id="renameFileName"></label></td>
+            </tr>
+
+            <tr>
+                <td>生成时间</td>
+                <td><label class="control-label" id="fileIntime"></label></td>
+            </tr>
+            <tr>
+                <td>文件大小(G)</td>
+                <td><label class="control-label" id="fileSize"></label></td>
+            </tr>
+            <tr>
+                <td>数据来源</td>
+                <td><label class="control-label" id="source"></label></td>
+            </tr>
+
+            <tr>
+                <td>存储HDFS路径</td>
+                <td> <label class="control-label" id="hdfsPath"></label></td>
+            </tr>
+
+
+
+            </tbody>
+        </table>
+        
+
+    </div>
+    <!-- end widget content -->
+
+</div>

@@ -1,0 +1,102 @@
+<aside id="left-panel">
+
+    <!-- User info -->
+    <div class="login-info" >
+				<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
+					<a href="javascript:void(0);" id="show-shortcut" >  <!--data-action="toggleShortcut"-->
+						<img src="${BASE_PATH}/smartadmin/img/avatars/sunny.png" alt="me" class="online" />
+						<span style="text-transform:lowercase">
+                        <#if loginUser ??>
+                            ${loginUser.loginname}
+                        </#if>
+						</span>
+						<i class="fa fa-angle-down"></i>
+					</a>
+
+				</span>
+    </div>
+    <!-- end user info -->
+
+    <!-- NAVIGATION : This navigation is also responsive-->
+    <nav>
+        <ul>
+            <li class=" ">
+                <a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-cloud"></i> <span class="menu-item-parent">集群情况</span></a>
+                <ul >
+                   
+                    <li class=" runOverview <#if function=='runOverview'>active</#if>" breadcrumb="集群情况#运行概览">
+                        <a href="${BASE_PATH}/run-overview.jsp" ><span class="menu-item-parent"  >运行概览</span></a>
+                    </li>
+
+                    <li class="scannerMonitor <#if function=='scannerMonitor'>active</#if>" breadcrumb="集群情况#Scanner监控">
+                        <a href="${BASE_PATH}/scanner-monitor.jsp" ><span class="menu-item-parent" >Scanner监控</span></a>
+                    </li>
+                    <li>
+                        <a href="#">Probe运行情况</a>
+                        <ul>
+
+                            <li class=" currentProbeTaskList  <#if function=='currentProbeTaskList'>active</#if>" breadcrumb="集群情况#Probe运行情况#当前采集任务">
+                                <a href="${BASE_PATH}/probe-running/currentprobe-tasklist.jsp"><span class="menu-item-parent" >当前采集任务</span></a>
+                            </li>
+                            <li class="dealFailureFile <#if function=='dealFailureFile'>active</#if>" breadcrumb="集群情况#Probe运行情况#采集失败列表">
+                                <a href="${BASE_PATH}/probe-running/deal-failurefile.jsp"><span class="menu-item-parent" >采集失败列表</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">采集历史 </a>
+                        <ul>
+
+                            <li class="currentDayCollectionFiles <#if function=='currentDayCollectionFiles'>active</#if>" breadcrumb="采集历史#当日采集文件列表">
+                                <a href="${BASE_PATH}/currentday-collectionfiles.jsp"
+                                   
+                                ><i class="menu-item-parent fa fa-fw"></i> 当日采集文件列表</a>
+                            </li>
+                            <li class="historyFiles <#if function=='historyFiles'>active</#if>" breadcrumb="采集历史#历史文件列表">
+                                <a href="${BASE_PATH}/historyfiles.jsp"
+                                ><i class="menu-item-parent fa fa-fw"></i> 历史文件列表</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+            <li class=" top-menu-invisible">
+                <a href="#"><i class="fa fa-lg fa-fw fa-list-alt"></i> <span class="menu-item-parent">任务配置</span></a>
+                <ul>
+
+                    <li class="dcsFtpServer <#if function=='dcsFtpServer'>active</#if>" breadcrumb="任务配置#FTP元数据配置">
+                        <a href="${BASE_PATH}/dcs-ftpserver.jsp"
+                        ><span class="menu-item-parent">FTP元数据配置</span></a>
+                    </li>
+                    <li class="dcsDataType <#if function=='dcsDataType'>active</#if>" breadcrumb="任务配置#数据文件元数据">
+                        <a href="${BASE_PATH}/dcs-datatype.jsp" ><span class="menu-item-parent">数据文件元数据</span></a>
+                    </li>
+                <#--<li>-->
+                <#--<a href="javascript:void(0)" onclick="goFunPage('dcsFtpTypeRel','#dcsFtpTypeRel','任务配置#FTP服务器数据类型配置',this);"><span class="menu-item-parent">FTP服务器数据类型配置</span></a>-->
+                <#--</li>-->
+                </ul>
+            </li>
+            <li class="top-menu-invisible">
+                <a href="#"><i class="fa fa-lg fa-fw  fa-magnet"></i> <span class="menu-item-parent">集群管理</span></a>
+                <ul>
+                    <li class="clusterRestartManage <#if function=='clusterRestartManage'>active</#if>" breadcrumb="集群管理#重启管理">
+                        <a href="${BASE_PATH}/cluster-restart-manage.jsp"  id="clusterRestart"  ><span class="menu-item-parent">重启管理</span></a>
+                    </li>
+                </ul>
+            </li>
+        <#if loginUser ?? && loginUser.isadmin==1>
+            <li class="top-menu-invisible dcsUserManager <#if function=='dcsUserManager'>active</#if> " breadcrumb="用户管理">
+                <a href="${BASE_PATH}/dcs-user-manager.jsp"
+                ><i class="fa fa-lg fa-fw fa-male" aria-hidden="true"></i> <span class="menu-item-parent">用户管理</span></a>
+
+            </li>
+        </#if>
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu">
+				<i class="fa fa-arrow-circle-left hit"></i>
+			</span>
+
+</aside>

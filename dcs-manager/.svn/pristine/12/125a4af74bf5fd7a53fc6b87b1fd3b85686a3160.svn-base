@@ -1,0 +1,103 @@
+<script>
+    var ftpId=-1;
+    var dataTypeId=-1;
+    var pageSize=10;
+    var pid=-1;
+    var pkid=-1;
+    var pathAndName="";
+    
+    
+    $('#addModalId').on('shown.bs.modal', function () {
+        ;
+        var col = dataList[pid];
+       
+        $("#fileId").text(col["fileId"]);
+        $("#ftpName").text(col["dcsFtpServer.ftpIp"]+":"+col["dcsFtpServer.ftpPort"]);
+        $("#ftpIp").text(col["dcsFtpServer.ftpIp"]);
+        $("#ftpPort").text(col["dcsFtpServer.ftpPort"]);
+        $("#dataTypeName").text(col["dcsDataType.dataTypeName"]);
+        $("#dataTypeName1").text(col["dcsDataType.dataTypeName"]);
+        $("#pathAndName").text(col["pathAndName"]);
+        $("#renameFileName").text(col["renameFileName"]);
+        $("#fileIntime").text(col["fileIntime"]);
+        $("#fileSize").text(col["fileSize"]);
+        $("#source").text(col["source"]);
+        $("#hdfsPath").text(col["hdfsPath"]);
+        $("#dataTypePathReg").text(col["dcsDataType.dataTypePathReg"]);
+        var isFtpDelete=col["dcsDataType.isFtpDelete"] ;
+        var isFileDelete=col["dcsDataType.isFileDelete"] ;
+        if (isFtpDelete=='0'){
+            $("#isFtpDelete").text("否");
+        }else{
+            $("#isFtpDelete").text("是");
+        }
+        if (isFileDelete=='0'){
+            $("#isFileDelete").text("否");
+        }else{
+            $("#isFileDelete").text("是");
+        }
+        $("#hdfsPath1").text(col["dcsDataType.hdfsPath"]);
+        $("#pathFtp").text(col["dcsDataType.pathFtp"]);
+        $("#dcsFtpServer.ftpIp").text(col["dcsFtpServer.ftpIp"]);
+        $("#ftpUserName").text(col["dcsFtpServer.ftpUserName"]);
+        $("#ftpPassword").text(col["dcsFtpServer.ftpPassword"]);
+        $("#ftpWorkDirectory").text(col["dcsFtpServer.ftpWorkDirectory"]);
+        $("#ftpLastScanTime").text(col["dcsFtpServer.ftpLastScanTime"]);
+        $("#ftpPeriod").text(col["dcsFtpServer.ftpPeriod"]);
+        $("#scannerIp").text(col["dcsFtpServer.scannerIp"]);
+        $("#ftpLastServerTime").text(col["dcsFtpServer.ftpLastServerTime"]);
+        
+        $("#pathReg").text(col["dcsFtpServer.pathReg"]);
+        $("#addLabel").html("Scanner监控明细");
+
+    });
+
+    function goto(pn) {
+        ftpId= $("#ftpId").val();
+        dataTypeId = $("#dataTypeId").val();
+        pageSize =   $("#pageSize").val();
+        $("#tableContent").load(BASE_PATH + "/scannerMonitor/",
+                {
+                    pn: pn,
+                    ftpId:ftpId,
+                    dataTypeId:dataTypeId,
+                    pageSize:pageSize,
+                    refreshPart:1,
+                    pathAndName:$("#pathAndName").val()
+                }, function (txt) {
+
+            if (!txt) {
+
+            }
+
+        });
+    }
+    $(function(){
+
+        
+        $("#searchButton").bind('click', function() {
+            goto(1);
+
+        });
+       
+        $("#ftpId").empty();
+        
+
+        $("#ftpId").append("<option value='-1'  >所有FTP</option>");
+        <#list ftPserverList as col>
+        $("#ftpId").append("<option value='${col["ftpId"]}'>${col["ftpIp"]}:${col["ftpPort"]}</option>");
+        </#list>
+        $("#dataTypeId").empty();
+
+       
+        $("#dataTypeId").append("<option value='-1'  >所有数据类型</option>");
+        <#list dcsDataTypeList as col>
+        $("#dataTypeId").append("<option value='${col["dataTypeId"]}'>${col["dataTypeName"]}</option>");
+        </#list>
+    })
+    
+    
+
+</script>
+
+			

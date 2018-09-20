@@ -1,0 +1,112 @@
+<script>
+    dataList = [];
+</script>
+<table id="dt_basic"
+       class="table table-striped table-bordered table-hover dataTable no-footer"
+       role="grid" aria-describedby="dt_basic_info" width="100%">
+    <thead>
+
+    <tr role="row">
+
+        <th style="width: 100px;">登录名</th>
+        <#--<th style="width: 100px;">用户名</th>-->
+        <#--<th style="width: 150px;"> 密码</th>-->
+        <th style="width: 60px;">性别</th>
+        <th>邮箱</th>
+        <th style="width: 100px;"> 手机</th>
+        <th style="width: 80px;"> 是否管理员</th>
+        <th style="width: 60px;"> 状态</th>
+        <th style="width:50px"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <#list pageInfo.list as col>
+    <tr role="row"
+        class="<#if col_index%2==0>
+                                       odd
+                                        <#else>
+                                        even
+                                        </#if>
+                                            ">
+
+        <td> ${col["loginname"]!}</td>
+        <#--<td>  ${col["fullname"]!}</td>-->
+      
+        <#--<td title=" ${col["pwd"]}">-->
+            <#--<#if col["pwd"]?? && col["pwd"]?length lt 30>-->
+            <#--${col["pwd"]?html}-->
+            <#--<#else>-->
+            <#--${col["pwd"][0..29]?default("")?html}...-->
+            <#--</#if>-->
+        <#--</td>-->
+        <td>
+            <#if col["sex"]== "1">男</#if><#if col["sex"]== "2">女</#if>
+            <#if col["sex"]== "3">未知</#if>
+        </td>
+
+        <td title=" ${col["email"]?html}">
+            <#if col["email"]?? && col["email"]?length lt 30>
+            ${col["email"]?html}
+            <#else>
+            ${col["email"][0..29]?default("")?html}...
+            </#if>
+        </td>
+        <td title=" ${col["mobile"]}">
+            <#if col["mobile"]?? && col["mobile"]?length lt 20>
+            ${col["mobile"]}
+            <#else>
+            ${col["mobile"][0..19]?default("")}...
+            </#if>
+        </td>
+        <td>
+            <#if col["isadmin"]== 1>是</#if><#if col["isadmin"]== 0>否</#if>
+        </td>
+        <td>
+            <#if col["status"]== 1>正常</#if><#if col["status"]== 0>停用</#if>
+        </td>
+        <td>
+            <script>
+                function initID(_id, _pkid) {
+                    pid = _id;
+                    pkid = _pkid;
+
+                }
+            </script>
+            <div class="btn btn-xs btn-primary tooltips" title="修改用户"
+                 data-toggle="modal" data-target="#addModalId" onclick="initID('${col_index}','${col["id"]}')"
+            ><span class="fa fa-pencil"></span></div>
+        <#--
+            <div class="btn btn-sm btn-primary"
+                 data-toggle="modal" data-target="#messageModalId" onclick="initID('${col_index}','${col["ftpId"]}')"
+            ><span class="fa fa-trash-o"></span></div>
+            -->
+            <div class="btn btn-xs btn-primary tooltips" title="删除用户"
+                 onclick="initID('${col_index}','${col["id"]}');showDi('是否删除该记录?', function(){deleteRecord()})"
+            ><span class="fa fa-trash-o"></span></div>
+
+        </td>
+
+    </tr>
+    <script>
+
+        dataList.push(
+                {
+                    loginname: '${col["loginname"]}',
+                    fullname: '${col["fullname"]}',
+                    pwd: '${col["pwd"]}',
+                    email: '${col["email"]}',
+                    mobile: '${col["mobile"]}',
+                    sex: '${col["sex"]}',
+                    status:${col["status"]},
+                    isadmin:${col["isadmin"]},
+                    createtime:${col["createtime"]?c}
+                });
+
+    </script>
+    </#list>
+
+
+    </tbody>
+</table>
+<#include "/page.ftl">
+

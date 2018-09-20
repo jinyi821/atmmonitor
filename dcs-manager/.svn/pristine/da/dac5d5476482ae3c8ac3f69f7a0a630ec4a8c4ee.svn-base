@@ -1,0 +1,50 @@
+<div class="col-xs-11 col-sm-11">
+    <div id="dt_basic_filter" class="dataTables_filter">
+        <label>
+                                            <#--<span class="input-group-addon">-->
+                                                   <#---->
+                                            <#--</span>-->
+            <form id="searchForm" method="post"  >
+                <select id ="ftpId"
+                        name="dt_basic_length" aria-controls="dt_basic"
+                        class="form-control input">
+                    <option value="-1" style="display:none">请选择FTP名称</option>
+                    <option value='-1'  >所有FTP</option>
+                    <#list ftPserverList as col>
+                        <option value='${col["ftpId"]}'>${col["ftpIp"]}</option>
+                    </#list>
+                </select>
+
+
+                <select
+                        id="dataTypeId"
+                        name="dt_basic_length" aria-controls="dt_basic"
+                        class="form-control input">
+                    <option value="-1" style="display:none">请选择类型名称</option>
+
+                </select>
+                <input id="pathAndName" name="pathAndName" class="form-control" style="display:inline-block;width:180px;" placeholder="文件名称"  type="text"/>
+                <button id="searchButton" class="btn btn-default btn-primary tooltips" type="button"   title="搜索">
+                    <i class="fa fa-search"></i> 搜索
+                </button>
+            </form>
+
+        </label>
+    </div>
+
+</div>
+
+<div class="col-sm-1 col-xs-1 hidden-xs">
+    <div class="dataTables_length" id="dt_basic_length">
+
+        <label> <select id = "pageSize"
+                          name="dt_basic_length" aria-controls="dt_basic"
+                          class="form-control input-sm">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select> </label>
+
+    </div>
+</div>

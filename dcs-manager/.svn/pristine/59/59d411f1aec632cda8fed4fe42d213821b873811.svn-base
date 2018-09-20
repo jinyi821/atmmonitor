@@ -1,0 +1,112 @@
+<div class="data-div" style="border:1px dotted darkgrey">
+    <div class="tablebody" id="childAccordion">
+        <div class="row">
+            <div class="col-lg-middle">
+                任务FTP
+            </div>
+            <div class="col-lg-middle">
+                Ftp数据类型
+            </div>
+            <div class="col-lg-superLarge">
+                FTP路径文件
+            </div>
+            <div class="col-lg-middle">
+                FTP文件大小
+            </div>
+            <div class="col-lg-bigLarge">
+                目标HDFS路径
+            </div>
+        </div>
+      <#list childPageInfo.list as col>
+          <div class="row">
+            <div class="col-lg-middle">
+            ${col["ftp_ip"]}
+            </div>
+
+            <div class="col-lg-middle">
+            ${col["data_type_name"]}
+            </div>
+            <div class="col-lg-superLarge">
+            ${col["ftp_path_and_name"]}
+            </div>
+            <div class="col-lg-middle">
+            ${col["file_size"]}
+            </div>
+            <div class="col-lg-bigLarge">
+            ${col["hdfs_path"]}
+            </div>
+        </div>
+
+    </#list>
+        <!--页码块-->
+        <style>
+            .pagination > li > a, .pagination > li > span {
+                color: #b7b7b7;
+                background: white;
+                border: 1px solid #ddd;
+            }
+        </style>
+
+        <div style="float:right">
+
+
+            <!--显示分页信息-->
+
+            <!--文字信息
+        <div class="col-md-6">
+         当前第 ${childPageInfo.pageNum} 页.总共 ${childPageInfo.pages} 页.一共 ${childPageInfo.total} 条记录
+        </div>  -->
+
+
+            <ul class="pagination">
+                <li><a href="#" onclick="goToPage(1,this)">首页</a></li>
+                <!--上一页-->
+                <li>
+                <#if childPageInfo.hasPreviousPage>
+                    <a href="#" onclick="goToPage('${childPageInfo.pageNum-1}',this)" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </#if>
+
+                </li>
+
+                <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+            <#list childPageInfo.navigatepageNums as page_num>
+                <#if page_num == childPageInfo.pageNum>
+                    <li class="active"><a href="#">${page_num}</a></li>
+                <#else>
+                    <li><a href="#" onclick="goToPage('${page_num}',this)">${page_num}</a></li>
+                </#if>
+            </#list>
+
+                <!--下一页-->
+                <li>
+
+                <#if childPageInfo.hasNextPage>
+                    <a href="#" onclick="goToPage('${childPageInfo.pageNum+1}',this)"
+                       aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </#if>
+                </li>
+                <li><a href="#" onclick="goToPage('${childPageInfo.pages}',this)">尾页</a></li>
+                <li>共 ${childPageInfo.pages} 页</li>
+            </ul>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <script>
+        var current_probe_id=${currentProbeId};
+       function goToPage(pn,p) {
+            //alert("param:"+p);
+            console.info($(p).parents());
+            $(p).parents('.collapse').load(BASE_PATH + "/portal/probeRunning/findDcsProbeRelCurrentTaskList/", {probe_id:current_probe_id,pn: pn}, function (txt) {
+             if (!txt) {
+
+             }
+            });
+        }
+    </script>
+</div>
+           

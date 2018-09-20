@@ -1,0 +1,75 @@
+<div class="form-group " >
+    <label for="loginname" class="col-xs-4 control-label"> 登录名：</label>
+    <div class="col-xs-8 " >
+        <input type="text"   class="form-control input-sm duiqi"  id="loginname" placeholder="输入登录名">
+    </div>
+</div>
+<div class="form-group">
+    <label for="fullname" class="col-xs-4 control-label">用户名：</label>
+    <div class="col-xs-8 ">
+        <input type="text"  class="form-control input-sm duiqi" id="fullname" placeholder="输入用户名">
+    </div>
+</div>
+<div class="form-group">
+    <label for="pwd" class="col-xs-4 control-label">密码：</label>
+    <div class="col-xs-8 ">
+        <input type="text"  class="form-control input-sm duiqi" id="pwd" placeholder="输入密码">
+    </div>
+</div>
+<div class="form-group">
+    <label for="sex" class="col-xs-4 control-label">性别：</label>
+    <div class="col-xs-8 ">
+        <div class=" form-contro input-sm duiqi">
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="optionsRadios1" value="1" checked> 男
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="optionsRadios2"  value="2"> 女
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="optionsRadios3"  value="3"> 不详
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="email" class="col-xs-4 control-label">邮件：</label>
+    <div class="col-xs-8 ">
+        <input type="text"  class="form-control input-sm duiqi" id="email" placeholder="输入邮件">
+</div>
+</div>
+<div class="form-group">
+    <label for="mobile" class="col-xs-4 control-label">手机号：</label>
+    <div class="col-xs-8 ">
+        <input type="text"  class="form-control input-sm duiqi" id="mobile" placeholder="输入手机号">
+    </div>
+</div>
+<div class="form-group ">
+    <label for="status" class="col-xs-4 control-label">状态：</label>
+    <div class="col-xs-8  ">
+        <div class="form-contro input-sm duiqi">
+            <label class="radio-inline">
+                <input type="radio" name="status" id="optionsRadios3" value="1" checked> 正常
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="status" id="optionsRadios4"  value="0"> 停用
+            </label>
+        </div>
+
+
+    </div>
+</div>
+<div class="form-group">
+    <label for="isadmin" class="col-xs-4 control-label">是否是管理员：</label>
+    <div class="col-xs-8 ">
+        <div class="form-contro input-sm duiqi">
+            <label class="radio-inline">
+                <input type="radio" name="isadmin" id="optionsRadios1" value="1" checked> 是
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="isadmin" id="optionsRadios2"  value="0"> 否
+            </label>
+           
+        </div>
+    </div>
+</div>

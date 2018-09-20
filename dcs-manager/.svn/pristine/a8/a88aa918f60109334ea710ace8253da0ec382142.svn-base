@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsHistoryFileMapper">
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsHistoryFile">
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="ftp_id" jdbcType="INTEGER" property="ftpId" />
+    <result column="data_type_id" jdbcType="INTEGER" property="dataTypeId" />
+    <result column="path_and_name" jdbcType="VARCHAR" property="pathAndName" />
+    <result column="rename_file_name" jdbcType="VARCHAR" property="renameFileName" />
+    <result column="file_insert_time" jdbcType="TIMESTAMP" property="fileInsertTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="probe_id" jdbcType="INTEGER" property="probeId" />
+    <result column="file_size" jdbcType="BIGINT" property="fileSize" />
+    <result column="ftp_path_and_name" jdbcType="VARCHAR" property="ftpPathAndName" />
+    <result column="download_duration" jdbcType="BIGINT" property="downloadDuration" />
+    <result column="to_hdfs_duration" jdbcType="BIGINT" property="toHdfsDuration" />
+    <result column="event_time_day_int" jdbcType="INTEGER" property="eventTimeDayInt" />
+    <result column="hdfs_path" jdbcType="VARCHAR" property="hdfsPath" />
+    <result column="ftp_ip" jdbcType="VARCHAR" property="ftpIp" />
+    <result column="data_type_name" jdbcType="VARCHAR" property="dataTypeName" />
+    <result column="probe_name" jdbcType="VARCHAR" property="probeName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsHistoryFile">
+    insert into dcs_history_file (file_id, ftp_id, data_type_id, 
+      path_and_name, rename_file_name, file_insert_time, 
+      status, probe_id, file_size, 
+      ftp_path_and_name, download_duration, to_hdfs_duration, 
+      event_time_day_int, hdfs_path)
+    values (#{fileId,jdbcType=INTEGER}, #{ftpId,jdbcType=INTEGER}, #{dataTypeId,jdbcType=INTEGER}, 
+      #{pathAndName,jdbcType=VARCHAR}, #{renameFileName,jdbcType=VARCHAR}, #{fileInsertTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{probeId,jdbcType=INTEGER}, #{fileSize,jdbcType=BIGINT}, 
+      #{ftpPathAndName,jdbcType=VARCHAR}, #{downloadDuration,jdbcType=BIGINT}, #{toHdfsDuration,jdbcType=BIGINT}, 
+      #{eventTimeDayInt,jdbcType=INTEGER}, #{hdfsPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsHistoryFile">
+    insert into dcs_history_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="ftpId != null">
+        ftp_id,
+      </if>
+      <if test="dataTypeId != null">
+        data_type_id,
+      </if>
+      <if test="pathAndName != null">
+        path_and_name,
+      </if>
+      <if test="renameFileName != null">
+        rename_file_name,
+      </if>
+      <if test="fileInsertTime != null">
+        file_insert_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="probeId != null">
+        probe_id,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="ftpPathAndName != null">
+        ftp_path_and_name,
+      </if>
+      <if test="downloadDuration != null">
+        download_duration,
+      </if>
+      <if test="toHdfsDuration != null">
+        to_hdfs_duration,
+      </if>
+      <if test="eventTimeDayInt != null">
+        event_time_day_int,
+      </if>
+      <if test="hdfsPath != null">
+        hdfs_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="ftpId != null">
+        #{ftpId,jdbcType=INTEGER},
+      </if>
+      <if test="dataTypeId != null">
+        #{dataTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pathAndName != null">
+        #{pathAndName,jdbcType=VARCHAR},
+      </if>
+      <if test="renameFileName != null">
+        #{renameFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileInsertTime != null">
+        #{fileInsertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="probeId != null">
+        #{probeId,jdbcType=INTEGER},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="ftpPathAndName != null">
+        #{ftpPathAndName,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadDuration != null">
+        #{downloadDuration,jdbcType=BIGINT},
+      </if>
+      <if test="toHdfsDuration != null">
+        #{toHdfsDuration,jdbcType=BIGINT},
+      </if>
+      <if test="eventTimeDayInt != null">
+        #{eventTimeDayInt,jdbcType=INTEGER},
+      </if>
+      <if test="hdfsPath != null">
+        #{hdfsPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getDcsHistoryFileList" resultMap="BaseResultMap" resultType="com.ultrapower.dcs.cluster.control.model.DcsHistoryFile" >
+    SELECT 	a.file_id,
+	b.ftp_ip,
+	c.data_type_name,
+	a.ftp_id,
+	d.probe_name,
+	a.data_type_id,
+	a.path_and_name,
+	a.rename_file_name,
+	a.file_insert_time,
+	a.STATUS,
+	a.probe_id,
+	round(a.file_size/(1024*1024*1024),2)as file_size,
+	a.ftp_path_and_name,
+	a.download_duration,
+	a.to_hdfs_duration,
+	a.event_time_day_int,
+	a.hdfs_path
+
+	FROM
+	dcs_history_file a ,dcs_ftp_server b ,dcs_data_type c ,dcs_probe d
+
+	WHERE
+        (event_time_day_int BETWEEN #{beginTime}  AND  #{endTime})
+        and
+	a.data_type_id=c.data_type_id AND a.ftp_id=b.ftp_id and
+	a.probe_id=d.probe_id
+
+  </select>
+  <select id="getDcsHistoryFileListForConditin" resultMap="BaseResultMap" resultType="com.ultrapower.dcs.cluster.control.model.DcsHistoryFile" >
+    SELECT 	a.file_id,
+    b.ftp_ip,
+    c.data_type_name,
+    a.ftp_id,
+    d.probe_name,
+    a.data_type_id,
+    a.path_and_name,
+    a.rename_file_name,
+    a.file_insert_time,
+    a.STATUS,
+    a.probe_id,
+    a.file_size,
+    a.ftp_path_and_name,
+    a.download_duration,
+    a.to_hdfs_duration,
+    a.event_time_day_int,
+    a.hdfs_path
+
+    FROM
+    dcs_history_file a ,dcs_ftp_server b ,dcs_data_type c ,dcs_probe d
+
+    WHERE
+    (event_time_day_int BETWEEN #{beginTime}  AND  #{endTime})
+    and
+    <if test="null!=ftpId ">
+      a.ftp_id =#{ftpId,jdbcType=INTEGER}  and
+    </if>
+    <if test="null!=dataTypeId ">
+      a.data_type_id =#{dataTypeId,jdbcType=INTEGER}  and
+    </if>
+    <if test="null!=probeId ">
+      a.probe_id =#{probeId,jdbcType=INTEGER}  and
+    </if>
+    <if test="null!=pathAndName ">
+      a.path_and_name like
+      (CONCAT(CONCAT('%', #{pathAndName,jdbcType=VARCHAR}),'%')) ESCAPE '/'
+      and
+    </if>
+    a.data_type_id=c.data_type_id AND a.ftp_id=b.ftp_id and
+    a.probe_id=d.probe_id
+
+  </select>
+
+</mapper>

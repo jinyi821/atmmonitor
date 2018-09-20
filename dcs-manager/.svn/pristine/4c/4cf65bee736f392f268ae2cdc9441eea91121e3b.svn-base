@@ -1,0 +1,98 @@
+<div class="row tableHeader">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+        ftpID
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+        IP地址
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+        IP端口号
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+        用户名
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        密码
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        ftp目录
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        正则表达式
+    </div>
+</div>
+<div class="tablebody" id="accordion">
+
+<#list pageInfo.list as col>
+
+
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
+        ${col["ftpId"]}
+        </div>
+
+        <div id="${"top"+col_index}" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 levl2" role="button"
+             data-toggle="collapse" data-parent="#accordion" href="${"#collapse"+col_index}"
+             aria-expanded="true" aria-controls="collapseOne" onClick="toogleClass(${col_index}, ${col["ftpId"]})">
+                                <span id="${"topC"+col_index}"
+                                      class="glyphicon glyphicon-triangle-right"></span>
+            <span>
+            ${col["ftpIp"]}
+                                </span>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        ${col["ftpPort"]}
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        ${col["ftpUserName"]}
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        ${col["ftpPassword"]}
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            ${col["pathFtp"]}
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        ${col["pathReg"]?html}
+
+
+        </div>
+    </div>
+
+    <div id="${"collapse"+col_index}" class="collapse " aria-expanded="true">
+
+    </div>
+</#list>
+</div>
+</div>
+</div>
+<#include "/page.ftl">
+<script>
+
+    function toogleClass(id,ftpId) {
+        $("#topC" + id).toggleClass(" glyphicon-triangle-right");
+        $("#topC" + id).toggleClass(" glyphicon-triangle-bottom");
+        if ($("#topC" + id).hasClass("glyphicon-triangle-bottom")) {
+
+            $("#collapse" + id).load(BASE_PATH + "/portal/scannerMonitor/ftpfile", {pn: 1,ftpId:ftpId}, function (txt) {
+
+                if (!txt) {
+                    console.info("ftpdetail");
+                }
+
+            });
+        }
+
+    }
+    function goto(pn) {
+        $("#scannerMonitor").load(BASE_PATH + "/portal/scannerMonitor/", {pn: pn}, function (txt) {
+
+            if (!txt) {
+
+            }
+
+        });
+    }
+</script>
+           

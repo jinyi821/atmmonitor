@@ -1,0 +1,87 @@
+<script>
+    var ftpId=-1;
+    var dataTypeId=-1;
+    var pageSize=10;
+    var pid=-1;
+    var pkid=-1;
+    var probeId =-1;
+    var pathAndName="";
+
+    $('#addModalId').on('shown.bs.modal', function () {
+      
+        var col = dataList[pid];
+        $("#fileId").text(col["fileId"]);
+        $("#pathAndName").text(col["pathAndName"]);
+        $("#renameFileName").text(col["renameFileName"]);
+        $("#dataTypeName").text(col["dataTypeName"]);
+        $("#ftpIp").text(col["ftpIp"]);
+        $("#probeName").text(col["probeName"]);
+
+        $("#fileInsertTime").text(col["fileInsertTime"]);
+
+        $("#status").text(col["status"]);
+
+        $("#fileSize").text(col["fileSize"]);
+        $("#ftpPathAndName").text(col["ftpPathAndName"]);
+        $("#downloadDuration").text(col["downloadDuration"]);
+        $("#toHdfsDuration").text(col["toHdfsDuration"]);
+        $("#hdfsPath").text(col["hdfsPath"]);
+        $("#addLabel").html("采集文件明细");
+
+    });
+
+    function goto(pn) {
+        ftpId= $("#ftpId").val();
+        dataTypeId = $("#dataTypeId").val();
+        pageSize =   $("#pageSize").val();
+        probeId =  $("#probeId").val();
+        $("#tableContent").load(BASE_PATH + "/currentDayCollectionFiles/",
+                {
+                    pn: pn,
+                    ftpId:ftpId,
+                    dataTypeId:dataTypeId,
+                    pageSize:pageSize,
+                    refreshPart:1,
+                    probeId:probeId,
+                    pathAndName:$('#pathAndName').val()
+                }, function (txt) {
+
+                    if (!txt) {
+
+                    }
+
+                });
+    }
+    $(function(){
+
+        $(".tooltips").tooltip();
+
+        $("#searchButton").bind('click', function() {
+            goto(1);
+        });
+
+        $("#ftpId").empty();
+
+        $("#ftpId").append("<option value='-1'  >所有FTP</option>");
+    <#list ftPserverList as col>
+        $("#ftpId").append("<option value='${col["ftpId"]}'>${col["ftpIp"]}:${col["ftpPort"]}</option>");
+    </#list>
+
+        $("#dataTypeId").empty();
+
+        $("#dataTypeId").append("<option value='-1'  >所有数据类型</option>");
+    <#list dcsDataTypeList as col>
+        $("#dataTypeId").append("<option value='${col["dataTypeId"]}'>${col["dataTypeName"]}</option>");
+    </#list>
+
+        $("#probeId").empty();
+
+        $("#probeId").append("<option value='-1'  >所有Probe</option>");
+    <#list allDcsProbeList as col>
+        $("#probeId").append("<option value='${col["probe_id"]}'>${col["probe_name"]}</option>");
+    </#list>
+    })
+
+
+
+</script>

@@ -1,0 +1,160 @@
+<div class="data-div" style="border:1px dotted darkgrey">
+
+    <div class="tablebody" id="accordion">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                类型
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                路径名称
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                更改名称
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                hdfs路径
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                文件大小(G)
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                其它
+            </div>
+           
+           
+        </div>
+
+    <#list pageInfo.list as col>
+
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                <#if col["dataTypeName"]?? && col["dataTypeName"]?length lt 10>
+                ${col["dataTypeName"]?html}
+                <#else>
+                ${col["dataTypeName"][0..9]?default("")?html}...
+                </#if>
+           
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                <#if col["pathAndName"]?? && col["pathAndName"]?length lt 10>
+                ${col["pathAndName"]?html}
+                <#else>
+                ${col["pathAndName"][0..9]?default("")?html}...
+                </#if>
+           
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                <#if col["renameFileName"]?? && col["renameFileName"]?length lt 10>
+                ${col["renameFileName"]?html}
+                <#else>
+                ${col["renameFileName"][0..9]?default("")?html}...
+                </#if>
+           
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+                <#if col["hdfsPath"]?? && col["hdfsPath"]?length lt 10>
+                ${col["hdfsPath"]?html}
+                <#else>
+                ${col["hdfsPath"][0..9]?default("")?html}...
+                </#if>
+            
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+            ${col["fileSize"]}
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 "
+               title="生成时间：${col["fileIntime"]?string('yyyy-MM-dd HH:mm:ss')}
+数据来源：${col["source"] }
+"
+            >
+                -->
+            </div>
+
+           
+
+        </div>
+
+    </#list>
+        <!--页码块-->
+        <style>
+            .pagination > li > a, .pagination > li > span {
+                color: #b7b7b7;
+                background: white;
+                border: 1px solid #ddd;
+            }
+        </style>
+
+        <div style="float:right">
+
+
+            <!--显示分页信息-->
+
+            <!--文字信息
+        <div class="col-md-6">
+
+
+            当前第 ${pageInfo.pageNum} 页.总共 ${pageInfo.pages} 页.一共 ${pageInfo.total} 条记录
+        </div>  -->
+
+
+            <ul class="pagination">
+
+                <li><a  onclick="gof(1,this)">首页</a></li>
+
+                <!--上一页-->
+                <li>
+                <#if pageInfo.hasPreviousPage>
+                    <a  onclick="gof('${pageInfo.pageNum-1}',this)" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </#if>
+
+                </li>
+
+                <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+            <#list pageInfo.navigatepageNums as page_num>
+                <#if page_num == pageInfo.pageNum>
+                    <li class="active"><a href="#">${page_num}</a></li>
+                <#else>
+                    <li><a  onclick="gof('${page_num}',this)">${page_num}</a></li>
+                </#if>
+            </#list>
+
+                <!--下一页-->
+                <li>
+
+                <#if pageInfo.hasNextPage>
+                    <a  onclick="gof('${pageInfo.pageNum+1}',this)"
+                       aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </#if>
+                </li>
+
+                <li><a  onclick="gof('${pageInfo.pages}',this)">尾页</a></li>
+                <li>共 ${pageInfo.pages} 页 ${pageInfo.total} 条记录</li>
+            </ul>
+
+
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+
+    <script>
+
+
+        function gof(pn,p) {
+             console.info($(p).parents())  ;
+            $(p).parents('.collapse.in').load(BASE_PATH + "/portal/scannerMonitor/ftpfile", {pn: pn}, function (txt) {
+
+                if (!txt) {
+
+                }
+
+            });
+        }
+    </script>
+</div>
+           

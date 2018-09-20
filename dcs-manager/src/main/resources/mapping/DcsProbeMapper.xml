@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsProbeMapper">
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsProbe">
+    <id column="probe_id" jdbcType="INTEGER" property="probe_id" />
+    <result column="probe_name" jdbcType="VARCHAR" property="probe_name" />
+    <result column="probe_ip" jdbcType="VARCHAR" property="probe_ip" />
+    <result column="hard_disk" jdbcType="VARCHAR" property="hard_disk" />
+    <result column="total_space" jdbcType="VARCHAR" property="total_space" />
+    <result column="free_space" jdbcType="VARCHAR" property="free_space" />
+    <result column="use_space" jdbcType="VARCHAR" property="use_space" />
+    <result column="heart_interval" jdbcType="INTEGER" property="heart_interval" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="update_time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    probe_id, probe_name, probe_ip, hard_disk, total_space, free_space, use_space, heart_interval, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dcs_probe
+    where probe_id = #{probe_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dcs_probe
+    where probe_id = #{probe_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsProbe">
+    insert into dcs_probe (probe_id, probe_name, probe_ip, 
+      hard_disk, total_space, free_space, 
+      use_space, heart_interval, update_time
+      )
+    values (#{probe_id,jdbcType=INTEGER}, #{probe_name,jdbcType=VARCHAR}, #{probe_ip,jdbcType=VARCHAR}, 
+      #{hard_disk,jdbcType=VARCHAR}, #{total_space,jdbcType=VARCHAR}, #{free_space,jdbcType=VARCHAR}, 
+      #{use_space,jdbcType=VARCHAR}, #{heart_interval,jdbcType=INTEGER}, #{update_time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsProbe">
+    insert into dcs_probe
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="probe_id != null">
+        probe_id,
+      </if>
+      <if test="probe_name != null">
+        probe_name,
+      </if>
+      <if test="probe_ip != null">
+        probe_ip,
+      </if>
+      <if test="hard_disk != null">
+        hard_disk,
+      </if>
+      <if test="total_space != null">
+        total_space,
+      </if>
+      <if test="free_space != null">
+        free_space,
+      </if>
+      <if test="use_space != null">
+        use_space,
+      </if>
+      <if test="heart_interval != null">
+        heart_interval,
+      </if>
+      <if test="update_time != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="probe_id != null">
+        #{probe_id,jdbcType=INTEGER},
+      </if>
+      <if test="probe_name != null">
+        #{probe_name,jdbcType=VARCHAR},
+      </if>
+      <if test="probe_ip != null">
+        #{probe_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="hard_disk != null">
+        #{hard_disk,jdbcType=VARCHAR},
+      </if>
+      <if test="total_space != null">
+        #{total_space,jdbcType=VARCHAR},
+      </if>
+      <if test="free_space != null">
+        #{free_space,jdbcType=VARCHAR},
+      </if>
+      <if test="use_space != null">
+        #{use_space,jdbcType=VARCHAR},
+      </if>
+      <if test="heart_interval != null">
+        #{heart_interval,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null">
+        #{update_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsProbe">
+    update dcs_probe
+    <set>
+      <if test="probe_name != null">
+        probe_name = #{probe_name,jdbcType=VARCHAR},
+      </if>
+      <if test="probe_ip != null">
+        probe_ip = #{probe_ip,jdbcType=VARCHAR},
+      </if>
+      <if test="hard_disk != null">
+        hard_disk = #{hard_disk,jdbcType=VARCHAR},
+      </if>
+      <if test="total_space != null">
+        total_space = #{total_space,jdbcType=VARCHAR},
+      </if>
+      <if test="free_space != null">
+        free_space = #{free_space,jdbcType=VARCHAR},
+      </if>
+      <if test="use_space != null">
+        use_space = #{use_space,jdbcType=VARCHAR},
+      </if>
+      <if test="heart_interval != null">
+        heart_interval = #{heart_interval,jdbcType=INTEGER},
+      </if>
+      <if test="update_time != null">
+        update_time = #{update_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where probe_id = #{probe_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ultrapower.dcs.cluster.control.model.DcsProbe">
+    update dcs_probe
+    set probe_name = #{probe_name,jdbcType=VARCHAR},
+      probe_ip = #{probe_ip,jdbcType=VARCHAR},
+      hard_disk = #{hard_disk,jdbcType=VARCHAR},
+      total_space = #{total_space,jdbcType=VARCHAR},
+      free_space = #{free_space,jdbcType=VARCHAR},
+      use_space = #{use_space,jdbcType=VARCHAR},
+      heart_interval = #{heart_interval,jdbcType=INTEGER},
+      update_time = #{update_time,jdbcType=TIMESTAMP}
+    where probe_id = #{probe_id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findAllDcsProbeList" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM dcs_probe
+    order by probe_id asc
+  </select>
+
+
+</mapper>

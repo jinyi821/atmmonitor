@@ -1,0 +1,282 @@
+<!-- 数据类型配置模块 -->
+
+<div role="tabpanel" class="tab-pane" id="char">
+
+    <div class="check-div">
+        <button class="btn btn-yellow btn-xs" data-toggle="modal" data-target="#addftpTyperel" >
+            
+            添加FTP映射
+        </button>
+    </div>
+    <div class="data-div">
+        <div class="row tableHeader">
+            
+            <div class="col-xs-2">
+                ip:端口
+            </div>
+            <div class="col-xs-2">
+                用户名密码
+            </div>
+            <div class="col-xs-2">
+                数据类型
+            </div>
+            <div class="col-xs-2">
+                是否启用
+            </div>
+            <div class="col-xs-2">
+                操作
+            </div>
+        </div>
+        <div class="tablebody">
+        <#list pageInfo.list as col>
+            <div class="row">
+                <div class="col-xs-2 ">
+                ${col["ftpIp"]}：${col["ftpPort"]}
+                </div>
+                <div class="col-xs-2">
+                ${col["ftpUserName"]}/${col["ftpPassword"]}
+                </div>
+                <div class="col-xs-2" title=" ${col["dataTypeName"]}">
+                    <#if col["dataTypeName"]?? && col["dataTypeName"]?length lt 10>
+                    ${col["dataTypeName"]}
+                    <#else>
+                    ${col["dataTypeName"][0..9]?default("")}...
+                    </#if>
+
+                </div>
+                <div class="col-xs-2">
+                    <#if col["enabled"]==0>停用</#if><#if col["enabled"]== 1>启用</#if>
+                </div>
+                <div class="col-xs-2">
+                    <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#<#if col["enabled"]==0>runftpTyperel</#if><#if col["enabled"]== 1>closeftpTyperel</#if>"
+                            onclick="initID('${col["ftpId"]}','${col["dataTypeId"]}')">
+                        <#if col["enabled"]==0>启用</#if><#if col["enabled"]== 1>停用</#if>
+                    </button>
+                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteftpTyperel"
+                            onclick="initID('${col["ftpId"]}','${col["dataTypeId"]}')">删除
+                    </button>
+                </div>
+            </div>
+
+        </#list>
+        </div>
+    </div>
+<#include "/page.ftl">
+<#assign modalId="deleteftpTyperel">
+<#assign modaltitle="确定要删除该映射？删除后不可恢复！">
+<#include "/messageModal.ftl">
+    
+<#assign modalId="runftpTyperel">
+<#assign modaltitle="确定要启用该映射？">
+<#include "/messageModal.ftl">
+    
+<#assign modalId="closeftpTyperel">
+<#assign modaltitle="确定要停用该映射？">
+<#include "/messageModal.ftl">
+    
+<#assign modalId="ftpTyperel">
+<#assign formcontenturl="/dcsFtpTyperel/form_content.ftl">
+<#include "/addModal.ftl">
+
+</div>
+<script>
+
+    var dataList = new Array();
+    var size = ${pageInfo.size};
+    console.info("size=" + size);
+    var dataTypeId=-1;
+    var ftpId= -1;
+    function initID(ftpId1,data_TypeId1){
+        console.info("----");
+        ftpId=ftpId1;
+        dataTypeId=data_TypeId1;
+        console.info("dataTypeId="+data_TypeId1);
+        console.info("ftpId="+ftpId);
+    }
+    function showTip(id, tip) {
+        $("#" + id).attr('title', tip).tooltip('fixTitle').tooltip('show');
+        setTimeout(function () {
+
+            $("#" + id).tooltip({delay: {show: 500, hide: 1000}, animation: true}).tooltip('destroy');
+        }, 3000)
+    }
+    $('#addftpTyperel').on('shown.bs.modal', function () {
+
+        console.info("===id2=" );
+        $("#ftpId").empty();
+        <#list ftPserverList as col>
+            $("#ftpId").append("<option value='${col["ftpId"]}'>${col["ftpIp"]}:${col["ftpPort"]}</option>");
+        </#list>
+        $("#dataTypeId").empty();
+        <#list dcsDataTypeList as col>
+            $("#dataTypeId").append("<option value='${col["dataTypeId"]}'>${col["dataTypeName"]}</option>");
+        </#list>
+
+            $("#ftpId").val("");
+            $("#dataTypeId").val("");
+            $("#addftpTyperelLabel").text("添加关系映射");
+    })
+    $("#ftpId").bind('change', function() {
+        var ftpId=$("#ftpId").val();
+        $("#dataTypeId").empty();
+        $.ajax({
+            type: "post",
+            url: BASE_PATH + "/portal/dcsFtpTypeRel/getDcsDataTypeListForRest",
+            data: {ftpId:ftpId},
+            async: false,
+            success: function (result) {
+                console.info(result);
+                result.forEach(function(item,index){
+                    $("#dataTypeId").append("<option value='"+
+                            item["dataTypeId"]+"'>"+item["dataTypeName"]+"</option>");
+                })
+                
+
+            }
+
+        });
+        
+    })
+    $(function () {
+
+    <#list pageInfo.list as col>
+        dataList.push(
+                {
+                    ftpId:${col["ftpId"]},
+                    dataTypeId: '${col["dataTypeId"]}',
+                    enabled: '${col["enabled"]}'
+
+                });
+    </#list>
+       
+        $("#saveButton_ftpTyperel").click(function () {
+            debugger;
+            console.info("1----");
+            console.info("ftpId=" + ftpId);
+            var ftpId = $("#ftpId").val();
+            var dataTypeId = $("#dataTypeId").val();
+            var enabled = $("#enabled").val();
+            
+            console.info("2----");
+            var i = 0;
+           
+            if (!ftpId||ftpId.length == 0) {
+
+                showTip("ftpId", "Ip不能为空");
+                i = 1;
+            }
+            if (!dataTypeId||dataTypeId.length == 0) {
+
+                showTip("dataTypeId", "类型名称不能为空");
+                i = 1;
+            }
+            var postdata = {
+                ftpId: ftpId,
+                dataTypeId: dataTypeId,
+                enabled: 0,
+                id:-1
+            };
+            if (i == 0) {
+
+                $.ajax({
+                    type: "post",
+                    url: BASE_PATH + "/portal/dcsFtpTypeRel/add",
+                    data: postdata,
+                    async: false,
+                    success: function (result) {
+                        $('#addftpTyperel').modal('hide');
+                        setTimeout(function () {
+                            if (pid == -1) {
+                                goto(${pageInfo.pageSize});
+                            } else {
+                                goto(${pageInfo.pageNum});
+                            }
+                        }, 1000);
+                        toastr.info("保存成功!");
+
+                    }
+
+                });
+            }
+        })
+
+        $("#deleteftpTyperelButton").click(function () {
+            console.info("deleteftpTyperelButton") ;
+            $.ajax({
+                type: "post",
+                url: BASE_PATH + "/portal/dcsFtpTypeRel/delete",
+                data: {ftpId: ftpId,dataTypeId:dataTypeId},
+                async: false,
+                success: function (result) {
+                    $('#deleteftpTyperel').modal('hide');
+                    toastr.info("删除成功!");
+                    setTimeout(function () {
+                        if (size == 1 && pid == 1) {
+                            goto(${pageInfo.pageNum}-1);
+                        } else {
+                            goto(${pageInfo.pageNum});
+                        }
+
+                    }, 2000);
+                }
+
+            });
+        });
+        $("#runftpTyperelButton").click(function () {
+            console.info("runftpTyperelButton") ;
+            $.ajax({
+                type: "post",
+                url: BASE_PATH + "/portal/dcsFtpTypeRel/add",
+                data: {id:1,ftpId: ftpId,dataTypeId:dataTypeId,enabled:1},
+                async: false,
+                success: function (result) {
+                    $('#runftpTyperel').modal('hide');
+                    toastr.info("启用成功!");
+                    setTimeout(function () {
+                        if (size == 1 && pid == 1) {
+                            goto(${pageInfo.pageNum}-1);
+                        } else {
+                            goto(${pageInfo.pageNum});
+                        }
+
+                    }, 2000);
+                }
+
+            });
+        });
+        $("#closeftpTyperelButton").click(function () {
+            console.info("closeftpTyperelButton") ;
+            $.ajax({
+                type: "post",
+                url: BASE_PATH + "/portal/dcsFtpTypeRel/add",
+                data: {id:1,ftpId: ftpId,dataTypeId:dataTypeId,enabled:0},
+                async: false,
+                success: function (result) {
+                    $('#closeftpTyperel').modal('hide');
+                    toastr.info("停用成功!");
+                    setTimeout(function () {
+                        if (size == 1 && pid == 1) {
+                            goto(${pageInfo.pageNum}-1);
+                        } else {
+                            goto(${pageInfo.pageNum});
+                        }
+
+                    }, 2000);
+                }
+
+            });
+        });
+
+    })
+
+    function goto(pn) {
+        console.info(" gotoC(pn)")
+        $("#dcsFtpTypeRel").load(BASE_PATH + "/portal/dcsFtpTypeRel/", {pn: pn}, function (txt) {
+
+            if (!txt) {
+
+            }
+
+        });
+    }
+</script>

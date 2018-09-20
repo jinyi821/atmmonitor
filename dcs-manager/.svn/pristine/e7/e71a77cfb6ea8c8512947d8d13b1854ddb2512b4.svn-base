@@ -1,0 +1,103 @@
+<div role="content">
+
+    <!-- widget edit box -->
+    <div class="jarviswidget-editbox">
+        <!-- This area used as dropdown edit box -->
+         
+    </div>
+    <!-- end widget edit box -->
+
+    <!-- widget content -->
+    <div class="widget-body">
+
+        <form class="form-horizontal" id="dcsDataTypeForm" method="post">
+            <fieldset>
+               
+                <div class="form-group">
+                    <label class="col-md-2 control-label">类型名称 </label>
+                    <div class="col-md-10">
+                        <input id="dataTypeName" name="dataTypeName" class="form-control" placeholder="输入类型名称" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">正则表达式 </label>
+                    <div class="col-md-10">
+                        <input  class="form-control" id="dataTypePathReg" name="dataTypePathReg"  placeholder="输入正则表达式" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">是否删除FTP文件</label>
+                    <div class="col-md-10">
+                        <div class="smart-form ">
+                            <div class="inline-group">
+                                <label class="checkbox">
+                                    <input name="isFtpDelete" id="isFtpDelete" type="checkbox" value="1" >
+                                    <i></i></label>
+
+                            </div>
+                        </div>
+                        <#--<select-->
+                                <#--id="isFtpDelete"-->
+                                <#--name="isFtpDelete"-->
+                                 <#--aria-controls="dt_basic"-->
+                                <#--class="form-control input">-->
+                            <#--<option value="" style="display:none">请选择是否删除FTP文件</option>-->
+                            <#--<option value="1" >是</option>-->
+                            <#--<option value="0" >否</option>-->
+                        <#--</select>-->
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="col-md-2 control-label">是否删除本地文件</label>
+                    <div class="col-md-10">
+                        <div class="smart-form ">
+                            <div class="inline-group">
+                                <label class="checkbox">
+                                    <input name="isFileDelete" id="isFileDelete" type="checkbox" value="1" >
+                                    <i></i></label>
+
+                            </div>
+                        </div>
+                        <#--<select-->
+                                <#--id="isFileDelete"-->
+                                <#--name="isFileDelete" aria-controls="dt_basic"-->
+                                <#--class="form-control input">-->
+                            <#--<option value="" style="display:none">请选择是否删除本地文件</option>-->
+                            <#--<option value="1" >是</option>-->
+                            <#--<option value="0" >否</option>-->
+                        <#--</select>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">HDFS路径 </label>
+                    <div class="col-md-10">
+                        <input  class="form-control" name="hdfsPath" id="hdfsPath" placeholder="输入HDFS路径" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">相对路径 </label>
+                    <div class="col-md-10">
+                        <input  class="form-control" name="pathFtp" id="pathFtp" placeholder="输入相对路径" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">选择FTP </label>
+                    <div class="col-md-10">
+                        
+                        <select id="ftpIds" name="ftpIds" aria-controls="dt_basic"
+                                class="form-control input"  size='20'  style="height:100px" multiple>
+
+                        </select>
+                    </div>
+                </div>
+               
+            </fieldset>
+
+
+
+        </form>
+
+    </div>
+    <!-- end widget content -->
+
+</div>

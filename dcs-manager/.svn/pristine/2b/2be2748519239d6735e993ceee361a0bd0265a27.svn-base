@@ -1,0 +1,176 @@
+ <div class="dataTables_wrapper form-inline dt-bootstrap no-footer" id="dt_basic_wrapper">
+           <div class="dt-toolbar">
+                        <div class="col-xs-8 col-sm-10">
+                            <div id="dt_basic_filter" class="dataTables_filter">
+                             <label>
+                                 <select id ="ftpId"
+                                            name="dt_basic_length" aria-controls="dt_basic"
+                                            class="form-control input">
+                                  
+                                     <option value='-1'  >所有FTP</option>
+                                    <#list ftpServerList as col>
+                                        <option value='${col["ftpId"]!}' <#if col.ftpId==ftpId > selected</#if> >${col["ftpIp"]!}</option>
+                                    </#list>
+                                    </select>
+
+                                    <select
+                                            id="dataTypeId"
+                                            name="dt_basic_length" aria-controls="dt_basic"
+                                            class="form-control input">
+                                       
+                                        <option value='-1'  >所有数据类型</option>
+                                    <#list dcsDataTypeList as col>
+                                        <option value='${col["dataTypeId"]}' <#if col.dataTypeId==dataTypeId > selected</#if>>${col["dataTypeName"]}</option>
+                                    </#list>
+                                    </select>
+                                   <input id="fileName" name="fileName" class="form-control" style="display:inline-block;width:100px;" placeholder="文件名称" value="${fileName!''}" type="text"/>
+                                  <select id="fileStatus" name="dt_basic_length" aria-controls="dt_basic" class="form-control input">
+                                    
+                                     <option value='-1'  >所有状态</option>
+                                     <#list fileStatusEnumList as col>
+                                      <option value='${col["code"]}' <#if col.code==fileStatus> selected</#if>>${col["context"]}</option>
+                                     </#list>
+                                 </select>
+
+                                    <button id="searchButton" class="btn btn-default btn-primary" type="button">
+                                        <i class="fa fa-search"></i> 搜索
+                                    </button>
+                              </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-4 hidden-xs">
+                            <div class="dataTables_length" id="dt_basic_length"><label>
+                                <select id="childPageSize" name="dt_basic_length" class="form-control input-sm"  aria-controls="dt_basic">
+                                   <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select></label></div>
+                        </div>
+                    </div>
+           <table width="100%" class="table table-striped table-bordered table-hover dataTable no-footer"
+                           id="dt_basic" role="grid" aria-describedby="dt_basic_info" style="table-layout:fixed;">
+                        <thead>
+                        <tr role="row">
+                            <th  style="width:80px;">任务FTP
+                            </th>
+                            <th   style="width:60px;">数据类型
+                            </th>
+                            <th  style="width:130px;">FTP路径文件
+                            </th>
+                            <th  style="width:130px;">更改文件名称
+                            </th>
+                            <th  style="width:110px;">FTP文件大小(B)
+                            </th>
+                            <th  style="width:130px;">目标HDFS路径
+                            </th>
+                            <th  style="width:40px;">状态
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <#list childPageInfo.list as ccol>
+                            <tr class="<#if ccol_index%2==0>odd</#if><#if ccol_index%2==1>even</#if>" role="row">
+                                <td > ${ccol["ftp_ip"]!}</td>
+                                <td >${ccol["data_type_name"]!}</td>
+                                <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${ccol["ftp_path_and_name"]!}</td>
+                                <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${ccol["rename_file_name"]!}</td>
+                                <td >${ccol["file_size"]?c}</td>
+                                <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${ccol["hdfs_path"]}</td>
+                                <td title="${ccol.getDcsFileStatusEnum().titleContext}"> ${ccol.getDcsFileStatusEnum().htmlContent}</td>
+                            </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+           <div class="dt-toolbar-footer">
+         <div class="col-sm-6 col-xs-12 hidden-xs">
+             <div class="dataTables_info" id="dt_basic_info" role="status" aria-live="polite">
+                 总共  ${childPageInfo.total} 条记录
+             </div>
+         </div>
+         <div class="col-xs-12 col-sm-6">
+             <div class="dataTables_paginate paging_simple_numbers" id="dt_basic_paginate">
+                 <ul class="pagination">
+                 <#if childPageInfo.hasPreviousPage>
+
+                     <li class="paginate_button previous " id="dt_basic_previous">
+                         <a href="javascript:void(0)" aria-controls="dt_basic" data-dt-idx="0" tabindex="0" onclick="goToChild('${childPageInfo.pageNum-1}')">
+                             <span class="fa fa-backward"></span>
+                         </a>
+                     </li>
+                 </#if>
+                 <#list childPageInfo.navigatepageNums as page_num>
+                     <#if page_num == childPageInfo.pageNum>
+
+                         <li class="paginate_button active">
+                             <a href="javascript:void(0)" aria-controls="dt_basic"  data-dt-idx="${page_num_index}" tabindex="0">
+                             ${page_num}
+                             </a>
+                         </li>
+                     <#else>
+                         <li class="paginate_button ">
+                             <a href="javascript:void(0)" onclick="goToChild('${page_num}')" aria-controls="dt_basic"
+                                data-dt-idx="${page_num_index}" tabindex="0">${page_num}
+                             </a>
+                         </li>
+
+                     </#if>
+                 </#list>
+
+                     <li class="paginate_button next" id="dt_basic_next">
+                     <#if childPageInfo.hasNextPage>
+                         <a href="javascript:void(0)"  onclick="goToChild('${childPageInfo.pageNum+1}')"
+                            aria-controls="dt_basic" data-dt-idx="8"  tabindex="0">
+                             <span class="fa fa-forward"></span>
+                         </a>
+                     </#if>
+
+                     </li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </div>
+                <!-- end widget content -->
+<script>
+    var current_probe_id ="${currentProbeId}";
+    var childPageSize = 5;
+    var ftpId=-1;
+    var dataTypeId=-1;
+    var fileName=null;
+    var fileStatus=-1;
+
+    $(document).ready(function(){
+        $("#childPageSize").bind('change', function () {
+         childPageSize = $("#childPageSize").val();
+          goToChild(1);
+        });
+        $("#childPageSize").val(${childPageInfo.pageSize});
+        childPageSize=${childPageInfo.pageSize};
+        $("#searchButton").bind('click', function() {
+            ftpId= $("#ftpId").val();
+            dataTypeId = $("#dataTypeId").val();
+            childPageSize =   $("#childPageSize").val();
+            fileStatus=$("#fileStatus").val();
+            fileName=$("#fileName").val();
+            goToChild(1);
+        });
+        $("#dt_basic tbody td").bind("dblclick",function(){
+            $(this).css({"text-overflow":"","overflow":"auto"}); //prop("contentEditable",true)
+        })
+    });
+    function goToChild(pn) {
+        childPageSize = $("#childPageSize").val();
+        //alert("current_probe_id:" + current_probe_id + "//pn:"+pn+"//childPageSize:" + childPageSize+"//ftpId:"+ftpId+"//dataTypeId:"+dataTypeId);
+      $("#childTbleContent").load(
+                "${BASE_PATH}/probeRunning/findDcsProbeRelCurrentTaskList/", {
+                    probe_id: current_probe_id,ftpId:ftpId,dataTypeId:dataTypeId,fileStatus:fileStatus,fileName:fileName,pn:pn,childPageSize:childPageSize
+                }, function (txt) {
+                    if (!txt) {
+                    }
+                });
+    };
+
+</script>
+           

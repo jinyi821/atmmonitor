@@ -1,0 +1,518 @@
+<#--<!doctype html>
+<html lang="ch">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>集群控制管理系统</title>-->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+   <#--<script type="text/javascript" src="${BASE_PATH}/js/jquery.min.js"></script>-->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <#--<script type="text/javascript" src="${BASE_PATH}/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="${BASE_PATH}/js/go.js"></script>
+    <#--<script type="text/javascript" src="${BASE_PATH}/js/goSamples.js"></script>-->
+   <#--<link type="text/css"  href="${BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">-->  <#--不要在引入样式，否则改写父页面样式，导致头部变形-->
+     <script id="code">
+       function init() {
+           //if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+            var $ = go.GraphObject.make;  // for conciseness in defining templates
+
+            myDiagram =
+                    $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+                            {
+                                initialContentAlignment: go.Spot.Center,
+                                allowDrop: false,  // true must be true to accept drops from the Palette
+                                "LinkDrawn": showLinkLabel,  // this DiagramEvent listener is defined below
+                                "LinkRelinked": showLinkLabel,
+                                scrollsPageOnFocus: false,
+                                "undoManager.isEnabled": false,  // true enable undo & redo
+                                "isReadOnly": true
+                            });
+
+            // when the document is modified, add a "*" to the title and enable the "Save" button
+           /*  myDiagram.addDiagramListener("Modified", function(e) {
+                var button = document.getElementById("SaveButton");
+                if (button) button.disabled = !myDiagram.isModified;
+                var idx = document.title.indexOf("*");
+                if (myDiagram.isModified) {
+                    if (idx < 0) document.title += "*";
+                } else {
+                    if (idx >= 0) document.title = document.title.substr(0, idx);
+                }
+            });*/
+
+            // helper definitions for node templates
+
+            function nodeStyle() {
+                return [
+                    // The Node.location comes from the "loc" property of the node data,
+                    // converted by the Point.parse static method.
+                    // If the Node.location is changed, it updates the "loc" property of the node data,
+                    // converting back using the Point.stringify static method.
+                    new go.Binding("location", "loc", go.Point.parse).makeTwoWay(go.Point.stringify),
+                    {
+                        // the Node.location is at the center of each node
+                        locationSpot: go.Spot.Center,
+                        //isShadowed: true,
+                        //shadowColor: "#888",
+                        // handle mouse enter/leave events to show/hide the ports
+                        mouseEnter: function (e, obj) { showPorts(obj.part, true); },
+                        mouseLeave: function (e, obj) { showPorts(obj.part, false); }
+                    }
+                ];
+            }
+
+            // Define a function for creating a "port" that is normally transparent.
+            // The "name" is used as the GraphObject.portId, the "spot" is used to control how links connect
+            // and where the port is positioned on the node, and the boolean "output" and "input" arguments
+            // control whether the user can draw links from or to the port.
+            function makePort(name, spot, output, input) {
+                // the port is basically just a small circle that has a white stroke when it is made visible
+                return $(go.Shape, "Circle",
+                        {
+                            fill: "transparent",
+                            stroke: null,  // this is changed to "white" in the showPorts function
+                            desiredSize: new go.Size(8, 8),
+                            alignment: spot, alignmentFocus: spot,  // align the port on the main Shape
+                            portId: name,  // declare this object to be a "port"
+                            fromSpot: spot, toSpot: spot,  // declare where links may connect at this port
+                            fromLinkable: output, toLinkable: input,  // declare whether the user may draw links to/from here
+                            cursor: "pointer"  // show a different cursor to indicate potential link point
+                        });
+            }
+
+            // define the Node templates for regular nodes
+
+            var lightText = 'whitesmoke';
+          // the default category
+            myDiagram.nodeTemplateMap.add("",$(go.Node, "Spot", nodeStyle(),
+                            // the main object is a Panel that surrounds a TextBlock with a rectangular Shape
+                            $(go.Panel, "Auto",
+                                    $(go.Shape, "Rectangle",
+                                            { fill: "#79C900", stroke: null },   //#79C900  ##00A9C9
+                                            new go.Binding("figure", "figure")
+                                            ,new go.Binding("fill","color")
+                                    ),
+                                    $(go.TextBlock,
+                                            {
+                                                font: "bold 11pt Helvetica, Arial, sans-serif",
+                                                stroke: lightText,
+                                                margin: 8,
+                                                maxSize: new go.Size(160, NaN),
+                                                wrap: go.TextBlock.WrapFit,
+                                                editable: true
+                                            },
+                                            new go.Binding("text").makeTwoWay())
+                            ),
+                            // four named ports, one on each side:
+                            makePort("T", go.Spot.Top, false, true),
+                            makePort("L", go.Spot.Left, true, true),
+                            makePort("R", go.Spot.Right, true, true),
+                            makePort("B", go.Spot.Bottom, true, false)
+                    ));
+
+            myDiagram.nodeTemplateMap.add("Start",
+                    $(go.Node, "Spot", nodeStyle(),
+                            $(go.Panel, "Auto",
+                                    $(go.Shape, "Circle",
+                                            { minSize: new go.Size(40, 40), fill: "#79C900", stroke: null }),
+                                    $(go.TextBlock, "Start",
+                                            { font: "bold 11pt Helvetica, Arial, sans-serif", stroke: lightText },
+                                            new go.Binding("text"))
+                            ),
+                            // three named ports, one on each side except the top, all output only:
+                            makePort("L", go.Spot.Left, true, false),
+                            makePort("R", go.Spot.Right, true, false),
+                            makePort("B", go.Spot.Bottom, true, false)
+                    ));
+
+            myDiagram.nodeTemplateMap.add("End",
+                    $(go.Node, "Spot", nodeStyle(),
+                            $(go.Panel, "Auto",
+                                    $(go.Shape, "Circle",
+                                            { minSize: new go.Size(40, 40), fill: "#DC3C00", stroke: null }),
+                                    $(go.TextBlock, "End",
+                                            { font: "bold 11pt Helvetica, Arial, sans-serif", stroke: lightText },
+                                            new go.Binding("text"))
+                            ),
+                            // three named ports, one on each side except the bottom, all input only:
+                            makePort("T", go.Spot.Top, false, true),
+                            makePort("L", go.Spot.Left, false, true),
+                            makePort("R", go.Spot.Right, false, true)
+                    ));
+
+            myDiagram.nodeTemplateMap.add("Comment",
+                    $(go.Node, "Auto", nodeStyle(),
+                            $(go.Shape, "File",
+                                    { fill: "#EFFAB4", stroke: null }),
+                            $(go.TextBlock,
+                                    {
+                                        margin: 5,
+                                        maxSize: new go.Size(200, NaN),
+                                        wrap: go.TextBlock.WrapFit,
+                                        textAlign: "center",
+                                        editable: true,
+                                        font: "bold 12pt Helvetica, Arial, sans-serif",
+                                        stroke: '#454545'
+                                    },
+                                    new go.Binding("text").makeTwoWay())
+                            // no ports, because no links are allowed to connect with a comment
+                    ));
+
+
+            // replace the default Link template in the linkTemplateMap
+            /*myDiagram.linkTemplate =
+                    $(go.Link,  // the whole link panel
+                            {
+                                layerName: "Background",
+                                routing: go.Link.Orthogonal, //go.Link.AvoidsNodes,
+                                curve: go.Link.JumpOver,
+                                corner: 15, toShortLength: 4,
+                                relinkableFrom: true,
+                                relinkableTo: true,
+                                reshapable: true,
+                                resegmentable: true,
+                                // mouse-overs subtly highlight links:
+                                mouseEnter: function(e, link) { link.findObject("HIGHLIGHT").stroke = "rgba(30,144,255,0.2)"; },
+                                mouseLeave: function(e, link) { link.findObject("HIGHLIGHT").stroke = "transparent"; }
+                            },
+                            new go.Binding("points").makeTwoWay(),
+                            $(go.Shape,  // the highlight shape, normally transparent
+                                    new go.Binding("stroke", "color"),//这个是表示连续箭头的颜色，在linkDataArray中设置color属性
+                                    { isPanelMain: true, strokeWidth: 8, stroke: "transparent", name: "HIGHLIGHT" }),
+                            $(go.Shape,  // the link path shape
+                                    { isPanelMain: true, stroke: "gray", strokeWidth: 2 }),
+                            $(go.Shape,  // the arrowhead
+                                    { toArrow: "standard", stroke: null, fill: "gray"}),
+                            $(go.Panel, "Auto",  // the link label, normally not visible
+                                    { visible: false, name: "LABEL", segmentIndex: 2, segmentFraction: 0.5},
+                                    new go.Binding("visible", "visible").makeTwoWay(),
+                                    $(go.Shape, "RoundedRectangle",  // the label shape
+                                            { fill: "#F8F8F8", stroke: null }),
+                                    $(go.TextBlock, "Yes",  // the label
+                                            {
+                                                textAlign: "center",
+                                                font: "10pt helvetica, arial, sans-serif",
+                                                stroke: "#333333",
+                                                editable: true
+                                            },
+                                            new go.Binding("text").makeTwoWay())
+                            ),
+                            $(go.TextBlock,new go.Binding("text", "text"))  //这个表示linkDataArray中属性为text的值，即使连线上的文字
+                    );*/
+            // Some links need a custom to or from spot
+            function spotConverter(dir) {
+                if (dir === "left") return go.Spot.LeftSide;
+                if (dir === "right") return go.Spot.RightSide;
+                if (dir === "top") return go.Spot.TopSide;
+                if (dir === "bottom") return go.Spot.BottomSide;
+                if (dir === "rightsingle") return go.Spot.Right;
+            };
+            myDiagram.linkTemplate =
+                    $(go.Link, {
+                                toShortLength: -2,
+                                fromShortLength: -2,
+                                layerName: "Background",
+                                routing: go.Link.Orthogonal,
+                                corner: 15,
+                                fromSpot: go.Spot.RightSide,
+                                toSpot: go.Spot.LeftSide
+                            },
+                            // make sure links come in from the proper direction and go out appropriately
+                            new go.Binding("fromSpot", "fromSpot", function(d) { return spotConverter(d); }),
+                            new go.Binding("toSpot", "toSpot", function(d) { return spotConverter(d); }),
+
+                            new go.Binding("points").makeTwoWay(),
+                           // $(go.TextBlock, { font: "bold 14px Helvetica, bold Arial, sans-serif",stroke: "black", margin: -5 },new go.Binding("text", "text")),  //这个表示linkDataArray中属性为text的值，即使连线上的文字
+                            // mark each Shape to get the link geometry with isPanelMain: true
+                            $(go.Shape, { isPanelMain: true, stroke: "#41BFEC"/* blue*/, strokeWidth: 10 },
+                                    new go.Binding("stroke", "color")),
+                            $(go.Shape, { isPanelMain: true, stroke: "white", strokeWidth: 3, name: "PIPE", strokeDashArray: [20, 40] })
+                    );
+
+        //};
+            // Make link labels visible if coming out of a "conditional" node.
+            // This listener is called by the "LinkDrawn" and "LinkRelinked" DiagramEvents.
+            function showLinkLabel(e) {
+                var label = e.subject.findObject("LABEL");
+                if (label !== null) label.visible = (e.subject.fromNode.data.figure === "Diamond");
+            }
+
+
+            // temporary links used by LinkingTool and RelinkingTool are also orthogonal:
+            myDiagram.toolManager.linkingTool.temporaryLink.routing = go.Link.Orthogonal;
+            myDiagram.toolManager.relinkingTool.temporaryLink.routing = go.Link.Orthogonal;
+
+           load(); //refresh (); //load();  // load an initial diagram from some JSON text
+
+            // initialize the Palette that is on the left side of the page
+            myPalette =
+                    $(go.Palette, "myPaletteDiv",  // must name or refer to the DIV HTML element
+                            {
+                                scrollsPageOnFocus: false,
+                                nodeTemplateMap: myDiagram.nodeTemplateMap,  // share the templates used by myDiagram
+                                model: new go.GraphLinksModel([  // specify the contents of the Palette
+                                    { category: "Start", text: "Start" },
+                                    { text: "Step" },
+                                    { text: "Main", figure: "Diamond" },
+                                    { category: "End", text: "End" },
+                                    { category: "Comment", text: "Comment" }
+                                ])
+                            });
+        } // end init
+
+
+        var opacity = 1;
+        var down = true;
+        function loop() {
+            var diagram = myDiagram;
+            setTimeout(function() {
+                var oldskips = diagram.skipsUndoManager;
+                diagram.skipsUndoManager = true;
+                diagram.links.each(function(link) {
+                    var shape = link.findObject("PIPE");
+                    var off = shape.strokeDashOffset - 3;
+                    // animate (move) the stroke dash
+                    shape.strokeDashOffset = (off <= 0) ? 60 : off;
+                    // animte (strobe) the opacity:
+                    if (down) opacity = opacity - 0.01;
+                    else opacity = opacity + 0.003;
+                    if (opacity <= 0) { down = !down; opacity = 0;}
+                    if (opacity > 1) { down = !down; opacity = 1;}
+                    shape.opacity = opacity;
+                });
+                diagram.skipsUndoManager = oldskips;
+                loop();
+            }, 60);
+        }
+
+
+
+        // Make all ports on a node visible when the mouse is over the node
+        function showPorts(node, show) {
+            var diagram = node.diagram;
+            if (!diagram || diagram.isReadOnly || !diagram.allowLink) return;
+            node.ports.each(function(port) {
+                port.stroke = (show ? "white" : null);
+            });
+        }
+
+        // Show the diagram's model in JSON format that the user may edit
+        function save() {
+            document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+            myDiagram.isModified = false;
+        }
+
+       /* function load() {
+            myDiagram.model = go.Model.fromJson({ "class": "go.GraphLinksModel",
+                "linkFromPortIdProperty": "fromPort",
+                "linkToPortIdProperty": "toPort",
+                "nodeDataArray": [
+                    {"key":1, "loc":"100 170", "text":"源端"},
+                    {"key":2, "loc":"200 100", "text":"table1"},
+                    {"key":3, "loc":"200 170", "text":"table2"},
+                    {"key":4, "loc":"200 230", "text":"table3"}
+                ],
+                "linkDataArray": [
+                    {"from":1, "to":2, "fromPort":"R", "toPort":"L"},
+                    {"from":1, "to":3, "fromPort":"R", "toPort":"L"},
+                    {"from":1, "to":4, "fromPort":"R", "toPort":"L"}
+                ]});
+        }*/
+
+        function load() {
+            myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+            loop();// animate some flow through the pipes
+        }
+
+        // add an SVG rendering of the diagram at the end of this page
+        function makeSVG() {
+            var svg = myDiagram.makeSvg({
+                scale: 0.5
+            });
+            svg.style.border = "1px solid black";
+            obj = document.getElementById("SVGArea");
+            obj.appendChild(svg);
+            if (obj.children.length > 0) {
+                obj.replaceChild(svg, obj.children[0]);
+            }
+        }
+
+         function refresh (){
+          var runOKColor="green";
+          var runErrorColor="#a90329";
+          var scanRunFlag=false;
+          var dbRunFlag=false;
+          var serverRunFlag=false;
+          var probe30RunFlag=false;
+          var probe31RunFlag=false;
+          var probe33RunFlag=false;
+          var probe34RunFlag=false;
+          var scanRunColor=runErrorColor;
+          var dbRunColor=runErrorColor;
+          var serverRunColor=runErrorColor;
+         var probe30RunColor=runErrorColor;
+         var probe31RunColor=runErrorColor;
+          var probe33RunColor=runErrorColor;
+          var probe34RunColor=runErrorColor;
+            $.ajax({
+                 type: "post",
+                 url: "${BASE_PATH}/runoverview/checkDcsScanProcessServerActiveStatus",    //向后端请求数据的url
+                 cache:false,  //get方式相同参数请求，易产生缓存；用此参数设置清除缓存
+                 async:false,
+                 data: {},
+                 success: function (data) {
+                     scanRunFlag=data;
+                     if(scanRunFlag=="true"){
+                         scanRunColor=runOKColor;
+                     }
+                 }
+             });
+             $.ajax({
+                 type: "post",
+                 url: "${BASE_PATH}/runoverview/checkDcsServerRmiInterfaceActiveStatus",    //向后端请求数据的url
+                 cache:false,  //get方式相同参数请求，易产生缓存；用此参数设置清除缓存
+                 async:false,
+                 data: {},
+                 success: function (data) {
+                     serverRunFlag=data;
+                     if(serverRunFlag=="true"){
+                         serverRunColor=runOKColor;
+                     }
+                 }
+             });
+
+             $.ajax({
+                 type: "post",
+                 url: "${BASE_PATH}/runoverview/checkDcsMetadataServiceActiveStatus",    //向后端请求数据的url
+                 cache:false,  //get方式相同参数请求，易产生缓存；用此参数设置清除缓存
+                 async:false,
+                 data: {},
+                 success: function (data) {
+                     dbRunFlag=data;
+                     if(dbRunFlag=="true"){
+                         dbRunColor=runOKColor;
+                     }
+                 }
+             });
+
+             $.ajax({
+                 type: "post",
+                 url: "${BASE_PATH}/runoverview/checkDcsProbeRunStatusList",    //向后端请求数据的url
+                 cache:false,  //get方式相同参数请求，易产生缓存；用此参数设置清除缓存
+                 async:false,
+                 data: {},
+                 success: function (data) {
+                     var probeStatusList=eval(data);
+                     for(var i=0;i<probeStatusList.length;i++){
+                         var probe=probeStatusList[i];
+                         var probeName=probe.probe_name;
+                         var probeStauts=probe.runningStatus;
+                         if(probeName=="probe30"&&probeStauts=="1"){
+                             probe30RunColor=runOKColor;
+                         }
+                         if(probeName=="probe31"&&probeStauts=="1"){
+                             probe31RunColor=runOKColor;
+                         }
+                         if(probeName=="probe33"&&probeStauts=="1"){
+                             probe33RunColor=runOKColor;
+                         }
+                         if(probeName=="probe34"&&probeStauts=="1"){
+                             probe34RunColor=runOKColor;
+                         }
+
+                     }
+                 }
+             });
+           var  jsonStr= '{'
+               +'"class": "go.GraphLinksModel",  "linkFromPortIdProperty": "fromPort",  "linkToPortIdProperty": "toPort",'
+               +'"nodeDataArray": ['
+               +'{"text":"scanner扫描\\n模块运行情况", "key":"scan", "color":"'+scanRunColor+'","loc":"339 -653"},'
+               +'{"text":"DB元数据\\n运行情况", "figure":"Database", "key":"db", "color": "'+dbRunColor+'","loc":"3 -467.5399981561941"},'
+               +'{"text":"server文件调度\\n模块运行情况", "figure":"Diamond", "key":"server", "color":"'+serverRunColor+'","loc":"339 -467.3999996185303"},'
+               +'{"text":"probe30文件处理\\n模块运行情况", "key":"probe30", "color":"'+probe30RunColor+'","loc":"27.000000000000057 -187.19999694824202"},'
+               +'{"text":"probe31文件处理\\n模块运行情况", "key":"probe31", "color":"'+probe31RunColor+'", "loc":"230.00000000000008 -186.87999725341802"},'
+               +'{"text":"probe33文件处理\\n模块运行情况", "key":"probe33", "color":"'+probe33RunColor+'", "loc":"486.0000000000001 -185"},'
+               +'{"text":"probe34文件处理\\n模块运行情况", "key":"probe34", "color":"'+probe34RunColor+'", "loc":"697.0000000000001 -187.39999389648437"}'
+               +'], "linkDataArray": ['
+             +'{"from":"scan", "to":"server", "fromPort":"B", "toPort":"T", "text":"业务走向", "color":"#FFBC00", "points":[339,-628.9,339,-618.9,339,-571.9999998092651,339,-571.9999998092651,339,-525.0999996185303,339,-515.0999996185303]},'
+             +'{"from":"db", "to":"server", "fromPort":"R", "toPort":"L", "text":"数据流向", "category":"flow", "color":"#FFBC00", "points":[44,-467.53999815619414,54,-467.53999815619414,131.75,-467.53999815619414,131.75,-467.39999961853033,209.5,-467.39999961853033,219.5,-467.39999961853033]},'
+             +'{"from":"server", "to":"probe30", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-315.4999982833863,27,-315.4999982833863,27,-221.2999969482422,27,-211.2999969482422]},'
+             +'{"from":"server", "to":"probe31", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-315.33999843597416,230,-315.33999843597416,230,-220.97999725341796,230,-210.97999725341796]},'
+             +'{"from":"server", "to":"probe33", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-314.3999998092652,486,-314.3999998092652,486,-219.1,486,-209.1]},'
+             +'{"from":"server", "to":"probe34", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-315.59999675750737,697,-315.59999675750737,697,-221.4999938964844,697,-211.4999938964844]}'
+             +']'
+            +'}';
+             document.getElementById("mySavedModel").value=jsonStr;
+             myDiagram.model = go.Model.fromJson(eval('('+jsonStr+')'));
+             loop();
+             //load();
+         }
+     /*  function closeDiv()
+       {
+           document.getElementById('loading').style.visibility='hidden';
+       }*/
+
+
+       $(document).ready(function(){
+           init();
+           //load();
+           //refresh();
+           //closeDiv();
+       });
+    </script>
+<style>
+    divBody {
+        margin: 20px 30px;
+        text-align: left;
+    }
+    .well{
+        margin-bottom:0px;
+    }
+
+</style>
+ <#--</head>
+    <body >--> <!--onload="init();refresh();"  id="sample"-->
+    <div class="row">
+        <!-- col -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well">
+            <span class="pull-right margin-top-5">
+                图例说明<br>
+                <button class="btn btn-success btn-xs" >正常运行状态</button>
+                <br>
+                <button class="btn btn-danger btn-xs" >正常运行状态</button>
+            </span>
+            <div id="myPaletteDiv" style="border: 1px solid black; border-image: none; width: 100px; margin-right: 2px; background-color: whitesmoke;display:none;"></div>
+            <div id="myDiagramDiv" style="border-image: none; height: 560px; flex-grow: 1;"></div>
+        <#--<button id="SaveButton" onclick="save()">Save</button>
+              <button onclick="load()">Load</button>
+             Diagram Model saved in JSON format:-->
+        <#-- <button onclick="refresh()">refresh</button>-->
+        <#-- <span>dir:runoverview/run_overview.ftl</span>-->
+  <textarea id="mySavedModel" style="width:90%; height: 300px;display:none;">
+<#-- { "class": "go.GraphLinksModel",  "linkFromPortIdProperty": "fromPort",  "linkToPortIdProperty": "toPort",  "nodeDataArray": [
+{"text":"scanner扫描\n模块运行情况", "key":"scan", "color":"#DC3C00","loc":"339 -653"},
+{"text":"DB元数据\n运行情况", "figure":"Database", "key":"db", "color": "#79C900","loc":"3 -467.5399981561941"},
+{"text":"server文件调度\n模块运行情况", "figure":"Diamond", "key":"server", "color":"#DC3C00","loc":"339 -467.3999996185303"},
+{"text":"probe30文件处理\n模块运行情况", "key":"probe30", "color":"#DC3C00","loc":"138 -320.1999969482422"},
+{"text":"probe31文件处理\n模块运行情况", "key":"probe31", "color":"#79C900", "loc":"239 -185.87999725341797"},
+{"text":"probe33文件处理\n模块运行情况", "key":"probe33", "color":"#79C900", "loc":"476 -226"},
+{"text":"probe34文件处理\n模块运行情况", "key":"probe34", "color":"#DC3C00", "loc":"682 -262.3999938964844"}
+ ], "linkDataArray": [
+{"from":"scan", "to":"server", "fromPort":"B", "toPort":"T", "text":"业务走向", "color":"#FFBC00", "points":[339,-628.9,339,-618.9,339,-571.9999998092651,339,-571.9999998092651,339,-525.0999996185303,339,-515.0999996185303]},
+{"from":"scan", "to":"db", "fromPort":"L", "toPort":"T", "text":"业务数据流向",  "category":"flow",  "color":"#B3E5FC", "points":[286.5,-653,276.5,-653,3,-653,3,-577.319999078097,3,-501.6399981561941,3,-491.6399981561941]},
+{"from":"db", "to":"server", "fromPort":"R", "toPort":"L", "text":"数据流向",  "category":"flow", "color":"#B3E5FC", "points":[44,-467.5399981561941,54,-467.5399981561941,131.75,-467.5399981561941,131.75,-467.39999961853033,209.5,-467.39999961853033,219.5,-467.39999961853033]},
+{"from":"server", "to":"probe30", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-381.9999982833863,138,-381.9999982833863,138,-354.2999969482422,138,-344.2999969482422]},
+{"from":"server", "to":"probe31", "fromPort":"B", "toPort":"T", "visible":true,  "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-314.83999843597416,239,-314.83999843597416,239,-219.979997253418,239,-209.979997253418]},
+{"from":"server", "to":"probe33", "fromPort":"B", "toPort":"T", "visible":true,  "text":"业务走向",  "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-334.8999998092652,476,-334.8999998092652,476,-260.1,476,-250.10000000000002]},
+{"from":"server", "to":"probe34", "fromPort":"B", "toPort":"T", "visible":true,  "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-353.09999675750737,682,-353.09999675750737,682,-296.4999938964844,682,-286.4999938964844]},
+{"from":"db", "to":"probe30", "fromPort":"B", "toPort":"L", "text":"数据流向",  "category":"flow", "color":"#B3E5FC", "points":[3,-443.4399981561941,3,-433.4399981561941,3,-320.1999969482422,32.25,-320.1999969482422,61.5,-320.1999969482422,71.5,-320.1999969482422]},
+{"from":"db", "to":"probe31", "fromPort":"B", "toPort":"L", "text":"数据流向", "category":"flow",  "color":"#B3E5FC", "points":[3,-443.4399981561941,3,-433.4399981561941,3,-185.879997253418,82.75,-185.879997253418,162.5,-185.879997253418,172.5,-185.879997253418]},
+{"from":"db", "to":"probe33", "fromPort":"B", "toPort":"L", "text":"数据流向",  "category":"flow", "color":"#B3E5FC",  "points":[3,-443.4399981561941,3,-433.4399981561941,3,-226.00000000000003,201.25,-226.00000000000003,399.5,-226.00000000000003,409.5,-226.00000000000003]},
+{"from":"db", "to":"probe34", "fromPort":"B", "toPort":"L", "text":"数据流向",  "category":"flow", "color":"#B3E5FC", "points":[3,-443.4399981561941,3,-433.4399981561941,3,-262.3999938964844,304.25,-262.3999938964844,605.5,-262.3999938964844,615.5,-262.3999938964844]}
+ ]}-->
+{"class": "go.GraphLinksModel",  "linkFromPortIdProperty": "fromPort",  "linkToPortIdProperty": "toPort","nodeDataArray": [{"text":"scanner扫描\n模块运行情况", "key":"scan", "color":"#a90329","loc":"339 -653"},{"text":"DB元数据\n运行情况", "figure":"Database", "key":"db", "color": "#a90329","loc":"3 -467.5399981561941"},{"text":"server文件调度\n模块运行情况", "figure":"Diamond", "key":"server", "color":"#a90329","loc":"339 -467.3999996185303"},{"text":"probe30文件处理\n模块运行情况", "key":"probe30", "color":"#a90329","loc":"27.000000000000057 -187.19999694824202"},{"text":"probe31文件处理\n模块运行情况", "key":"probe31", "color":"#a90329", "loc":"230.00000000000008 -186.87999725341802"},{"text":"probe33文件处理\n模块运行情况", "key":"probe33", "color":"#a90329", "loc":"486.0000000000001 -185"},{"text":"probe34文件处理\n模块运行情况", "key":"probe34", "color":"#a90329", "loc":"697.0000000000001 -187.39999389648437"}], "linkDataArray": [{"from":"scan", "to":"server", "fromPort":"B", "toPort":"T", "text":"业务走向", "color":"#FFBC00", "points":[339,-628.9,339,-618.9,339,-571.9999998092651,339,-571.9999998092651,339,-525.0999996185303,339,-515.0999996185303]},{"from":"db", "to":"server", "fromPort":"R", "toPort":"L", "text":"数据流向", "category":"flow", "color":"#FFBC00", "points":[44,-467.53999815619414,54,-467.53999815619414,131.75,-467.53999815619414,131.75,-467.39999961853033,209.5,-467.39999961853033,219.5,-467.39999961853033]},{"from":"server", "to":"probe30", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-315.4999982833863,27,-315.4999982833863,27,-221.2999969482422,27,-211.2999969482422]},{"from":"server", "to":"probe31", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-315.33999843597416,230,-315.33999843597416,230,-220.97999725341796,230,-210.97999725341796]},{"from":"server", "to":"probe33", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-314.3999998092652,486,-314.3999998092652,486,-219.1,486,-209.1]},{"from":"server", "to":"probe34", "fromPort":"B", "toPort":"T", "visible":true, "text":"业务走向", "color":"#FFBC00", "points":[339,-419.69999961853034,339,-409.69999961853034,339,-315.59999675750737,697,-315.59999675750737,697,-221.4999938964844,697,-211.4999938964844]}]}
+  </textarea>
+     </div>
+    <!-- end col -->
+  </div>
+<#--</body>
+</html>-->

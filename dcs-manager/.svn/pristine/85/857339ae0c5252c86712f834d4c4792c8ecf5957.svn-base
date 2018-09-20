@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="dcs_server">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/dcs_server.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

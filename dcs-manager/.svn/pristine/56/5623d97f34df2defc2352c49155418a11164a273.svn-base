@@ -1,0 +1,154 @@
+<script>
+var resultOk = false;
+$("#searchForm").submit(function(event){
+
+    event.preventDefault();
+    goto(1);
+} ) ;
+
+$("#pageSize").bind('change', function () {
+    pageSize = $("#pageSize").val();
+    goto(1);
+
+});
+$("#searchButton").bind('click', function () {
+    goto(1);
+
+});
+$('#addModalId').on('hidden.bs.modal', function (e) {
+    if (!resultOk) {
+        return;
+    }
+
+    if (pid == -1) {
+        goto('${pageInfo.pageSize}');
+    } else {
+        goto('${pageInfo.pageNum}');
+    }
+    showMessage("保存成功!");
+
+});
+
+$(function () {
+    <#if pageSize??>
+        $('#pageSize').val(${pageSize});
+    </#if>
+    $("#dt_basic tbody td").bind("dblclick", function () {
+
+        $(this).css({"text-overflow": "", "overflow": "auto"}); //prop("contentEditable",true)
+    })
+    $(".trimtd").bind("dblclick", function () {
+
+        $(this).css({"text-overflow": "", "overflow": "auto"}); //prop("contentEditable",true)
+    })
+    $('#closeModal').on('click', function (e) {
+
+        resultOk = false;
+
+    });
+    $(".tooltips").tooltip();
+
+})
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "H+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "S+": this.getMilliseconds()
+    };
+
+    //因位date.getFullYear()出来的结果是number类型的,所以为了让结果变成字符串型，下面有两种方法：
+
+
+    if (/(y+)/.test(fmt)) {
+        //第一种：利用字符串连接符“+”给date.getFullYear()+""，加一个空字符串便可以将number类型转换成字符串。
+
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+
+            //第二种：使用String()类型进行强制数据类型转换String(date.getFullYear())，这种更容易理解。
+
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(String(o[k]).length)));
+        }
+    }
+    return fmt;
+}
+//把字符串日期转为日期
+function ConvertStrToDate(datetimeStr) {
+    var mydateint = Date.parse(datetimeStr);//数值格式的时间
+    if (!isNaN(mydateint)) {
+        var mydate = new Date(mydateint);
+        return mydate;
+    }
+    var mydate = new Date(datetimeStr);//字符串格式时间
+    var monthstr = mydate.getMonth() + 1;
+    if (!isNaN(monthstr)) {//转化成功
+        return mydate;
+    }//字符串格式时间转化失败
+    var dateParts = datetimeStr.split(" ");
+    var dateToday = new Date();
+    var year = dateToday.getFullYear();
+    var month = dateToday.getMonth();
+    var day = dateToday.getDate();
+    if (dateParts.length >= 1) {
+        var dataPart = dateParts[0].split("-");//yyyy-mm-dd  格式时间
+        if (dataPart.length == 1) {
+            dataPart = dateParts[0].split("/");//yyyy/mm/dd格式时间
+        }
+        if (dataPart.length == 3) {
+            year = Math.floor(dataPart[0]);
+            month = Math.floor(dataPart[1]) - 1;
+            day = Math.floor(dataPart[2]);
+        }
+    }
+    if (dateParts.length == 2) {//hh:mm:ss格式时间
+        var timePart = dateParts[1].split(":");//hh:mm:ss格式时间
+        if (timePart.length == 3) {
+            var hour = Math.floor(timePart[0]);
+            var minute = Math.floor(timePart[1]);
+            var second = Math.floor(timePart[2]);
+            return new Date(year, month, day, hour, minute, second);
+        }
+    }
+    else {
+        return new Date(year, month, day);
+    }
+}
+function showMessage(message) {
+
+    $.bigBox({
+        title : "提示",
+        content : message,
+        color : "#739E73",
+        timeout: 3000,
+        sound: "disabled",
+        icon : "fa fa-check"
+
+    }, function() {
+        //closedthis();
+    });
+
+}
+function showDi(message, f) {
+
+    $.SmartMessageBox({
+        title : "提示信息",
+        content : message,
+        buttons : '[否][是]'
+        }, function(ButtonPressed) {
+            if (ButtonPressed === "是") {
+
+                f();
+            }
+            if (ButtonPressed === "否") {
+
+            }
+
+        });
+}
+
+</script>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsFileMapper" >
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsFile" >
+    <id column="file_id" property="fileId" jdbcType="BIGINT" />
+    <result column="ftp_id" property="ftpId" jdbcType="INTEGER" />
+    <result column="data_type_id" property="dataTypeId" jdbcType="INTEGER" />
+    
+    <result column="path_and_name" property="pathAndName" jdbcType="VARCHAR" />
+    <result column="rename_file_name" property="renameFileName" jdbcType="VARCHAR" />
+    <result column="file_intime" property="fileIntime" jdbcType="TIMESTAMP" />
+    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="hdfs_path" property="hdfsPath" jdbcType="VARCHAR" />
+    <result column="data_type_name" property="dataTypeName" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <resultMap id="BaseResultMapWithAssociation" type="com.ultrapower.dcs.cluster.control.model.DcsFile" >
+    <id column="file_id" property="fileId" jdbcType="BIGINT" />
+    <result column="ftp_id" property="ftpId" jdbcType="INTEGER" />
+    <result column="data_type_id" property="dataTypeId" jdbcType="INTEGER" />
+
+    <result column="path_and_name" property="pathAndName" jdbcType="VARCHAR" />
+    <result column="rename_file_name" property="renameFileName" jdbcType="VARCHAR" />
+    <result column="file_intime" property="fileIntime" jdbcType="TIMESTAMP" />
+    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="hdfs_path" property="hdfsPath" jdbcType="VARCHAR" />
+    <association property="dcsDataType"  javaType="com.ultrapower.dcs.cluster.control.model.DcsDataType" >
+      <id column="data_type_id" property="dataTypeId" jdbcType="INTEGER" />
+      <result column="data_type_name" property="dataTypeName" jdbcType="VARCHAR" />
+      <result column="data_type_path_reg" property="dataTypePathReg" jdbcType="VARCHAR" />
+      <result column="is_ftp_delete" property="isFtpDelete" jdbcType="INTEGER" />
+      <result column="is_file_delete" property="isFileDelete" jdbcType="INTEGER" />
+      <result column="hdfs_path" property="hdfsPath" jdbcType="VARCHAR" />
+      <result column="path_ftp" property="pathFtp" jdbcType="VARCHAR" />
+    </association>
+    <association property="dcsFtpServer"  javaType="com.ultrapower.dcs.cluster.control.model.DcsFtpServer" >
+      <id column="ftp_id" property="ftpId" jdbcType="INTEGER" />
+      <result column="ftp_ip" property="ftpIp" jdbcType="VARCHAR" />
+      <result column="ftp_port" property="ftpPort" jdbcType="INTEGER" />
+      <result column="ftp_user_name" property="ftpUserName" jdbcType="VARCHAR" />
+      <result column="ftp_password" property="ftpPassword" jdbcType="VARCHAR" />
+      <result column="ftp_work_directory" property="ftpWorkDirectory" jdbcType="VARCHAR" />
+      <result column="ftp_last_scan_time" property="ftpLastScanTime" jdbcType="BIGINT" />
+      <result column="ftp_period" property="ftpPeriod" jdbcType="INTEGER" />
+      <result column="ftp_scanner_id" property="ftpScannerId" jdbcType="INTEGER" />
+      <result column="scanner_ip" property="scannerIp" jdbcType="VARCHAR" />
+      <result column="ftp_last_server_time" property="ftpLastServerTime" jdbcType="BIGINT" />
+    </association>
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    file_id, ftp_id, a.data_type_id, path_and_name, rename_file_name, file_intime, file_size,
+    source, a.hdfs_path ,b.data_type_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcs_file
+    where file_id = #{fileId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from dcs_file
+    where file_id = #{fileId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFile" >
+    insert into dcs_file (file_id, ftp_id, data_type_id, 
+      path_and_name, rename_file_name, file_intime, 
+      file_size, source, hdfs_path
+      )
+    values (#{fileId,jdbcType=BIGINT}, #{ftpId,jdbcType=INTEGER}, #{dataTypeId,jdbcType=INTEGER}, 
+      #{pathAndName,jdbcType=VARCHAR}, #{renameFileName,jdbcType=VARCHAR}, #{fileIntime,jdbcType=TIMESTAMP}, 
+      #{fileSize,jdbcType=BIGINT}, #{source,jdbcType=INTEGER}, #{hdfsPath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFile" >
+    insert into dcs_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="ftpId != null" >
+        ftp_id,
+      </if>
+      <if test="dataTypeId != null" >
+        data_type_id,
+      </if>
+      <if test="pathAndName != null" >
+        path_and_name,
+      </if>
+      <if test="renameFileName != null" >
+        rename_file_name,
+      </if>
+      <if test="fileIntime != null" >
+        file_intime,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="hdfsPath != null" >
+        hdfs_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileId != null" >
+        #{fileId,jdbcType=BIGINT},
+      </if>
+      <if test="ftpId != null" >
+        #{ftpId,jdbcType=INTEGER},
+      </if>
+      <if test="dataTypeId != null" >
+        #{dataTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pathAndName != null" >
+        #{pathAndName,jdbcType=VARCHAR},
+      </if>
+      <if test="renameFileName != null" >
+        #{renameFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIntime != null" >
+        #{fileIntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="hdfsPath != null" >
+        #{hdfsPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFile" >
+    update dcs_file
+    <set >
+      <if test="ftpId != null" >
+        ftp_id = #{ftpId,jdbcType=INTEGER},
+      </if>
+      <if test="dataTypeId != null" >
+        data_type_id = #{dataTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pathAndName != null" >
+        path_and_name = #{pathAndName,jdbcType=VARCHAR},
+      </if>
+      <if test="renameFileName != null" >
+        rename_file_name = #{renameFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIntime != null" >
+        file_intime = #{fileIntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="hdfsPath != null" >
+        hdfs_path = #{hdfsPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where file_id = #{fileId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFile" >
+    update dcs_file
+    set ftp_id = #{ftpId,jdbcType=INTEGER},
+      data_type_id = #{dataTypeId,jdbcType=INTEGER},
+      path_and_name = #{pathAndName,jdbcType=VARCHAR},
+      rename_file_name = #{renameFileName,jdbcType=VARCHAR},
+      file_intime = #{fileIntime,jdbcType=TIMESTAMP},
+      file_size = #{fileSize,jdbcType=BIGINT},
+      source = #{source,jdbcType=INTEGER},
+      hdfs_path = #{hdfsPath,jdbcType=VARCHAR}
+    where file_id = #{fileId,jdbcType=BIGINT}
+  </update>
+  <!-- 这个方法是我自己加的 -->
+  <select id="selectListByFTPId" resultMap="BaseResultMap" parameterType="com.ultrapower.dcs.cluster.control.model.DcsFile">
+    select
+    <include refid="Base_Column_List" />
+    from dcs_file a ,dcs_data_type b where a.ftp_id  =#{ftpId,jdbcType=INTEGER}    and a.data_type_id=b.data_type_id
+  </select>
+
+  <select id="selectListByFTPAndDataType" resultMap="BaseResultMapWithAssociation" >
+    select
+    *
+    from dcs_file a ,dcs_data_type b, dcs_ftp_server c  where  1=1 and
+    <if test="null!=ftpId ">
+      a.ftp_id =#{ftpId,jdbcType=INTEGER}  and
+    </if>
+    <if test="null!=dataTypeId ">
+      a.data_type_id =#{dataTypeId,jdbcType=INTEGER}  and
+    </if>
+    <if test="null!=pathAndName ">
+      ( a.path_and_name like
+      (CONCAT(CONCAT('%', #{pathAndName,jdbcType=VARCHAR}),'%')) 
+       or
+      a.rename_file_name like
+      (CONCAT(CONCAT('%', #{pathAndName,jdbcType=VARCHAR}),'%')) 
+      )
+      
+      and
+    </if>
+    a.data_type_id=b.data_type_id  and a.ftp_id=c.ftp_id
+  </select>
+</mapper>

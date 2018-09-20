@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ch">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>DCS集群控制管理系统</title>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../js/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/slide.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/flat-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/jquery.nouislider.css">
+    <link href="../font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="../css/toastr.css" rel="stylesheet"/>
+    <script src="../js/moment-with-locales.min.js"></script>
+    <script src="../js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../js/toastr.min.js"></script>
+
+    <script>
+        var BASE_PATH = "${BASE_PATH}";
+        var loadingHtml = '<div id="loadingDiv" style="position:relative;left:0;width:100%;height:700px;top:0;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;"><div style="position: absolute; cursor1: wait; left: 300px; top:250px; width: auto; height: 150px; line-height: 150px; padding-left:150px; padding-right: 15px; background: #fff url(../images/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';"> 页面加载中，请等待... </div></div>';
+        toastr.options.positionClass = 'toast-bottom-center';
+        $(function () {
+            $(".tab-pane").html(loadingHtml);
+            showDefaultTabRightContent();
+            $(".meun-item").click(function () {
+                $(".meun-item").removeClass("meun-item-active");
+                $(this).addClass("meun-item-active");
+                /*var itmeObj = $(".meun-item").find("img");
+                itmeObj.each(function () {
+                    var items = $(this).attr("src");
+                    items = items.replace("_grey.png", ".png");
+                    items = items.replace(".png", "_grey.png")
+                    $(this).attr("src", items);
+                });
+                var attrObj = $(this).find("img").attr("src");
+                ;
+                attrObj = attrObj.replace("_grey.png", ".png");
+                $(this).find("img").attr("src", attrObj);*/
+            });
+            $('div[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // 获取已激活的标签页的名称
+                var target = $(e.target);
+                var activeTabTargetId = target.attr("aria-controls");
+                //对兄弟节点及自身节点样式内容的处理
+                $("#" + activeTabTargetId).siblings().removeClass("active");
+                $("#" + activeTabTargetId).addClass("active");
+                $("#" + activeTabTargetId).siblings().html(loadingHtml);
+                //$("#"+activeTabTargetId).siblings().empty();
+
+                var activeTab = target.attr("href");
+
+                activeTab = activeTab.substring(1);
+                activeTab = activeTab.replace("#", "/");
+                console.info(activeTab);
+                console.info(BASE_PATH + "/portal/" + activeTab + "/");
+                $("#" + activeTabTargetId).load(BASE_PATH + "/portal/" + activeTab + "/", {}, function (txt) {
+
+                    if (!txt) {
+                    }
+
+                });
+
+
+            });
+            /*  $("#topAD").click(function() {
+                 $("#topA").toggleClass(" glyphicon-triangle-right");
+                 $("#topA").toggleClass(" glyphicon-triangle-bottom");
+             });
+             $("#topBD").click(function() {
+                 $("#topB").toggleClass(" glyphicon-triangle-right");
+                 $("#topB").toggleClass(" glyphicon-triangle-bottom");
+             });
+             $("#topCD").click(function() {
+                 $("#topC").toggleClass(" glyphicon-triangle-right");
+                 $("#topC").toggleClass(" glyphicon-triangle-bottom");
+             }); */
+            $(".toggle-btn").click(function () {
+                // $("#leftMeun").toggleClass("show");
+                //$("#rightContent").toggleClass("pd0px");
+            })
+        })
+
+        function showDefaultTabRightContent() {
+            var menuItemList = $(".meun-item");
+            var menuActiveItemList = $(".meun-item-active");
+            var menuActiveOrDefaultItem = menuItemList.first();
+            if (menuActiveItemList.length != 0) {
+                menuActiveOrDefaultItem = menuActiveItemList.first();
+            }
+            // 获取已激活的标签页的名称
+            var activeTab = $(menuActiveOrDefaultItem[0]).attr("href");
+            var activeTabTargetId = $(menuActiveOrDefaultItem[0]).attr("aria-controls");
+            //alert("activeTab:"+activeTab);
+            activeTab = activeTab.substring(1);
+            activeTab = activeTab.replace("#", "/");
+
+            console.info(activeTab);
+            console.info(BASE_PATH + "/portal/" + activeTab + "/");
+            $("#" + activeTabTargetId).load(BASE_PATH + "/portal/" + activeTab + "/", {}, function (txt) {
+                if (!txt) {
+                }
+            });
+        }
+        //把字符串日期转为日期
+        function ConvertStrToDate(datetimeStr) {
+            var mydateint = Date.parse(datetimeStr);//数值格式的时间
+            if (!isNaN(mydateint)) {
+                var mydate = new Date(mydateint);
+                return mydate;
+            }
+            var mydate = new Date(datetimeStr);//字符串格式时间
+            var monthstr = mydate.getMonth() + 1;
+            if (!isNaN(monthstr)) {//转化成功
+                return mydate;
+            }//字符串格式时间转化失败
+            var dateParts = datetimeStr.split(" ");
+            var dateToday = new Date();
+            var year = dateToday.getFullYear();
+            var month = dateToday.getMonth();
+            var day = dateToday.getDate();
+            if (dateParts.length >= 1) {
+                var dataPart = dateParts[0].split("-");//yyyy-mm-dd  格式时间
+                if (dataPart.length == 1) {
+                    dataPart = dateParts[0].split("/");//yyyy/mm/dd格式时间
+                }
+                if (dataPart.length == 3) {
+                    year = Math.floor(dataPart[0]);
+                    month = Math.floor(dataPart[1]) - 1;
+                    day = Math.floor(dataPart[2]);
+                }
+            }
+            if (dateParts.length == 2) {//hh:mm:ss格式时间
+                var timePart = dateParts[1].split(":");//hh:mm:ss格式时间
+                if (timePart.length == 3) {
+                    var hour = Math.floor(timePart[0]);
+                    var minute = Math.floor(timePart[1]);
+                    var second = Math.floor(timePart[2]);
+                    return new Date(year, month, day, hour, minute, second);
+                }
+            }
+            else {
+                return new Date(year, month, day);
+            }
+        }
+        function isValidIP(ip) {
+            var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+            return reg.test(ip);
+        }
+        function logout(){
+
+            $.ajax({
+                type: "post",
+                url: BASE_PATH+"/logout",
+                async: false,
+                success: function (result) {
+                    console.log("退出登录="+result);
+                    if (result=="1"){
+                        toastr.info("退出登录成功!");
+                        window.location.href= BASE_PATH+"/"
+                    } else {
+                        toastr.info("退出登录失败!");
+                    }
+
+                }
+
+            });
+        }
+        (function ($) {
+            //同样先备份下jquery的load方法
+            var _load = $.fn.load;
+            $.fn.extend({
+                load: function (url, param, calbck) {
+                    console.info("----load----")
+                    param.loadAjax=true;
+
+                    calbck = function (response, status, xhr) {
+
+                        if ( response=='nologinUser'){
+
+                            window.location.href = BASE_PATH + "/"
+                        }
+
+                        console.info("calbck");
+                    }
+                    //其他操作和处理
+                    //..
+                    //此处用apply方法调用原来的load方法，因为load方法属于对象，所以不可直接对象._load（...）
+                    // console.info("----load old----")
+                    var old = _load.apply(this, [url, param, calbck]);
+                    console.info("----load old----"+old)
+                    return old;
+
+                }
+            });
+
+
+        })
+        (jQuery);
+
+    </script>
+    <style type="text/css">
+        .jumbotron {
+            min-height: 50px;
+            padding-top: 0px;
+            margin-bottom: 0px;
+            border-bottom: 1px solid #354457;
+            color: #333;
+            background-color: #333;
+        }
+
+        .leftMeun {
+            width: 230px;
+        }
+
+        .menu-fa {
+            width: 25px;
+        }
+
+        .second-menu {
+            padding-left: 30px !important;
+        }
+
+        .third-menu {
+            padding-left: 50px !important;
+        }
+
+        #rightContent {
+            min-height: 850px;
+            padding-left: 230px;
+        }
+
+    </style>
+</head>
+<body style="color:#333;">  <!--data-spy="scroll" data-target="#myScrollspy"  -->
+<div class="container" style="min-height:100%;min-width:100%;width:100%;height:100%;padding:0px;">
+    <div class="jumbotron" style="border-radius:0px;padding-left:15px;">
+        <div style="display:inline-block;float:left;"><span style="font-size:20px;text-decoration:none;color:#fff">集群控制管理系统</span>
+        </div>
+        <div id="personInfor" style="float:right;border:none;">
+        <#if loginUser ??>
+        ${loginUser.loginname}
+        </#if>&nbsp;&nbsp;&nbsp;<a onclick="logout()">退出登录</a></div>
+        <!-- <div style="display:inline-block;float:right;">admin &nbsp;&nbsp;
+            <button type="button" class="btn btn-info btn-sm">退出</button>
+         </div> -->
+    </div>
+    <div id="wrap" sytle="min-height:95%;min-width:95%;">
+        <!-- 左侧菜单栏目块 -->
+        <div class="leftMeun" id="leftMeun">
+            <div id="logoDiv">
+                <p id="logoP"><img id="logo" alt="导航菜单" src="../images/logo.png"><span>导航菜单</span></p>
+            </div>
+            <div class="meun-title"><i class="menu-fa fa fa-share fa-lg"></i>集群情况</div>
+            <div class="meun-item meun-item-active second-menu" href="#runOverview" aria-controls="runOverview"
+                 role="tab" data-toggle="tab"><i
+                    class="menu-fa fa fa-circle-o fa-lg"></i><#--<img src="../images/icon_source.png">-->运行概览
+            </div>
+            <div class="meun-item second-menu" href="#scannerMonitor" aria-controls="scannerMonitor" role="tab"
+                 data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#--<img src="../images/icon_chara_grey.png">-->Scanner监控
+            </div>
+            <div class="meun-title second-menu" id="probeRunning"><i class="menu-fa fa fa-share fa-lg"></i>Probe运行情况
+            </div>
+            <div class="meun-item third-menu" href="#probeRunning#currentProbeTaskList" aria-controls="currentProbeTask"
+                 role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#--<img src="../images/icon_user_grey.png">-->当前probe采集任务
+            </div>
+            <div class="meun-item third-menu" href="#probeRunning#dealFailureFile" aria-controls="probeFailureFile"
+                 role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#--<img src="../images/icon_user_grey.png">-->失败文件列表
+            </div>
+            <div class="meun-title second-menu" id="collectionHistory"><i
+                    class="menu-fa fa fa-share fa-lg"></i><#--<img src="../images/icon_change_grey.png">-->采集历史
+            </div>
+
+            <div class="meun-item third-menu" href="#currentDayCollectionFiles"
+                 aria-controls="currentDayCollectionFiles" role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#--<img src="../images/icon_user_grey.png">-->当天采集文件列表
+            </div>
+            <div class="meun-item third-menu" href="#historyFiles" aria-controls="historyFiles" role="tab"
+                 data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#--<img src="../images/icon_user_grey.png">-->历史文件列表
+            </div>
+            <div class="meun-title"><i class="menu-fa fa fa-share fa-lg"></i>任务配置</div>
+            <div class="meun-item second-menu" href="#dcsDataType" aria-controls="dcsDataType" role="tab"
+                 data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#--<img  src="../images/icon_house_grey.png">-->数据文件类型配置
+            </div>
+            <div class="meun-item second-menu" href="#dcsFtpServer" aria-controls="dcsFtpServer" role="tab"
+                 data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i> <#--<img src="../images/icon_rule_grey.png">-->FTP服务器配置
+            </div>
+            <div class="meun-item second-menu" href="#dcsFtpTypeRel" aria-controls="dcsFtpTypeRel" role="tab"
+                 data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i> <#--<img  src="../images/icon_card_grey.png">-->FTP服务器数据类型配置
+            </div>
+            <div class="meun-title"><i class="menu-fa fa fa-share fa-lg"></i>集群管理</div>
+            <div class="meun-item second-menu" href="#restartManage#scannerRestart" aria-controls="scannerRestart"
+                 role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i><#-- <img src="../images/icon_char_grey.png">-->Scanner重启
+            </div>
+            <div class="meun-item second-menu" href="#restartManage#serverRestart" aria-controls="serverRestart"
+                 role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i>  <#--<img src="../images/icon_char_grey.png">-->Server重启
+            </div>
+            <div class="meun-item second-menu" href="#restartManage#probeRestart" aria-controls="probeRestart"
+                 role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i>  <#-- <img  src="../images/icon_char_grey.png">-->Probe重启
+            </div>
+            <div class="meun-item second-menu" href="#restartManage#clusterRestart" aria-controls="clusterRestart"
+                 role="tab" data-toggle="tab">
+                <i class="menu-fa fa fa-circle-o fa-lg"></i>  <#-- <img  src="../images/icon_char_grey.png">-->集群重启
+            </div>
+            <#if loginUser ?? && loginUser.isadmin==1>
+                <div class="meun-item second-menu" href="#dcsUserManager" aria-controls="dcsUserManager" role="tab"
+                     data-toggle="tab">
+                    <i class="menu-fa fa fa-circle-o fa-lg"></i><#-- <img src="../images/icon_char_grey.png">-->用户管理
+                </div>
+            </#if>
+            
+        </div>
+        <!-- 右侧具体内容栏目 -->
+        <div id="rightContent">
+            <a class="toggle-btn" id="nimei">
+                <i class="glyphicon glyphicon-align-justify"></i>
+            </a>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="runOverview">
+                <#-- <div id="loadingDiv" style="position:relative;left:0;width:100%;height:700px;top:0;background:#f3f8ff;opacity:0.8;filter:alpha(opacity=80);z-index:10000;">
+                        <div style="position: absolute; cursor1: wait; left: 300px; top:250px; width: auto; height: 150px; line-height: 150px; padding-left:150px; padding-right: 5px; background: #fff url(../images/loading.gif) no-repeat scroll 5px 10px; border: 2px solid #95B8E7; color: #696969; font-family:\'Microsoft YaHei\';">
+                        页面加载中，请等待...
+                    </div>
+                   </div>-->
+                </div>
+                <div role="tabpanel" class="tab-pane" id="scannerMonitor">
+                    Scanner监控
+                </div>
+                <div role="tabpanel" class="tab-pane" id="currentProbeTask">
+                    当前probe采集任务
+                </div>
+                <div role="tabpanel" class="tab-pane" id="probeFailureFile">
+                    probe处理失败文件列表
+                </div>
+                <div role="tabpanel" class="tab-pane" id="currentDayCollectionFiles">
+                    当天采集文件列表
+                </div>
+                <div role="tabpanel" class="tab-pane" id="historyFiles">
+                    历史文件列表
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dcsDataType">
+                    DCS数据类型配置
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dcsFtpServer">
+                    DCSFTP服务器配置
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dcsFtpTypeRel">
+                    DCSFTP服务器数据类型配置
+                </div>
+                <div role="tabpanel" class="tab-pane" id="scannerRestart">
+                    Scanner重启
+                </div>
+                <div role="tabpanel" class="tab-pane" id="serverRestart">
+                    Server重启
+                </div>
+                <div role="tabpanel" class="tab-pane" id="probeRestart">
+                    Probe重启
+                </div>
+                <div role="tabpanel" class="tab-pane" id="clusterRestart">
+                    集群重启
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dcsUserManager">
+                    用户维护
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<table id="dt_basic"
+       class="table table-striped table-bordered table-hover dataTable no-footer"
+       role="grid" aria-describedby="dt_basic_info" style="width: 100%;table-layout:fixed;" width="100%">
+    <thead>
+
+    <tr role="row">
+        <th style="width:65px;">Probe名称</th>
+        <th style="width:80px;">任务FTP</th>
+        <th style="width:70px;">数据类型</th>
+        <th >FTP路径文件</th>
+        <th style="width:150px;">改名文件名称</th>
+        <th style="width:125px;">文件下载时间
+        </th>
+        <th style="width:180px;">目标HDFS路径</th>
+        <th style="width:30px;">状态
+        </th>
+    <#--<th tabindex="0" aria-controls="dt_basic" style="width: 60px;"
+        aria-label=" Date: activate to sort column ascending" rowspan="1" colspan="1"><i
+            class="fa fa-fw txt-color-blue hidden-md hidden-sm hidden-xs"></i> 操作
+    </th>-->
+    </tr>
+    </thead>
+    <tbody>
+
+    <#list pageInfo.list as col>
+    <tr role="row"
+        class="<#if col_index%2==0>
+                                       odd
+                                        <#else>
+                                        even
+                                        </#if>
+                                            ">
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" >${col["probe_name"]}</td>
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${col["ftp_ip"]!}</td>
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${col["data_type_name"]!}</td>
+        <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" title='${col["ftp_path_and_name"]}'>${col["ftp_path_and_name"]}</td>
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" title='${col["rename_file_name"]}'>${col["rename_file_name"]}</td>
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">  ${(col["file_insert_time"]?string("yyyy-MM-dd HH:mm:ss"))!}</td>
+        <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" title='${col["hdfs_path"]}'>${col["hdfs_path"]}</td>
+        <td title="${col.getDcsFileStatusEnum().titleContext}">
+        ${col.getDcsFileStatusEnum().htmlContent}
+        </td>
+    <#--<td>
+        <button class="btn btn-primary" onclick="findCurrentProbeRelTaskList(${col.probe_id});" data-toggle="modal" data-target="#showCurrentProbeRelTaskFile">采集文件</button>
+    </td>-->
+    </tr>
+
+    </#list>
+    </tbody>
+</table>
+<#include "/page.ftl">

@@ -1,0 +1,63 @@
+<#--<div class="jarviswidget" id="wid-id-7" data-widget-editbutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false" role="widget">-->
+    <!-- widget options:
+    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+    data-widget-colorbutton="false"
+    data-widget-editbutton="false"
+    data-widget-togglebutton="false"
+    data-widget-deletebutton="false"
+    data-widget-fullscreenbutton="false"
+    data-widget-custombutton="false"
+    data-widget-collapsed="true"
+    data-widget-sortable="false"
+
+    -->
+    <header role="heading">
+       
+        <ul class="nav nav-tabs pull-left in">
+
+            <li class="active">
+
+                <a data-toggle="tab" href="#hr1" aria-expanded="false"> <span class="hidden-mobile hidden-tablet"> FTP服务器</span> </a>
+
+            </li>
+
+            <li>
+                <a data-toggle="tab" href="#hr2" aria-expanded="true">  <span class="hidden-mobile hidden-tablet"> 数据类型   </span> </a>
+            </li>
+
+        </ul>
+        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+
+    <!-- widget div-->
+    <div role="content">
+
+        <!-- widget edit box -->
+        <div class="jarviswidget-editbox">
+            <!-- This area used as dropdown edit box -->
+
+        </div>
+        <!-- end widget edit box -->
+
+        <!-- widget content -->
+        <div class="widget-body">
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="hr1">
+
+                <#include "/scannermonitor/scanner_monitor_ftpServer.ftl">
+
+                </div>
+                <div class="tab-pane " id="hr2">
+
+                <#include "/scannermonitor/scanner_monitor_datatype.ftl">
+                </div>
+            </div>
+
+        </div>
+        <!-- end widget content -->
+
+    </div>
+    <!-- end widget div -->
+
+<#--</div>-->

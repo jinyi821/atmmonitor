@@ -1,0 +1,99 @@
+<script>
+    dataList=[];
+</script>
+<table id="dt_basic"
+       class="table table-striped table-bordered table-hover dataTable no-footer"
+       role="grid" aria-describedby="dt_basic_info" style="width:100%;table-layout:fixed;"  >
+    <thead>
+    <tr role="row">
+        <th style="width: 30px;">ID</th>
+        <th style="width: 72px;">类型名称</th>
+        <th style="width: 240px;">正则表达式</th>
+        <th style="width: 60px;" title="是否删除FTP文件">删除FTP?</th>
+        <th style="width: 60px;" title="是否删除本地文件"> 删除本地?</th>
+        <th>HDFS路径</th>
+        <th>相对路径</th>
+        <th style="width:50px"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <#list pageInfo.list as col>
+    <tr role="row"
+        class="<#if col_index%2==0>
+                                       odd
+                                        <#else>
+                                        even
+                                        </#if>
+                                            ">
+        <td> ${col["dataTypeId"]?c}</td>
+        <td> ${col["dataTypeName"]!}</td>
+        <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" title=" ${col["dataTypePathReg"]?html}">
+        ${col["dataTypePathReg"]?html}
+
+        </td>
+        <td>
+            <#if col["isFtpDelete"]== 0>否</#if><#if col["isFtpDelete"]== 1>是</#if>
+        </td>
+        <td >
+            <#if col["isFileDelete"]== 0>否</#if><#if col["isFileDelete"]== 1>是</#if>
+        </td>
+        <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" title=" ${col["hdfsPath"]}">
+            ${col["hdfsPath"]}
+        </td>
+        <td  style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;" title=" ${col["pathFtp"]}">
+          
+            ${col["pathFtp"]}
+            
+        </td>
+        <td>
+            <script>
+                function initID(_id,_pkid) {
+                    pid = _id;
+                    pkid = _pkid;
+                   
+                }
+            </script>
+            <div class="btn btn-xs btn-primary tooltips"  title="修改数据文件元数据"
+                 data-toggle="modal" data-target="#addModalId" onclick="initID('${col_index}','${col["dataTypeId"]}')"
+            ><span class="fa fa-pencil"></span></div>
+<#--
+<div class="btn btn-sm btn-primary"
+     data-toggle="modal" data-target="#messageModalId" onclick="initID('${col_index}','${col["dataTypeId"]}')"
+><span class="fa fa-trash-o"></span></div>
+-->
+            <div class="btn btn-xs btn-primary tooltips" title="删除数据文件元数据"
+                  onclick="initID('${col_index}','${col["dataTypeId"]}');showDi('是否删除该记录?', function(){deleteRecord()})"
+            ><span class="fa fa-trash-o"></span></div>
+</td>
+
+</tr>
+<script>
+
+
+dataList.push(
+    {
+        dataTypeId:${col["dataTypeId"]},
+        dataTypeName: '${col["dataTypeName"]}',
+        dataTypePathReg:'${col["dataTypePathReg"]}',
+        hdfsPath:'${col["hdfsPath"]}',
+        pathFtp:'${col["pathFtp"]}',
+        isFtpDelete:${col["isFtpDelete"]},
+        isFileDelete:${col["isFileDelete"]}
+    });
+
+
+    
+
+</script>
+</#list>
+<script>
+    $("#dt_basic tbody td").bind("dblclick", function () {
+        
+        $(this).css({"text-overflow": "", "overflow": "auto"}); //prop("contentEditable",true)
+    })
+</script>
+
+</tbody>
+</table>
+<#include "/page.ftl">
+

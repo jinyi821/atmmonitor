@@ -1,0 +1,118 @@
+<script>
+    dataList=[];
+</script>
+<table id="dt_basic"
+       class="table table-striped table-bordered table-hover dataTable no-footer"
+       role="grid" aria-describedby="dt_basic_info" style="width: 100%;" width="100%">
+    <thead>
+
+    <tr role="row">
+        <th style="width: 30px;" >ID</th>
+       <#-- <th  style="width: 82px;"> FTP名称</th>
+        <th  style="width: 126px;">数据类型名称</th>-->
+        <th>FTP文件名</th>
+        <th  style="width: 60px;">大小(B)</th>
+        <th style="width: 125px;">
+            文件创建时间
+        </th>
+        <#--<th  style="width: 85px;">服务端工作空间</th>-->
+        <th  >存储HDFS路径</th>
+        <th  style="width: 125px;">更改后文件名</th>
+        <th style="width: 30px;"></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <#list pageInfo.list as col>
+    <tr role="row"
+        class="<#if col_index%2==0>
+                                       odd
+                                        <#else>
+                                        even
+                                        </#if>
+                                            ">
+        <td >
+        ${col["fileId"]}
+        </td>
+       <#-- <td >
+        ${col["dcsFtpServer"]["ftpIp"]}:${col["dcsFtpServer"]["ftpPort"]}
+        </td>
+        <td >
+            <#if col["dcsDataType"]["dataTypeName"]?? && col["dcsDataType"]["dataTypeName"]?length lt 10>
+            ${col["dcsDataType"]["dataTypeName"]?html}
+            <#else>
+            ${col["dcsDataType"]["dataTypeName"][0..9]?default("")?html}...
+            </#if>
+        </td>-->
+        <td>
+            ${col["pathAndName"]!''?html}
+         </td>
+        <td>
+        ${col["fileSize"]?default("")}
+        </td>
+
+        <td>
+            <#if col["fileIntime"]??>
+                                            ${col["fileIntime"]?string('yyyy-MM-dd HH:mm:ss')}
+             </#if>
+        </td>
+        <#--<td>-->
+            <#--${col["dcsFtpServer"]["ftpWorkDirectory"]!''}-->
+        <#--</td>-->
+        <td title="${col["hdfsPath"]!''}">
+            ${col["hdfsPath"]!''}
+        </td>
+        <td>
+        ${col["renameFileName"]!''?html}
+        </td>
+        <td>
+            <script>
+                function initID(_id,_pkid) {
+                    pid = _id;
+                    pkid = _pkid;
+                   
+                }
+            </script>
+            <button class="btn btn-xs btn-primary tooltips " title="查看明细" data-toggle="modal"  data-placement="left"
+                    data-target="#addModalId"   onclick="initID('${col_index}','${col["fileId"]}')"
+            ><i class="fa fa-eye" aria-hidden="true"></i></button>
+        </td>
+    </tr>
+    <script>
+        
+        dataList.push(
+                {
+                    fileId:'${col["fileId"]}',
+                    ftpId: '${col["ftpId"]}',
+                    dataTypeId: '${col["dataTypeId"]}',
+                    pathAndName:'${col["pathAndName"]!''}',
+                    renameFileName: '${col["renameFileName"]!''}',
+                    fileIntime:'${col["fileIntime"]?string("yyyy-MM-dd HH:mm:ss")}' ,
+
+                    fileSize:'${col["fileSize"]!''}',
+                    source:'${col["source"]!''}',
+                    hdfsPath:'${col["hdfsPath"]!''}',
+                    'dcsDataType.dataTypeName':'${col["dcsDataType"]["dataTypeName"]!''}',
+                    'dcsDataType.dataTypePathReg':'${col["dcsDataType"]["dataTypePathReg"]!''}',
+                    'dcsDataType.isFtpDelete':'${col["dcsDataType"]["isFtpDelete"]}',
+                    'dcsDataType.isFileDelete':'${col["dcsDataType"]["isFileDelete"]}',
+                    'dcsDataType.hdfsPath':'${col["dcsDataType"]["hdfsPath"]!''}',
+                    'dcsDataType.pathFtp':'${col["dcsDataType"]["pathFtp"]!''}',
+                    'dcsFtpServer.ftpIp':'${col["dcsFtpServer"]["ftpIp"]!''}',
+                    'dcsFtpServer.ftpPort':'${col["dcsFtpServer"]["ftpPort"]!''}',
+                    'dcsFtpServer.ftpUserName':'${col["dcsFtpServer"]["ftpUserName"]!''}',
+                    'dcsFtpServer.ftpPassword':'${col["dcsFtpServer"]["ftpPassword"]!''}',
+                    'dcsFtpServer.ftpWorkDirectory':'${col["dcsFtpServer"]["ftpWorkDirectory"]!''}',
+                    'dcsFtpServer.ftpLastScanTime':'${col["dcsFtpServer"]["ftpLastScanTime"]?number_to_datetime?string("yyyy-MM-dd HH:mm:ss")}',
+                    'dcsFtpServer.ftpPeriod':'${col["dcsFtpServer"]["ftpPeriod"]!''}',
+                    'dcsFtpServer.scannerIp':'${col["dcsFtpServer"]["scannerIp"]!''}',
+                    'dcsFtpServer.ftpLastServerTime':'${col["dcsFtpServer"]["ftpLastServerTime"]?number_to_datetime?string("yyyy-MM-dd HH:mm:ss")}',
+                    'dcsFtpServer.pathFtp':'${col["dcsFtpServer"]["pathFtp"]!''}',
+                    'dcsFtpServer.pathReg':'${col["dcsFtpServer"]["pathReg"]!''}'
+
+                });
+    </script>
+    </#list>
+    </tbody>
+</table>
+<#include "/page.ftl">

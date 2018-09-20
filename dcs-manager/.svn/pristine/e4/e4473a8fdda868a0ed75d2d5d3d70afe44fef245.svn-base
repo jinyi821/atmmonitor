@@ -1,0 +1,20 @@
+
+<div class="form-group">
+    <label for="ftpId" class="col-xs-4 control-label">ftpIp：</label>
+    <div class="col-xs-8">
+        
+        <select class="form-control input-sm duiqi" id="ftpId" placeholder="输入ftpIp"  >
+
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label for="dataTypeId" class="col-xs-4 control-label">类型名称：</label>
+    <div class="col-xs-8">
+
+        <select class="form-control input-sm duiqi" id="dataTypeId" placeholder="输入类型名称" >
+
+        </select>
+    </div>
+</div>
+

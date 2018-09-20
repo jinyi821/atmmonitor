@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ultrapower.dcs.cluster.control.dao.DcsScannerMapper" >
+  <resultMap id="BaseResultMap" type="com.ultrapower.dcs.cluster.control.model.DcsScanner" >
+    <id column="scanner_id" property="scannerId" jdbcType="INTEGER" />
+    <result column="scanner_name" property="scannerName" jdbcType="VARCHAR" />
+    <result column="scanner_ip" property="scannerIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scanner_id, scanner_name, scanner_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dcs_scanner
+    where scanner_id = #{scannerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dcs_scanner
+    where scanner_id = #{scannerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ultrapower.dcs.cluster.control.model.DcsScanner" >
+    insert into dcs_scanner (scanner_id, scanner_name, scanner_ip
+      )
+    values (#{scannerId,jdbcType=INTEGER}, #{scannerName,jdbcType=VARCHAR}, #{scannerIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsScanner" >
+    insert into dcs_scanner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scannerId != null" >
+        scanner_id,
+      </if>
+      <if test="scannerName != null" >
+        scanner_name,
+      </if>
+      <if test="scannerIp != null" >
+        scanner_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scannerId != null" >
+        #{scannerId,jdbcType=INTEGER},
+      </if>
+      <if test="scannerName != null" >
+        #{scannerName,jdbcType=VARCHAR},
+      </if>
+      <if test="scannerIp != null" >
+        #{scannerIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ultrapower.dcs.cluster.control.model.DcsScanner" >
+    update dcs_scanner
+    <set >
+      <if test="scannerName != null" >
+        scanner_name = #{scannerName,jdbcType=VARCHAR},
+      </if>
+      <if test="scannerIp != null" >
+        scanner_ip = #{scannerIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where scanner_id = #{scannerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ultrapower.dcs.cluster.control.model.DcsScanner" >
+    update dcs_scanner
+    set scanner_name = #{scannerName,jdbcType=VARCHAR},
+      scanner_ip = #{scannerIp,jdbcType=VARCHAR}
+    where scanner_id = #{scannerId,jdbcType=INTEGER}
+  </update>
+  <!-- 这个方法是我自己加的 -->
+  <select id="selectAllDcsScanner" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dcs_scanner
+  </select>
+</mapper>

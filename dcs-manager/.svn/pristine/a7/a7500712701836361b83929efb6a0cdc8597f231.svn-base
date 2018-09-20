@@ -1,0 +1,56 @@
+<div class="col-xs-10 col-sm-10">
+    <div id="dt_basic_filter" class="dataTables_filter">
+        <label>
+            <select id ="probeId" name="dt_basic_length" aria-controls="dt_basic"  class="form-control input">
+              
+                <option value='-1'  >所有Probe</option>
+            <#list dcsProbeList as col>
+                <option value='${col["probe_id"]}' <#if col.probe_id==probeId > selected</#if>>${col["probe_name"]}</option>;
+            </#list>
+            </select>
+            <select id ="ftpId"  name="dt_basic_length" aria-controls="dt_basic"
+                    class="form-control input">
+                
+                <option value='-1'  >所有FTP</option>
+            <#list ftpServerList as col>
+                <option value='${col["ftpId"]}' <#if col.ftpId==ftpId > selected</#if> >${col["ftpIp"]}</option>;
+            </#list>
+            </select>
+            <select id="dataTypeId" name="dt_basic_length" aria-controls="dt_basic"
+                    class="form-control input">
+               
+                <option value='-1'  >所有数据类型</option>
+            <#list dcsDataTypeList as col>
+                <option value='${col["dataTypeId"]}'<#if col.dataTypeId==dataTypeId > selected</#if> >${col["dataTypeName"]}</option>
+            </#list>
+            </select>
+            <input id="fileName" name="fileName" class="form-control" style="display:inline-block;width:100px;" placeholder="文件名称" value="${fileName!''}" type="text"/>
+            <select id="fileStatus" name="dt_basic_length" aria-controls="dt_basic" class="form-control input">
+              
+                <option value='-1'  >所有状态</option>
+            <#list fileStatusEnumList as col>
+                <option value='${col["code"]}' <#if col.code==fileStatus> selected</#if>>${col["context"]}</option>
+            </#list>
+            </select>
+            <button id="searchButton" class="btn btn-default btn-primary" type="button">
+                <i class="fa fa-search"></i> 搜索
+            </button>
+        </label>
+    </div>
+
+</div>
+
+<div class="col-sm-2 col-xs-2 hidden-xs">
+    <div class="dataTables_length" id="dt_basic_length">
+
+        <label> <select id = "pageSize"
+                          name="dt_basic_length" aria-controls="dt_basic"
+                          class="form-control input-sm">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select> </label>
+
+    </div>
+</div>
